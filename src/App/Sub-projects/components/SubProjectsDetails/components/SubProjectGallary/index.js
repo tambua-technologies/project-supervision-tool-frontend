@@ -62,14 +62,7 @@ import DisplaySurveyForm from "../../../../../components/DisplaySurveyForm";
         // filterData="20/2/2020"
         // filterFrom="Showing images from:"
         filterTo="To"
-        actions={[
-          {
-            label: "Upload new photo",
-            size: "large",
-            title: "Upload New photo",
-            onClick: () => showModal(),
-          },
-        ]}
+        actions={[]}
       />
       <Image.PreviewGroup>
         {
