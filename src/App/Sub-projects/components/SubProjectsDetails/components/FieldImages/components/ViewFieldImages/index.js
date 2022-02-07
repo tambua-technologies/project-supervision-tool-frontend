@@ -14,10 +14,9 @@ function ViewFieldImages ({ subProject })
     }
 
     useEffect(() => {
-        const fieldImages = subProject.surveys.filter(({category_name}) => category_name === 'field_images');
         API.getAssets()
             .then(res => {
-                const data = filterSurveys(fieldImages, res.results);
+                const data = filterSurveys(subProject.surveys, res.results);
                 setSurveys(data);
 
             });
