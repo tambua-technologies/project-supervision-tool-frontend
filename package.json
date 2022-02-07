@@ -45,7 +45,8 @@
     "start": "react-scripts start",
     "commit": "git-cz",
     "build": "react-scripts build",
-    "deploy": "aws s3 sync build/ s3://projectsupervisiontool --acl public-read",
+    "upload-aws": "aws s3 sync build/ s3://projectsupervisiontool --acl public-read",
+    "deploy": " npm run build && npm run upload-aws",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
