@@ -39,14 +39,7 @@ const routes = [
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,
-    },
-    {
-        name: 'Tickets',
-        path: '/tickets',
-        icon: subProjectsDisabledIcon,
-        description: modules.initiatives,
-        disabled: true,
-    },
+    }
 ];
 
 /**
