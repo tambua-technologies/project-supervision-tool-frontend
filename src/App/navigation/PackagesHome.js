@@ -34,7 +34,7 @@ const routes = [
     },
 
     {
-        name: 'Human Equipment Mobilization',
+        name: 'Equipment Mobilization',
         path: '/tickets',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
