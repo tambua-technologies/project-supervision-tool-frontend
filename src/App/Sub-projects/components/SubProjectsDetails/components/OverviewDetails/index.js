@@ -110,7 +110,7 @@ const OverviewDetails = ({ sub_project, mapLoading,subProjectTickets }) => {
 
                 </Col>
             </Row>
-          <Tickets tickets={subProjectTickets} />
+          {/* <Tickets tickets={subProjectTickets} /> */}
                 
         </>
 
