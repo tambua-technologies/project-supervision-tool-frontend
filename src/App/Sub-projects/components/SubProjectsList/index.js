@@ -396,19 +396,6 @@ class SubProjectsList extends Component {
                                                 onClick: () => this.handleViewDetails(item.id)
                                             }
                                         }
-                                        createSurvey={
-                                            {
-                                                name: "Create Survey",
-                                                title: "Create sub project survey",
-                                                onClick: () => this.openSubProjectSurveyForm(item)
-                                            }
-                                        }
-                                        openIssues={{
-                                            name: "Create New Ticket",
-                                            title:
-                                                "Open Ticket to the this sub project",
-                                            onClick: () => this.openIssueForm(item),
-                                        }}
                                     />
                                 )}
                             >
