@@ -1,4 +1,4 @@
-import { Popup, CircleMarker, Marker } from "react-leaflet";
+import { Popup, Marker } from "react-leaflet";
 import { divIcon } from 'leaflet';
 import React from "react";
 import PropTypes from 'prop-types';

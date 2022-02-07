@@ -8,7 +8,6 @@ import {
   Row,
   Col,
   Typography,
-  Select,
 
 } from "antd";
 import { generateDateString, generateYearString } from "../../../../../Util";
@@ -152,8 +151,7 @@ class ProjectDetailsForm extends Component {
       handleBackButton,
       currency,
       sectors,
-      project,
-      regions
+      project
     } = this.props;
 
     const { visibleCommitmentAmount, visibleTotalProjectCost, visibleProjectSectors } = this.state;

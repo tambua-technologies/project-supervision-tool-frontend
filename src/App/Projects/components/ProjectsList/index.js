@@ -394,24 +394,11 @@ class ProjectsList extends Component {
                         "Add sub component to the project",
                       onClick: () => this.openProjectSubComponentForm(item),
                     }}
-                    openIssues={{
-                      name: "Create New Ticket",
-                      title:
-                        "Open Ticket to the project",
-                      onClick: () => this.openIssueForm(item),
-                    }}
                     view={
                       {
                         name: "View Detail",
                         title: "View more detail of selected project",
                         onClick: () => this.handleViewDetails(item.id)
-                      }
-                    }
-                    onMapPreview={
-                      {
-                        name: "Preview on Map",
-                        title: "View Project on map",
-                        onClick: () => this.handleMapPreview(item)
                       }
                     }
                   />

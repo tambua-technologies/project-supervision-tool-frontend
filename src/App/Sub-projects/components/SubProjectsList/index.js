@@ -168,7 +168,7 @@ class SubProjectsList extends Component {
      */
     closeSubProjectForm = () => {
         this.setState({isEditForm: false, visible: false});
-        const {closeSubProjectForm, selectSubProject,fetchSubProjects} = this.props;
+        const {closeSubProjectForm, selectSubProject} = this.props;
         selectSubProject(null)
         closeSubProjectForm();
     };

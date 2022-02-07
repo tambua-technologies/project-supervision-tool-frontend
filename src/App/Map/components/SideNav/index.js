@@ -7,7 +7,6 @@ import {mapActions, mapSelectors} from "../../../../redux/modules/map";
 import {bindActionCreators} from "redux";
 import {Link} from 'react-router-dom';
 import projectsIcon from '../../../../assets/icons/projects-white.svg';
-import layersIcon from "../../../../assets/icons/geo-node-layers-white.svg";
 import homeIcon from '../../../../assets/icons/home-white.svg';
 import {Drawer} from 'antd';
 import { MenuUnfoldOutlined } from '@ant-design/icons';

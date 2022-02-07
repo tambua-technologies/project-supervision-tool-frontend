@@ -5,7 +5,6 @@ import {ofType, combineEpics} from 'redux-observable';
 import {of, from} from 'rxjs';
 import {switchMap, catchError,} from "rxjs/operators";
 import {mapProjectActions} from "../map/projects";
-import { subProjectsActions } from '../subProjects';
 
 export const projectsListEpic = action$ => {
     return action$.pipe(
