@@ -23,26 +23,14 @@ const routes = [
     },
 
     {
-        name: 'Tickets',
-        path: '/tickets',
+        name: 'Packages',
+        path: '/packages',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,
     },
-    {
-        name: 'Agreed Actions',
-        path: '/agreed-actions',
-        icon: subProjectsDisabledIcon,
-        description: modules.initiatives,
-        disabled: true,
-    },
-    {
-        name: 'Monitoring & Evaluation',
-        path: '/monitoring-and-evaluation',
-        icon: subProjectsDisabledIcon,
-        description: modules.initiatives,
-        disabled: true,
-    },
+    
+   
 ];
 
 /**
