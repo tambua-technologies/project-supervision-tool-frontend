@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Proptypes from 'prop-types';
 import { connect } from "react-redux";
 import { Button, Col, Form, Input, InputNumber, Row, Select } from "antd";
-import { projectActions } from "../../../../redux/modules/projects";
 import { subProjectsActions } from "../../../../redux/modules/subProjects";
 import PropTypes from "prop-types";
 import API from "../../../../API";
@@ -92,7 +91,11 @@ function SubProjectForm({ createSubProject, selected, procuringEntityPackage, cl
                 name: selected?.name,
                 project_id: selected?.project_id,
                 description: selected?.description,
-                code: selected?.code
+                unit: selected?.quantity.unit,
+                sub_project_type_id: selected.type.name,
+                sub_project_status_id: selected.status.name,
+                district_id: selected.district.name,
+                quantity: selected.quantity.amount
             }}
 
         >
@@ -178,7 +181,7 @@ function SubProjectForm({ createSubProject, selected, procuringEntityPackage, cl
             >
                 <Select onChange={handleOnRegionChange}>
                     {regions.map(({ id, name }) => (
-                        <Select.Option value={id}>{name}</Select.Option>
+                        <Select.Option value={id} key={id} >{name}</Select.Option>
                     ))}
                 </Select>
             </Form.Item>
@@ -198,7 +201,7 @@ function SubProjectForm({ createSubProject, selected, procuringEntityPackage, cl
             >
                 <Select onChange={handleOnRegionChange}>
                     {districts.map(({ id, name }) => (
-                        <Select.Option value={id}>{name}</Select.Option>
+                        <Select.Option value={id} key={id} >{name}</Select.Option>
                     ))}
                 </Select>
             </Form.Item>
@@ -258,19 +261,14 @@ function SubProjectForm({ createSubProject, selected, procuringEntityPackage, cl
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-
-    };
-};
 
 const mapDispatchToProps = {
-    createSubProject: projectActions.createSubProjectStart,
+    createSubProject: subProjectsActions.createSubProjectStart,
     updateSubProject: subProjectsActions.updateSubProjectStart,
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubProjectForm);
+export default connect('', mapDispatchToProps)(SubProjectForm);
 
 SubProjectForm.propTypes = {
     procuringEntityPackage: Proptypes.object,

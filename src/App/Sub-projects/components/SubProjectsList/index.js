@@ -198,6 +198,7 @@ class SubProjectsList extends Component {
      */
     handleEdit = (subProject) => {
         const {selectSubProject, openSubProjectForm, } = this.props;
+        console.log(subProject)
         selectSubProject(subProject);
         this.setState({isEditForm: true});
         openSubProjectForm();
@@ -460,8 +461,7 @@ class SubProjectsList extends Component {
                         visible={showForm}
                         bodyStyle={{paddingBottom: 80}}
                         destroyOnClose
-                        maskClosable={false}
-                
+                        maskClosable={false}                
                         className="subProjectForm"
                     >
                         <SubProjectForm isEditForm={isEditForm} onCancel={this.closeSubProjectForm} procuringEntityPackage={procuringEntityPackage}
