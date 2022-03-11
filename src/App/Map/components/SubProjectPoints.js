@@ -24,7 +24,7 @@ function SubProjectPoints({subProjects, getSubproject, subProjectLoading, subPro
             {subProjects.map((subProject) => {
                 const {name, id} = subProject;
                 let polygon, geo_json;
-                if (subProject?.geo_json) {
+                if (subProject?.geo_json && subProject?.geo_json?.srid) {
                     geo_json = subProject.geo_json?.srid === 'EPSG:4326' ? subProject.geo_json : reproject(subProject.geo_json, subProject.geo_json?.srid, 'EPSG:4326', epsg);
                     polygon = geo_json.geometry;
                 } else {
