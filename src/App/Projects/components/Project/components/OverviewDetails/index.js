@@ -1,7 +1,6 @@
 import { Col, Row, } from "antd";
 import PropTypes from 'prop-types';
 import React from "react";
-import DetailsSection from "../ComponentSubComponent";
 import ProjectPoints from "../../../../../Map/components/ProjectPoints";
 import * as turf from '@turf/turf';
 import BaseMap from "../../../../../Map/components/BaseMap";
@@ -114,11 +113,11 @@ const OverviewDetails = ({
             <h5>Project Location </h5>  
           <div className="project-map">
             {
-              project?.regions.length > 0 ? project?.regions?.map((region) => {
+              project?.regions.length > 0 ? project?.regions?.map((region, i)  => {
                 const polygon = JSON.parse(region.geom);
                 const { geometry } = turf.pointOnFeature(polygon);
                 return (
-                  <BaseMap zoomControl={true} position={[geometry.coordinates[1], geometry.coordinates[0]]}>
+                  <BaseMap zoomControl={true} position={[geometry.coordinates[1], geometry.coordinates[0]]} key={i}>
                     {project ? <ProjectPoints projects={[project]} loading={false} /> : ''}
                   </BaseMap>
                 )
@@ -129,14 +128,14 @@ const OverviewDetails = ({
 
 
         </Col>
-       {project?.components.length > 0 ?  <DetailsSection components={project?.components} /> : ''}
       </Row>
     </>
   )
 }
 
 OverviewDetails.propTypes = {
-  project: PropTypes.object.isRequired
+  project: PropTypes.object
 }
+
 
 export default OverviewDetails;

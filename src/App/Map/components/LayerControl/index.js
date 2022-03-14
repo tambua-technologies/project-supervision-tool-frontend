@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import { connect } from 'react-redux';
 import WMSCapabilities from 'wms-capabilities';
 import LayerControlIcon from '../../../../assets/icons/geo-node-layers.svg';
-import './styles.css';
 import {Collapse, Drawer, Spin} from "antd";
 import L from 'leaflet';
 import {CloseOutlined} from '@ant-design/icons';
@@ -14,6 +13,7 @@ import {useMap} from "react-leaflet";
 import PropTypes from "prop-types";
 import {mapDataSetsActions, mapDataSetsSelectors} from "../../../../redux/modules/map/dataSets";
 import {bindActionCreators} from "redux";
+import './styles.css';
 
 const {Panel} = Collapse;
 
@@ -41,7 +41,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
             addDataLayer(null);
         }
 
-    }, []);
+    }, []);  // eslint-disable-line react-hooks/exhaustive-deps
 
 
     const changeOpacity = (value, layer) => mapLayers[layer.typename]?.setOpacity(value);
@@ -76,12 +76,11 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
 
     useEffect(() => {
         if(addedDataSet) addDataSet(addedDataSet);
-    }, [addedDataSet]);
+    }, [addedDataSet]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if(removedDataSet) removeDataSet(removedDataSet);
-    }, [removedDataSet]);
-
+    }, [removedDataSet]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
     return (

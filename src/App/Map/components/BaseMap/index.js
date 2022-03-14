@@ -34,10 +34,10 @@ const BaseMap = ({children, position}) => {
 
     const BASE_MAPS = [
 
-        L.tileLayer('//tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-            label: 'OpenStreetMap Black and White'  // optional label used for tooltip
-        }),
+        // L.tileLayer('//tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+        //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        //     label: 'OpenStreetMap Black and White'  // optional label used for tooltip
+        // }),
         L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
             label: 'OpenStreetMap Standard'  // optional label used for tooltip
@@ -77,5 +77,6 @@ BaseMap.propTypes = {
 }
 
 BaseMap.defaultProps = {
-    zoomControl: true
+    zoomControl: true,
+    projects: []
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { ProcuringEntityActions, ProcuringEntitySelectors, } from '../../../../redux/modules/ProcuringEntities';
 import PropTypes from 'prop-types';
@@ -8,91 +8,89 @@ import Topbar from "../../../components/Topbar";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
-import { moneyFormat, showArchiveConfirm } from "../../../../Util";
+import { getIdFromUrlPath, getAmount, showArchiveConfirm } from "../../../../Util";
 import PackageForm from '../Form';
-
-import "./styles.css";
 import {useHistory} from "react-router-dom";
 import BaseLayout from "../../../layouts/BaseLayout";
 import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
-
+import "./styles.css";
+import { useToggle } from '../../../../hooks/useToggle';
 
 /* constants */
 const nameSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 19, xs: 19 };
 const descriptionSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
 const contractNoSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 4, xs: 2 };
-const contractorSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const contractorSpan = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 4, xs: 0 };
 const estimentedAmountNoSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 4, xs: 2 };
-const awardedAmountNoSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 4, xs: 2 };
 const completeDateSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 
 const headerLayout = [
     { ...nameSpan, header: "Name" },
     { ...descriptionSpan, header: "Description" },
     { ...contractNoSpan, header: "Contract No" },
-    { ...contractorSpan, header: "Contractor" },
-    { ...estimentedAmountNoSpan, header: "Estimated Amount" },
-    { ...awardedAmountNoSpan, header: "Awarded Amount" },
-    { ...completeDateSpan, header: "Complete Date" },
+    { ...contractorSpan, header: "Contractor(s)" },
+    { ...estimentedAmountNoSpan, header: "Original contract sum" },
+    { ...completeDateSpan, header: "Completion Date" },
 
 ];
 
 const PackagesList = ({
-    getPackes,
+    getPackages,
     packages,
     loading,
     showForm,
     deletePackage,
     createPackage,
     updatePackage,
-    procuringEntities,
+    procuringEntity,
     openPackageForm,
     closePackageForm,
     selectPackage,
     selected,
     match,
-    getProcuringEntities
+    getProcuringEntity
 }) => {
 
 
     const history = useHistory();
-    const filter = {'filter[procuring_entity_id]': match.params?.id}
-    const [isEditForm, setIsEditForm] = useState(false);
-    const [visible, setVisible] = useState(false);
+    const { isEditForm, setIsEditForm, setVisible } = useToggle(false);
+    const procuringEntityId = getIdFromUrlPath(match.path, 4);
+    const filter = {'filter[procuring_entity_id]': procuringEntityId}
 
 
-    const breadcrumbs =  packages.length > 0 ? [
+    const breadcrumbs =  procuringEntity ? [
         {
             title: 'Projects',
             url: '/projects',
             name: 'Projects'
         },
         {
-            title: packages[0].procuring_entity.project.code,
-            url: `/projects/${packages[0].procuring_entity.project.id}/`,
-            name: packages[0].procuring_entity.project.name
+            title: procuringEntity.project.code,
+            url: `/projects/${procuringEntity.project.id}/`,
+            name: procuringEntity.project.name
         },
         {
             title: `Procuring Entities`,
-            url: `/projects/${packages[0].procuring_entity.project.id}/procuring_entities`,
-            name: `Procuring Entities under ${packages[0].procuring_entity.project.name}(${packages[0].procuring_entity.project.code})`
+            url: `/projects/${procuringEntity.project.id}/procuring_entities`,
+            name: `Procuring Entities under ${procuringEntity.project.name}(${procuringEntity.project.code})`
         },
         {
-            title: `${packages[0].procuring_entity.agency.name}`,
-            url: `/projects/${packages[0].procuring_entity.project.id}/procuring_entities/${packages[0].procuring_entity.id}`,
-            name: `${packages[0].procuring_entity.agency.name}`
+            title: `${procuringEntity.agency.name}`,
+            url: `/projects/${procuringEntity.project.id}/procuring_entities/${procuringEntity.id}`,
+            name: `${procuringEntity.agency.name}`
         },
         {
             title: `Packages`,
             url: match.url,
-            name: `Packages procured in ${packages[0].procuring_entity.agency.name}`
+            name: `Packages procured in ${procuringEntity.agency.name}`
         }
     ] : [];
 
 
     useEffect(() => {
-        getPackes(filter)
-    }, []);
+        getPackages(filter)
+        getProcuringEntity(procuringEntityId);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
     /**
@@ -144,7 +142,7 @@ const PackagesList = ({
    * @since 0.1.0
    */
     const handleRefresh = () => {
-        getPackes(filter);
+        getPackages(filter);
     };
     ;
 
@@ -163,14 +161,6 @@ const PackagesList = ({
         setIsEditForm(true)
         openPackageForm();
     };
-
-
-    const getAmount = (data) => {
-        const { amount, currency } = data
-        const { iso } = currency;
-        const money = moneyFormat(amount);
-        return `${money} ${iso} `;
-    }
 
     return (
         <BaseLayout breadcrumbs={<DynamicBreadcrumbs breadcrumbs={breadcrumbs} />} >
@@ -249,13 +239,10 @@ const PackagesList = ({
                                 {item?.contract?.contractor ? item?.contract?.contractor?.name : 'N/A'}
                             </Col>
                             <Col {...estimentedAmountNoSpan} className="contentEllipse">
-                                {item?.contract?.contract_cost ? getAmount(item?.contract?.contract_cost?.estimated_final_contract_price) : 'N/A'}
-                            </Col>
-                            <Col {...awardedAmountNoSpan} className="contentEllipse">
-                                {item?.contract?.contract_cost ? getAmount(item?.contract?.contract_cost?.contract_award_value) : 'N/A'}
+                                {item?.contract?.original_contract_sum ? getAmount(item?.contract?.original_contract_sum) : 'N/A'}
                             </Col>
                             <Col {...completeDateSpan} className="contentEllipse">
-                                {item ? new Date(item?.contract?.contract_time?.intended_completion_date).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A'}
+                                {item ? new Date(item?.contract?.date_of_contract_completion).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A'}
                             </Col>
 
                             {/* eslint-enable react/jsx-props-no-spreading */}
@@ -282,9 +269,7 @@ const PackagesList = ({
                         createPackage={createPackage}
                         loading={loading}
                         updatePackage={updatePackage}
-                        procuringEntities={procuringEntities}
-                        getProcuringEntities={getProcuringEntities}
-
+                        procuringEntity={procuringEntity}
                     />
 
                 </Drawer>
@@ -300,38 +285,42 @@ const mapStateToProps = (state) => {
     return {
         packages: ProcuringEntitySelectors.getPackagesSelector(state),
         loading: ProcuringEntitySelectors.loadingPackages(state),
-        procuringEntities: ProcuringEntitySelectors.getProcuringEntities(state),
+        procuringEntity: ProcuringEntitySelectors.getProcuringEntitySelector(state),
         showForm: ProcuringEntitySelectors.showPackageFormSelector(state),
         selected: ProcuringEntitySelectors.selectedPackageSelector(state)
     }
 }
 
 const mapDispatchToProps = {
-    getPackes: ProcuringEntityActions.getPackagesStart,
+    getPackages: ProcuringEntityActions.getPackagesStart,
     deletePackage: ProcuringEntityActions.deletePackageStart,
     createPackage: ProcuringEntityActions.createPackageStart,
     updatePackage: ProcuringEntityActions.updatePackageStart,
-    getProcuringEntities: ProcuringEntityActions.getProcuringEntitiesStart,
     openPackageForm: ProcuringEntityActions.openPackageForm,
     closePackageForm: ProcuringEntityActions.closePackageForm,
     selectPackage: ProcuringEntityActions.selectPackage,
+    getProcuringEntity: ProcuringEntityActions.getProcuringEntityStart
+
 }
 
 PackagesList.propTypes = {
     getPackage: PropTypes.func.isRequired,
     packages: PropTypes.array.isRequired,
+    procuringEntity: PropTypes.object,
     loading: PropTypes.bool.isRequired,
     openPackageForm: PropTypes.func.isRequired,
     closePackageForm: PropTypes.func.isRequired,
     selectPackage: PropTypes.func.isRequired,
     showForm: PropTypes.bool,
+    getProcuringEntity: PropTypes.func,
 };
 
 PackagesList.defaultProps = {
     packages: null,
     loading: null,
     isEditForm: null,
-    showForm: null
+    showForm: null,
+    getPackage: () => {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackagesList);

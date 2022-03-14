@@ -22,7 +22,7 @@ function LayerCategory({category, changeOpacity}) {
     useEffect(() => {
         API.getLayers({category: category.id, offset: 0})
             .then(({objects}) => setLayers(objects));
-    }, []);
+    }, [category.id]);
 
 
     return (

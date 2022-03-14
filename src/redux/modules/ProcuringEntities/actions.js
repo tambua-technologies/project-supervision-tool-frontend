@@ -168,6 +168,15 @@ export const getProcuringEntityStart = makeActionCreator(types.GET_PROCURING_ENT
 export const getProcuringEntitySuccess = makeActionCreator(types.GET_PROCURING_ENTITY_SUCCESS, 'payload');
 
 /**
+ * @function
+ * @name searchProcuring
+ * @param {Object} payload project response
+ * @return {Object} action
+ * */
+ export const searchProcuring = makeActionCreator(types.SEARCH_PROCURING_ENTITY, 'payload');
+
+
+/**
  * @const
  * @name getProcuringEntityFailure
  * @param {Object} payload procuringEntity failure response

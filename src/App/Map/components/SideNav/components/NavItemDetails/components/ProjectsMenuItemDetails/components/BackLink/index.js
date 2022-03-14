@@ -6,7 +6,7 @@ function BackLink({goBack}) {
 
     return (
         <div className="BackLink" onClick={goBack}>
-            <a> <ArrowLeftOutlined /></a>
+            <ArrowLeftOutlined />
         </div>
 
     );

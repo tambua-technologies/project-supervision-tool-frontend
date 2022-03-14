@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from 'prop-types';
 import MultlevelFilter from "../../../../../../../../../components/CheckBoxGroupFilter/MultlevelFilter";
 
@@ -16,7 +16,7 @@ const SubProjectRegionsFilter = ({ project, getDistricts, districts, setSubProje
 
     useEffect(() => {
         getDistricts(regionsFilterData.map(({ id }) => id));
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
 

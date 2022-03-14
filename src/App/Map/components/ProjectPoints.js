@@ -1,4 +1,4 @@
-import { Popup, CircleMarker, Marker } from "react-leaflet";
+import { Popup, Marker } from "react-leaflet";
 import { divIcon } from 'leaflet';
 import React from "react";
 import PropTypes from 'prop-types';
@@ -8,11 +8,7 @@ import { invertColor, moneyFormatWithApproximation } from "../../../Util";
 import Legend from "./Legend";
 
 
-function ProjectPoints({ projects, project, loading, getProject }) {
-
-    const handleProjectPopup = (project_id) => {
-        getProject(project_id);
-    };
+function ProjectPoints({ projects, loading, getProject }) {
 
     const getMarkerDiameter = (amount, maxAmount, maxDiameter = 40, minDiameter = 20) => {
         const diameter = amount * maxDiameter / maxAmount;
@@ -50,11 +46,12 @@ function ProjectPoints({ projects, project, loading, getProject }) {
                             ${commitment_money}
                             </h4>`,
                         iconSize: [dimension, 42],
-                        iconAnchor: [0, 0]
+                        iconAnchor: [0, 0],
+                        key:id
                     });
 
                     return (
-                        <>
+                        <div key={id}>
                             <Marker
                                 position={[geometry.coordinates[1], geometry.coordinates[0]]}
                                 title={region.name}
@@ -62,11 +59,11 @@ function ProjectPoints({ projects, project, loading, getProject }) {
                                 icon={customizedIcon}
                             >   
                                 <Popup >
-                                    <ProjectPopupDetail project={project} loading={loading} />
+                                    <ProjectPopupDetail project={project} loading={loading}  key={region.id} />
                                 </Popup>
                             </Marker>
                             <Legend projects={projects} />
-                        </>
+                        </div>
 
                     );
                 }) : '';
@@ -80,7 +77,7 @@ export default ProjectPoints;
 
 ProjectPoints.propTypes = {
     projects: PropTypes.array.isRequired,
-    project: PropTypes.object.isRequired,
+    project: PropTypes.object,
     loading: PropTypes.bool.isRequired,
     getProject: PropTypes.func,
 }

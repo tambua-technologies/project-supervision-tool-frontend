@@ -55,7 +55,6 @@ function ProjectSubComponentForm({
                     onFinish={onFinish}
                     autoComplete="off"
                     className="ProjectComponentForm"
-                    marginBottom='0px'
                 >
                     {/* start:project sub component name */}
                     <Form.Item

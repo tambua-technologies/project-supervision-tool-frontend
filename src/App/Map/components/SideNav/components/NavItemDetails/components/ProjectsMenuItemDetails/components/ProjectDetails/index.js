@@ -28,7 +28,6 @@ function ProjectDetails({
     getSubProjectTypes,
     getSubProjectStatus,
     setSubProjectStatusFilter,
-    regions,
     getRegions,
     setSubProjectRegionsFilter,
     districts,
@@ -51,7 +50,7 @@ function ProjectDetails({
         getRegions();
         getContractors();
         getProcuringEntity();
-    }, []);
+    }, []);  // eslint-disable-line react-hooks/exhaustive-deps
 
 
     const handleGoBack = () => goBackToProjects(project?.project_id);

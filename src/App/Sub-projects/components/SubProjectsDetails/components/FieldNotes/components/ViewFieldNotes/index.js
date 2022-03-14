@@ -21,7 +21,7 @@ function ViewFieldNotes ({ subProject })
                 setSurveys(data);
 
             });
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return surveys.length > 0 ? (<SurveySubmissions surveys={surveys} />): '';
 }

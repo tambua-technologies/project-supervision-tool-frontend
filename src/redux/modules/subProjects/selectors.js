@@ -75,3 +75,44 @@ export const getSubProjectEquipmentsLoadingSelector = (state) => state?.subProje
  * @param {Object} state redux state
  */
 export const selectedSubProject = (state) => state?.subProjectResources?.selectedSubProject
+
+ /**
+  * @function
+  * @name getSubProjectSelector
+  * @param {Object} state redux state
+  * @return {Object} sub project
+  */
+ export const getSubProjectSelector = (state) => state?.subProjectResources?.subProject?.data;
+ 
+ /**
+  * @function
+  * @name getSubProjectLoadingSelector
+  * @param {Object} state redux state
+  */
+ export const getSubProjectLoadingSelector = (state) => state?.subProjectResources?.subProject?.loading;
+ 
+
+ /**
+  * @function
+  * @name getShowSurveyFormSelector
+  * @param {Object} state redux state
+  * @return {Object} sub project
+  */
+ export const getShowSurveyFormSelector = (state) => state?.subProjectResources?.subProject?.showSurveyForm;
+ 
+ /**
+  * @function
+  * @name getShowCreateSurveyFormSelector
+  * @param {Object} state redux state
+  * @return {Object} sub project
+  */
+ export const getShowCreateSurveyFormSelector = (state) => state?.subProjectResources?.subProject?.showCreateSurveyForm;
+ 
+ /**
+  * @function
+  * @name getSubProjectSelector
+  * @param {Object} state redux state
+  * @return {Object} sub project element
+  */
+ export const getSubProjectElementSelector = (state) => state?.subProjectResources?.subProjectElement?.data;
+ 

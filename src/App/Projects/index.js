@@ -1,7 +1,6 @@
 
 import React from "react";
 import { Switch } from "react-router-dom";
-import { Layout } from "antd";
 import PrivateRoute from "../Auth/PrivateRoute";
 import ProjectsList from "./components/ProjectsList";
 import Project from "./components/Project";

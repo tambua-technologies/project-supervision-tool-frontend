@@ -1,6 +1,4 @@
-import {Button, Col, Pagination, Row} from "antd";
-import {pluralize, singularize} from "inflection";
-import startCase from "lodash/startCase";
+import {Button, Col, Row} from "antd";
 import PropTypes from "prop-types";
 import React from "react";
 import "./styles.css";

@@ -16,7 +16,7 @@ const ProjectsFilter = ({ projects,setProjectIdFilter, getProject,getSubProjects
 
     useEffect(() => {
         setProjectIdFilter(projectsIds.join(','));
-    }, [projectsIds]);
+    }, [projectsIds]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleOnClickFilterValue = (value) => {
         getSubProjectsByProjectId(value);

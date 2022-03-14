@@ -1,33 +1,32 @@
 
-import React, { Component } from "react";
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { projectActions, projectSelectors } from '../../../../redux/modules/projects';
-import { Col, Drawer, Spin, Layout } from "antd";
+import { useHistory } from "react-router";
+import { Col, Drawer, Spin } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import Topbar from "../../../components/Topbar";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
+import { projectActions, projectSelectors } from '../../../../redux/modules/projects';
 import CommonProjectForm from "../Forms";
-import { focalPeopleActions, focalPeopleSelectors } from "../../../FocalPeople/duck";
 import ProjectLocations from "../../../Map/components/ProjectLocations";
 import BaseMap from "../../../Map/components/BaseMap";
 import SideNav from "../../../Map/components/SideNav";
 import { mapSelectors } from "../../../../redux/modules/map";
-import { mapProjectActions } from "../../../../redux/modules/map/projects";
-import { mapSubProjectActions } from "../../../../redux/modules/map/subProjects";
 import { showArchiveConfirm } from "../../../../Util";
 import ProjectComponentForm from "../Forms/components/projectComponentForm";
 import ProjectSubComponentForm from "../Forms/components/projectSubComponentForm";
-import "./styles.css";
 import { ticketActions, ticketSelectors } from "../../../../redux/modules/Tickets";
 import TicketForm from '../../../Tickets/components/Form';
 import BaseLayout from "../../../layouts/BaseLayout";
 import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
+import { useToggle } from '../../../../hooks/useToggle';
+import { openForm } from '../../../../Util/bulkAction';
+import "./styles.css";
 
 /* constants */
-const { Content, Header } = Layout;
 const codeSpan = { xxl: 2, xl: 3, lg: 3, md: 4, sm: 0, xs: 0 };
 const projectIdSpan = { xxl: 3, xl: 2, lg: 2, md: 3, sm: 0, xs: 0 };
 const nameSpan = { xxl: 5, xl: 5, lg: 5, md: 7, sm: 20, xs: 20 };
@@ -50,27 +49,53 @@ const headerLayout = [
 
 
 /**
- * @class
+ * @function
  * @name ProjectsList
  * @description Render actions list which have search box, actions and Projects list
  *
  * @version 0.1.0
  * @since 0.1.0
  */
-class ProjectsList extends Component {
-  // eslint-disable-next-line react/state-in-constructor
-  state = {
-    isEditForm: false,
-    cached: null,
-    visible: false,
-    previewOnMap: false,
-  };
-
-  componentDidMount() {
-    const { fetchProjects, focalPeople } = this.props;
-    fetchProjects();
-    focalPeople();
+const ProjectsList  = ( 
+  {
+  fetchProjects,
+  projects,
+  loading,
+  page,
+  total,
+  paginateProject,
+  searchQuery,
+  showForm,
+  selected,
+  mapLoading,
+  project,
+  showTicketForm,
+  deleteProject,
+  showComponentForm,
+  showSubComponentForm,
+  
+  getProject,
+  openProjectForm,
+  selectProject,
+  closeProjectForm,
+  openProjectSubComponent,
+  openProjectComponent,
+  closeProjectComponent,
+  closeProjectSubComponent,
+  openTicketForm,
+  closeTicketForm,
+  searchProject
   }
+  ) =>  {
+  // eslint-disable-next-line react/state-in-constructor
+
+  const { isEditForm, setIsEditForm, previewOnMap, setVisible } = useToggle(false);
+  const history = useHistory();
+
+  useEffect(() => {
+    fetchProjects();
+  }, [])  // eslint-disable-line react-hooks/exhaustive-deps
+
 
   /**
    * @function
@@ -82,67 +107,26 @@ class ProjectsList extends Component {
    * @version 0.1.0
    * @since 0.1.0
    */
-  handleEdit = (project) => {
-    const { selectProject, openProjectForm } = this.props;
+ const handleEdit = (project) => {
     selectProject(project);
-    this.setState({ isEditForm: true });
+    setIsEditForm(true );
     openProjectForm();
   };
 
+  
   /**
    * @function
-   * @name openProjectForm
-   * @description Open form
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  openProjectForm = () => {
-    const { openProjectForm } = this.props;
-    openProjectForm();
-  };
-
-  /**
-   * @function
-   * @name closeProjectForm
+   * @name closeProjectCreateForm
    * @description close form
    *
    * @version 0.1.0
    * @since 0.1.0
    */
-  closeProjectForm = () => {
-    this.setState({ isEditForm: false, visible: false });
-    const { closeProjectForm, selectProject } = this.props;
+ const closeProjectCreateForm = () => {
+    setIsEditForm( false)
+    setVisible(false);
     selectProject(null);
     closeProjectForm();
-  };
-
-  /**
- * @function
- * @name openProjectSubComponentForm
- * @description Open form
- *
- * @version 0.1.0
- * @since 0.1.0
- */
-  openProjectSubComponentForm = (project) => {
-    const { openProjectSubComponentForm, selectProject } = this.props;
-    selectProject(project);
-    openProjectSubComponentForm();
-  };
-
-  /**
- * @function
- * @name openProjectComponentForm
- * @description Open form
- *
- * @version 0.1.0
- * @since 0.1.0
- */
-  openProjectComponentForm = (project) => {
-    const { openProjectComponentForm, selectProject } = this.props;
-    selectProject(project);
-    openProjectComponentForm();
   };
 
   /**
@@ -153,10 +137,10 @@ class ProjectsList extends Component {
  * @version 0.1.0
  * @since 0.1.0
  */
-  closeProjectComponentForm = () => {
-    this.setState({ isEditForm: false, visible: false });
-    const { closeProjectComponentForm } = this.props;
-    closeProjectComponentForm();
+const closeProjectComponentForm = () => {
+    setIsEditForm(false)
+    setVisible(false);
+    closeProjectComponent();
   };
 
   /**
@@ -167,24 +151,10 @@ class ProjectsList extends Component {
  * @version 0.1.0
  * @since 0.1.0
  */
-  closeProjectSubComponentForm = () => {
-    this.setState({ isEditForm: false, visible: false });
-    const { closeProjectSubComponentForm } = this.props;
-    closeProjectSubComponentForm();
-  };
-
-  /**
-* @function
-* @name openIssueForm
-* @description Open form
-*
-* @version 0.1.0
-* @since 0.1.0
-*/
-  openIssueForm = (project) => {
-    const { openTicketForm, selectProject } = this.props;
-    selectProject(project);
-    openTicketForm();
+ const closeProjectSubComponentForm = () => {
+    setIsEditForm( false)
+    setVisible(false);
+    closeProjectSubComponent();
   };
 
   /**
@@ -195,24 +165,9 @@ class ProjectsList extends Component {
  * @version 0.1.0
  * @since 0.1.0
  */
-  closeIssueForm = () => {
-    this.setState({ isEditForm: false });
-    const { closeTicketForm } = this.props;
+ const closeIssueForm = () => {
+    setIsEditForm( false)
     closeTicketForm();
-  };
-
-  /**
-     * @function
-     * @name handleAfterCloseForm
-     * @description Perform post close form cleanups
-     *
-     * @version 0.1.0
-     * @since 0.1.0
-     */
-  handleAfterCloseForm = () => {
-    const { selectProject } = this.props;
-    selectProject(null);
-    this.setState({ isEditForm: false });
   };
 
   /**   
@@ -223,8 +178,8 @@ class ProjectsList extends Component {
    * @version 0.1.0
    * @since 0.1.0
    */
-  handleSearch = (event) => {
-    this.props.searchProject(event.target.value)
+ const handleSearch = (event) => {   
+  searchProject(event.target.value)
   };
 
   /**   
@@ -235,8 +190,8 @@ class ProjectsList extends Component {
    * @version 0.1.0
    * @since 0.1.0
    */
-  handleRefresh = () => {
-    this.props.fetchProjects()
+const handleRefresh = () => {
+    fetchProjects()
   };
 
   /**
@@ -247,12 +202,10 @@ class ProjectsList extends Component {
   * @version 0.1.0
   * @since 0.1.0
   */
-  handleViewDetails = (item_id) => {
-    const { getProject, getSubProjectsByProjectId, getTicketByProject } = this.props;
-    getSubProjectsByProjectId(item_id)
+const handleViewDetails = (item_id) => {
     getProject(item_id);
-    let path = `/projects/${item_id}`;
-    this.props.history.push(path);
+    let path = `/projects/${item_id}`;  
+    history.push(path);
 
   };
 
@@ -264,60 +217,19 @@ class ProjectsList extends Component {
   * @version 0.1.0
   * @since 0.1.0
   */
-  handleViewMap = () => {
-    let path = `/map`;
-    this.props.history.push(path);
+const handleViewMap = () => {
+    let path = `/map`;   
+    history.push(path);
   };
 
-  /**
-   * @function
-   * @name handleMapPreview
-   * @description Handle map preview
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  handleMapPreview = (item) => {
-    const { getProjectOnMap, } = this.props;
-    let path = `/map`;
-    this.props.history.push(path);
-    console.log('preview on map', item.id)
-    getProjectOnMap(item.id);
-  };
-
-
-
-  render() {
-    const {
-      projects,
-      loading,
-      page,
-      total,
-      paginateProject,
-      searchQuery,
-      showForm,
-      selected,
-      focalPeoples,
-      createProject,
-      mapLoading,
-      project,
-      location,
-      match,
-      showTicketForm,
-      deleteProject,
-      showComponentForm,
-      showSubComponentForm,
-    } = this.props;
-
-    const { isEditForm, previewOnMap } = this.state;
 
     const breadcrumbs = [
       {
-          title: 'Projects',
-          url: '/projects',
-          name: 'Projects'
+        title: 'Projects',
+        url: '/projects',
+        name: 'Projects'
       }
-  ]
+    ]
 
     return previewOnMap ? <div className="MapDashboard">
       <SideNav />
@@ -334,7 +246,7 @@ class ProjectsList extends Component {
             search={{
               size: "large",
               placeholder: "Search for Projects here ...",
-              onChange: this.handleSearch,
+              onChange: handleSearch,
               value: searchQuery,
             }}
             actions={[
@@ -343,7 +255,7 @@ class ProjectsList extends Component {
                 icon: <PlusOutlined />,
                 size: "large",
                 title: "Add New Project",
-                onClick: this.openProjectForm,
+                onClick: openProjectForm,
               },
             ]}
           />
@@ -356,29 +268,27 @@ class ProjectsList extends Component {
             page={page}
             loading={loading}
             itemCount={total}
-            onFilter={this.openFiltersModal}
-            onRefresh={this.handleRefresh}
-            onMapView={this.handleViewMap}
+            onRefresh={handleRefresh}
+            onMapView={handleViewMap}
             onPaginate={(nextPage) => {
               paginateProject({ page: nextPage });
             }}
             headerLayout={headerLayout}
             renderListItem={({
-              item,
-              isSelected,
+              item
             }) => (
               <ListItem
                 key={item.id} // eslint-disable-line
                 name={item.name}
                 item={item}
                 avatarBackgroundColor={item.color}
-                isSelected={isSelected}
                 renderActions={() => (
                   <ListItemActions
                     edit={{
                       name: "Edit project",
                       title: "Update project details",
-                      onClick: () => this.handleEdit(item),
+                      onClick: () => 
+                      handleEdit(item),
                     }}
                     archive={{
                       name: "Archive project",
@@ -390,32 +300,29 @@ class ProjectsList extends Component {
                       name: "Add Component",
                       title:
                         "Add component to the project",
-                      onClick: () => this.openProjectComponentForm(item),
+                      onClick: () => 
+                      openForm(item,selectProject,openProjectComponent),
                     }}
                     subComponent={{
                       name: "Add sub Component",
                       title:
                         "Add sub component to the project",
-                      onClick: () => this.openProjectSubComponentForm(item),
+                      onClick: () => 
+                      openForm(item, selectProject,openProjectSubComponent),
                     }}
                     openIssues={{
                       name: "Create New Ticket",
                       title:
                         "Open Ticket to the project",
-                      onClick: () => this.openIssueForm(item),
+                      onClick: () => 
+                      openForm(item,selectProject,openTicketForm),
                     }}
                     view={
                       {
                         name: "View Detail",
                         title: "View more detail of selected project",
-                        onClick: () => this.handleViewDetails(item.id)
-                      }
-                    }
-                    onMapPreview={
-                      {
-                        name: "Preview on Map",
-                        title: "View Project on map",
-                        onClick: () => this.handleMapPreview(item)
+                        onClick: () => 
+                        handleViewDetails(item.id)
                       }
                     }
                   />
@@ -427,7 +334,8 @@ class ProjectsList extends Component {
                   {...nameSpan}
                   className="contentEllipse"
                   title={item.descrition}
-                  onClick={() => this.handleViewDetails(item.id)}
+                  onClick={() => 
+                    handleViewDetails(item.id)}
                   style={{ cursor: 'pointer' }}
                 >
                   {item.name}
@@ -435,7 +343,7 @@ class ProjectsList extends Component {
                 <Col {...projectIdSpan} className="contentEllipse">
                   {" "}
 
-                  {item ? item.wb_project_id : "All"}
+                  {item ? item?.wb_project_id : "All"}
                 </Col>
                 <Col {...codeSpan} title={item.name} className="contentEllipse" >{item ? item?.code.toUpperCase() : 'N/A'}</Col>
                 <Col {...statusSpan}>{item?.status?.name ? item?.status?.name : 'N/A'}</Col>
@@ -457,36 +365,32 @@ class ProjectsList extends Component {
             title={
               isEditForm ? "Edit Project" : "Add New Project"
             } width={550}
-            onClose={this.closeProjectForm}
+            onClose={closeProjectCreateForm}
             footer={null}
             visible={showForm}
             bodyStyle={{ paddingBottom: 80 }}
             destroyOnClose
             maskClosable={false}
-            afterClose={this.handleAfterCloseForm}
             className="projectForm"
           >
             <CommonProjectForm
               selected={selected}
               isEditForm={isEditForm}
-              createProject={createProject}
-              focalPeoples={focalPeoples}
               Projects={projects}
-              handleAfterCloseForm={this.handleAfterCloseForm}
-              handleAfterSubmit={this.closeProjectForm} />
+              handleAfterSubmit={closeProjectForm} />
           </Drawer>
 
           <Drawer
             title={
               isEditForm ? "Edit Project Component" : "Add New Project Component"
             } width={550}
-            onClose={this.closeProjectComponentForm}
+            onClose={
+              closeProjectComponentForm}
             footer={null}
             visible={showComponentForm}
             bodyStyle={{ paddingBottom: 80 }}
             destroyOnClose
             maskClosable={false}
-            afterClose={this.handleAfterCloseForm}
             className="projectForm"
           >
             <ProjectComponentForm
@@ -498,13 +402,13 @@ class ProjectsList extends Component {
             title={
               isEditForm ? "Edit Project SubComponent" : "Add New Project SubComponent"
             } width={550}
-            onClose={this.closeProjectSubComponentForm}
+            onClose={
+              closeProjectSubComponentForm}
             footer={null}
             visible={showSubComponentForm}
             bodyStyle={{ paddingBottom: 80 }}
             destroyOnClose
             maskClosable={false}
-            afterClose={this.handleAfterCloseForm}
             className="projectForm"
           >
             <ProjectSubComponentForm
@@ -516,13 +420,13 @@ class ProjectsList extends Component {
             title={
               isEditForm ? "Edit Ticket" : "Add New Ticket"
             } width={550}
-            onClose={this.closeIssueForm}
+            onClose={
+              closeIssueForm}
             footer={null}
             visible={showTicketForm}
             bodyStyle={{ paddingBottom: 80 }}
             destroyOnClose
             maskClosable={false}
-            afterClose={this.handleAfterCloseForm}
             className="projectForm"
           >
             <TicketForm
@@ -533,26 +437,11 @@ class ProjectsList extends Component {
       </BaseLayout>
     );
   }
-}
 
-ProjectsList.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  projects: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string }))
-    .isRequired,
-  page: PropTypes.number.isRequired,
-  searchQuery: PropTypes.string,
-  total: PropTypes.number.isRequired,
-};
-
-ProjectsList.defaultProps = {
-  projects: null,
-  searchQuery: undefined,
-};
 
 const mapStateToProps = (state) => {
   return {
     projects: projectSelectors.getProjectsSelector(state),
-    focalPeoples: focalPeopleSelectors.getFocalPeople(state),
     loading: projectSelectors.getProjectsLoadingSelector(state),
     page: projectSelectors.getProjectsPageSelector(state),
     total: projectSelectors.getProjectsTotalSelector(state),
@@ -571,21 +460,31 @@ const mapDispatchToProps = {
   fetchProjects: projectActions.getProjectsStart,
   deleteProject: projectActions.deleteProjectStart,
   selectProject: projectActions.selectProject,
-  focalPeople: focalPeopleActions.getFocalPeopleStart,
-  createProject: projectActions.createProjectStart,
   openProjectForm: projectActions.openProjectForm,
   closeProjectForm: projectActions.closeProjectForm,
   paginateProject: projectActions.getProjectsStart,
   searchProject: projectActions.searchProjects,
   getProject: projectActions.getProjectStart,
-  getProjectOnMap: mapProjectActions.getProjectStart,
-  getSubProjectsByProjectId: mapSubProjectActions.getSubProjectByProjectId,
-  openProjectComponentForm: projectActions.openProjectComponentForm,
-  openProjectSubComponentForm: projectActions.openProjectSubComponentForm,
-  closeProjectComponentForm: projectActions.closeProjectComponentForm,
-  closeProjectSubComponentForm: projectActions.closeProjectSubComponentForm,
+  openProjectComponent: projectActions.openProjectComponentForm,
+  openProjectSubComponent: projectActions.openProjectSubComponentForm,
+  closeProjectComponent: projectActions.closeProjectComponentForm,
+  closeProjectSubComponent: projectActions.closeProjectSubComponentForm,
   openTicketForm: ticketActions.openTicketForm,
   closeTicketForm: ticketActions.closeTicketForm,
+};
+
+ProjectsList.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  projects: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string }))
+    .isRequired,
+  page: PropTypes.number.isRequired,
+  searchQuery: PropTypes.string,
+  total: PropTypes.number.isRequired,
+};
+
+ProjectsList.defaultProps = {
+  projects: null,
+  searchQuery: undefined,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectsList);

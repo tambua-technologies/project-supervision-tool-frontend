@@ -34,7 +34,7 @@ const tickets = (state = initialData, action) => {
       return { ...state }
     case types.GET_TICKET_BY_PROJECT_SUCCESS:
       return { ...state, ticket: action.payload }
-    case types.GET_TICKET_BY_PROJECT_SUCCESS:
+    case types.GET_TICKET_BY_PROJECT_FAILURE:
       return { ...state, error: action.payload }
     case types.CREATE_SUB_PROJECT_TICKET_START:
       return { ...state, loading: true, showForm: true }
@@ -46,7 +46,7 @@ const tickets = (state = initialData, action) => {
       return { ...state }
     case types.GET_TICKET_BY_SUB_PROJECT_SUCCESS:
       return { ...state, ticket: action.payload }
-    case types.GET_TICKET_BY_SUB_PROJECT_SUCCESS:
+    case types.GET_TICKET_BY_SUB_PROJECT_FAILURE:
       return { ...state, error: action.payload }
     default:
       return state;
@@ -70,7 +70,7 @@ const ticket = (state = { data: {}, loading: false, error: null }, action) => {
 
 const agencies = (state = { data: {}, loading: false, error: null }, action) => {
   switch (action.type) {
-    case types.GET_AGENCY_FAILURE:
+    case types.GET_AGENCY_START:
       return { ...state, loading: true }
     case types.GET_AGENCY_SUCCESS:
       return { data: action.payload, loading: false, }

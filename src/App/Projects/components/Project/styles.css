@@ -5,8 +5,9 @@
 .project-layout h3, .sub-project-layout h3 {
     padding: 15px;
     padding-left: 230px;
+    position: relative;
+    left: 210px;
     font-weight: 500;
-    border-bottom: 1px solid #8f8c8c42;
     margin-bottom: 0;
 }
 

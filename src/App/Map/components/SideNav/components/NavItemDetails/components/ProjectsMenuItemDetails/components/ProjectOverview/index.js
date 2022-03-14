@@ -49,7 +49,7 @@ function ProjectsOverview(
         getProjectsFilters();
         getProjectStatus();
         getRegions();
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const overViewData = projectsStatistics ? [
         { title: 'Projects', value: projectsStatistics.projects, },

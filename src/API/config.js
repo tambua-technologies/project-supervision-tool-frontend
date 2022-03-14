@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://project-supervision-tool.ga:8000";
+const API_BASE_URL = process.env.REACT_APP_API_URL || "https://api.projectsupervisiontool.ga";
 Axios.defaults.baseURL = `${API_BASE_URL}/api/v1`;
 
 /**

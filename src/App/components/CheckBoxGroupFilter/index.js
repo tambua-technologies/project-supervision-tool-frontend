@@ -32,7 +32,7 @@ function CheckBoxGroupFilter({ handleFilter, itemsPerPage, items, filterClass, h
 
     useEffect(() => {
         loopWithSlice(0, itemsPerPage);
-    }, [items]);
+    }, [items]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleShowMoreItems = () => {
         loopWithSlice(0, next + itemsPerPage);

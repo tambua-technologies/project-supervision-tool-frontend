@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {projectActions, projectOperation, projectSelectors} from '../../../../redux/modules/projects';
 import {Col, Drawer} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import PropTypes from "prop-types";
@@ -9,7 +8,7 @@ import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
 import {Link} from "react-router-dom";
-import {getIdFromUrlPath, getSurveyIdByCategory} from "../../../../Util";
+import {getIdFromUrlPath, getSurveyIdByCategory, showArchiveConfirm} from "../../../../Util";
 import SubProjectForm from "../Form";
 import {subProjectsActions, subProjectsSelectors} from "../../../../redux/modules/subProjects"
 import {bindActionCreators} from "redux";
@@ -19,16 +18,17 @@ import SurveyForm from "../SurveyForm";
 import DisplaySurveyForm from "../../../components/DisplaySurveyForm";
 import {ticketActions, ticketSelectors} from "../../../../redux/modules/Tickets";
 import TicketForm from '../../../Tickets/components/Form';
-import "./styles.css";
 import BaseLayout from "../../../layouts/BaseLayout";
 import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
+import { ProcuringEntityActions,ProcuringEntitySelectors } from "../../../../redux/modules/ProcuringEntities";
+import "./styles.css";
 
 /* constants */
-const subProjectNameSpan = {xxl: 3, xl: 4, lg: 4, md: 5, sm: 20, xs: 20};
-const projectIdSpan = {xxl: 2, xl: 2, lg: 2, md: 3, sm: 0, xs: 0};
-const itemsSpan = {xxl: 2, xl: 2, lg: 4, md: 0, sm: 0, xs: 0};
-const locationSpan = {xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0};
-const statusSpan = {xxl: 3, xl: 3, lg: 4, md: 3, sm: 0, xs: 0};
+const subProjectNameSpan = {xxl: 5, xl: 5, lg: 5, md: 5, sm: 20, xs: 20};
+const projectIdSpan = {xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0};
+const itemsSpan = {xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0};
+const locationSpan = {xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0};
+const statusSpan = {xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0};
 
 
 const headerLayout = [
@@ -51,6 +51,8 @@ const headerLayout = [
  */
 class SubProjectsList extends Component {
 
+    packageId = getIdFromUrlPath(this.props.match.url, 6);
+    subProjectsFilter = {'filter[procuring_entity_package_id]': this.packageId};
     state = {
         showShare: false,
         isEditForm: false,
@@ -61,9 +63,9 @@ class SubProjectsList extends Component {
     };
 
     componentDidMount() {
-        const {fetchSubProjects, match} = this.props;
-        const id = getIdFromUrlPath(match.url, 7)
-        fetchSubProjects(id);
+        const {fetchSubProjects, getProcuringEntityPackage} = this.props;
+        fetchSubProjects(this.subProjectsFilter );
+        getProcuringEntityPackage(this.packageId);
     }
 
 
@@ -76,7 +78,7 @@ class SubProjectsList extends Component {
      * @since 0.1.0
      */
     handleMapPreview = (item_id) => {
-        const {getSubProject, match: {params}} = this.props;
+        const {getSubProject} = this.props;
         this.setState({previewOnMap: true})
         getSubProject(item_id);
         console.log(item_id)
@@ -195,7 +197,7 @@ class SubProjectsList extends Component {
      * @since 0.1.0
      */
     handleEdit = (subProject) => {
-        const {selectSubProject, openSubProjectForm, selected} = this.props;
+        const {selectSubProject, openSubProjectForm, } = this.props;
         selectSubProject(subProject);
         this.setState({isEditForm: true});
         openSubProjectForm();
@@ -210,8 +212,8 @@ class SubProjectsList extends Component {
      * @since 0.1.0
      */
     handleRefreshSubProjects = () => {
-        const {page, paginateSubProject} = this.props;
-        paginateSubProject(page);
+        const {page, fetchSubProjects} = this.props;
+        fetchSubProjects({...this.subProjectsFilter, page});
     };
 
     /**
@@ -285,47 +287,47 @@ class SubProjectsList extends Component {
             showCreateSurveyForm,
             closeSurveyForm,
             selected,
-            deleteSubproject
+            deleteSubproject,
+            procuringEntityPackage
         } = this.props;
-
-
-        const breadcrumbs = subProjects.length > 0 ? [
+        
+        const breadcrumbs = procuringEntityPackage ? [
             {
                 title: 'Projects',
                 url: '/projects',
                 name: 'Projects'
             },
             {
-                title: subProjects[0].project.code,
-                url: `/projects/${subProjects[0].project.id}/`,
-                name: subProjects[0].project.name
+                title: procuringEntityPackage?.procuring_entity?.project.code,
+                url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/`,
+                name: procuringEntityPackage?.procuring_entity?.project.name
             },
             {
                 title: `Procuring Entities`,
-                url: `/projects/${subProjects[0].project.id}/procuring_entities`,
-                name: `Procuring Entities under ${subProjects[0].project.name}(${subProjects[0].project.code})`
+                url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities`,
+                name: `Procuring Entities under ${procuringEntityPackage?.procuring_entity?.project.name}(${procuringEntityPackage?.procuring_entity?.project.code})`
             },
             {
-                title: `${subProjects[0].procuring_entity.agency.name}`,
-                url: `/projects/${subProjects[0].project.id}/procuring_entities/${subProjects[0].procuring_entity.id}`,
-                name: `${subProjects[0].procuring_entity.agency.name}`
+                title: `${procuringEntityPackage?.procuring_entity?.agency.name}`,
+                url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities/${procuringEntityPackage?.procuring_entity?.id}`,
+                name: `${procuringEntityPackage?.procuring_entity?.agency.name}`
             },
             {
                 title: `Packages`,
-                url: `/projects/${subProjects[0].project.id}/procuring_entities/${subProjects[0].procuring_entity.id}/packages`,
-                name: `Packages procured in ${subProjects[0].procuring_entity.agency.name}`
+                url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities/${procuringEntityPackage?.procuring_entity?.id}/packages`,
+                name: `Packages procured in ${procuringEntityPackage?.procuring_entity?.agency.name}`
             },
             {
-                title: `${subProjects[0].package?.name}`,
-                url: `/projects/${subProjects[0].project.id}/procuring_entities/${subProjects[0].procuring_entity.id}/packages/${subProjects[0].package?.id}`,
-                name: `${subProjects[0].package?.contract?.name}`
+                title: `${procuringEntityPackage?.name}`,
+                url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities/${procuringEntityPackage?.procuring_entity?.id}/packages/${procuringEntityPackage?.id}`,
+                name: `${procuringEntityPackage?.contract?.name}`
             },
             {
                 title: `SubProjects`,
                 url: this.props.match.url,
                 name: `List of Sub Projects`
             }
-        ] : [];
+        ]: [];
 
 
         const survey_id = selected?.surveys ? getSurveyIdByCategory('field_notes', selected?.surveys) : null;
@@ -384,7 +386,7 @@ class SubProjectsList extends Component {
                                             name: "Archive Sub-project",
                                             title:
                                                 "Remove Sub project from list of active Sub Projects",
-                                            onClick: () => this.showArchiveConfirm(item, deleteSubproject),
+                                            onClick: () => showArchiveConfirm(item, deleteSubproject),
                                         }}
                                         view={
                                             {
@@ -459,11 +461,10 @@ class SubProjectsList extends Component {
                         bodyStyle={{paddingBottom: 80}}
                         destroyOnClose
                         maskClosable={false}
-                        afterClose={() => {
-                        }}
+                
                         className="subProjectForm"
                     >
-                        <SubProjectForm isEditForm={isEditForm} onCancel={this.closeSubProjectForm}
+                        <SubProjectForm isEditForm={isEditForm} onCancel={this.closeSubProjectForm} procuringEntityPackage={procuringEntityPackage}
                                         closeSubProjectForm={this.closeSubProjectForm} selected={selected}/>
                     </Drawer>
 
@@ -502,7 +503,6 @@ class SubProjectsList extends Component {
                         bodyStyle={{paddingBottom: 80}}
                         destroyOnClose
                         maskClosable={false}
-                        afterClose={this.handleAfterCloseForm}
                         className="projectForm"
                     >
                         <TicketForm
@@ -516,58 +516,62 @@ class SubProjectsList extends Component {
     }
 }
 
-SubProjectsList.propTypes = {
-    loading: PropTypes.bool.isRequired,
-    projects: PropTypes.arrayOf(PropTypes.shape({name: PropTypes.string}))
-        .isRequired,
-    page: PropTypes.number.isRequired,
-    searchQuery: PropTypes.string,
-    total: PropTypes.number.isRequired,
-};
-
-SubProjectsList.defaultProps = {
-    projects: null,
-    searchQuery: undefined,
-    loading: null,
-};
 
 const mapStateToProps = (state) => {
     return {
         subProjects: subProjectsSelectors.getSubProjectsSelector(state),
         loading: subProjectsSelectors.getSubProjectsLoadingSelector(state),
-        showForm: projectSelectors.getSubProjectShowFormSelector(state),
-        showSurveyForm: projectSelectors.getShowSurveyFormSelector(state),
-        showCreateSurveyForm: projectSelectors.getShowCreateSurveyFormSelector(state),
+        showForm: subProjectsSelectors.getSubProjectShowFormSelector(state),
+        showSurveyForm: subProjectsSelectors.getShowSurveyFormSelector(state),
+        showCreateSurveyForm: subProjectsSelectors.getShowCreateSurveyFormSelector(state),
         page: subProjectsSelectors.getSubProjectsPageSelector(state),
         total: subProjectsSelectors.getSubProjectsTotalSelector(state),
         selected: subProjectsSelectors.selectedSubProject(state),
         showTicketForm: ticketSelectors.getTicketShowFormSelector(state),
+        procuringEntityPackage: ProcuringEntitySelectors.getPackageSelector(state)
 
     };
 };
 
 const mapDispatchToProps = (dispatch) => ({
     fetchSubProjects: bindActionCreators(subProjectsActions.getSubProjectsStart, dispatch),
-    deleteSubproject: bindActionCreators(projectOperation.deleteSubProjectStart, dispatch),
+    deleteSubproject: bindActionCreators(subProjectsActions.deleteSubProjectStart, dispatch),
     paginateSubProject(page) {
         dispatch(subProjectsActions.getSubProjectsStart({page}));
     },
     searchSubProject(searchQuery) {
         dispatch(subProjectsActions.getSubProjectsStart({searchQuery}));
     },
-    getSubProject: bindActionCreators(projectActions.getSubProjectStart, dispatch),
-    openSubProjectForm: bindActionCreators(projectActions.openSubProjectForm, dispatch),
-    openCreateSurveyForm: bindActionCreators(projectActions.openSubProjectSurveyForm, dispatch),
-    closeCreateSurveyForm: bindActionCreators(projectActions.closeSubProjectSurveyForm, dispatch),
-    openSurveyForm: bindActionCreators(projectActions.openSurveyForm, dispatch),
-    closeSurveyForm: bindActionCreators(projectActions.closeSurveyForm, dispatch),
-    closeSubProjectForm: bindActionCreators(projectActions.closeSubProjectForm, dispatch),
+    getSubProject: bindActionCreators(subProjectsActions.getSubProjectStart, dispatch),
+    openSubProjectForm: bindActionCreators(subProjectsActions.openSubProjectForm, dispatch),
+    openCreateSurveyForm: bindActionCreators(subProjectsActions.openSubProjectSurveyForm, dispatch),
+    closeCreateSurveyForm: bindActionCreators(subProjectsActions.closeSubProjectSurveyForm, dispatch),
+    openSurveyForm: bindActionCreators(subProjectsActions.openSurveyForm, dispatch),
+    closeSurveyForm: bindActionCreators(subProjectsActions.closeSurveyForm, dispatch),
+    closeSubProjectForm: bindActionCreators(subProjectsActions.closeSubProjectForm, dispatch),
     selectSubProject: bindActionCreators(subProjectsActions.selectedSubProject, dispatch),
     getWfsLayerData: bindActionCreators(mapActions.getWfsLayerDataStart, dispatch),
     openTicketForm: bindActionCreators(ticketActions.openTicketForm, dispatch),
     closeTicketForm: bindActionCreators(ticketActions.closeTicketForm, dispatch),
+    getProcuringEntityPackage: bindActionCreators(ProcuringEntityActions.getPackageStart, dispatch)
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubProjectsList);
 
 
+
+SubProjectsList.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    subProjects: PropTypes.arrayOf(PropTypes.shape({name: PropTypes.string}))
+        .isRequired,
+    page: PropTypes.number,
+    searchQuery: PropTypes.string,
+    total: PropTypes.number,
+};
+
+SubProjectsList.defaultProps = {
+    subProjects: [],
+    searchQuery: undefined,
+    loading: null,
+};

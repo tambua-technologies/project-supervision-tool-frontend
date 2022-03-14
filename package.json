@@ -21,6 +21,7 @@
     "leaflet-basemaps": "^0.3.4",
     "leaflet-fullscreen": "^1.0.2",
     "moment": "^2.26.0",
+    "msw": "^0.35.0",
     "overlapping-marker-spiderfier-leaflet": "^0.2.7",
     "prop-types": "^15.7.2",
     "randomcolor": "^0.5.4",
@@ -43,8 +44,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "commit": "git-cz",
+    "cypress:open": "cypress open",
+    "commit": "cz",
     "build": "react-scripts build",
+    "deploy": "aws s3 sync build/ s3://projectsupervisiontool --acl public-read",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -65,7 +68,9 @@
   },
   "devDependencies": {
     "commitizen": "^4.2.2",
-    "cz-conventional-changelog": "^3.3.0"
+    "cypress": "^9.5.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "redux-mock-store": "^1.5.4"
   },
   "config": {
     "commitizen": {

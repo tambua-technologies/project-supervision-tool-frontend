@@ -1,8 +1,8 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Form, Button, Select, Input,
+    Form, Button, Input,
 } from 'antd';
 /* ui */
 const labelCol = {
@@ -36,26 +36,19 @@ function PackageForm({
     selected,
     loading,
     updatePackage,
-    procuringEntities,
-    getProcuringEntities
+    procuringEntity
 }) {
-
-
-    useEffect(() => {
-        getProcuringEntities()
-    }, [])
-
 
     const onFinish = (values) => {
         const payload = {
             ...values,
+            procuring_entity_id: procuringEntity.id
         };
-
         if (isEditForm) {
             updatePackage(payload, selected.id);
         }
         else {
-            createPackage(values);
+            createPackage(payload);
         }
     }
 
@@ -109,27 +102,6 @@ function PackageForm({
                     </Form.Item>
                     {/* end of Description */}
 
-                    {/* start:Procuring Entity */}
-                    <Form.Item
-                        label="Procuring Entity"
-                        name="procuring_entity_id"
-                        title="Procuring entity e.g Ilala"
-                    // initialValue={
-                    //     selected?.project_component_id
-                    // }
-                    >
-                        <Select
-                            showSearch
-                            optionFilterProp="children"
-
-                        >
-                            {procuringEntities.map((procuringEntity) => (
-                                <Select.Option value={procuringEntity.id}>{procuringEntity.agency.name}</Select.Option>
-                            ))}
-                        </Select>
-                    </Form.Item>
-                    {/* end:Procuring Entity  */}
-
                     {/* start:form actions */}
                     <Form.Item wrapperCol={{ span: 24 }} className='formAction'>
                         <Button
@@ -154,7 +126,7 @@ PackageForm.propTypes = {
     createPackage: PropTypes.func.isRequired,
     getProcuringEntity: PropTypes.func.isRequired,
     updatePackage: PropTypes.func.isRequired,
-    procuringEntity: PropTypes.array.isRequired,
+    procuringEntity: PropTypes.object,
     loading: PropTypes.bool,
     isEditForm: PropTypes.bool.isRequired,
     selected: PropTypes.object,
@@ -163,7 +135,7 @@ PackageForm.propTypes = {
 
 PackageForm.defaultProps = {
     selected: {},
-    procuringEntity: [],
+    getProcuringEntity:() => {}
 
 }
 

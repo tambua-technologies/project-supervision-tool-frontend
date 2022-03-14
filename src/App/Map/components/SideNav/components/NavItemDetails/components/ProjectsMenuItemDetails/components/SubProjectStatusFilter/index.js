@@ -16,7 +16,7 @@ const SubProjectStatusFilter = ({ subProjectStatus,setSubProjectStatusFilter }) 
 
     useEffect(() => {
         setSubProjectStatusFilter(subProjectStatusIds.join(','));
-    }, [subProjectStatusIds]);
+    }, [subProjectStatusIds]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
     const handleOnclickFilterItem = (project_id) => {

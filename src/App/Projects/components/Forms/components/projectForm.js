@@ -6,7 +6,6 @@ import {
     Form, Input, Button, Row, Col, Select,
     DatePicker,
 } from 'antd';
-import RegionLocationForm from "../../../../components/RegionLocationForm";
 import { projectActions, projectSelectors } from "../../../../../redux/modules/projects";
 import { bindActionCreators } from "redux";
 import { projectDetailsActions, projectDetailsSelectors } from '../../../../../redux/modules/projectDetails';
@@ -15,6 +14,7 @@ import CommitmentAmountForm from "./CommitmentAmountForm";
 import TotalProjectCostForm from "./TotalProjectCostForm";
 import { usersActions, usersSelectors } from '../../../../../redux/modules/users';
 import TypographyComponent from '../../../../components/Typography';
+import { useToggle } from '../../../../../hooks/useToggle';
 /* ui */
 const labelCol = {
     xs: { span: 24 },
@@ -64,14 +64,15 @@ function ProjectForm({
     isEditForm,
     updateProject,
 }) {
-    const [visible, setVisible] = useState(false);
-    const [locations, setLocations] = useState([]);
+    const { setVisible }= useToggle(false);
     const [visibleTotalProjectCost, setVisibleTotalProjectCost] = useState(false);
     const [VisibleCommitmentAmount, setVisibleCommitmentAmount] = useState(false);
     const [commitment_amount_id, setCommitmentAmount] = useState(null);
     const [total_project_cost_id, setTotalProjetCost] = useState(false);
 
     useEffect(() => {
+           // eslint-disable-next-line react-hooks/exhaustive-deps
+
         getProjectStatus();
         getBorrowers();
         getFundingOrgs();
@@ -81,11 +82,8 @@ function ProjectForm({
         getLayers();
         getCurrency();
         getUsers();
-    }, []);
+    }, []);  // eslint-disable-line react-hooks/exhaustive-deps
 
-    const hideUserModal = () => {
-        setVisible(false);
-    };
 
     const showTotalProjectCostModal = () => {
         setVisibleTotalProjectCost(true);
@@ -200,7 +198,6 @@ function ProjectForm({
                     }}
                     autoComplete="off"
                     className="ProjectForm"
-                    marginBottom='0px'
                 >
                     <h4>Please Fill the form correctly</h4>
 
@@ -287,7 +284,7 @@ function ProjectForm({
                             >
                                 <Select mode="multiple">
                                     {layers.map(({ title, id }) => (
-                                        <Select.Option value={id}>{title}</Select.Option>
+                                        <Select.Option key={id} value={id}>{title}</Select.Option>
                                     ))}
                                 </Select>
 
@@ -303,7 +300,7 @@ function ProjectForm({
                             >
                                 <Select mode="multiple"  >
                                     {users.map((user) => (
-                                        <Select.Option value={user.id}>{user.first_name} {user.last_name}</Select.Option>
+                                        <Select.Option key={user.id} value={user.id}>{user.first_name} {user.last_name}</Select.Option>
                                     ))}
                                 </Select>
                             </Form.Item>
@@ -321,7 +318,7 @@ function ProjectForm({
                             >
                                 <Select showSearch optionFilterProp="children">
                                     {partiners.map((partiner) => (
-                                        <Select.Option value={partiner.id}>{partiner.name}</Select.Option>
+                                        <Select.Option key={partiner.id} value={partiner.id}>{partiner.name}</Select.Option>
                                     ))}
                                 </Select>
                             </Form.Item>
@@ -342,7 +339,7 @@ function ProjectForm({
 
                                 >
                                     {agencies.map((agency) => (
-                                        <Select.Option value={agency.id}>{agency.name}</Select.Option>
+                                        <Select.Option key={agency.id} value={agency.id}>{agency.name}</Select.Option>
                                     ))}
                                 </Select>
                             </Form.Item>
@@ -372,7 +369,7 @@ function ProjectForm({
 
                                 >
                                     {statuses.map(({ name, id }) => (
-                                        <Select.Option value={id} style={{ textTransform: 'Capitalize' }}>{name}</Select.Option>
+                                        <Select.Option key={id} value={id} style={{ textTransform: 'Capitalize' }}>{name}</Select.Option>
                                     ))}
                                 </Select>
                             </Form.Item>
@@ -393,7 +390,7 @@ function ProjectForm({
                             >
                                 <Select mode="multiple">
                                     {regions.map(({ id, name }) => (
-                                        <Select.Option value={id}>{name}</Select.Option>
+                                        <Select.Option key={id} value={id}>{name}</Select.Option>
                                     ))}
                                 </Select>
                             </Form.Item>
@@ -461,7 +458,7 @@ function ProjectForm({
                             >
                                 <Select>
                                     {borrowers.map((borrower) => (
-                                        <Select.Option value={borrower.id}>{borrower.name}</Select.Option>
+                                        <Select.Option key={borrower.id} value={borrower.id}>{borrower.name}</Select.Option>
                                     ))}
                                 </Select>
                             </Form.Item>
@@ -477,7 +474,7 @@ function ProjectForm({
                             >
                                 <Select showSearch optionFilterProp="children" >
                                     {environmentalCategories.map((environmentalCategory) => (
-                                        <Select.Option value={environmentalCategory.id}>{environmentalCategory.name}</Select.Option>
+                                        <Select.Option key={environmentalCategory.id}value={environmentalCategory.id}>{environmentalCategory.name}</Select.Option>
                                     ))}
                                 </Select>
                             </Form.Item>
@@ -590,13 +587,6 @@ function ProjectForm({
                     isEditForm={isEditForm}
                     selected={selected}
 
-                />
-                <RegionLocationForm
-                    visible={visible}
-                    onCancel={hideUserModal}
-                    locations={locations}
-                    regions={regions}
-                    setLocations={setLocations}
                 />
             </Form.Provider>
         </>

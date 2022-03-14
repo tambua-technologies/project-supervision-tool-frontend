@@ -15,7 +15,7 @@ const ContractorsFilter = ({ contractors, setSubProjectContractorsFilter }) => {
     const [contractorsIds, setContractorsId] = useState([]);
     useEffect(() => {
         setSubProjectContractorsFilter(contractorsIds.join(','));
-    }, [contractorsIds]);
+    }, [contractorsIds]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleOnclickFilterItem = (status_id) => {
         if (contractorsIds.includes(status_id)) {

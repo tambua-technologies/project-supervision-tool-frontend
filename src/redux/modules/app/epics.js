@@ -1,7 +1,6 @@
 import { ofType } from 'redux-observable';
 import {  switchMap } from 'rxjs/operators';
 import * as Rx from 'rxjs';
-import * as actions from './actions';
 import * as types from './types'
 import {authActions} from "../auth";
 

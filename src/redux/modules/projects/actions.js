@@ -114,12 +114,6 @@ export function closeProjectForm() {
     };
   }
 
-  /*  Single Project Action creators */
-  export function clearProject() {
-    return {
-        type: types.CLEAR_PROJECT
-    };
-  }
   
   export function getProjectSuccess(data) {
     return {
@@ -183,86 +177,6 @@ export function closeProjectForm() {
   }
    
 
-
-// retrieve a single sub project
-
-/**
- * @function
- * @name getSubProjectStart
- * @param {Number} subProjectId
- * @return {Object} action
- * */
-export const getSubProjectStart = makeActionCreator(types.GET_SUB_PROJECT_START, 'payload');
-
-/**
- * @function
- * @name getSubProjectSuccess
- * @param {Object} payload sub project
- * @return {Object} action
- * */
-export const getSubProjectSuccess = makeActionCreator(types.GET_SUB_PROJECT_SUCCESS, 'payload');
-
-/**
- * @function
- * @name getSubProjectFailure
- * @param {Object} payload sub project failure response
- * @return {Object} action
- * */
-export const getSubProjectFailure = makeActionCreator(types.GET_SUB_PROJECT_FAILURE, 'payload');
-
-
-/**
- * @function
- * @name openSubProjectForm
- * @return {Object} action
- * */
-export const openSubProjectForm = makeActionCreator(types.OPEN_SUB_PROJECT_FORM);
-
-
-/**
- * @function
- * @name openSubProjectSurveyForm
- * @return {Object} action
- * */
-export const openSubProjectSurveyForm = makeActionCreator(types.OPEN_SUB_PROJECT_SURVEY_FORM);
-
-/**
- * @function
- * @name openSurveyForm
- * @return {Object} action
- * */
-export const openSurveyForm = makeActionCreator(types.OPEN_SURVEY_FORM);
-
-/**
- * @function
- * @name closeSurveyForm
- * @return {Object} action
- * */
-export const closeSurveyForm = makeActionCreator(types.CLOSE_SURVEY_FORM);
-
-/**
- * @function
- * @name closeSubProjectForm
- * @return {Object} action
- * */
-export const closeSubProjectForm = makeActionCreator(types.CLOSE_SUB_PROJECT_FORM);
-
-/**
- * @function
- * @name closeSubProjectSurveyForm
- * @return {Object} action
- * */
-export const closeSubProjectSurveyForm = makeActionCreator(types.CLOSE_SUB_PROJECT_SURVEY_FORM);
-
-
-/**
- * @function
- * @name clearSubProject
- * @return {Object} action
- */
-export const clearSubProject = makeActionCreator(types.CLEAR_SUB_PROJECT);
-
-
 // retrieve a single sub project element
 
 /**
@@ -288,108 +202,6 @@ export const getEnvironmentalCategoriesSuccess = makeActionCreator(types.GET_ENV
  * */
 export const getEnvironmentalCategoriesFailure = makeActionCreator(types.GET_ENVIRONMENTAL_CATEGORIES_FAILURE, 'payload');
 
-// retrieve a single sub project element
-
-/**
- * @function
- * @name getSubProjectElementStart
- * @param {Number} subProjectElementId
- * @return {Object} action
- * */
-export const getSubProjectElementStart = makeActionCreator(types.GET_SUB_PROJECT_ELEMENT_START, 'payload');
-
-/**
- * @function
- * @name getSubProjectElementSuccess
- * @param {Object} payload sub project element
- * @return {Object} action
- * */
-export const getSubProjectElementSuccess = makeActionCreator(types.GET_SUB_PROJECT_ELEMENT_SUCCESS, 'payload');
-
-/**
- * @function
- * @name getSubProjectElementFailure
- * @param {Object} payload sub project element failure response
- * @return {Object} action
- * */
-export const getSubProjectElementFailure = makeActionCreator(types.GET_SUB_PROJECT_ELEMENT_FAILURE, 'payload');
-
-
-/**
- * @function
- * @name clearSubProjectElement
- * @return {Object} action
- */
-export const clearSubProjectElement = makeActionCreator(types.CLEAR_SUB_PROJECT_ELEMENT);
-
-
-export function createSubProjectStart(payload) {
-  return {
-    type: types.CREATE_SUB_PROJECT_START,
-    payload
-  };
-}
-
-export function createSubProjectSuccess(sub_project) {
-  return {
-    type: types.CREATE_SUB_PROJECT_SUCCESS,
-    payload: sub_project,
-  };
-}
-
-export function createSubProjectFailure(error) {
-  return {
-    type: types.CREATE_SUB_PROJECT_FAILURE,
-    payload: error,
-  };
-}
-
-export function updateSubProjectStart() {
-  return {
-    type: types.UPDATE_SUB_PROJECT_START,
-  };
-}
-
-export function updateSubProjectSuccess(sub_project) {
-  return {
-    type: types.UPDATE_SUB_PROJECT_SUCCESS,
-    payload: sub_project,
-  };
-}
-
-export function updateSubProjectFailure(error) {
-  return {
-    type: types.UPDATE_SUB_PROJECT_FAILURE,
-    payload: error,
-  };
-}
-
-// deleting 
-export function deleteSubProjectStart(project_id) {
-  return {
-    type: types.DELETE_SUB_PROJECT_START,
-    payload:project_id
-  };
-}
-
-export function deleteSubProjectSuccess(sub_project_id) {
-  return {
-    type: types.DELETE_SUB_PROJECT_SUCCESS,
-    payload: sub_project_id,
-  };
-}
-
-export function deleteSubProjectFailure(error) {
-  return {
-    type: types.DELETE_PROJECT_FAILURE,
-    payload: error,
-  };
-}
-  
-export const selectSubProject = (selected_sub_project) => ({
-  type: types.SELECT_SUB_PROJECT,
-  payload: selected_sub_project,
-});
 
 export const selectProject = (selected_project) => ({
   type: types.SELECT_PROJECT,

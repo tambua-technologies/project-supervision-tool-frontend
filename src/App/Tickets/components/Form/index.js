@@ -43,7 +43,7 @@ function TicketForm({
 
     useEffect(() => {
         getAgencies();
-    }, [])
+    }, [])  // eslint-disable-line react-hooks/exhaustive-deps
 
     const onFinish = (values) => {
         const payload = {
@@ -67,11 +67,9 @@ function TicketForm({
                 project_id: selected?.project_id,
 
             }
-            debugger
             createSubProjectTicket(subProjectPayload)
         }
         else {
-            debugger
             createProjectTicket(payload);
         }
     };
@@ -86,7 +84,6 @@ function TicketForm({
                     onFinish={onFinish}
                     autoComplete="off"
                     className="TicketForm"
-                    marginBottom='0px'
                 >
                     {/* start:Description */}
                     <Form.Item
@@ -170,7 +167,7 @@ function TicketForm({
 
                         >
                             {agencies.map((agency) => (
-                                <Select.Option value={agency.id}>{agency.name}</Select.Option>
+                                <Select.Option key={agency.id} value={agency.id}>{agency.name}</Select.Option>
                             ))}
                         </Select>
 
@@ -191,7 +188,7 @@ function TicketForm({
 
                         >
                             {agencies.map(({ focalPerson }) => (
-                                <Select.Option value={focalPerson.id}>{focalPerson.first_name} {focalPerson.last_name}</Select.Option>
+                                <Select.Option key={focalPerson.id} value={focalPerson.id}>{focalPerson.first_name} {focalPerson.last_name}</Select.Option>
                             ))}
                         </Select>
 

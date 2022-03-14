@@ -42,7 +42,7 @@ function ManageFieldNotes({ subProject, getSubProject }){
 
     useEffect(() => {
         handleGetFieldNotes();
-    }, [subProject]);
+    }, [subProject]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     /**
      * @function

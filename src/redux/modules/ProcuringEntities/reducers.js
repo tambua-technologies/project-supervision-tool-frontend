@@ -116,10 +116,20 @@ const packageDetail = (state = { data: null, error: null, loading: false, packag
   }
 };
 
+const search = (state = { data : ''}, action) => {
+  switch (action.type) {
+      case types.SEARCH_PROCURING_ENTITY:
+          return { ...state, data: action.payload }
+      default:
+          return state;
+  }
+};
+
 export const procuringEntityResource = combineReducers({
   procuringEntities,
   procuringEntity,
   packageDetail,
   actors,
-  packages
+  packages,
+  search
 })

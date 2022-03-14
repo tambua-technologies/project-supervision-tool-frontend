@@ -7,7 +7,7 @@ const ProjectStatusFilter = ({statuses,setProjectStatusFilter}) => {
 const [statusIds, setStatusId] = useState([]);
     useEffect(() => {
         setProjectStatusFilter(statusIds.join(','));
-    }, [statusIds]);
+    }, [statusIds]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
 const getFilterData = (items) => items.map(({name, description, id}) => ({

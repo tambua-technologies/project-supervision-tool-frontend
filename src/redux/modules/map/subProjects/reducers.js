@@ -223,7 +223,7 @@ const subProjectFilter = {
     'filter[procuringEntityPackage.procuringEntity.project_sub_component_id]': '',
     'filter[procuringEntityPackage.contract.contractor_id]': '',
     'filter[procuring_entity_package_id]': '',
-    'filter[procuringEntityPackage.procuringEntity.projectSubComponent.projectComponent.project_id]': ''
+    'filter[project_id]': ''
 };
 
 /**
@@ -248,7 +248,7 @@ const filters = (state = subProjectFilter, action) => {
         case types.SET_PROCURING_ENTITY_PACKAGE_FILTER:
             return { ...state, 'filter[procuring_entity_package_id]': action.payload };
         case types.GET_SUB_PROJECTS_BY_PROJECT_ID:
-            return { ...state, 'filter[procuringEntityPackage.procuringEntity.projectSubComponent.projectComponent.project_id]': action.payload };
+            return { ...state, 'filter[project_id]': action.payload };
         default:
             return state;
     }

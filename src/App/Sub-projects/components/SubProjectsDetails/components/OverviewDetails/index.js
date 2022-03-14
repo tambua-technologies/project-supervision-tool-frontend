@@ -1,4 +1,4 @@
-import { Col, Row, Spin } from "antd";
+import { Col, Row } from "antd";
 import React from "react";
 import BaseMap from "../../../../../Map/components/BaseMap";
 import SubProjectPoints from "../../../../../Map/components/SubProjectPoints";

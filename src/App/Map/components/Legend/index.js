@@ -35,8 +35,8 @@ function Legend({ position, projects }) {
                         <div className="projects-info">
                         <h4>Projects</h4>
                         {
-                            projects.map(({ color, code }) =>
-                                <div className="project-legend">
+                            projects.map(({ color, code }, i) =>
+                                <div className="project-legend" key={i}>
                                     <p style={{ backgroundColor: color }} />
                                     <h5>{code}</h5>
                                 </div>

@@ -1,19 +1,23 @@
 
 import React, { Component } from "react";
-import { Steps } from 'antd';
 import { connect } from "react-redux";
 import ProjectForm from './components/projectForm';
-import { projectOperation, projectSelectors } from '../../../../redux/modules/projects';
+import { projectActions, projectSelectors } from '../../../../redux/modules/projects';
 import ProjectDetailsForm from "./components/projectDetailsForm";
 import { projectDetailsActions } from "../../../../redux/modules/projectDetails";
 import { projectSectorsActions } from "../../../../redux/modules/ProjectsSectors";
+import { focalPeopleActions, focalPeopleSelectors } from "../../../FocalPeople/duck";
 
-
-const { Step } = Steps;
 
 class CommonProjectForm extends Component {
+
     state = {
         current: 0
+    }
+
+    componentDidMount() {
+        const { getFocalPeoples } = this.props
+        getFocalPeoples();
     }
 
     onChange = current => {
@@ -65,14 +69,14 @@ class CommonProjectForm extends Component {
     }
 
     handleConfirmButton = () => {
-        const {  handleAfterSubmit } = this.props;
+        const { handleAfterSubmit } = this.props;
         handleAfterSubmit();
     }
 
     render() {
-        const { current } = this.state
         const { focalPeoples, project, selected, isEditForm } = this.props
-        console.log('selected', selected);
+        /* eslint-disable no-unused-vars */
+
         const steps = [
             {
                 title: 'Step 1',
@@ -111,7 +115,7 @@ class CommonProjectForm extends Component {
                     isEditForm={isEditForm}
 
                 />
-                
+
             </>
         );
     }
@@ -121,15 +125,17 @@ const mapStateToProps = (state) => {
     return {
         project: projectSelectors.getCreatedProjectSelector(state),
         project_location: projectSelectors.getProjectLocationSelector(state),
-
+        focalPeoples: focalPeopleSelectors.getFocalPeople(state),
     };
 };
 
 const mapDispatchToProps = {
-    createProject: projectOperation.createProjectStart,
-    createProjectLocation: projectOperation.createProjectLocationStart,
+    createProjectLocation: projectActions.createProjectLocationStart,
     createProjectSector: projectSectorsActions.createProjectSectorsStart,
     createProjectDetail: projectDetailsActions.createProjectDetailsStart,
+    getFocalPeoples: focalPeopleActions.getFocalPeopleStart,
+    createProject: projectActions.createProjectStart,
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommonProjectForm);

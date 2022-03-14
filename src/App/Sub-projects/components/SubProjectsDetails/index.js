@@ -1,26 +1,23 @@
 import React, { useEffect } from "react";
 import { Layout, Spin, Tabs } from 'antd';
 import { connect } from "react-redux";
-import { projectOperation, projectSelectors } from "../../../../redux/modules/projects";
 import { mapActions, mapSelectors } from "../../../../redux/modules/map";
 import OverviewDetails from "./components/OverviewDetails";
 import * as appPermissions from '../../../../Util/permissions';
 import FieldNotes from "./components/FieldNotes";
 import FieldImages from "./components/FieldImages";
 import { authSelectors } from "../../../../redux/modules/auth";
-import { ticketActions, ticketSelectors } from "../../../../redux/modules/Tickets";
-
-import "./styles.css";
 import {getIdFromUrlPath} from "../../../../Util";
 import BaseLayout from "../../../layouts/BaseLayout";
 import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
+import { subProjectsActions, subProjectsSelectors } from "../../../../redux/modules/subProjects";
+import "./styles.css";
 
 const { Content } = Layout;
 const { TabPane } = Tabs;
 
-function SubProjectDetails({ getSubProject, getSubProjectTicket, match, sub_project, loading, mapLoading, permissions, subProjectTickets }) {
+function SubProjectDetails({ getSubProject, match, sub_project, loading, mapLoading, permissions, }) {
 
-  const { params } = match;
   const breadcrumbs = sub_project ? [
     {
       title: 'Projects',
@@ -65,9 +62,10 @@ function SubProjectDetails({ getSubProject, getSubProjectTicket, match, sub_proj
   ] : [];
 
   useEffect(() => {
-    const id = getIdFromUrlPath(match.url, 8);
+    const id = getIdFromUrlPath(match.url, 8);  
     getSubProject(id);
-  }, []);
+  }, [match]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return sub_project ? (
       <BaseLayout breadcrumbs={<DynamicBreadcrumbs breadcrumbs={breadcrumbs} />} >
         <Layout className="sub-project-layout">
@@ -106,8 +104,8 @@ function SubProjectDetails({ getSubProject, getSubProjectTicket, match, sub_proj
 }
 const mapStateToProps = (state) => {
   return {
-    sub_project: projectSelectors.getSubProjectSelector(state),
-    loading: projectSelectors.getSubProjectLoadingSelector(state),
+    sub_project: subProjectsSelectors.getSubProjectSelector(state),
+    loading: subProjectsSelectors.getSubProjectLoadingSelector(state),
     mapLoading: mapSelectors.getMapLoadingSelector(state),
     permissions: authSelectors.authUserPermissionsSelector(state),
 
@@ -115,7 +113,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  getSubProject: projectOperation.getSubProjectStart,
+  getSubProject: subProjectsActions.getSubProjectStart,
   getWfsLayerData: mapActions.getWfsLayerDataStart,
 };
 

@@ -435,3 +435,9 @@ function padZero(str, len) {
     const urlPathParts = path.split('/');
     return urlPathParts[index];
   };
+
+  export const getAmount = (data) => {
+    const { amount, currency } = data
+    const money = moneyFormat(amount);
+    return `${money} ${currency} `;
+}

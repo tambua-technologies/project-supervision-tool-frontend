@@ -1,28 +1,25 @@
 import React, { useEffect } from "react";
-import {Layout, Spin, Tabs} from 'antd';
+import {Layout, Spin} from 'antd';
 import OverviewDetails from "./components/OverviewDetails";
 import { connect } from "react-redux";
 import { projectActions, projectSelectors } from "../../../../redux/modules/projects";
 import { getIdFromUrlPath, isoDateToHumanReadableDate, moneyFormat } from "../../../../Util";
-import "./styles.css";
-import { mapSubProjectSelectors } from "../../../../redux/modules/map/subProjects";
-import { ticketActions, ticketSelectors } from "../../../../redux/modules/Tickets";
 import DynamicBreadcrumbs from '../../../components/DynamicBreadcrumbs';
 import ProjectHome from "../../../navigation/ProjectHome";
 import BaseLayout from "../../../layouts/BaseLayout";
+import DetailsSection from "../../components/Project/components/ComponentSubComponent";
+import PropTypes from 'prop-types';
+import "./styles.css";
 
 const { Content } = Layout;
-const { TabPane } = Tabs;
 
-
-const ProjectDetails = ({ project, loading, getProject, subProjects, getTicketByProject, tickets, match, location }) => {
+const ProjectDetails = ({ project, loading, getProject, match }) => {
 
   useEffect(() => {
     const id  = getIdFromUrlPath(match.path,2);
     getProject(id);
-    getTicketByProject(id);
 
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 
   const breadcrumbs = project ? [
@@ -71,13 +68,15 @@ const ProjectDetails = ({ project, loading, getProject, subProjects, getTicketBy
                     totalProjectCost={totalProjectCost}
                     approval_date={approval_date}
                     closing_date={closing_date}
-                    subProjects={subProjects}
                 />
                 <section className="project_components">
                   <h4 style={{ textAlign: 'center', fontSize: '1.5em', margin: 0}}>Project Menu</h4>
                   <ProjectHome match={match} />
                 </section>
+                <section className="Progress-overview container">
+                {project?.components.length > 0 ?  <DetailsSection components={project?.components} /> : ''}
 
+                </section>
               </div>
             </Content>
           </Layout>
@@ -93,15 +92,16 @@ const mapStateToProps = (state) => {
     project: projectSelectors.getProjectSelector(state),
     projects: projectSelectors.getProjectsSelector(state),
     loading: projectSelectors.getProjectLoadingSelector(state),
-    subProjects: mapSubProjectSelectors.getSubProjectsSelector(state),
-    tickets: ticketSelectors.getTicketByProject(state),
   };
 };
 
 const mapDispatchToProps = {
   getProject: projectActions.getProjectStart,
-  getTicketByProject: ticketActions.getTicketByProjectStart
-
 };
+
+ProjectDetails.propTypes = {
+  project: PropTypes.object
+}
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectDetails);

@@ -49,7 +49,10 @@ const createUsers = (user) => axios.post(`/users`, user ).then((response) => res
  * @version 0.1.0
  * @since 0.1.0
  */
- const getAuthUser = () => axios.get(`/users/auth_user`).then((response) => response.data);
+ const getAuthUser = () => axios.get(`/users/auth_user`)
+ .then((response) => {
+     return response.data;
+ });
 
 
 /**

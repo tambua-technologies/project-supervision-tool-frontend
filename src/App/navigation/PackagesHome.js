@@ -19,7 +19,7 @@ const routes = [
 
     {
         name: 'Milestones',
-        path: '/tickets',
+        path: '/milestone',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,
@@ -27,7 +27,7 @@ const routes = [
 
     {
         name: 'Human Resources',
-        path: '/tickets',
+        path: '/human_resource',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,
@@ -35,7 +35,7 @@ const routes = [
 
     {
         name: 'Human Equipment Mobilization',
-        path: '/tickets',
+        path: '/equipment',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,

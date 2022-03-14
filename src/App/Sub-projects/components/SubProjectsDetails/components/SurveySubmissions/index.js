@@ -1,25 +1,23 @@
-import React, {useEffect, useState} from "react";
-import {Drawer, Table, Image, Button, Select, Form, Alert,notification} from "antd";
+import React, { useEffect, useState } from "react";
+import { Drawer, Table, Image, Button, Select, Form, notification } from "antd";
 import PropTypes from 'prop-types';
 import API from "../../../../../../API";
-import {isoDateToHumanReadableDate, stringToGeoJson} from "../../../../../../Util";
+import { isoDateToHumanReadableDate, stringToGeoJson } from "../../../../../../Util";
 import Toolbar from "../Toolbar";
 import DisplaySurveyForm from "../../../../../components/DisplaySurveyForm";
 import ViewOnMap from "../../../../../components/ViewOnMap";
 import './styles.css';
 
-const ViewSubmissionOnMap = ({data, showMApModal, handleOnCancel}) => <ViewOnMap showMApModal={showMApModal}
-                                                                                 handleOnCancel={handleOnCancel}
-                                                                                 data={data}/>
-
-
+const ViewSubmissionOnMap = ({ data, showMApModal, handleOnCancel }) => <ViewOnMap showMApModal={showMApModal}
+    handleOnCancel={handleOnCancel}
+    data={data} />
 
 
 const getAttachMentUrl = (attachments, name) => {
     return attachments.length > 0 ? attachments[0].download_url : '';
 }
 
-function SurveySubmissions({surveys, handleGoBack, showBackButton}) {
+function SurveySubmissions({ surveys, handleGoBack, showBackButton }) {
     const [columns, setColumns] = useState([]);
     const [survey_id, setSurveyId] = useState('');
     const [features, setFeatures] = useState([]);
@@ -27,7 +25,10 @@ function SurveySubmissions({surveys, handleGoBack, showBackButton}) {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [dataSource, setDataSource] = useState([]);
     const [showMapModel, setShowMapModal] = useState(false);
-    const [dataExportUrl, setExportDataUrl] = useState('');
+
+      /* eslint-disable no-unused-vars */
+    const [dataExportUrl, setExportDataUrl] = useState(''); 
+
 
     const startDownloadNotification = () => {
         notification.open({
@@ -48,11 +49,11 @@ function SurveySubmissions({surveys, handleGoBack, showBackButton}) {
         const spatialColumn = columns.filter((c) => c.type === 'geoshape' || c.type === 'geotrace' || c.type === 'geopoint')[0];
         const data = dataSource.map((d) => stringToGeoJson(d[spatialColumn.key], spatialColumn.type));
         setFeatures(data);
-    }, [dataSource]);
+    }, [dataSource]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         setSurveyId(surveys[0].uid);
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
     const showModal = () => {
@@ -82,10 +83,10 @@ function SurveySubmissions({surveys, handleGoBack, showBackButton}) {
             .then(res => downloadObjectAsJson(res, `kobotoolbox_data_${survey_id}`));
     }
 
-    function downloadObjectAsJson(exportObj, exportName){
+    function downloadObjectAsJson(exportObj, exportName) {
         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
         var downloadAnchorNode = document.createElement('a');
-        downloadAnchorNode.setAttribute("href",     dataStr);
+        downloadAnchorNode.setAttribute("href", dataStr);
         downloadAnchorNode.setAttribute("download", exportName + ".geojson");
         document.body.appendChild(downloadAnchorNode); // required for firefox
         downloadAnchorNode.click();
@@ -105,7 +106,7 @@ function SurveySubmissions({surveys, handleGoBack, showBackButton}) {
                 key: s.$autoname, type: s.type,
                 render: text => {
                     if (s.type === 'image')
-                        return <Image width={200} src={text}/>
+                        return <Image width={200} src={text} />
 
                     if (s.type === 'geoshape' || s.type === 'geotrace' || s.type === 'geopoint') {
                         const geoJson = stringToGeoJson(text, s.type);
@@ -121,7 +122,7 @@ function SurveySubmissions({surveys, handleGoBack, showBackButton}) {
             setColumns(meta);
             API.getAssetData(value)
                 .then(res => setDataSource(res.results.map(r => {
-                    const imageColumns = meta.filter(({type}) => type === 'image');
+                    const imageColumns = meta.filter(({ type }) => type === 'image');
                     let withFomratedDates = {
                         ...r,
                         end: isoDateToHumanReadableDate(r.end),
@@ -138,21 +139,21 @@ function SurveySubmissions({surveys, handleGoBack, showBackButton}) {
 
     useEffect(() => {
         if (survey_id) getData(survey_id);
-    }, [survey_id]);
+    }, [survey_id]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return survey_id ? (
         <section className="container">
-            {showBackButton ? <Button onClick={handleGoBack} style={{marginTop: '20px'}} type="primary" >Go Back</Button> :
-                <Form initialValues={{survey_id}}
-                      style={{paddingTop: '20px'}}
+            {showBackButton ? <Button onClick={handleGoBack} style={{ marginTop: '20px' }} type="primary" >Go Back</Button> :
+                <Form initialValues={{ survey_id }}
+                    style={{ paddingTop: '20px' }}
                 >
                     <Form.Item
                         label="Displaying Images From"
                         name="survey_id"
-                        rules={[{required: false}]}
+                        rules={[{ required: false }]}
                     >
-                        <Select style={{width: '40%'}} size='medium' onChange={(v) => setSurveyId(v)}>
-                            {surveys.map(({name, uid}) => <option value={uid}>{name}</option>)}
+                        <Select style={{ width: '40%' }} size='medium' onChange={(v) => setSurveyId(v)}>
+                            {surveys.map(({ name, uid }) => <option value={uid}>{name}</option>)}
                         </Select>
                     </Form.Item>
                 </Form>}
@@ -173,7 +174,7 @@ function SurveySubmissions({surveys, handleGoBack, showBackButton}) {
                     },
                 ]}
             />
-            <Table dataSource={dataSource} columns={columns} className="SurveyTable"/>
+            <Table dataSource={dataSource} columns={columns} className="SurveyTable" />
             <Drawer
                 width={550}
                 footer={null}
@@ -183,11 +184,11 @@ function SurveySubmissions({surveys, handleGoBack, showBackButton}) {
                 maskClosable={false}
                 className="SurveyFormDrawer"
             >
-                <DisplaySurveyForm survey_id={survey_id}/>
+                <DisplaySurveyForm survey_id={survey_id} />
             </Drawer>
-            <ViewOnMap data={features} showMApModal={showMapModel} handleOnCancel={handleOnMapCancel}/>
+            <ViewOnMap data={features} showMApModal={showMapModel} handleOnCancel={handleOnMapCancel} />
             {feature ? <ViewSubmissionOnMap data={[feature]} showMApModal={showMapModel}
-                                            handleOnCancel={handleOnSubmissionMapCancel}/> : ''}
+                handleOnCancel={handleOnSubmissionMapCancel} /> : ''}
         </section>
     ) : '';
 }

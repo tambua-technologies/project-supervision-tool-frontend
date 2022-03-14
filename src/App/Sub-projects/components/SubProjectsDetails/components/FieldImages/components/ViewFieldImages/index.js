@@ -21,7 +21,7 @@ function ViewFieldImages ({ subProject })
                 setSurveys(data);
 
             });
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return surveys.length > 0 ? (<ImageGallary surveys={surveys}/> ): '';
 }

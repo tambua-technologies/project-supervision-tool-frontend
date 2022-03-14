@@ -8,8 +8,7 @@ import {
   Row,
   Col,
   Typography,
-  Select,
-
+  
 } from "antd";
 import { generateDateString, generateYearString } from "../../../../../Util";
 import { connect } from "react-redux";
@@ -17,8 +16,7 @@ import { projectDetailsActions, projectDetailsSelectors } from "../../../../../r
 import {projectActions, projectSelectors} from "../../../../../redux/modules/projects";
 import CommitmentAmountForm from "./CommitmentAmountForm";
 import TotalProjectCostForm from "./TotalProjectCostForm";
-import {projectSectorsActions, projectSectorsSelectors} from "../../../../../redux/modules/ProjectsSectors";
-import ProjectSectorsForm from "./ProjectSectors";
+import {projectSectorsActions} from "../../../../../redux/modules/ProjectsSectors";
 
 /* state actions */
 
@@ -49,17 +47,6 @@ const getCurrencyIsoFromCurrencies = (currency_id, currencies) => {
   const currency = currencies.find(({id }) => id === currency_id);
   return currency.iso;
 };
-
-
-/**
- * @function
- * @name getSectorNameFromSectors
- * @description get sector name from sectors
- */
-const getSectorNameFromSectors = (sectorId, sectors) => {
-  const sector = sectors.find(({ id }) => id === sectorId );
-  return sector.name;
-}
 
 
 class ProjectDetailsForm extends Component {
@@ -101,14 +88,6 @@ class ProjectDetailsForm extends Component {
   };
 
 
-  showProjectSectorsModal = () => {
-    this.setState({ visibleProjectSectors: true});
-  };
-
-  hideProjectSectorsModal = () => {
-    this.setState({ visibleProjectSectors: false });
-  };
-
   setCommitmentAmountId = (id) => {
     this.setState({ commitment_amount_id: id });
   };
@@ -137,8 +116,6 @@ class ProjectDetailsForm extends Component {
       total_project_cost_id,
       detailsPayload
     };
-
-    console.log(payload);
     createProjectDetails(payload);
     handleConfirmButton();
     localStorage.removeItem('detailsPayload');
@@ -151,12 +128,10 @@ class ProjectDetailsForm extends Component {
       selected,
       handleBackButton,
       currency,
-      sectors,
-      project,
-      regions
+
     } = this.props;
 
-    const { visibleCommitmentAmount, visibleTotalProjectCost, visibleProjectSectors } = this.state;
+    const { visibleCommitmentAmount, visibleTotalProjectCost } = this.state;
 
     return (
       <Form.Provider
@@ -180,15 +155,6 @@ class ProjectDetailsForm extends Component {
               this.setState({visibleTotalProjectCost: false});
             }
 
-            // handling project sectors
-            if (name === 'projectSectorsForm') {
-              const { projectDetailsForm } = forms;
-              const sectors = projectDetailsForm.getFieldValue('sectors') || [];
-              projectDetailsForm.setFieldsValue({
-                sectors: [...sectors, values],
-              });
-              this.setState({visibleProjectSectors: false});
-            }
           }}
       >
         <Form
@@ -280,51 +246,6 @@ class ProjectDetailsForm extends Component {
             </Col>
           </Row>
 
-
-          {/* start: project sectors list */}
-          <Form.Item
-              label="Project Sectors"
-              shouldUpdate={(prevValues, curValues) => prevValues.sectors !== curValues.sectors}
-          >
-            {({ getFieldValue }) => {
-              const sectorsData = getFieldValue('sectors') || [];
-              return (
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start'
-                  }}>
-                    {sectorsData.length ? (
-                        <ul>
-                          {sectorsData.map((sector, index) => (
-                              <li key={index} className="user">
-                                {`${getSectorNameFromSectors(sector.sector_id, sectors) } - (${sector.percent}%)`}
-                              </li>
-                          ))}
-                        </ul>
-                    ): (
-                        <div>
-                          <Typography.Text className="ant-form-text" type="secondary">
-                            No sector(s) yet, please add sector(s)
-                          </Typography.Text>
-                        </div>
-                    )}
-                    <Button
-                        size="small"
-                        htmlType="button"
-                        style={{
-                          fontSize: '0.9em'
-                        }}
-                        onClick={this.showProjectSectorsModal}
-                    >
-                      Add
-                    </Button>
-                  </div>
-              );
-            }}
-          </Form.Item>
-          {/* end: project sectors list */}
-
           {/* start:form actions */}
           <Form.Item wrapperCol={{ span: 24 }} style={{ textAlign: "right" }}>
             <Button type="default" onClick={handleBackButton} >
@@ -354,13 +275,6 @@ class ProjectDetailsForm extends Component {
             currency={currency}
         />
 
-        <ProjectSectorsForm
-            visible={visibleProjectSectors}
-            onCancel={this.hideProjectSectorsModal}
-            sectors={sectors}
-            project={project}
-        />
-
       </Form.Provider>
     );
   }
@@ -369,10 +283,8 @@ class ProjectDetailsForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    regions: projectSelectors.getRegionsSelector(state),
     agencies: projectDetailsSelectors.getAgenciesSelector(state),
     project: projectSelectors.getProjectSelector(state),
-    sectors: projectSectorsSelectors.getSectorsSelector(state),
     currency: projectDetailsSelectors.getCurrenciesSelector(state),
     amount_cost: projectDetailsSelectors.getCreatedAmountCostSelector(state),
     commitment_cost: projectDetailsSelectors.getCreatedCommitmentCostSelector(state),
@@ -393,12 +305,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(ProjectDetailsForm);
 
 ProjectDetailsForm.defaultProps = {
   project: null,
-  sectors: [],
 };
 
 ProjectDetailsForm.propTypes = {
   project: PropTypes.object,
-  sectors: PropTypes.array.isRequired,
   next: PropTypes.func.isRequired,
   getSectors: PropTypes.func.isRequired,
   handleConfirmButton: PropTypes.func.isRequired,

@@ -8,7 +8,7 @@ const initialState = {
     errorMessage: ''
 }
 
-const login = (state = initialState, action) => {
+export const login = (state = initialState, action) => {
     switch (action.type) {
         case types.LOGOUT:
             return {...state, accessToken: ''};

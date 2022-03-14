@@ -15,7 +15,7 @@ const ProcuringEntityPackageFilter = ({ procuringEntityPackage, setProcuringEnti
     const [procuringEntitiesIds, setProcuringEntitiesId] = useState([]);
     useEffect(() => {
         setProcuringEntityFilter(procuringEntitiesIds.join(','));
-    }, [procuringEntitiesIds]);
+    }, [procuringEntitiesIds]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleOnclickFilterItem = (package_id) => {
         if (procuringEntitiesIds.includes(package_id)) {

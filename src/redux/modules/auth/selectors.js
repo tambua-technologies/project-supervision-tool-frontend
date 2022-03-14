@@ -6,7 +6,7 @@
  * @param {Object} state redux state
  * @return {string} accessToken
  * */
-export const accessTokenSelector = ({auth}) => auth.login?.accessToken;
+export const accessTokenSelector = ({auth}) => auth?.login?.accessToken;
 
 /**
  * @function
@@ -14,7 +14,7 @@ export const accessTokenSelector = ({auth}) => auth.login?.accessToken;
  * @param {Object} state redux state
  * @return {boolean} isLogin
  * */
-export const isLoginSelector = ({auth}) => auth.login?.isLogin;
+export const isLoginSelector = ({auth}) => auth?.login?.isLogin;
 
 /**
  * @function
@@ -22,7 +22,7 @@ export const isLoginSelector = ({auth}) => auth.login?.isLogin;
  * @param {Object} state redux state
  * @return {boolean} isLogin
  * */
-export const authUserPermissionsSelector = ({auth}) => auth.authUserPermissions;
+export const authUserPermissionsSelector = ({auth}) => auth?.authUserPermissions;
 
 /**
  * @function
@@ -30,4 +30,4 @@ export const authUserPermissionsSelector = ({auth}) => auth.authUserPermissions;
  * @param {Object} state redux state
  * @return {Object} errorMessage
  * */
-export const loginErrorMessageSelector = ({auth}) => auth.login?.errorMessage
+export const loginErrorMessageSelector = ({auth}) => auth?.login?.errorMessage

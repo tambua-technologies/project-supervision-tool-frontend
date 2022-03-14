@@ -17,12 +17,8 @@ import "./styles.css";
  * @param {number} props.total total number of results from the API
  * @param {number} props.selectedItemsCount total Number of selected items
  * @param {string} props.exportUrl export url
- * @param {Function} props.onArchive on archive action callback
- * @param {Function} props.onFilter on filter action callback
- * @param {Function} props.onNotify on notify action callback
  * @param {Function} props.onPaginate on paginate action callback
  * @param {Function} props.onRefresh on refresh action callback
- * @param {Function} props.onShare on share action callback
  *
  * @returns {object} React component
  *
@@ -35,12 +31,8 @@ const Toolbar = ({
   total,
   selectedItemsCount,
   exportUrl,
-  onArchive,
-  onFilter,
-  onNotify,
   onPaginate,
   onRefresh,
-  onShare,
   onMapView
 }) => (
     <div className="Toolbar">
@@ -94,71 +86,10 @@ const Toolbar = ({
             )}
             {/* end export action */}
 
-            {/* filter action */}
-            {/* {onFilter && (
-              <Col xxl={3} xl={3} lg={4} md={4} sm={0} xs={0} >
-                <Button
-                  title="Filter"
-                  className="actionButton"
-                  size="large"
-                  onClick={onFilter}
-                >
-                  Filter
-              </Button>
-              </Col>
-            )} */}
-            {/* end filter action */}
-
-            {/* notify action */}
-            {onNotify && (
-              <Col xxl={3} xl={3} lg={3} md={4} sm={6} xs={6}>
-                <Button
-                  title={`Send Notification to${
-                    selectedItemsCount > 0 ? "selected" : ""
-                    } `}
-                  className="actionButton"
-                  size="large"
-                  onClick={onNotify}
-                >
-                  Notify
-              </Button>
-              </Col>
-            )}
-            {/* end notify action  */}
-
-            {/* bulk share action */}
-            {/* {selectedItemsCount > 0 && onShare && (
-              <Col xxl={2} xl={2} lg={3} md={4} sm={6} xs={6}>
-                <Button
-                  title="Share selected "
-                  className="actionButton"
-                  size="large"
-                  onClick={onShare}
-                >
-                  Share
-              </Button>
-              </Col>
-            )} */}
-            {/* end bulk share action */}
-
-            {/* bulk archive action */}
-            {/* {selectedItemsCount > 0 && onArchive && (
-              <Col xxl={1} xl={1} lg={1} md={4} sm={6} xs={6}>
-                <Button
-                  title="Archive selected "
-                  className="actionButton"
-                  size="large"
-                  onClick={onArchive}
-                >
-                  Archive
-              </Button>
-              </Col>
-            )} */}
-            {/* end bulk archive action */}
           </Row>
         </Col>
         {/* end action bar */}
-        {/* filter bar */}
+
         <Col xxl={12} xl={12} lg={12} md={14} sm={10} xs={12}>
           <Row type="flex" justify="end">
             {/* selected and  number summary */}
@@ -195,7 +126,6 @@ const Toolbar = ({
             {/* end pagination */}
           </Row>
         </Col>
-        {/* end filter bar */}
       </Row>
     </div>
   );
@@ -203,24 +133,16 @@ const Toolbar = ({
 /* props validation */
 Toolbar.propTypes = {
   itemName: PropTypes.string.isRequired,
-  page: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
+  page: PropTypes.number,
+  total: PropTypes.number,
   exportUrl: PropTypes.string,
   selectedItemsCount: PropTypes.number.isRequired,
-  onArchive: PropTypes.func,
-  onFilter: PropTypes.func,
-  onNotify: PropTypes.func,
   onPaginate: PropTypes.func.isRequired,
   onRefresh: PropTypes.func.isRequired,
-  onShare: PropTypes.func,
 };
 
 Toolbar.defaultProps = {
   exportUrl: undefined,
-  onFilter: null,
-  onShare: () => {},
-  onNotify: null,
-  onArchive: null,
 };
 
 export default Toolbar;

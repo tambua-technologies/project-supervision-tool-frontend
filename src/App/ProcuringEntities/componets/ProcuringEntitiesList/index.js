@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ProcuringEntityActions, ProcuringEntitySelectors } from '../../../../redux/modules/ProcuringEntities';
@@ -11,25 +11,26 @@ import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
 import { getIdFromUrlPath, showArchiveConfirm } from '../../../../Util';
 import { projectActions, projectSelectors } from "../../../../redux/modules/projects";
-import "./styles.css";
 import ProcuringEntityForm from '../Form';
 import BaseLayout from '../../../layouts/BaseLayout';
 import DynamicBreadcrumbs from '../../../components/DynamicBreadcrumbs';
+import { useToggle } from '../../../../hooks/useToggle';
+import "./styles.css";
 
 
 /* constants */
-const nameSpan = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 5, xs: 5};
-const packageSpan = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 5, xs: 5 };
+const nameSpan = { xxl: 10, xl: 10, lg: 10, md: 10, sm: 10, xs: 10 };
+const packageSpan = { xxl: 11, xl: 11, lg: 11, md: 11, sm: 11, xs: 11 };
 
 const headerLayout = [
     { ...nameSpan, header: "Name" },
     { ...packageSpan, header: "Package" },
 ];
 
-const ProcuringEntitiesList = ({ 
-    getProcuringEntities, 
-    procuringEntities, 
-    loading, 
+const ProcuringEntitiesList = ({
+    getProcuringEntities,
+    procuringEntities,
+    loading,
     deleteProcuringEntity,
     openProcuringEntityForm,
     closeProcuringEntityForm,
@@ -42,47 +43,49 @@ const ProcuringEntitiesList = ({
     getProjectSubComponent,
     projectSubComponents,
     updateProcuringEntity,
-    projects,
+    project,
     match,
-    getProjects,
+    getProject,
+    searchProcuring,
+    searchQuery
 }) => {
 
-    const [ isEditForm, setIsEditForm ] = useState(false);
-    const [ visible, setVisible ] =  useState(false);
+    const { isEditForm, setIsEditForm, setVisible } = useToggle(false);
     const projectId = getIdFromUrlPath(match.path, 2);
-    const filter = {'filter[project_id]': projectId};
+    const filter = { 'filter[project_id]': projectId };
     const history = useHistory();
 
     useEffect(() => {
-        getProcuringEntities(filter)
-    }, [])
+        getProcuringEntities(filter);
+        getProject(projectId)
+    }, [])  // eslint-disable-line react-hooks/exhaustive-deps
 
-    
-  /**
-   * @function
-   * @name openProcuringEntityForm
-   * @description Open form
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  const handleOpenProcuringEntityForm = () => {
-    openProcuringEntityForm();
-  };
 
-  /**
-   * @function
-   * @name handleCloseProcuringEntityForm
-   * @description close form
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  const handleCloseProcuringEntityForm = () => {
-    setIsEditForm(false);
-    setVisible(false);
-    selectProcuringEntity(null);
-    closeProcuringEntityForm();
-  };
+    /**
+     * @function
+     * @name openProcuringEntityForm
+     * @description Open form
+     *
+     * @version 0.1.0
+     * @since 0.1.0
+     */
+    const handleOpenProcuringEntityForm = () => {
+        openProcuringEntityForm();
+    };
+
+    /**
+     * @function
+     * @name handleCloseProcuringEntityForm
+     * @description close form
+     * @version 0.1.0
+     * @since 0.1.0
+     */
+    const handleCloseProcuringEntityForm = () => {
+        setIsEditForm(false);
+        setVisible(false);
+        selectProcuringEntity(null);
+        closeProcuringEntityForm();
+    };
 
     /**   
    * @function
@@ -120,146 +123,158 @@ const ProcuringEntitiesList = ({
    * @version 0.1.0
    * @since 0.1.0
    */
-const  handleEdit = (item) => {
-    selectProcuringEntity(item);
-    setIsEditForm(true)
-    openProcuringEntityForm();
-  };
+    const handleEdit = (item) => {
+        selectProcuringEntity(item);
+        setIsEditForm(true)
+        openProcuringEntityForm();
+    };
 
-  const breadcrumbs =  procuringEntities.length > 0 ? [
-    {
-        title: 'Projects',
-        url: '/projects',
-        name: 'Projects'
-    },
-    {
-        title: procuringEntities[0].project.code,
-        url: `/projects/${procuringEntities[0].project.id}`,
-        name: procuringEntities[0].project.name
-    },
-    {
-        title: `Procuring Entities`,
-        url: match.url,
-        name: `Procuring Entities under ${procuringEntities[0].project.name}(${procuringEntities[0].project.code})`
-    }
-] : [];
+    /**   
+ * @function
+ * @name handleSearch
+ * @description Handle list search action
+ *
+ * @version 0.1.0
+ * @since 0.1.0
+ */
+    const handleSearch = (event) => {
+        searchProcuring(event.target.value)
+    };
+
+    const breadcrumbs = project ? [
+        {
+            title: 'Projects',
+            url: '/projects',
+            name: 'Projects'
+        },
+        {
+            title: project.code,
+            url: `/projects/${project.id}`,
+            name: project.name
+        },
+        {
+            title: `Procuring Entities`,
+            url: match.url,
+            name: `Procuring Entities under ${project.name}(${project.code})`
+        }
+    ] : [];
 
 
     return (
         <BaseLayout breadcrumbs={<DynamicBreadcrumbs breadcrumbs={breadcrumbs} />}>
 
             <div>
-                        {/* Topbar */}
-                        <Topbar
-                            search={{
-                                size: "large",
-                                placeholder: "Search for Procuring Entities here ...",
-                                onSearch: '',
-                            }}
-                            actions={[
+                {/* Topbar */}
+                <Topbar
+                    search={{
+                        size: "large",
+                        placeholder: "Search for Procuring Entities here ...",
+                        onChange: handleSearch,
+                        value: searchQuery
+                    }}
+                    actions={[
+                        {
+                            label: "New Procuring Entity",
+                            icon: <PlusOutlined />,
+                            size: "large",
+                            title: "Add New Procuring Entity",
+                            onClick: handleOpenProcuringEntityForm,
+                        },
+                    ]}
+                />
+                {/* end Topbar */}
+
+                {/* list starts */}
+                <CustomList
+                    itemName="ProcuringEntities"
+                    items={procuringEntities}
+                    page={1}
+                    itemCount={1}
+                    loading={loading}
+                    onRefresh={handleRefresh}
+                    headerLayout={headerLayout}
+                    renderListItem={({
+                        item,
+                    }) => (
+                        <ListItem
+                            key={item.id} // eslint-disable-line
+                            name={item?.agency?.name}
+                            item={item}
+                            renderActions={() => (
+                                <ListItemActions
+                                    edit={{
+                                        name: "Edit Procuring Entity",
+                                        title: "Update Procuring Entity details",
+                                        onClick: () => handleEdit(item),
+                                    }}
+                                    archive={{
+                                        name: "Archive Procuring Entity",
+                                        title:
+                                            "Remove Sub project from list of active Procuring Entity",
+                                        onClick: () => showArchiveConfirm(item, deleteProcuringEntity),
+                                    }}
+                                    view={
+                                        {
+                                            name: "View Details",
+                                            title: "View more detail of selected Procuring Entity",
+                                            onClick: () => handleViewDetails(item)
+                                        }
+                                    }
+
+                                />
+                            )}
+                        >
+                            {/* eslint-disable react/jsx-props-no-spreading */}
+
+                            <Col {...nameSpan} >
+                                {item?.agency?.name ? item?.agency?.name : 'N/A'}
+                            </Col>
+
+                            <Col {...packageSpan} className="contentEllipse">
                                 {
-                                    label: "New Procuring Entity",
-                                    icon: <PlusOutlined />,
-                                    size: "large",
-                                    title: "Add New Procuring Entity",
-                                    onClick: handleOpenProcuringEntityForm,
-                                },
-                            ]}
-                        />
-                        {/* end Topbar */}
+                                    item?.packages.length > 0 ?
+                                        item?.packages?.map(({ name }, index) => { return (index ? ", " : "") + name })
+                                        : "N/A"
+                                }
+                            </Col>
 
-                        {/* list starts */}
-                        <CustomList
-                            itemName="ProcuringEntities"
-                            items={procuringEntities}
-                            page={1}
-                            itemCount={1}
-                            loading={loading}
-                            onRefresh={handleRefresh}
-                            headerLayout={headerLayout}
-                            renderListItem={({
-                                item,
-                            }) => (
-                                    <ListItem
-                                        key={item.id} // eslint-disable-line
-                                        name={item?.agency?.name}
-                                        item={item}
-                                        renderActions={() => (
-                                            <ListItemActions
-                                                edit={{
-                                                    name: "Edit Procuring Entity",
-                                                    title: "Update Procuring Entity details",
-                                                    onClick: () => handleEdit(item),
-                                                }}
-                                                archive={{
-                                                    name: "Archive Procuring Entity",
-                                                    title:
-                                                        "Remove Sub project from list of active Procuring Entity",
-                                                    onClick: () => showArchiveConfirm(item, deleteProcuringEntity),
-                                                }}
-                                                view={
-                                                    {
-                                                        name: "View Details",
-                                                        title: "View more detail of selected Procuring Entity",
-                                                        onClick: () => handleViewDetails(item)
-                                                    }
-                                                }
+                            {/* eslint-enable react/jsx-props-no-spreading */}
+                        </ListItem>
+                    )}
+                />
+                {/* end list */}
 
-                                            />
-                                        )}
-                                    >
-                                        {/* eslint-disable react/jsx-props-no-spreading */}
-
-                                        <Col {...nameSpan} >
-                                            {item?.agency?.name ? item?.agency?.name : 'N/A'}
-                                        </Col>
-                                
-                                        <Col {...packageSpan} className="contentEllipse">
-                                            {
-                                                item?.packages.length > 0 ?
-                                                    item?.packages?.map(({ name }, index) => { return (index ? ", " : "") + name })
-                                                    : "N/A"
-                                            }
-                                        </Col>
-
-                                        {/* eslint-enable react/jsx-props-no-spreading */}
-                                    </ListItem>
-                                )}
-                        />
-                        {/* end list */}
-
-                        <Drawer
-                        title={
+                <Drawer
+                    title={
                         isEditForm ? "Edit Procuring Entity" : "Add New Procuring Entity"
-                        } width={550}
-                        onClose={handleCloseProcuringEntityForm}
-                        footer={null}
-                        visible={showForm}
-                        bodyStyle={{ paddingBottom: 80 }}
-                        destroyOnClose
-                        maskClosable={false}
-                        // afterClose={handleAfterCloseForm}
-                        className="projectForm"
-                    >
-                        <ProcuringEntityForm 
-                            isEditForm={isEditForm}
-                            selected={selected}
-                            handleAfterSubmit={handleCloseProcuringEntityForm}
-                            createProcuringEntity={createProcuringEntity}
-                            getAgenciesActors={getAgenciesActors}
-                            loading={loading}
-                            agencies={agencies}
-                            getProjectSubComponent={getProjectSubComponent}
-                            projectSubComponents={projectSubComponents}
-                            updateProcuringEntity ={updateProcuringEntity}
-                            projects={projects}
-                            match={match}
-                            getProjects={getProjects}
-                        />              
+                    } width={550}
+                    onClose={handleCloseProcuringEntityForm}
+                    footer={null}
+                    visible={showForm}
+                    bodyStyle={{ paddingBottom: 80 }}
+                    destroyOnClose
+                    maskClosable={false}
+                    className="projectForm"
+                >
+                    <ProcuringEntityForm
+                        isEditForm={isEditForm}
+                        selected={selected}
+                        handleAfterSubmit={handleCloseProcuringEntityForm}
+                        createProcuringEntity={createProcuringEntity}
+                        getAgenciesActors={getAgenciesActors}
+                        loading={loading}
+                        agencies={agencies}
+                        getProjectSubComponent={getProjectSubComponent}
+                        projectSubComponents={projectSubComponents}
+                        updateProcuringEntity={updateProcuringEntity}
+                        project={project}
+                        match={match}
+                        getProject={getProject}
+                    />
 
-                    </Drawer>
+                </Drawer>
 
-                    </div>
+            </div>
         </BaseLayout>
 
     )
@@ -274,7 +289,9 @@ const mapStateToProps = (state) => {
         showForm: ProcuringEntitySelectors.getShowFormSelector(state),
         agencies: ProcuringEntitySelectors.getActorsSelector(state),
         projectSubComponents: projectSelectors.getProjectSubComponents(state),
-        projects: projectSelectors.getProjectsSelector(state),
+        project: projectSelectors.getProjectSelector(state),
+        searchQuery: projectSelectors.searchQuery(state),
+
     }
 }
 
@@ -282,22 +299,25 @@ const mapDispatchToProps = {
     getProcuringEntities: ProcuringEntityActions.getProcuringEntitiesStart,
     deleteProcuringEntity: ProcuringEntityActions.deleteProcuringEntityStart,
     getAgenciesActors: ProcuringEntityActions.getActorsStart,
-    openProcuringEntityForm:ProcuringEntityActions.openProcuringEntityForm,
-    closeProcuringEntityForm:ProcuringEntityActions.closeProcuringEntityForm,
-    selectProcuringEntity:ProcuringEntityActions.selectProcuringEntity,
+    openProcuringEntityForm: ProcuringEntityActions.openProcuringEntityForm,
+    closeProcuringEntityForm: ProcuringEntityActions.closeProcuringEntityForm,
+    selectProcuringEntity: ProcuringEntityActions.selectProcuringEntity,
     getProjectSubComponent: projectActions.getProjectSubComponentStart,
     createProcuringEntity: ProcuringEntityActions.createProcuringEntityStart,
     updateProcuringEntity: ProcuringEntityActions.updateProcuringEntityStart,
-    getProjects: projectActions.getProjectsStart,
+    searchProcuring: ProcuringEntityActions.searchProcuring,
+    getProject: projectActions.getProjectStart,
+
 }
 
 ProcuringEntitiesList.propTypes = {
     getProcuringEntities: PropTypes.func.isRequired,
     procuringEntities: PropTypes.array,
+    project: PropTypes.object,
     loading: PropTypes.bool.isRequired,
-    openProcuringEntityForm:PropTypes.func.isRequired,
-    closeProcuringEntityForm:PropTypes.func.isRequired,
-    selectProcuringEntity:PropTypes.func.isRequired,
+    openProcuringEntityForm: PropTypes.func.isRequired,
+    closeProcuringEntityForm: PropTypes.func.isRequired,
+    selectProcuringEntity: PropTypes.func.isRequired,
     showForm: PropTypes.bool,
     isEditForm: PropTypes.bool
 };
@@ -306,7 +326,7 @@ ProcuringEntitiesList.defaultProps = {
     procuringEntities: [],
     loading: null,
     isEditForm: null,
-    showForm:null
+    showForm: null,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProcuringEntitiesList);

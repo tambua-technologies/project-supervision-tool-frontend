@@ -54,7 +54,7 @@ Topbar.propTypes = {
   search: PropTypes.shape({
     placeholder: PropTypes.string,
     size: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     value: PropTypes.string,
   }).isRequired,
   actions: PropTypes.arrayOf(

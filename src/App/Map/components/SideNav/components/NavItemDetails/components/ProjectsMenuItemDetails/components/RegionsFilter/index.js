@@ -15,7 +15,7 @@ const RegionsFilter = ({ regions, setProjectRegionsFilter }) => {
     const [regionsIds, setRegionId] = useState([]);
     useEffect(() => {
         setProjectRegionsFilter(regionsIds.join(','));
-    }, [regionsIds]);
+    }, [regionsIds]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleOnclickFilterItem = (status_id) => {
         if (regionsIds.includes(status_id)) {

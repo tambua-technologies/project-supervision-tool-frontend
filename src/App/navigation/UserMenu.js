@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 });
 
-const SignOutWrapper = connect(() => {}, mapDispatchToProps)(SignOut);
+const SignOutWrapper = connect(null, mapDispatchToProps)(SignOut);
 
 /**
  * @function

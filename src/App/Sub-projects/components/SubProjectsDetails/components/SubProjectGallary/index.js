@@ -16,7 +16,7 @@ import DisplaySurveyForm from "../../../../../components/DisplaySurveyForm";
 
      useEffect(() => {
          setSurveyId(surveys[0].uid);
-     }, []);
+     }, [surveys]);
 
     const getData = value => API.getAssetData(value)
         .then(res => {

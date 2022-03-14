@@ -13,7 +13,10 @@ import axios from "./config";
 const login = (payload) =>
     axios
         .post(`/focal_people/login`, payload)
-        .then((response) => response.data)
+        .then((response) => {
+            return response.data
+
+        })
 
 
 /**

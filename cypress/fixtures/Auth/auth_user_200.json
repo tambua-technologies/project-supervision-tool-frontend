@@ -1,0 +1,17 @@
+{
+    "success": true,
+    "data": {
+        "id": 1,
+        "first_name": "Test",
+        "middle_name": "Project Supervision tool",
+        "last_name": "User",
+        "phone": null,
+        "email": "testing@project-supervision-tool.com",
+        "email_verified_at": null,
+        "created_at": "2021-01-17T06:32:04.000000Z",
+        "updated_at": "2021-01-17T06:32:04.000000Z",
+        "location": null,
+        "roles": []
+    },
+    "message": "Authenticated User retrieved successfully"
+}

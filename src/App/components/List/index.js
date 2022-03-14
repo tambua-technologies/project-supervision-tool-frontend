@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'antd';
 import map from 'lodash/map';
-import uniq from 'lodash/uniq';
-import uniqBy from 'lodash/uniqBy';
 import remove from 'lodash/remove';
-
 import Toolbar from '../Toolbar';
 import ListHeader from '../ListHeader';
 import './styles.css';
@@ -21,11 +18,8 @@ import './styles.css';
  * @param {boolean} props.loading list loading flag
  * @param {number} props.itemCount list item count
  * @param {object} props.headerLayout list header layout
- * @param {Function} props.onFilter list filter callback
- * @param {Function} props.onNotify list notify callback
  * @param {Function} props.onPaginate list paginate callback
  * @param {Function} props.onRefresh list refresh callback
- * @param {Function} props.onShare list share callback
  * @param {Function} props.generateExportUrl list export url callback
  * @param {Function} props.renderListItem list item render callback
  * @returns {object} CustomList component
@@ -39,17 +33,13 @@ const CustomList = ({
   loading,
   itemCount,
   headerLayout,
-  onFilter,
-  onNotify,
   onPaginate,
   onRefresh,
-  onShare,
   onMapView,
   generateExportUrl,
   renderListItem,
 }) => {
   const [selectedItems, setSelectedItems] = useState([]);
-  const [selectedPages, setSelectedPages] = useState([]);
 
   /**
    * @function
@@ -75,45 +65,6 @@ const CustomList = ({
 
   /**
    * @function
-   * @name handleSelectPageItems
-   * @description Handle select all items actions from current page
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  const handleSelectPageItems = () => {
-    const uniqueSelectedItems = uniqBy([...selectedItems, ...items], '_id');
-    const uniquePages = uniq([...selectedPages, page]);
-
-    setSelectedItems(uniqueSelectedItems);
-    setSelectedPages(uniquePages);
-  };
-
-  /**
-   * @function
-   * @name handleDeselectPageItems
-   * @description Handle deselect all items in a current page
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  const handleDeselectPageItems = () => {
-    const uniqueSelectedList = uniqBy([...selectedItems], '_id');
-    const uniquePages = uniq([...selectedPages]);
-
-    remove(uniquePages, (item) => item === page);
-
-    items.forEach((item) => {
-      // eslint-disable-next-line
-      remove(uniqueSelectedList, (listItem) => listItem._id === item._id);
-    });
-
-    setSelectedItems(uniqueSelectedList);
-    setSelectedPages(uniquePages);
-  };
-
-  /**
-   * @function
    * @name isSelected
    * @description Check if item is among selected items
    *
@@ -132,12 +83,9 @@ const CustomList = ({
         page={page}
         total={itemCount}
         selectedItemsCount={selectedItems.length}
-        onFilter={onFilter}
-        onNotify={onNotify ? () => onNotify(selectedItems) : null}
         onPaginate={(nextPage) => onPaginate(nextPage)}
         onRefresh={() => onRefresh()}
         onMapView={() => onMapView()}
-        onShare={() => onShare(selectedItems)}
         exportUrl={
           generateExportUrl
             ? generateExportUrl({
@@ -175,25 +123,17 @@ CustomList.propTypes = {
   headerLayout: PropTypes.arrayOf(PropTypes.shape({ header: PropTypes.string }))
     .isRequired,
   itemName: PropTypes.string.isRequired,
-  page: PropTypes.number.isRequired,
-  itemCount: PropTypes.number.isRequired,
-  onFilter: PropTypes.func,
-  onNotify: PropTypes.func,
   onPaginate: PropTypes.func,
   onRefresh: PropTypes.func.isRequired,
   onMapView: PropTypes.func.isRequired,
-  onShare: PropTypes.func,
   generateExportUrl: PropTypes.func,
   renderListItem: PropTypes.func.isRequired,
 };
 
 CustomList.defaultProps = {
-  onFilter: null,
-  onNotify: null,
   generateExportUrl: null,
-  onShare: null,
   onPaginate: null,
-  onMapView: null,
+  onMapView: () => {},
 };
 
 export default CustomList;

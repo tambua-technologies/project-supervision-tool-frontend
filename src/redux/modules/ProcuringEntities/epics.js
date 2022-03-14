@@ -176,12 +176,26 @@ const updatePackagePic = action$ => {
     )
 }
 
+const searchProcuringEpic = (action$, state$) => {
+    return action$.pipe(
+        ofType(types.SEARCH_PROCURING_ENTITY),
+        switchMap(() => {
+            const searchQuery  = {
+                'filter[name]' : state$.value.resources.search.data
+            }   
+            return of(actions.getProcuringEntitiesStart(searchQuery ))
+        }),
+    )
+};
+
+
 export const procuringEntitiesEpic = combineEpics(
     getProcuringEntitiesEpic,
     deleteProcuringEntityEpic,
     createProcuringEntityPic,
     updateProcuringEntityPic,
     getProcuringEntityEpic,
+    searchProcuringEpic,
     getActorEpic,
     getPackageEpic,
     getPackagesEpic,

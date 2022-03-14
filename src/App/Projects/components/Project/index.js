@@ -3,12 +3,6 @@ import { Switch } from 'react-router-dom';
 import PrivateRoute from "../../../Auth/PrivateRoute";
 import ProjectDetails from "./ProjectDetails";
 import ProcuringEntities from '../../../ProcuringEntities';
-import PageNotFound from '../../../PageNotFound';
-
-
-
-
-
 
 const Project = (props) => {
 

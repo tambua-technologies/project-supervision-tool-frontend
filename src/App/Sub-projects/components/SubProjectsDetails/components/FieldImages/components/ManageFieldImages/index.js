@@ -42,7 +42,7 @@ function ManageFieldImages({ subProject, getSubProject }){
 
     useEffect(() => {
         handleGetFieldImages();
-    }, [subProject]);
+    }, [subProject]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     /**
      * @function

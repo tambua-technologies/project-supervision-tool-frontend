@@ -1,0 +1,6 @@
+{
+    "statusCode": 401,
+    "body":  {
+            "message": "Unauthenticated."
+        }
+}

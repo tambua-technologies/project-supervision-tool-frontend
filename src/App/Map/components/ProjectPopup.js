@@ -58,6 +58,6 @@ const ProjectPopupDetail = ({ project, loading }) => {
 export default ProjectPopupDetail;
 
 ProjectPopupDetail.propTypes = {
-    project: PropTypes.string.isRequired,
+    project: PropTypes.object,
     loading: PropTypes.bool.isRequired
 }
