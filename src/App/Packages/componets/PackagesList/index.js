@@ -3,12 +3,11 @@ import { connect } from "react-redux";
 import { ProcuringEntityActions, ProcuringEntitySelectors, } from '../../../../redux/modules/ProcuringEntities';
 import PropTypes from 'prop-types';
 import { Col, Drawer} from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import Topbar from "../../../components/Topbar";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
-import { getIdFromUrlPath, getAmount, showArchiveConfirm } from "../../../../Util";
+import { getIdFromUrlPath, getAmount } from "../../../../Util";
 import PackageForm from '../Form';
 import {useHistory} from "react-router-dom";
 import BaseLayout from "../../../layouts/BaseLayout";
@@ -106,19 +105,6 @@ const PackagesList = ({
         history.push(path);
     };
 
-
-    /**
-      * @function
-      * @name handleOpenPackageForm
-      * @description Open form
-      *
-      * @version 0.1.0
-      * @since 0.1.0
-      */
-    const handleOpenPackageForm = () => {
-        openPackageForm();
-    };
-
     /**
      * @function
      * @name handleClosePackageForm
@@ -144,23 +130,6 @@ const PackagesList = ({
     const handleRefresh = () => {
         getPackages(filter);
     };
-    ;
-
-    /**
-   * @function
-   * @name handleEdit
-   * @description Handle on Edit action for list item
-   *
-   * @param {object} item Action Catalogue to be edited
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-    const handleEdit = (item) => {
-        selectPackage(item);
-        setIsEditForm(true)
-        openPackageForm();
-    };
 
     return (
         <BaseLayout breadcrumbs={<DynamicBreadcrumbs breadcrumbs={breadcrumbs} />} >
@@ -172,15 +141,6 @@ const PackagesList = ({
                         placeholder: "Search for Packages here ...",
                         onSearch: '',
                     }}
-                    actions={[
-                        {
-                            label: "New Package",
-                            icon: <PlusOutlined />,
-                            size: "large",
-                            title: "Add New Package",
-                            onClick: handleOpenPackageForm,
-                        },
-                    ]}
                 />
                 {/* end Topbar */}
 
@@ -202,17 +162,6 @@ const PackagesList = ({
                             item={item}
                             renderActions={() => (
                                 <ListItemActions
-                                    edit={{
-                                        name: "Edit Package",
-                                        title: "Update Package details",
-                                        onClick: () => handleEdit(item),
-                                    }}
-                                    archive={{
-                                        name: "Archive Package",
-                                        title:
-                                            "Remove Sub project from list of active Package",
-                                        onClick: () => showArchiveConfirm(item, deletePackage),
-                                    }}
                                     view={
                                         {
                                             name: "View Details",

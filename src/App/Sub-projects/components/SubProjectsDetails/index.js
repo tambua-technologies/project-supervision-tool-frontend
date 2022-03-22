@@ -89,9 +89,6 @@ function SubProjectDetails({ getSubProject, match, sub_project, loading, mapLoad
                       <TabPane tab="Field Images" key="3">
                         <FieldImages subProject={sub_project} getSubProject={getSubProject} permissions={permissions} permission={appPermissions.CAN_CREATE_SURVEY} />
                       </TabPane>
-                      <TabPane tab="Construction and E & S Reporting" key="4" className="container">
-                        <h4> Construction and E & S Reporting is under development,Coming Soon!</h4>
-                      </TabPane>
                     </Tabs>
                   </div>
                 </Content>

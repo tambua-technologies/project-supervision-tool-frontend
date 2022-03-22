@@ -1,0 +1,23 @@
+{
+    "success": true,
+    "data": {
+        "data": [],
+        "links": {
+            "next_page_url": null,
+            "prev_page_url": null,
+            "last_page_url": "http:\/\/localhost:8000\/api\/v1\/projects?page=1",
+            "first_page_url": "http:\/\/localhost:8000\/api\/v1\/projects?page=1",
+            "path": "http:\/\/localhost:8000\/api\/v1\/projects"
+        },
+        "meta": {
+            "per_page": 15,
+            "from": null,
+            "to": null,
+            "last_page": 1,
+            "current_page": 1,
+            "total_pages": 0,
+            "total": 0
+        }
+    },
+    "message": "Projects retrieved successfully"
+}

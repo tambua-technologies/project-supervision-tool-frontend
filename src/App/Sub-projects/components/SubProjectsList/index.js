@@ -1,14 +1,13 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Col, Drawer} from "antd";
-import {PlusOutlined} from "@ant-design/icons";
 import PropTypes from "prop-types";
 import Topbar from "../../../components/Topbar";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
 import {Link} from "react-router-dom";
-import {getIdFromUrlPath, getSurveyIdByCategory, showArchiveConfirm} from "../../../../Util";
+import {getIdFromUrlPath, getSurveyIdByCategory} from "../../../../Util";
 import SubProjectForm from "../Form";
 import {subProjectsActions, subProjectsSelectors} from "../../../../redux/modules/subProjects"
 import {bindActionCreators} from "redux";
@@ -287,7 +286,6 @@ class SubProjectsList extends Component {
             showCreateSurveyForm,
             closeSurveyForm,
             selected,
-            deleteSubproject,
             procuringEntityPackage
         } = this.props;
         
@@ -344,15 +342,6 @@ class SubProjectsList extends Component {
                             onSearch: this.searchSubProject,
                             value: searchQuery
                         }}
-                        actions={[
-                            {
-                                label: "New Sub-project",
-                                icon: <PlusOutlined/>,
-                                size: "large",
-                                title: "Add New Sub-project",
-                                onClick: this.openSubProjectForm,
-                            },
-                        ]}
                     />
                     {/* end Topbar */}
 
@@ -377,17 +366,6 @@ class SubProjectsList extends Component {
                                 item={item}
                                 renderActions={() => (
                                     <ListItemActions
-                                        edit={{
-                                            name: "Edit Sub-project",
-                                            title: "Update Sub-project details",
-                                            onClick: () => this.handleEdit(item),
-                                        }}
-                                        archive={{
-                                            name: "Archive Sub-project",
-                                            title:
-                                                "Remove Sub project from list of active Sub Projects",
-                                            onClick: () => showArchiveConfirm(item, deleteSubproject),
-                                        }}
                                         view={
                                             {
                                                 name: "View Details",
@@ -395,19 +373,6 @@ class SubProjectsList extends Component {
                                                 onClick: () => this.handleViewDetails(item.id)
                                             }
                                         }
-                                        createSurvey={
-                                            {
-                                                name: "Create Survey",
-                                                title: "Create sub project survey",
-                                                onClick: () => this.openSubProjectSurveyForm(item)
-                                            }
-                                        }
-                                        openIssues={{
-                                            name: "Create New Ticket",
-                                            title:
-                                                "Open Ticket to the this sub project",
-                                            onClick: () => this.openIssueForm(item),
-                                        }}
                                     />
                                 )}
                             >

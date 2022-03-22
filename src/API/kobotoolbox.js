@@ -1,8 +1,8 @@
 
 import Axios from 'axios';
 
-const kfBaseurl = 'https://kf.projectsupervisiontool.ga/api/v2';
-const API_KEY = '5cee448d17569e9aad377d0e02fc46eeb3c66ffb';
+const kfBaseurl = process.env.REACT_APP_KOBOTOOLBOX_API_URL;
+const API_KEY = process.env.REACT_APP_KOBOTOOLBOX_API_KEY;
 const axiosKobotoolbox = Axios.create({
     headers: {
         Accept: "application/json",

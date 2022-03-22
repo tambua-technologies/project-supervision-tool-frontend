@@ -14,7 +14,8 @@ const ViewSubmissionOnMap = ({ data, showMApModal, handleOnCancel }) => <ViewOnM
 
 
 const getAttachMentUrl = (attachments, name) => {
-    return attachments.length > 0 ? attachments[0].download_url : '';
+    const url = attachments.length > 0 ? attachments[0].download_url : ''; 
+    return url.replace('?format=json', '');
 }
 
 function SurveySubmissions({ surveys, handleGoBack, showBackButton }) {

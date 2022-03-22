@@ -4,12 +4,11 @@ import { useHistory } from "react-router-dom";
 import { ProcuringEntityActions, ProcuringEntitySelectors } from '../../../../redux/modules/ProcuringEntities';
 import PropTypes from 'prop-types';
 import { Col, Drawer } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import Topbar from "../../../components/Topbar";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
-import { getIdFromUrlPath, showArchiveConfirm } from '../../../../Util';
+import { getIdFromUrlPath } from '../../../../Util';
 import { projectActions, projectSelectors } from "../../../../redux/modules/projects";
 import ProcuringEntityForm from '../Form';
 import BaseLayout from '../../../layouts/BaseLayout';
@@ -63,18 +62,6 @@ const ProcuringEntitiesList = ({
 
     /**
      * @function
-     * @name openProcuringEntityForm
-     * @description Open form
-     *
-     * @version 0.1.0
-     * @since 0.1.0
-     */
-    const handleOpenProcuringEntityForm = () => {
-        openProcuringEntityForm();
-    };
-
-    /**
-     * @function
      * @name handleCloseProcuringEntityForm
      * @description close form
      * @version 0.1.0
@@ -110,23 +97,6 @@ const ProcuringEntitiesList = ({
     const handleViewDetails = (item) => {
         const path = `${match.url}/${item.id}`;
         history.push(path);
-    };
-
-
-    /**
-   * @function
-   * @name handleEdit
-   * @description Handle on Edit action for list item
-   *
-   * @param {object} project Action Catalogue to be edited
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-    const handleEdit = (item) => {
-        selectProcuringEntity(item);
-        setIsEditForm(true)
-        openProcuringEntityForm();
     };
 
     /**   
@@ -172,15 +142,7 @@ const ProcuringEntitiesList = ({
                         onChange: handleSearch,
                         value: searchQuery
                     }}
-                    actions={[
-                        {
-                            label: "New Procuring Entity",
-                            icon: <PlusOutlined />,
-                            size: "large",
-                            title: "Add New Procuring Entity",
-                            onClick: handleOpenProcuringEntityForm,
-                        },
-                    ]}
+                    
                 />
                 {/* end Topbar */}
 
@@ -202,17 +164,6 @@ const ProcuringEntitiesList = ({
                             item={item}
                             renderActions={() => (
                                 <ListItemActions
-                                    edit={{
-                                        name: "Edit Procuring Entity",
-                                        title: "Update Procuring Entity details",
-                                        onClick: () => handleEdit(item),
-                                    }}
-                                    archive={{
-                                        name: "Archive Procuring Entity",
-                                        title:
-                                            "Remove Sub project from list of active Procuring Entity",
-                                        onClick: () => showArchiveConfirm(item, deleteProcuringEntity),
-                                    }}
                                     view={
                                         {
                                             name: "View Details",

@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import { Col, Drawer, Spin } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import Topbar from "../../../components/Topbar";
 import CustomList from "../../../components/List";
@@ -15,7 +14,6 @@ import ProjectLocations from "../../../Map/components/ProjectLocations";
 import BaseMap from "../../../Map/components/BaseMap";
 import SideNav from "../../../Map/components/SideNav";
 import { mapSelectors } from "../../../../redux/modules/map";
-import { showArchiveConfirm } from "../../../../Util";
 import ProjectComponentForm from "../Forms/components/projectComponentForm";
 import ProjectSubComponentForm from "../Forms/components/projectSubComponentForm";
 import { ticketActions, ticketSelectors } from "../../../../redux/modules/Tickets";
@@ -23,7 +21,6 @@ import TicketForm from '../../../Tickets/components/Form';
 import BaseLayout from "../../../layouts/BaseLayout";
 import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
 import { useToggle } from '../../../../hooks/useToggle';
-import { openForm } from '../../../../Util/bulkAction';
 import "./styles.css";
 
 /* constants */
@@ -70,7 +67,6 @@ const ProjectsList  = (
   mapLoading,
   project,
   showTicketForm,
-  deleteProject,
   showComponentForm,
   showSubComponentForm,
   
@@ -78,11 +74,8 @@ const ProjectsList  = (
   openProjectForm,
   selectProject,
   closeProjectForm,
-  openProjectSubComponent,
-  openProjectComponent,
   closeProjectComponent,
   closeProjectSubComponent,
-  openTicketForm,
   closeTicketForm,
   searchProject
   }
@@ -97,21 +90,7 @@ const ProjectsList  = (
   }, [])  // eslint-disable-line react-hooks/exhaustive-deps
 
 
-  /**
-   * @function
-   * @name handleEdit
-   * @description Handle on Edit action for list item
-   *
-   * @param {object} project Action Catalogue to be edited
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
- const handleEdit = (project) => {
-    selectProject(project);
-    setIsEditForm(true );
-    openProjectForm();
-  };
+  
 
   
   /**
@@ -249,15 +228,7 @@ const handleViewMap = () => {
               onChange: handleSearch,
               value: searchQuery,
             }}
-            actions={[
-              {
-                label: "New Project",
-                icon: <PlusOutlined />,
-                size: "large",
-                title: "Add New Project",
-                onClick: openProjectForm,
-              },
-            ]}
+            
           />
           {/* end Topbar */}
 
@@ -284,39 +255,6 @@ const handleViewMap = () => {
                 avatarBackgroundColor={item.color}
                 renderActions={() => (
                   <ListItemActions
-                    edit={{
-                      name: "Edit project",
-                      title: "Update project details",
-                      onClick: () => 
-                      handleEdit(item),
-                    }}
-                    archive={{
-                      name: "Archive project",
-                      title:
-                        "Remove project from list of active Projects",
-                      onClick: () => showArchiveConfirm(item, deleteProject),
-                    }}
-                    component={{
-                      name: "Add Component",
-                      title:
-                        "Add component to the project",
-                      onClick: () => 
-                      openForm(item,selectProject,openProjectComponent),
-                    }}
-                    subComponent={{
-                      name: "Add sub Component",
-                      title:
-                        "Add sub component to the project",
-                      onClick: () => 
-                      openForm(item, selectProject,openProjectSubComponent),
-                    }}
-                    openIssues={{
-                      name: "Create New Ticket",
-                      title:
-                        "Open Ticket to the project",
-                      onClick: () => 
-                      openForm(item,selectProject,openTicketForm),
-                    }}
                     view={
                       {
                         name: "View Detail",

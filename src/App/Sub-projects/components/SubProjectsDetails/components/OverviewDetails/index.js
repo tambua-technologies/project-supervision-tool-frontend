@@ -2,7 +2,6 @@ import { Col, Row } from "antd";
 import React from "react";
 import BaseMap from "../../../../../Map/components/BaseMap";
 import SubProjectPoints from "../../../../../Map/components/SubProjectPoints";
-import Tickets from "../../../../../components/Tickets";
 import { isoDateToHumanReadableDate } from "../../../../../../Util";
 import GeneralProgress from "../../../../../components/GeneralProgress";
 import * as turf from '@turf/turf';
@@ -13,7 +12,7 @@ const keyDetailSpan = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 12, xs: 12 };
 const firstSpan = { xxl: 12, xl: 12, lg: 12, md: 12, sm: 24, xs: 24 };
 const secondSpan = { xxl: 11, xl: 11, lg: 11, md: 11, sm: 24, xs: 24 };
 
-const OverviewDetails = ({ sub_project, mapLoading,subProjectTickets }) => {
+const OverviewDetails = ({ sub_project }) => {
     const approval_date = sub_project?.details ? isoDateToHumanReadableDate(sub_project?.details?.approval_date) : 'N/A';
     const closing_date = sub_project?.details ? isoDateToHumanReadableDate(sub_project?.details?.closing_date) : 'N/A';
     const polygon = JSON.parse(sub_project.district.geom);
@@ -110,7 +109,6 @@ const OverviewDetails = ({ sub_project, mapLoading,subProjectTickets }) => {
 
                 </Col>
             </Row>
-          <Tickets tickets={subProjectTickets} />
                 
         </>
 

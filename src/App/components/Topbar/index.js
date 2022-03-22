@@ -24,7 +24,7 @@ const Topbar = ({ search, actions }) => (
     {/* search box */}
     <Col xxl={12} xl={12} lg={12} md={12} sm={24} xs={24}>
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <Search {...search} allowClear className="TopbarSearch" />
+      <Search {...search} allowClear className="TopbarSearch"  data-cy="search" />
     </Col>
     {/* end search box */}
 

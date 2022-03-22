@@ -14,14 +14,16 @@ function DisplaySurveyForm({ survey_id }) {
 
     useEffect(() => {
         API.getAsset(survey_id)
-            .then(res => setSurvey(res));
+            .then(res => {
+                setSurvey(res);
+            });
     }, [survey_id]);
 
     return (
         <iframe
             src={survey?.deployment__links?.iframe_url}
             style={{width: '100%', height: '88vh', border: 'none'}}
-            title={survey.deployment__links.title}
+            title={survey?.name}
         />
     );
 }
