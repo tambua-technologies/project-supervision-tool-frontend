@@ -102,7 +102,7 @@ const OverviewDetails = ({ sub_project }) => {
                         <h5>Sub Project Location</h5>
                         <div className="project-map">
                             <BaseMap zoomControl={true} position={[geometry.coordinates[1], geometry.coordinates[0]]}>
-                                {sub_project ? <SubProjectPoints subProjects={[sub_project]} /> : ''}
+                                {sub_project ? <SubProjectPoints subProjects={[sub_project]} subProject={sub_project} /> : ''}
                             </BaseMap>
 
                         </div>

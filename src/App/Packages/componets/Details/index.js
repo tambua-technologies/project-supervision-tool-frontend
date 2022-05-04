@@ -23,12 +23,12 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
         getProcuringEntityPackage(id);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const completed = procuringEntityPackage?.contract?.financial_progress || 0
+    const completed = procuringEntityPackage?.progress?.actual_financial_progress || 0
     const remained = 100 - completed;
     const bgcolor = "#0f6788";
 
-    const plannedCompleted = procuringEntityPackage?.contract ?.planned_physical_progress || 0
-    const actualCompleted = procuringEntityPackage?.contract ?.actual_physical_progress || 0
+    const plannedCompleted = procuringEntityPackage?.progress ?.planned_physical_progress || 0
+    const actualCompleted = procuringEntityPackage?.progress ?.actual_physical_progress || 0
 
     const breadcrumbs = procuringEntityPackage ? [
         {
@@ -77,20 +77,12 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
                                         <section className="container">
                                             <Row className="key-details">
                                                 <Col {...columnSpan} className="contractName">
-                                                    <h4>Project Name</h4>
+                                                    <h4>Contract</h4>
                                                     <p>{procuringEntityPackage?.contract?.name || 'N/A'}</p>
                                                 </Col>
                                                 <Col {...columnSpan}>
                                                     <h4>Procuring Entity</h4>
                                                     <p>{procuringEntityPackage?.procuring_entity?.agency?.name || 'N/A'}</p>
-                                                </Col>
-                                                <Col {...columnSpan}>
-                                                    <h4>Project Component</h4>
-                                                    <p>{procuringEntityPackage?.project_component?.name || 'N/A'}</p>
-                                                </Col>
-                                                <Col {...columnSpan}>
-                                                    <h4>Project SubComponent</h4>
-                                                    <p>{procuringEntityPackage?.project_sub_component?.name || 'N/A'}</p>
                                                 </Col>
 
                                                 <Col {...columnSpan} >
@@ -103,14 +95,11 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
 
                                                 </Col>
                                                 <Col {...columnSpan}>
-                                                    <h4>Original Contract Sum</h4>
+                                                    <h4>Contract Sum</h4>
                                                     {procuringEntityPackage?.contract?.original_contract_sum ? getAmount(procuringEntityPackage?.contract?.original_contract_sum) : 'N/A'}
 
                                                 </Col>
-                                                <Col {...columnSpan} >
-                                                    <h4>Reversed Contract Sum</h4>
-                                                    {procuringEntityPackage?.contract?.revised_contract_sum ? getAmount(procuringEntityPackage?.contract?.revised_contract_sum) : 'N/A'}
-                                                </Col>
+                                               
                                                 <Col {...columnSpan}>
                                                     <h4>Contract Agreement Date </h4>
                                                     {new Date(procuringEntityPackage?.contract?.date_contract_agreement_signed).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' }) || 'N/A'}
@@ -132,21 +121,14 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
                                                     <h4>Completion Date</h4>
                                                     {new Date(procuringEntityPackage?.contract?.date_of_contract_completion).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' }) || 'N/A'}
                                                 </Col>
-                                                <Col {...columnSpan}>
-                                                    <h4>Revised Date Of Contract Completion</h4>
-                                                    {new Date(procuringEntityPackage?.contract?.revised_date_of_contract_completion).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' }) || 'N/A'}
-                                                </Col>
+                                                
                                                 <Col {...columnSpan}>
                                                     <h4>Defects Liability Notification Period</h4>
-                                                    {procuringEntityPackage?.contract?.defects_liability_notification_period || 'N/A'}
+                                                    {procuringEntityPackage?.contract?.defects_liability_notification_period || '12 months'}
                                                 </Col>
                                                 <Col {...columnSpan} >
-                                                    <h4>Original Contract Period</h4>
+                                                    <h4>Contract Period</h4>
                                                     <p>{procuringEntityPackage?.contract?.original_contract_period || 'N/A'}</p>
-                                                </Col>
-                                                <Col {...columnSpan} >
-                                                    <h4>Reversed Contract Period</h4>
-                                                    <p>{procuringEntityPackage?.contract?.revised_contract_period || 'N/A'}</p>
                                                 </Col>
 
 
@@ -158,7 +140,7 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
                                             
                                             <Col {...firstSpan}>
                                                 <div>
-                                                    <h5 className="text-blue">Actual Physical Progress</h5>
+                                                    <h5 className="text-blue">Planned Physical Progress</h5>
                                                     <ProgressBar
                                                         bgcolor={bgcolor}
                                                         completed={plannedCompleted}
@@ -166,7 +148,7 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
                                                     />
                                                 </div>
                                                 <div>
-                                                    <h5 className="text-blue">Planned Physical Progress</h5>
+                                                    <h5 className="text-blue">Actual Physical Progress</h5>
                                                     <ProgressBar
                                                         bgcolor={bgcolor}
                                                         completed={actualCompleted}

@@ -26,7 +26,7 @@ import "./styles.css";
 /* constants */
 const codeSpan = { xxl: 2, xl: 3, lg: 3, md: 4, sm: 0, xs: 0 };
 const projectIdSpan = { xxl: 3, xl: 2, lg: 2, md: 3, sm: 0, xs: 0 };
-const nameSpan = { xxl: 5, xl: 5, lg: 5, md: 7, sm: 20, xs: 20 };
+const nameSpan = { xxl: 5, xl: 5, lg: 5, md: 7, sm: 19, xs: 19 };
 const approvalSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
 const projectLeadSpan = { xxl: 3, xl: 3, lg: 3, md: 0, sm: 0, xs: 0 };
 const statusSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };

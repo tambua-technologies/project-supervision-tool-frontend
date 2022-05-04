@@ -404,7 +404,7 @@ class SubProjectsList extends Component {
                                     {item?.type ? item?.type?.name : 'N/A'}
                                 </Col>
                                 <Col {...locationSpan} className="contentEllipse">
-                                    {item.district.name}
+                                    {item?.district?.name}
                                 </Col>
                                 <Col {...statusSpan}>
                                     {item?.status ? item?.status.name : 'N/A'}

@@ -14,7 +14,7 @@ import {
     ExclamationCircleOutlined
 } from '@ant-design/icons';
 
-import {Dropdown, Button, Menu} from 'antd';
+import { Dropdown, Button, Menu } from 'antd';
 
 // TODO refactor this to receive menu items rather than objects
 /**
@@ -34,29 +34,33 @@ import {Dropdown, Button, Menu} from 'antd';
  * @since 0.1.0
  */
 const ListItemActions = ({
-                             onMapPreview,
-                             view,
-                             edit,
-                             share,
-                             createSurvey,
-                             archive,
-                             assignPermissions,
-                             component,
-                             subComponent,
-                             fillSurvey,
-                             openIssues
-                         }) => (
+    onMapPreview,
+    view,
+    edit,
+    share,
+    createSurvey,
+    archive,
+    assignPermissions,
+    component,
+    subComponent,
+    fillSurvey,
+    downloadReport,
+    openIssues
+}) => (
     <Dropdown
         overlay={
             <Menu>
                 {view && (
                     <Menu.Item key="view" onClick={view.onClick} title={view.title}>
-                        <EyeOutlined/> {view.name}
+                        <EyeOutlined /> {view.name}
                     </Menu.Item>
                 )}
+                {downloadReport && (<Menu.Item key="downloadReport" title={downloadReport.title}>
+                <a href={downloadReport.url} download> <FileProtectOutlined /> {downloadReport.name}</a>
+                </Menu.Item>)}
                 {fillSurvey && (
                     <Menu.Item key="fillSurvey" onClick={fillSurvey.onClick} title={fillSurvey.title}>
-                        <BookOutlined/> {fillSurvey.name}
+                        <BookOutlined /> {fillSurvey.name}
                     </Menu.Item>
                 )}
 
@@ -66,7 +70,7 @@ const ListItemActions = ({
                         onClick={component.onClick}
                         title={component.title}
                     >
-                        <FileAddOutlined/>{component.name}
+                        <FileAddOutlined />{component.name}
                     </Menu.Item>
                 )}
 
@@ -76,7 +80,7 @@ const ListItemActions = ({
                         onClick={subComponent.onClick}
                         title={subComponent.title}
                     >
-                        <FileAddOutlined/>{subComponent.name}
+                        <FileAddOutlined />{subComponent.name}
                     </Menu.Item>
                 )}
                 {openIssues && (
@@ -85,13 +89,13 @@ const ListItemActions = ({
                         onClick={openIssues.onClick}
                         title={openIssues.title}
                     >
-                        <ExclamationCircleOutlined/>{openIssues.name}
+                        <ExclamationCircleOutlined />{openIssues.name}
                     </Menu.Item>
                 )}
 
                 {edit && (
                     <Menu.Item key="edit" onClick={edit.onClick} title={edit.title}>
-                        <EditOutlined/> {edit.name}
+                        <EditOutlined /> {edit.name}
                     </Menu.Item>
                 )}
 
@@ -101,13 +105,13 @@ const ListItemActions = ({
                         onClick={onMapPreview.onClick}
                         title={onMapPreview.title}
                     >
-                        <EyeOutlined/>{onMapPreview.name}
+                        <EyeOutlined />{onMapPreview.name}
                     </Menu.Item>
                 )}
 
                 {createSurvey && (
                     <Menu.Item key="createSurvey" onClick={createSurvey.onClick} title={createSurvey.title}>
-                        <FileProtectOutlined/> {createSurvey.name}
+                        <FileProtectOutlined /> {createSurvey.name}
                     </Menu.Item>
                 )}
 
@@ -117,14 +121,14 @@ const ListItemActions = ({
                         onClick={assignPermissions.onClick}
                         title={assignPermissions.title}
                     >
-                        <UserSwitchOutlined/> {assignPermissions.name}
+                        <UserSwitchOutlined /> {assignPermissions.name}
                     </Menu.Item>
                 )}
 
 
                 {share && (
                     <Menu.Item key="share" onClick={share.onClick} title={share.title}>
-                        <ShareAltOutlined/> {share.name}
+                        <ShareAltOutlined /> {share.name}
                     </Menu.Item>
                 )}
 
@@ -134,7 +138,7 @@ const ListItemActions = ({
                         onClick={archive.onClick}
                         title={archive.title}
                     >
-                        <DeleteOutlined/> {archive.name}
+                        <DeleteOutlined /> {archive.name}
                     </Menu.Item>
                 )}
 
@@ -146,7 +150,7 @@ const ListItemActions = ({
         <Button
             shape="circle"
             size="large"
-            icon={<MoreOutlined/>}
+            icon={<MoreOutlined />}
             className="actionButton"
             title="More actions"
         />

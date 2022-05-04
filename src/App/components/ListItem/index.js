@@ -4,8 +4,8 @@ import { Avatar, Checkbox, Col, Row } from 'antd';
 import randomColor from 'randomcolor';
 import './styles.css';
 /* constants */
-const sideSpan = { xxl: 1, xl: 1, lg: 1, md: 2, sm: 2, xs: 2 };
-const isHoveredSpan = { xxl: 1, xl: 1, lg: 1, md: 1, sm: 2, xs: 2 };
+const sideSpan = { xxl: 1, xl: 1, lg: 1, md: 2, sm: 2, xs: 2, };
+const isHoveredSpan = { xxl: 1, xl: 1, lg: 1, md: 1, sm: 2, xs: 1 };
 
 /**
  * @function ListItem

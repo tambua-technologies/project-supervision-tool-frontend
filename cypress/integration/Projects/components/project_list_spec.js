@@ -25,6 +25,7 @@ describe('Projects', () => {
 
     });
 
+    
     it('should display list of project(s) if there is any', () => {
         cy.get('.List .ListHeader > div').should(($div) => { expect($div).to.have.length(9) });
         cy.get('.List ul > div').should(($item) => { expect($item).to.have.length(3) });
@@ -65,6 +66,7 @@ describe('Projects', () => {
         });
     });
 
+
     it('should display no data if search is not matched', () => {
         cy.intercept('GET', '/api/v1/projects?filter[name]=omm', { fixture: 'Projects/projects_no_result.json' })
         cy.get('[data-cy=search]').type('omm{enter}').get('.ant-empty-description').should('contain', 'No Data')
@@ -75,5 +77,9 @@ describe('Projects', () => {
         cy.get('.ant-empty-description').should('contain', 'No Data')
 
     });
+
+    it('should reflesh projects successful', () => {
+        cy.Refresh('/api/v1/projects', 'Projects/projects_200.json')
+    })
 
 })

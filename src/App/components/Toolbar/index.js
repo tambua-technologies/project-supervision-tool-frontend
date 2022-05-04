@@ -48,6 +48,7 @@ const Toolbar = ({
                   className="actionButton"
                   size="large"
                   onClick={onRefresh}
+                  data-cy="reflesh"
                 >
                   Refresh
               </Button>

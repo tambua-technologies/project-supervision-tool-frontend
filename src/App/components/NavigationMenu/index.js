@@ -22,23 +22,39 @@ import './styles.css';
  * @version 0.1.0
  * @since 0.1.0
  */
-const NavigationMenuItem = ({ name, icon, path, disabled, description }) => (
-  <Link to={path}>
-    {description ? (
-      <Popover
-        content={
-          <p
-            style={{
-              width: '200px',
-              textAlign: 'justify',
-              textJustify: 'auto',
-            }}
-          >
-            {description}
-          </p>
-        }
-        placement="bottom"
-      >
+const NavigationMenuItem = ({ name, icon, path, disabled, description }) => {
+
+  const renderSpan = () => (
+    <>
+      {description ? (
+        <Popover
+          content={
+            <p
+              style={{
+                width: '200px',
+                textAlign: 'justify',
+                textJustify: 'auto',
+              }}
+            >
+              {description}
+            </p>
+          }
+          placement="bottom"
+        >
+          <div className="NavigationMenuItem">
+            <img
+              src={icon}
+              alt={`${name} icon not available`}
+              width={130}
+              height={130}
+              className="image"
+            />
+            <span className={`text ${disabled ? 'text-disabled' : ''}`}>
+              {name}
+            </span>
+          </div>
+        </Popover>
+      ) : (
         <div className="NavigationMenuItem">
           <img
             src={icon}
@@ -51,23 +67,12 @@ const NavigationMenuItem = ({ name, icon, path, disabled, description }) => (
             {name}
           </span>
         </div>
-      </Popover>
-    ) : (
-      <div className="NavigationMenuItem">
-        <img
-          src={icon}
-          alt={`${name} icon not available`}
-          width={130}
-          height={130}
-          className="image"
-        />
-        <span className={`text ${disabled ? 'text-disabled' : ''}`}>
-          {name}
-        </span>
-      </div>
-    )}
-  </Link>
-);
+      )}
+    </>
+  );
+
+  return disabled ? <span>{renderSpan()}</span> : <Link to={path}>{renderSpan()}</Link>;
+}
 
 /**
  * @function
@@ -121,6 +126,8 @@ const NavigationMenu = ({ routes, match }) => {
       </Row>
     </div>
   );
+
+  return 
 };
 
 /* props validation */

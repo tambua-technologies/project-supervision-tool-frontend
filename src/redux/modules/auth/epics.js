@@ -21,7 +21,9 @@ const loginEpic = action$ => {
             return Rx.from(API.login(payload)).pipe(
                 switchMap(({data}) => {
                     saveAccessToken(data?.access_token);
-                    return Rx.from([actions.loginSuccess(data?.access_token), actions.getAuthUserStart()]);
+                    const roles = data.user.roles;
+                    const authUserPermissions = roles.map(({ permissions}) => permissions ).flat();
+                    return Rx.from([actions.loginSuccess(data?.access_token), actions.setAuthUserPermissions(authUserPermissions)]);
                 }),
                 catchError(error => Rx.of(actions.loginFailure(error?.message)))
             )

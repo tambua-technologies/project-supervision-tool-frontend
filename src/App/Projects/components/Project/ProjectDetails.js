@@ -69,14 +69,15 @@ const ProjectDetails = ({ project, loading, getProject, match }) => {
                     approval_date={approval_date}
                     closing_date={closing_date}
                 />
-                <section className="project_components">
-                  <h4 style={{ textAlign: 'center', fontSize: '1.5em', margin: 0}}>Project Menu</h4>
-                  <ProjectHome match={match} />
-                </section>
                 <section className="Progress-overview container">
                 {project?.components.length > 0 ?  <DetailsSection components={project?.components} /> : ''}
 
                 </section>
+                <section className="project_components">
+                  <h4 style={{ textAlign: 'center', fontSize: '1.5em', margin: 0}}>Project Menu</h4>
+                  <ProjectHome match={match} />
+                </section>
+                
               </div>
             </Content>
           </Layout>

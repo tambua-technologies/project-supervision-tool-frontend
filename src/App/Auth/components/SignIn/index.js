@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {authActions, authSelectors} from "../../../../redux/modules/auth";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
+import { checkForPermission } from "../../../../Util";
 
 
 /**
@@ -16,15 +17,24 @@ import "./styles.css";
  * @version 0.1.0
  * @since 0.1.0
  */
-const SignIn = ({accessToken, loading, login, errorMsg}) => {
+const SignIn = ({accessToken, loading, login, errorMsg, permissions}) => {
+
 
     let history  = useHistory();
     useEffect(() => {
-        if(accessToken){
-            history.push('/projects');
+        if(permissions.length > 0) {
+            if(checkForPermission(permissions, 'can manage packages')){
+                history.push('/projects/1/procuring_entities/1');
+            }
+            else if(checkForPermission(permissions, 'can manage project')){
+                history.push('/projects/1');
+            }
+            else {
+                history.push('/projects');
+            }
         }
 
-    }, [accessToken]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [permissions]); // eslint-disable-line react-hooks/exhaustive-deps
 
      /**
      * @function
@@ -118,6 +128,7 @@ const mapStateToProps = (state) => {
         loading: authSelectors.isLoginSelector(state),
         accessToken: authSelectors.accessTokenSelector(state),
         errorMsg: authSelectors.loginErrorMessageSelector(state),
+        permissions: authSelectors.authUserPermissionsSelector(state),
     };
 };
 

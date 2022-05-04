@@ -18,9 +18,9 @@ import { useToggle } from '../../../../hooks/useToggle';
 /* constants */
 const nameSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 19, xs: 19 };
 const descriptionSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
-const contractNoSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 4, xs: 2 };
-const contractorSpan = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 4, xs: 0 };
-const estimentedAmountNoSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 4, xs: 2 };
+const contractNoSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const contractorSpan = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
+const estimentedAmountNoSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
 const completeDateSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 
 const headerLayout = [
@@ -149,7 +149,7 @@ const PackagesList = ({
                     itemName="Packages"
                     items={packages}
                     page={1}
-                    itemCount={1}
+                    itemCount={packages.length}
                     loading={loading}
                     onRefresh={handleRefresh}
                     headerLayout={headerLayout}

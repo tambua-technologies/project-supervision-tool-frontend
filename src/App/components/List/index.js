@@ -84,8 +84,8 @@ const CustomList = ({
         total={itemCount}
         selectedItemsCount={selectedItems.length}
         onPaginate={(nextPage) => onPaginate(nextPage)}
-        onRefresh={() => onRefresh()}
-        onMapView={() => onMapView()}
+        onRefresh={onRefresh}
+        onMapView={onMapView}
         exportUrl={
           generateExportUrl
             ? generateExportUrl({
@@ -133,7 +133,7 @@ CustomList.propTypes = {
 CustomList.defaultProps = {
   generateExportUrl: null,
   onPaginate: null,
-  onMapView: () => {},
+  onMapView: null,
 };
 
 export default CustomList;

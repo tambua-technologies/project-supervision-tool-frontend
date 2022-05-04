@@ -18,12 +18,14 @@ import "./styles.css";
 
 
 /* constants */
-const nameSpan = { xxl: 10, xl: 10, lg: 10, md: 10, sm: 10, xs: 10 };
-const packageSpan = { xxl: 11, xl: 11, lg: 11, md: 11, sm: 11, xs: 11 };
+const nameSpan = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 20 };
+const packageSpan = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 0};
+const contractSpan = { xxl: 11, xl: 11, lg: 11, md: 11, sm: 0, xs: 0};
 
 const headerLayout = [
-    { ...nameSpan, header: "Name" },
-    { ...packageSpan, header: "Package" },
+    {...contractSpan, header: "Contract"},
+    { ...nameSpan, header: "Eentity" },
+    { ...packageSpan, header: "Total Packages" },
 ];
 
 const ProcuringEntitiesList = ({
@@ -177,15 +179,17 @@ const ProcuringEntitiesList = ({
                         >
                             {/* eslint-disable react/jsx-props-no-spreading */}
 
-                            <Col {...nameSpan} >
+                            <Col {...contractSpan} className="contentEllipse" title={ item?.contract?.name || 'N/A'}>
+                                {item?.contract?.name || 'N/A'}
+                            </Col>
+
+                            <Col {...nameSpan} className="contentEllipse" >
                                 {item?.agency?.name ? item?.agency?.name : 'N/A'}
                             </Col>
 
                             <Col {...packageSpan} className="contentEllipse">
                                 {
-                                    item?.packages.length > 0 ?
-                                        item?.packages?.map(({ name }, index) => { return (index ? ", " : "") + name })
-                                        : "N/A"
+                                    item?.packages.length 
                                 }
                             </Col>
 

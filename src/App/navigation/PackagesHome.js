@@ -18,31 +18,24 @@ const routes = [
     },
 
     {
-        name: 'Milestones',
-        path: '/milestone',
+        name: "Contractor's Staff",
+        path: '/contractors-staff',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,
     },
 
     {
-        name: 'Human Resources',
-        path: '/human_resource',
+        name: 'Equipment Mobilization',
+        path: '/equipments',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,
     },
 
     {
-        name: 'Human Equipment Mobilization',
-        path: '/equipment',
-        icon: subProjectsDisabledIcon,
-        description: modules.initiatives,
-        disabled: true,
-    },
-    {
-        name: 'Tickets',
-        path: '/tickets',
+        name: 'Action Items',
+        path: '/action-items',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,

@@ -18,34 +18,67 @@
   .FormModal {
     width: 90% !important;
   }
-  .contentEllipse > a, .Projects {
+
+  .contentEllipse>a, .Projects {
     padding: 12px;
+  }
+
+  .container {
+    padding: 0 !important;
+  }
+
+  .key-details {
+    padding-left: 15px;
+  }
+
+  .contentEllipse {
+    padding-left: 10px;
+  }
+
+  .project-layout h3, .sub-project-layout h3 {
+    left: 10px !important;
+  }
+
+  .description h4 {
+    padding-top: 0px !important;
+  }
+
 }
-.container{
-  padding: 0 !important;
-}
-.key-details {
-  padding-left: 15px;
-}
+
+@media screen and (max-width: 360px) {
+
+  .contentEllipse {
+    padding-left: 8px;
+  }
+
+  .project-layout h3, .sub-project-layout h3 {
+    left: 10px !important;
+  }
+
+  .description h4 {
+    padding-top: 0px !important;
+  }
+
 }
 
 /* .ProjectForm .ant-input-number {
   width: 100% !important;
 } */
 
-.contentEllipse  {
+.contentEllipse {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.contentEllipse > a , .Projects{
+.contentEllipse>a, .Projects {
   color: #333333;
 }
 
-.Projects:hover{
+.Projects:hover {
   color: #333333;
 }
+
 .ProjectForm .ant-input-number {
   width: 120px !important;
 }
@@ -56,6 +89,6 @@
   /* padding-top: 5%; */
 }
 
-.ProjectForm  .ant-form-item{
+.ProjectForm .ant-form-item {
   margin-bottom: 5px !important;
 }

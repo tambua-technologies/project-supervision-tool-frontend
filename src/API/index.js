@@ -18,6 +18,7 @@ import kobotoolboxAPI from './kobotoolbox';
 import subProjectSurveyAPI from './sub_project_survey';
 import ticketsAPI from './tickets';
 import procuringEntityAPI from './procuring_entities';
+import procuringEntityProgressReportsAPI from './procuring_entities_progress_reports';
 import unitAPI from './unit'
 
 export default {
@@ -40,5 +41,6 @@ export default {
     ...subProjectSurveyAPI,
     ...ticketsAPI,
     ...procuringEntityAPI,
-    ...unitAPI
+    ...unitAPI,
+    ...procuringEntityProgressReportsAPI
 }
