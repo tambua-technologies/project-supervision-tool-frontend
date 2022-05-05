@@ -31,3 +31,5 @@ export const authUserPermissionsSelector = ({auth}) => auth?.authUserPermissions
  * @return {Object} errorMessage
  * */
 export const loginErrorMessageSelector = ({auth}) => auth?.login?.errorMessage
+
+export const authUserSelector = ({auth}) => auth?.login.user;

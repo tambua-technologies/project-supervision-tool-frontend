@@ -42,6 +42,8 @@ const authUserPermissions = (state = [], action) => {
     switch (action.type) {
         case types.SET_AUTH_USER_PERMISSIONS:
             return action.payload;
+        case types.LOGOUT:
+            return [];
         default:
             return state;
     }

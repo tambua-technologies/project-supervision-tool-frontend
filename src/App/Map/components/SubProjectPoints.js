@@ -43,7 +43,7 @@ function SubProjectPoints({ subProjects, getSubproject, subProjectLoading, subPr
 
                 const renderPolygon = () => (<GeoJSON
                     key={`${id}-polygon`}
-                    style={{ weight: 10 }}
+                    style={{ weight: 4 }}
                     data={geo_json}
                     eventHandlers={{ click: () => handlePopup(id) }}
                 >
@@ -55,7 +55,7 @@ function SubProjectPoints({ subProjects, getSubproject, subProjectLoading, subPr
 
                 return (
                     <div>
-                        {subProject?.geo_json ? zoomLevel < 12 ? renderMarker() : renderPolygon() : renderMarker()}
+                        {subProject?.geo_json ? zoomLevel < 10 ? renderMarker() : renderPolygon() : renderMarker()}
                     </div>
                 );
 
@@ -69,4 +69,15 @@ export default SubProjectPoints;
 
 SubProjectPoints.propTypes = {
     subProjects: PropTypes.array.isRequired,
+    subProject: PropTypes.object,
+    getSubproject: PropTypes.func,
+    subProjectLoading: PropTypes.bool,
 }
+
+SubProjectPoints.defaultProps = {
+    subProject: null,
+    getSubproject: () => {},
+    subProjectLoading: false,
+}
+
+
