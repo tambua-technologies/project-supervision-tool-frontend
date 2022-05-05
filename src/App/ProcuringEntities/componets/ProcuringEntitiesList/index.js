@@ -23,8 +23,8 @@ const packageSpan = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 0};
 const contractSpan = { xxl: 11, xl: 11, lg: 11, md: 11, sm: 0, xs: 0};
 
 const headerLayout = [
+    { ...nameSpan, header: "Procuring Entity" },
     {...contractSpan, header: "Contract"},
-    { ...nameSpan, header: "Eentity" },
     { ...packageSpan, header: "Total Packages" },
 ];
 
@@ -153,7 +153,7 @@ const ProcuringEntitiesList = ({
                     itemName="ProcuringEntities"
                     items={procuringEntities}
                     page={1}
-                    itemCount={1}
+                    itemCount={procuringEntities.length}
                     loading={loading}
                     onRefresh={handleRefresh}
                     headerLayout={headerLayout}
@@ -179,13 +179,16 @@ const ProcuringEntitiesList = ({
                         >
                             {/* eslint-disable react/jsx-props-no-spreading */}
 
-                            <Col {...contractSpan} className="contentEllipse" title={ item?.contract?.name || 'N/A'}>
-                                {item?.contract?.name || 'N/A'}
-                            </Col>
 
                             <Col {...nameSpan} className="contentEllipse" >
                                 {item?.agency?.name ? item?.agency?.name : 'N/A'}
                             </Col>
+                            
+                            <Col {...contractSpan} className="contentEllipse" title={ item?.contract?.name || 'N/A'}>
+                                {item?.contract?.name || 'N/A'}
+                            </Col>
+
+                            
 
                             <Col {...packageSpan} className="contentEllipse">
                                 {
