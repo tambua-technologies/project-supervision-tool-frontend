@@ -14,7 +14,7 @@ import TopSection from "../../../TopSection";
 import { mapActions } from "../../../../../../../../../../redux/modules/map";
 import BackLink from "../BackLink";
 import { Collapse } from 'antd';
-import ComponentSubComponentFilter from "../ComponentsSubComponentFilter";
+import ComponentSubComponentFilter from "../ComponentSubComponentFilter";
 import SubProjectRegionsFilter from "../SubProjectRegionsFilter";
 import './styles.css';
 
