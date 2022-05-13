@@ -17,6 +17,14 @@ const routes = [
     },
 
     {
+        name: 'SubProjects',
+        path: '/sub_projects',
+        icon: subProjectsIcon,
+        description: modules.initiatives,
+        disabled: false,
+    },
+
+    {
         name: 'Progress Reports',
         path: '/reports',
         icon: subProjectsIcon,
@@ -25,7 +33,15 @@ const routes = [
     },
 
     {
-        name: "Consultant's Staff",
+        name: 'Map',
+        path: '/reports',
+        icon: subProjectsIcon,
+        description: modules.initiatives,
+        disabled: false,
+    },
+
+    {
+        name: "Safeguard Concerns",
         path: '/monitoring-and-evaluation',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
@@ -33,8 +49,8 @@ const routes = [
     },
 
     {
-        name: 'SubProjects',
-        path: '/sub_projects',
+        name: "Consultant's Staff",
+        path: '/monitoring-and-evaluation',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,

@@ -122,7 +122,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                         }
                         <div className="dataset-load_more">
                             <p>Load More</p>
-                            <a href='https://geonode.project-supervision-tool.ga/' target="_blank"
+                            <a href={`${process.env.REACT_APP_GEONODE_URL}`} target="_blank"
                                rel='noopener noreferrer'>
                                 <p>Open Geonode</p>
                             </a>
