@@ -51,7 +51,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
         const {LatLonBoundingBox} = myLayer;
         console.log(myLayer);
 
-        const geonodeLayer = L.tileLayer.wms("https://geonode.project-supervision-tool.ga/geoserver/ows", {
+        const geonodeLayer = L.tileLayer.wms(`${process.env.REACT_APP_GEONODE_URL}/geoserver/ows`, {
             layers: dataSet.typename,
             format: 'image/png',
             transparent: true,
