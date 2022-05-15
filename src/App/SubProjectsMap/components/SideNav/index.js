@@ -19,7 +19,6 @@ import homeIcon from '../../../../assets/icons/home-white.svg';
 import {Link} from 'react-router-dom';
 import { Collapse, Drawer } from 'antd';
 import { MenuUnfoldOutlined } from '@ant-design/icons';
-import ComponentSubComponentFilter from "./components/Component&SubComponentFilter ";
 import SubProjectRegionsFilter from "./components/SubProjectRegionsFilter";
 import './styles.css';
 
@@ -43,12 +42,13 @@ function SideNav({
     setSubProjectContractorsFilter,
     procuringEntityPackage,
     setProcuringEntityFilter,
+    procuringEntity,
     project,
-    setComponentsSubComponentFilter,
+    history
 }) {
 
 
-    const [showSideNav, setShowSideNav] = useState(false);
+    const [showSideNav, setShowSideNav] = useState(true);
     const ref = createRef();
 
     /**
@@ -99,7 +99,7 @@ function SideNav({
             >
                 <div className='SideNav'>
                     <div className='nav-items-list'>
-                        <Link to='/app' className="SideNavItem">
+                        <Link onClick={() => history.goBack()} className="SideNavItem">
                             <SideNavItem
                                 activeThumbnail={homeIcon}
                                 inactiveThumbnail={homeIcon}
@@ -114,7 +114,7 @@ function SideNav({
                     >
                         <div className="ProjectInfo">
                             <div style={{ display: 'flex' }}>
-                                <TopSection title={project?.name} />
+                                {project && procuringEntity && <TopSection title={`${project?.name}(${procuringEntity?.agency.name})`} />}
                             </div>
                             <hr />
                             <CustomSearch placeholder='Search Sub projects' />
@@ -131,10 +131,6 @@ function SideNav({
                                 </Panel>
                                 <Panel header="Subproject Status" key="2" >
                                     <SubProjectStatusFilter subProjectStatus={subProjectStatus} setSubProjectStatusFilter={setSubProjectStatusFilter} />
-                                </Panel>
-                                <Panel header="Components & Sub-components" key="3" >
-                                    <ComponentSubComponentFilter project={project} setComponentsSubComponentFilter={setComponentsSubComponentFilter} />
-
                                 </Panel>
                                 <Panel header="Regions" key="4" >
                                     <SubProjectRegionsFilter project={project}
@@ -162,7 +158,6 @@ function SideNav({
 }
 
 const mapStateToProps = state => ({
-    project: mapProjectSelectors.getProjectSelector(state),
     subProjectTypes: mapSubProjectSelectors.getSubProjectTypesSelector(state),
     subProjectStatus: mapSubProjectSelectors.getSubProjectStatusSelector(state),
     regions: projectSelectors.getRegionsSelector(state),
@@ -193,12 +188,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideNav);
-
-SideNav.propTypes = {
-    project: PropTypes.object,
-    getSubProject: PropTypes.func.isRequired,
-}
-
-SideNav.defaultPropTypes = {
-    project: null
-}

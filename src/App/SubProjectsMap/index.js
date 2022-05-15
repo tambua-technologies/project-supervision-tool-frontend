@@ -7,9 +7,11 @@ import { mapSubProjectActions, mapSubProjectSelectors } from "../../redux/module
 import "./styles.css";
 import SubProjectPoints from './components/SubProjectPoints';
 
-function SubProjectsMap() {
+function SubProjectsMap(props) {
     const dispatch = useDispatch();
+    
     const subProjects = useSelector(mapSubProjectSelectors.getSubProjectsSelector);
+    console.log(subProjects[0]?.project);
 
     useEffect(() => {
         dispatch(mapSubProjectActions.getSubProjectsStart())
@@ -20,8 +22,12 @@ function SubProjectsMap() {
         <div className="MapDashboard">
             <Spin spinning={subProjects.length === 0} tip="Loading data...">
                 <BaseMap position={[-5.856, 34.074]}>
-                    <SideNav />
-                    <SubProjectPoints subProjects={subProjects}/>
+                    <SideNav 
+                    procuringEntity={subProjects.length > 0 ? subProjects[0].procuring_entity: null}
+                    project={subProjects.length > 0 ? subProjects[0].project: null}
+                    history={props.history}
+                     />
+                    <SubProjectPoints subProjects={subProjects} />
                 </BaseMap>
             </Spin>
         </div>
