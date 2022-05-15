@@ -24,10 +24,10 @@ const SignIn = ({accessToken, loading, login, errorMsg, permissions}) => {
     useEffect(() => {
         if(permissions.length > 0) {
             if(checkForPermission(permissions, 'can manage packages')){
-                history.push('/projects/1/procuring_entities/1');
+                history.push('/projects/1/procuring_entities/1/reports');
             }
             else if(checkForPermission(permissions, 'can manage project')){
-                history.push('/projects/1');
+                history.push('/projects/1/procuring_entities/1');
             }
             else {
                 history.push('/projects');
