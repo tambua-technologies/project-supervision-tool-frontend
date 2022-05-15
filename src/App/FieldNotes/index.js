@@ -196,6 +196,7 @@ function FieldNotes({handleGoBack, showBackButton, match }) {
                 visible={isModalVisible}
                 destroyOnClose
                 maskClosable={false}
+                bodyStyle={{ padding: 0 }}
                 className="SurveyFormDrawer"
             >
                 <DisplaySurveyForm survey_id={survey_id} />

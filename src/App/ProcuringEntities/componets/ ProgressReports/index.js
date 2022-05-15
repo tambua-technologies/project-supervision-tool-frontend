@@ -12,7 +12,7 @@ import API from "../../../../API";
 import { API_BASE_URL } from "../../../../API/config";
 import { ProcuringEntityActions, ProcuringEntitySelectors } from '../../../../redux/modules/ProcuringEntities';
 import { isoDateToHumanReadableDate } from "../../../../Util";
-import ProgressReportForm from "./components/Form";
+import DisplaySurveyForm from "../../../components/DisplaySurveyForm";
 
 const reportTitle = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 20 };
 const reportNumber = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 0 };
@@ -106,7 +106,7 @@ function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
                     itemName="Progress Reports"
                     items={progressReports}
                     page={1}
-                    itemCount={0}
+                    itemCount={progressReports.length}
                     loading={isLoading}
                     onRefresh={() => { }}
                     headerLayout={headerLayout}
@@ -154,21 +154,16 @@ function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
                 {/* end list */}
 
                 <Drawer
-                    title={"Add New Procuring Entity Progress Report"}
-                    width={550}
+                    width={'100%'}
                     onClose={handleOnCloseForm}
                     footer={null}
                     visible={showForm}
-                    bodyStyle={{ paddingBottom: 80 }}
+                    bodyStyle={{ padding: 0 }}
                     destroyOnClose
                     maskClosable={false}
                     className="projectForm"
                 >
-                    <ProgressReportForm
-                        closeForm={handleOnCloseForm}
-                        procuringEntity={procuringEntity}
-                        createReport={createReport}
-                    />
+                     <DisplaySurveyForm survey_id="apQUo4bqoEHmKNoPgaPq6F" />
                 </Drawer>
 
             </div>
