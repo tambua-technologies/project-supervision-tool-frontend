@@ -63,21 +63,7 @@ function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
 
 
     const breadcrumbs = procuringEntity ? [
-        {
-            title: 'Projects',
-            url: '/projects',
-            name: 'Projects'
-        },
-        {
-            title: procuringEntity.project.code,
-            url: `/projects/${procuringEntity.project.id}/`,
-            name: procuringEntity.project.name
-        },
-        {
-            title: `Procuring Entities`,
-            url: `/projects/${procuringEntity.project.id}/procuring_entities`,
-            name: `Procuring Entities under ${procuringEntity.project.name}(${procuringEntity.project.code})`
-        },
+        
         {
             title: `${procuringEntity.agency.name}`,
             url: `/projects/${procuringEntity.project.id}/procuring_entities/${procuringEntity.id}`,
