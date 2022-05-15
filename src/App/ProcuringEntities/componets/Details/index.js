@@ -27,11 +27,11 @@ const ProcuringEntityDetails = ({ match, procuringEntity, getProcuringEntity, lo
         }
     ] : [];
 
-    return procuringEntity ? (
+    return (
+        <Spin spinning={loading} tip="Loading..." >
+            <BaseLayout breadcrumbs={<DynamicBreadcrumbs breadcrumbs={breadcrumbs} />}>
+                <Layout className="project-layout">
 
-        <BaseLayout breadcrumbs={<DynamicBreadcrumbs breadcrumbs={breadcrumbs} />}>
-            <Layout className="project-layout">
-                <Spin spinning={loading} tip="Loading..." >
                     <Content className="contents">
                         <h3>Overview</h3>
                         <Layout className="project-inner-layout" >
@@ -95,10 +95,11 @@ const ProcuringEntityDetails = ({ match, procuringEntity, getProcuringEntity, lo
                             </Content>
                         </Layout>
                     </Content>
-                </Spin>
-            </Layout>
-        </BaseLayout>
-    ) : '';
+
+                </Layout>
+            </BaseLayout>
+        </Spin>
+    );
 }
 
 const mapStateToProps = state => ({

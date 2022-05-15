@@ -16,38 +16,14 @@ import "./styles.css";
 const { Content } = Layout;
 const { TabPane } = Tabs;
 
-function SubProjectDetails({ getSubProject, match, sub_project, loading, mapLoading, permissions, }) {
+function SubProjectDetails({ getSubProject, match, sub_project, loading, mapLoading, permissions }) {
 
   const breadcrumbs = sub_project ? [
-    {
-      title: 'Projects',
-      url: '/projects',
-      name: 'Projects'
-    },
-    {
-      title: sub_project.project.code,
-      url: `/projects/${sub_project.project.id}/`,
-      name: sub_project.project.name
-    },
-    {
-      title: `Procuring Entities`,
-      url: `/projects/${sub_project.project.id}/procuring_entities`,
-      name: `Procuring Entities under ${sub_project.project.name}(${sub_project.project.code})`
-    },
+   
     {
       title: `${sub_project.procuring_entity.agency.name}`,
       url: `/projects/${sub_project.project.id}/procuring_entities/${sub_project.procuring_entity.id}`,
       name: `${sub_project.procuring_entity.agency.name}`
-    },
-    {
-      title: `Packages`,
-      url: `/projects/${sub_project.project.id}/procuring_entities/${sub_project.procuring_entity.id}/packages`,
-      name: `Packages procured in ${sub_project.procuring_entity.agency.name}`
-    },
-    {
-      title: `${sub_project.package?.name}`,
-      url: `/projects/${sub_project.project.id}/procuring_entities/${sub_project.procuring_entity.id}/packages/${sub_project.package?.id}`,
-      name: `${sub_project.package?.contract?.name}`
     },
     {
       title: `SubProjects`,
@@ -62,8 +38,7 @@ function SubProjectDetails({ getSubProject, match, sub_project, loading, mapLoad
   ] : [];
 
   useEffect(() => {
-    const id = getIdFromUrlPath(match.url, 8);  
-    getSubProject(id);
+    getSubProject(match.params?.id);
   }, [match]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return sub_project ? (
@@ -75,21 +50,10 @@ function SubProjectDetails({ getSubProject, match, sub_project, loading, mapLoad
               <Layout className="sub-project-inner-layout" >
                 <Content className="sub-project-contents">
                   <div className="card-container">
-                    <Tabs type="card">
-                      <TabPane tab="Sub-Project Overview" key="1">
-                        <div className="container description" >
-                          <h4 className="text-blue">Sub Project Development Objective</h4>
+                  <div className="container description" >
                           <p>{sub_project ? sub_project?.description : 'N/A'}</p>
                         </div>
                         <OverviewDetails sub_project={sub_project} mapLoading={mapLoading} subProjectTickets={[]} />
-                      </TabPane>
-                      <TabPane tab="Field Notes" key="2">
-                        <FieldNotes subProject={sub_project} getSubProject={getSubProject} permissions={permissions} permission={appPermissions.CAN_CREATE_SURVEY} />
-                      </TabPane>
-                      <TabPane tab="Field Images" key="3">
-                        <FieldImages subProject={sub_project} getSubProject={getSubProject} permissions={permissions} permission={appPermissions.CAN_CREATE_SURVEY} />
-                      </TabPane>
-                    </Tabs>
                   </div>
                 </Content>
               </Layout>

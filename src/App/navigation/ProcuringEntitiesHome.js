@@ -78,6 +78,13 @@ const routes = [
         description: modules.initiatives,
         disabled: true,
     },
+    {
+        name: 'Action Items',
+        path: '/action-items',
+        icon: subProjectsDisabledIcon,
+        description: modules.initiatives,
+        disabled: true,
+    },
     
    
 ];

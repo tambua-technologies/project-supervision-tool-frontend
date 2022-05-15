@@ -16,7 +16,7 @@ const firstSpan = { xxl: 12, xl: 12, lg: 12, md: 12, sm: 24, xs: 24 };
 const secondSpan = { xxl: 11, xl: 11, lg: 11, md: 11, sm: 24, xs: 24 };
 
 
-const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPackage,loading }) => {
+const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPackage, loading }) => {
 
     useEffect(() => {
         const id = getIdFromUrlPath(match.url, 6)
@@ -27,8 +27,8 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
     const remained = 100 - completed;
     const bgcolor = "#0f6788";
 
-    const plannedCompleted = procuringEntityPackage?.progress ?.planned_physical_progress || 0
-    const actualCompleted = procuringEntityPackage?.progress ?.actual_physical_progress || 0
+    const plannedCompleted = procuringEntityPackage?.progress?.planned_physical_progress || 0
+    const actualCompleted = procuringEntityPackage?.progress?.actual_physical_progress || 0
 
     const breadcrumbs = procuringEntityPackage ? [
         {
@@ -63,10 +63,11 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
         }
     ] : [];
 
-    return procuringEntityPackage ? (
-        <BaseLayout breadcrumbs={<DynamicBreadcrumbs breadcrumbs={breadcrumbs} />} >
-            <Layout className="project-layout">
-                <Spin spinning={loading} tip="Loading..." >
+    return (
+        <Spin spinning={loading} tip="Loading..." >
+            {procuringEntityPackage && <BaseLayout breadcrumbs={<DynamicBreadcrumbs breadcrumbs={breadcrumbs} />} >
+                <Layout className="project-layout">
+
                     <Content className="contents">
                         <h3>{procuringEntityPackage.name || 'N/A'}</h3>
                         <Layout className="project-inner-layout" >
@@ -99,7 +100,7 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
                                                     {procuringEntityPackage?.contract?.original_contract_sum ? getAmount(procuringEntityPackage?.contract?.original_contract_sum) : 'N/A'}
 
                                                 </Col>
-                                               
+
                                                 <Col {...columnSpan}>
                                                     <h4>Contract Agreement Date </h4>
                                                     {new Date(procuringEntityPackage?.contract?.date_contract_agreement_signed).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' }) || 'N/A'}
@@ -121,7 +122,7 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
                                                     <h4>Completion Date</h4>
                                                     {new Date(procuringEntityPackage?.contract?.date_of_contract_completion).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' }) || 'N/A'}
                                                 </Col>
-                                                
+
                                                 <Col {...columnSpan}>
                                                     <h4>Defects Liability Notification Period</h4>
                                                     {procuringEntityPackage?.contract?.defects_liability_notification_period || '12 months'}
@@ -137,7 +138,7 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
                                     </div>
                                     <section>
                                         <Row className="Progress-overview container">
-                                            
+
                                             <Col {...firstSpan}>
                                                 <div>
                                                     <h5 className="text-blue">Planned Physical Progress</h5>
@@ -157,7 +158,7 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
                                                 </div>
                                             </Col>
                                             <Col {...secondSpan} offset={1} >
-                                            <h5 className="text-blue">Financial Progress</h5>
+                                                <h5 className="text-blue">Financial Progress</h5>
 
                                                 <ProgressBar
                                                     completed={completed}
@@ -169,15 +170,16 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
 
                                         </Row>
                                     </section>
-                                <PackageHomeNavMenu match={match} />
+                                    <PackageHomeNavMenu match={match} />
                                 </div>
                             </Content>
                         </Layout>
                     </Content>
-                </Spin>
-            </Layout>
-        </BaseLayout >
-    ) : '';
+                </Layout>
+            </BaseLayout >}
+            
+        </Spin>
+    );
 }
 
 const mapStateToProps = state => ({

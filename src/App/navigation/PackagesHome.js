@@ -18,7 +18,7 @@ const routes = [
     },
 
     {
-        name: "Contractor's Staff",
+        name: "Package Contractor's Staff",
         path: '/contractors-staff',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
@@ -31,15 +31,7 @@ const routes = [
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,
-    },
-
-    {
-        name: 'Action Items',
-        path: '/action-items',
-        icon: subProjectsDisabledIcon,
-        description: modules.initiatives,
-        disabled: true,
-    },
+    }
 ];
 
 /**
