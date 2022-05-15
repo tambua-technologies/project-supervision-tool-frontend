@@ -48,15 +48,23 @@ const routes = [
     },
 
     {
-        name: "Safeguard Concerns",
-        path: '/monitoring-and-evaluation',
+        name: "Social Safeguards Concerns",
+        path: '/social_safeguards_concerns',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
         disabled: true,
     },
 
     {
-        name: "Consultant's Staff",
+        name: "Environmental Safeguards Concerns",
+        path: '/environmental_safeguards_concerns',
+        icon: subProjectsDisabledIcon,
+        description: modules.initiatives,
+        disabled: true,
+    },
+
+    {
+        name: "CSC Staff",
         path: '/monitoring-and-evaluation',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
@@ -64,7 +72,7 @@ const routes = [
     },
     
     {
-        name: 'Contractors',
+        name: 'Package Contractors',
         path: '/agreed-actions',
         icon: subProjectsDisabledIcon,
         description: modules.initiatives,
