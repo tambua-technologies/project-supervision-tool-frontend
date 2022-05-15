@@ -8,6 +8,29 @@ import modules from '../../modules.json';
 
 /* constants */
 const routes = [
+    {
+        name: 'Progress Reports',
+        path: '/reports',
+        icon: subProjectsIcon,
+        description: modules.initiatives,
+        disabled: false,
+    },
+
+    {
+        name: 'Field Notes',
+        path: '/field_notes',
+        icon: subProjectsIcon,
+        description: modules.initiatives,
+        disabled: false,
+    },
+
+    {
+        name: 'Map',
+        path: '/reports',
+        icon: subProjectsIcon,
+        description: modules.initiatives,
+        disabled: false,
+    },
 
     {
         name: 'Packages',
@@ -19,22 +42,6 @@ const routes = [
     {
         name: 'SubProjects',
         path: '/sub_projects',
-        icon: subProjectsIcon,
-        description: modules.initiatives,
-        disabled: false,
-    },
-
-    {
-        name: 'Progress Reports',
-        path: '/reports',
-        icon: subProjectsIcon,
-        description: modules.initiatives,
-        disabled: false,
-    },
-
-    {
-        name: 'Map',
-        path: '/reports',
         icon: subProjectsIcon,
         description: modules.initiatives,
         disabled: false,

@@ -21,21 +21,6 @@ const ProcuringEntityDetails = ({ match, procuringEntity, getProcuringEntity, lo
 
     const breadcrumbs = procuringEntity ? [
         {
-            title: 'Projects',
-            url: '/projects',
-            name: 'Projects'
-        },
-        {
-            title: procuringEntity.project.code,
-            url: `/projects/${procuringEntity.project.id}/`,
-            name: procuringEntity.project.name
-        },
-        {
-            title: `Procuring Entities`,
-            url: `/projects/${procuringEntity.project.id}/procuring_entities`,
-            name: `Procuring Entities under ${procuringEntity.project.name}(${procuringEntity.project.code})`
-        },
-        {
             title: `${procuringEntity.agency.name}`,
             url: match.url,
             name: `${procuringEntity.agency.name}`
@@ -48,7 +33,7 @@ const ProcuringEntityDetails = ({ match, procuringEntity, getProcuringEntity, lo
             <Layout className="project-layout">
                 <Spin spinning={loading} tip="Loading..." >
                     <Content className="contents">
-                        <h3>{procuringEntity.agency.name}</h3>
+                        <h3>Overview</h3>
                         <Layout className="project-inner-layout" >
                             <Content className="project-contents">
                                 <div className="card-container">

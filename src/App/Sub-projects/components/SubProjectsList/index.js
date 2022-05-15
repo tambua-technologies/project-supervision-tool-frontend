@@ -61,13 +61,76 @@ class SubProjectsList extends Component {
         cached: null,
         visible: false,
         previewOnMap: false,
-        isSelected: false
+        isSelected: false,
     };
 
     componentDidMount() {
-        const {fetchSubProjects, getProcuringEntityPackage} = this.props;
+        const {fetchSubProjects, getProcuringEntityPackage,getProcuringEntity, match: {params}} = this.props;
         fetchSubProjects(this.subProjectsFilter );
-        //getProcuringEntityPackage(this.packageId);
+        if(params?.packageId){
+            getProcuringEntityPackage(params.packageId);
+        }
+        else if(params?.procuringEntityId) {
+            getProcuringEntity(params?.procuringEntityId);
+        }
+    }
+
+
+    getBreadcrumbs = () => {
+        const { match:{params}, procuringEntityPackage, procuringEntity} = this.props;
+        let project,entity,agency;
+        if(procuringEntityPackage) {
+             project = procuringEntityPackage?.procuring_entity?.project;
+             entity = procuringEntityPackage?.procuring_entity;
+             agency = procuringEntityPackage?.procuring_entity?.agency;
+
+            return [
+                {
+                    title: `${agency.name}`,
+                    url: `/projects/${project.id}/procuring_entities/${entity.id}`,
+                    name: `${agency.name}`
+                },
+                {
+                    title: `Packages`,
+                    url: `/projects/${project.id}/procuring_entities/${entity.id}/packages`,
+                    name: `Packages procured in ${agency.name}`
+                },
+                {
+                    title: `${procuringEntityPackage?.name}`,
+                    url: `/projects/${project.id}/procuring_entities/${entity.id}/packages/${procuringEntityPackage?.id}`,
+                    name: `${procuringEntityPackage?.contract?.name}`
+                },
+                {
+                    title: `SubProjects`,
+                    url: this.props.match.url,
+                    name: `List of Sub Projects`
+                }
+            ];
+
+        }
+        else if(procuringEntity){
+
+            project = procuringEntity?.project;
+            agency = procuringEntity?.agency;
+            entity = procuringEntity;
+            
+
+            return [
+                {
+                    title: `${agency.name}`,
+                    url: `/projects/${project.id}/procuring_entities/${entity.id}`,
+                    name: `${agency.name}`
+                },
+                {
+                    title: `SubProjects`,
+                    url: this.props.match.url,
+                    name: `List of Sub Projects`
+                }
+            ];
+
+        }
+        else return [];
+
     }
 
 
@@ -292,43 +355,7 @@ class SubProjectsList extends Component {
             procuringEntityPackage
         } = this.props;
         
-        const breadcrumbs = procuringEntityPackage ? [
-            {
-                title: 'Projects',
-                url: '/projects',
-                name: 'Projects'
-            },
-            {
-                title: procuringEntityPackage?.procuring_entity?.project.code,
-                url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/`,
-                name: procuringEntityPackage?.procuring_entity?.project.name
-            },
-            {
-                title: `Procuring Entities`,
-                url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities`,
-                name: `Procuring Entities under ${procuringEntityPackage?.procuring_entity?.project.name}(${procuringEntityPackage?.procuring_entity?.project.code})`
-            },
-            {
-                title: `${procuringEntityPackage?.procuring_entity?.agency.name}`,
-                url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities/${procuringEntityPackage?.procuring_entity?.id}`,
-                name: `${procuringEntityPackage?.procuring_entity?.agency.name}`
-            },
-            {
-                title: `Packages`,
-                url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities/${procuringEntityPackage?.procuring_entity?.id}/packages`,
-                name: `Packages procured in ${procuringEntityPackage?.procuring_entity?.agency.name}`
-            },
-            {
-                title: `${procuringEntityPackage?.name}`,
-                url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities/${procuringEntityPackage?.procuring_entity?.id}/packages/${procuringEntityPackage?.id}`,
-                name: `${procuringEntityPackage?.contract?.name}`
-            },
-            {
-                title: `SubProjects`,
-                url: this.props.match.url,
-                name: `List of Sub Projects`
-            }
-        ]: [];
+        const breadcrumbs = this.getBreadcrumbs();
 
 
         const survey_id = selected?.surveys ? getSurveyIdByCategory('field_notes', selected?.surveys) : null;
@@ -488,6 +515,7 @@ class SubProjectsList extends Component {
 const mapStateToProps = (state) => {
     return {
         subProjects: subProjectsSelectors.getSubProjectsSelector(state),
+        procuringEntity: ProcuringEntitySelectors.getProcuringEntitySelector(state),
         loading: subProjectsSelectors.getSubProjectsLoadingSelector(state),
         showForm: subProjectsSelectors.getSubProjectShowFormSelector(state),
         showSurveyForm: subProjectsSelectors.getShowSurveyFormSelector(state),
@@ -521,7 +549,8 @@ const mapDispatchToProps = (dispatch) => ({
     getWfsLayerData: bindActionCreators(mapActions.getWfsLayerDataStart, dispatch),
     openTicketForm: bindActionCreators(ticketActions.openTicketForm, dispatch),
     closeTicketForm: bindActionCreators(ticketActions.closeTicketForm, dispatch),
-    getProcuringEntityPackage: bindActionCreators(ProcuringEntityActions.getPackageStart, dispatch)
+    getProcuringEntityPackage: bindActionCreators(ProcuringEntityActions.getPackageStart, dispatch),
+    getProcuringEntity: bindActionCreators(ProcuringEntityActions.getProcuringEntityStart, dispatch)
 
 });
 
