@@ -50,8 +50,11 @@ const headerLayout = [
  */
 class SubProjectsList extends Component {
 
-    packageId = getIdFromUrlPath(this.props.match.url, 6);
-    subProjectsFilter = {'filter[procuring_entity_package_id]': this.packageId};
+    subProjectsFilter = {
+        'filter[procuring_entity_package_id]': this.props.match.params?.packageId,
+        'filter[procuringEntityPackage.procuring_entity_id]': this.props.match.params?.procuringEntityId
+    };
+
     state = {
         showShare: false,
         isEditForm: false,
@@ -64,7 +67,7 @@ class SubProjectsList extends Component {
     componentDidMount() {
         const {fetchSubProjects, getProcuringEntityPackage} = this.props;
         fetchSubProjects(this.subProjectsFilter );
-        getProcuringEntityPackage(this.packageId);
+        //getProcuringEntityPackage(this.packageId);
     }
 
 

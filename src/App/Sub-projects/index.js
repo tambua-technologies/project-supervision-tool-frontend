@@ -8,11 +8,6 @@ const SubProjects = (props) => {
     return (
         <Switch>
             <PrivateRoute
-                exact
-                path={`${props.match.url}`}
-                component={props => <SubProjectsList {...props}/>}
-            />
-            <PrivateRoute
                 path={`${props.match.url}/:id`}
                 component={props => <SubProjectDetails {...props} />}
             />
