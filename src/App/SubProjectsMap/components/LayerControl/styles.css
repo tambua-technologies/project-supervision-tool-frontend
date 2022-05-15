@@ -1,0 +1,50 @@
+.geonode-layers-control {
+    background: #fff;
+    width: 50px;
+    z-index: 1000;
+    margin: 190px 10px 0 0;
+    position: absolute;
+    right: 0;
+}
+
+/* .DataSetsMenuItemDetails {
+    padding: 0 10px;
+} */
+
+.DataSetsMenuItemDetails .paginate-datasets {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.DataSetsMenuItemDetails h4 {
+    border-bottom: 0.8px solid #d9d9d9;
+    padding: 10px;
+}
+
+.data-set-search {
+    padding: 0 10px;
+}
+
+.dataset-load_more {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    top: 40px;
+    position: relative;
+}
+
+.dataset-load_more p {
+    text-decoration: underline;
+    color: #0f6788;
+}
+
+.LayerCategories {
+    margin-top: 10px;
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.12), 2px -2px 6px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.12), 2px -2px 6px rgba(0, 0, 0, 0.06);
+}
+.ant-collapse-ghost > .LayerCategories.ant-collapse-item{
+    border-bottom: 2px solid #0f6788;
+
+}

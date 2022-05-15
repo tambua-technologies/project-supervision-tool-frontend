@@ -26,7 +26,7 @@ const routes = [
 
     {
         name: 'Map',
-        path: '/reports',
+        path: '/sub_projects_map',
         icon: subProjectsIcon,
         description: modules.initiatives,
         disabled: false,

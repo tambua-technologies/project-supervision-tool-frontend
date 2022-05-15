@@ -5,6 +5,7 @@ import ProcuringEntityDetails from "../Details";
 import Packages from "../../../Packages";
 import SubProjectsList from '../../../Sub-projects/components/SubProjectsList';
 import FieldNotes from '../../../FieldNotes';
+import SubProjectsMap from '../../../SubProjectsMap';
 
 const ProcuringEntity = (props) => {
     return (
@@ -28,6 +29,12 @@ const ProcuringEntity = (props) => {
                 exact
                 path="/projects/:projectId/procuring_entities/:procuringEntityId/field_notes"
                 component={props => <FieldNotes {...props} />}
+            />
+
+            <PrivateRoute
+                exact
+                path="/projects/:projectId/procuring_entities/:procuringEntityId/sub_projects_map"
+                component={props => <SubProjectsMap {...props} />}
             />
 
         </Switch>
