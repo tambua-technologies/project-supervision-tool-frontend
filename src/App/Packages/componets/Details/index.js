@@ -31,21 +31,7 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
     const actualCompleted = procuringEntityPackage?.progress?.actual_physical_progress || 0
 
     const breadcrumbs = procuringEntityPackage ? [
-        {
-            title: 'Projects',
-            url: '/projects',
-            name: 'Projects'
-        },
-        {
-            title: procuringEntityPackage.procuring_entity.project.code,
-            url: `/projects/${procuringEntityPackage.procuring_entity.project.id}/`,
-            name: procuringEntityPackage.procuring_entity.project.name
-        },
-        {
-            title: `Procuring Entities`,
-            url: `/projects/${procuringEntityPackage.procuring_entity.project.id}/procuring_entities`,
-            name: `Procuring Entities under ${procuringEntityPackage.procuring_entity.project.name}(${procuringEntityPackage.procuring_entity.project.code})`
-        },
+       
         {
             title: `${procuringEntityPackage.procuring_entity.agency.name}`,
             url: `/projects/${procuringEntityPackage.procuring_entity.project.id}/procuring_entities/${procuringEntityPackage.procuring_entity.id}`,
@@ -170,7 +156,6 @@ const PackageDetails = ({ match, procuringEntityPackage, getProcuringEntityPacka
 
                                         </Row>
                                     </section>
-                                    <PackageHomeNavMenu match={match} />
                                 </div>
                             </Content>
                         </Layout>

@@ -79,36 +79,7 @@ class SubProjectsList extends Component {
     getBreadcrumbs = () => {
         const { match:{params}, procuringEntityPackage, procuringEntity} = this.props;
         let project,entity,agency;
-        if(procuringEntityPackage) {
-             project = procuringEntityPackage?.procuring_entity?.project;
-             entity = procuringEntityPackage?.procuring_entity;
-             agency = procuringEntityPackage?.procuring_entity?.agency;
-
-            return [
-                {
-                    title: `${agency.name}`,
-                    url: `/projects/${project.id}/procuring_entities/${entity.id}`,
-                    name: `${agency.name}`
-                },
-                {
-                    title: `Packages`,
-                    url: `/projects/${project.id}/procuring_entities/${entity.id}/packages`,
-                    name: `Packages procured in ${agency.name}`
-                },
-                {
-                    title: `${procuringEntityPackage?.name}`,
-                    url: `/projects/${project.id}/procuring_entities/${entity.id}/packages/${procuringEntityPackage?.id}`,
-                    name: `${procuringEntityPackage?.contract?.name}`
-                },
-                {
-                    title: `SubProjects`,
-                    url: this.props.match.url,
-                    name: `List of Sub Projects`
-                }
-            ];
-
-        }
-        else if(procuringEntity){
+         if(procuringEntity){
 
             project = procuringEntity?.project;
             agency = procuringEntity?.agency;

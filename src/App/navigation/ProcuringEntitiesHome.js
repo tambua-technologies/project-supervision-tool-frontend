@@ -62,22 +62,7 @@ const routes = [
         description: modules.initiatives,
         disabled: true,
     },
-
-    {
-        name: "CSC Staff",
-        path: '/monitoring-and-evaluation',
-        icon: subProjectsDisabledIcon,
-        description: modules.initiatives,
-        disabled: true,
-    },
     
-    {
-        name: 'Package Contractors',
-        path: '/agreed-actions',
-        icon: subProjectsDisabledIcon,
-        description: modules.initiatives,
-        disabled: true,
-    },
     {
         name: 'Action Items',
         path: '/action-items',
