@@ -14,13 +14,18 @@
 .BaseLayoutHeader .Breadcrumb {
   font-size: 18px;
 }
+/* section.ant-layout.BaseLayout {
+  padding: 20px;
+} */
 
 .BaseLayoutContent {
   background-color: #fff;
   overflow-y: hidden;
   overflow-x: hidden;
 }
-
+.ant-layout-header {
+  padding: 0;
+}
 @media screen and (max-width: 768px) {
   .ant-layout-header {
     padding: 0 20px;
@@ -43,13 +48,13 @@
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 21px;
   font-weight: bold;
   color: #0f6788;
   margin-left: 0.5rem;
 }
 
-//new layout css
+/* new layout css */
 .ant-row-rtl .logo {
   float: right;
   margin: 16px 0 16px 24px;
@@ -57,19 +62,38 @@
 .header {
   background: #fff;
   border-bottom: 1px solid #dddddd;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px,
+    rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+  width: 100%;
 }
 
 .header-logo {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
 }
-
+.header.ant-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+.header-logo svg {
+  font-size: 18px;
+}
 .header .TopbarSearch {
   margin-top: 0.8rem;
+  margin-left: 15px;
 }
-
+.ant-layout {
+  height: 100vh;
+  overflow-y: hidden;
+}
 .sider-layout .ant-menu.ant-menu-dark,
 .sider-layout .ant-menu-dark .ant-menu-inline.ant-menu-sub {
   background: #f5f5f5;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
 
 .sider-layout .ant-menu-dark .ant-menu-item {
@@ -98,16 +122,24 @@
   > a {
   color: #1890ff;
 }
-
-.BaseLayoutContent h3{ 
-  color: #1890ff;
-
+.sider-layout li.ant-menu-item {
+  padding-left: 15px !important;
 }
 
-.sider-layout h3{
-  padding-inline-start: 24px;
-    font-weight: 600;
-    font-size: 16px;
-    padding-block-end: 1rem;
-    text-transform: uppercase;
+.BaseLayoutContent h3 {
+  color: #1890ff;
+}
+
+.sider-layout h3 {
+  padding-inline-start: 15px;
+  font-weight: 600;
+  font-size: 16px;
+  padding-block-end: 1rem;
+  text-transform: uppercase;
+}
+div.ant-row.ant-row-start {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
 }

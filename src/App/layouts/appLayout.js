@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Layout, Menu, Breadcrumb, Input, Row, Col } from "antd";
-import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
+import { Layout, Menu, Breadcrumb } from "antd";
 
 import "./styles.css";
-import UserMenu from "../navigation/UserMenu";
+// import UserMenu from "../navigation/UserMenu";
 import { Link, Switch } from "react-router-dom";
 import PrivateRoute from "../Auth/PrivateRoute";
 import ProjectsList from "../Projects/components/ProjectsList";
@@ -20,53 +19,17 @@ import { connect } from "react-redux";
 import ProjectMenu from "../navigation/ProjectMenu";
 import CscLayout from "./cscLayout";
 
-const { Header, Content, Sider } = Layout;
-const { Search } = Input;
+const { Content, Sider } = Layout;
 
-const AppLayout = ({ location, match: { url: baseUrl }, project }) => {
-  const [collapsed, setCollapse] = useState(false);
-  
-  const toggle = () => {
-    setCollapse({
-      collapsed: !collapsed,
-    });
-  };
+const AppLayout = ({  match: { url: baseUrl }, project }) => {
 
   return (
     <Layout>
-      <Header className="header">
-        <Row type="flex" align="middle">
-          <Col xxl={4} xl={4} lg={4} md={4} sm={4} xs={4} justify="start">
-            <Row type="flex" justify="start">
-              <div className="header-logo">
-                <div>
-                  {React.createElement(
-                    collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-                    {
-                      className: "trigger",
-                      onClick: toggle,
-                    }
-                  )}
-                </div>
-                <div className="logo">ReProST</div>
-              </div>{" "}
-            </Row>
-          </Col>
-
-          <Col xxl={14} xl={14} lg={14} md={14} sm={24} xs={24}>
-            <Search allowClear className="TopbarSearch" size="large" />
-          </Col>
-          <Col xxl={2} xl={2} lg={2} md={2} sm={2} xs={2} offset={4}>
-            <Row type="flex" justify="end">
-              <Col span={12}>
-                <UserMenu />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Header>
       {true ? (
-        <CscLayout baseUrl={baseUrl} />
+        <Layout>
+          <CscLayout baseUrl={baseUrl} />
+         
+        </Layout>
       ) : (
         <Layout>
           <Sider width={300} className="sider-layout">

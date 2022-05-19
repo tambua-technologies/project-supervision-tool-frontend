@@ -3,7 +3,7 @@ import React from "react";
 import TopSummary from "../TopSummary";
 import ProgressBarOverview from "../ProgressBar";
 import MapDashboard from "../../../Map";
-import LatestReport from "../Reports/components/LatestReport";
+// import LatestReport from "../Reports/components/LatestReport";
 import "./styles.css";
 import BaseMap from "../../../Map/components/BaseMap";
 
@@ -75,7 +75,7 @@ const Overview = () => {
                         </div>
           </Col>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>
-            <LatestReport />
+            {/* <LatestReport /> */}
           </Col>
         </Row>
       </section>

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { List } from 'antd';
-import map from 'lodash/map';
-import remove from 'lodash/remove';
-import Toolbar from '../Toolbar';
-import ListHeader from '../ListHeader';
-import './styles.css';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { List } from "antd";
+import map from "lodash/map";
+import remove from "lodash/remove";
+import Toolbar from "../Toolbar";
+import ListHeader from "../ListHeader";
+import "./styles.css";
 
 /**
  * @function
@@ -74,7 +74,7 @@ const CustomList = ({
    * @version 0.1.0
    * @since 0.1.0
    */
-  const isSelected = (item) => map(selectedItems, '_id').includes(item._id); // eslint-disable-line
+  const isSelected = (item) => map(selectedItems, "_id").includes(item._id); // eslint-disable-line
 
   return (
     <div className="List">
@@ -85,20 +85,17 @@ const CustomList = ({
         selectedItemsCount={selectedItems.length}
         onPaginate={(nextPage) => onPaginate(nextPage)}
         onRefresh={onRefresh}
-        onMapView={onMapView}
         exportUrl={
           generateExportUrl
             ? generateExportUrl({
-              filter: { _id: map(selectedItems, '_id') },
-              // token: getJwtToken(),
-            })
+                filter: { _id: map(selectedItems, "_id") },
+                // token: getJwtToken(),
+              })
             : null
         }
       />
 
-      <ListHeader
-        headerLayout={headerLayout}
-      />
+      <ListHeader headerLayout={headerLayout} />
 
       <List
         loading={loading}

@@ -19,7 +19,6 @@ const { Header, Content } = Layout;
  * @since 0.1.0
  */
 const BaseLayout = (props) => {
-
   return (
     <Layout className="BaseLayout">
       <Header className="BaseLayoutHeader">
@@ -27,7 +26,7 @@ const BaseLayout = (props) => {
           {/* breadcrumb section start */}
           <Col xxl={22} xl={22} lg={22} md={22} sm={20} xs={20} justify="start">
             <Row type="flex" justify="start">
-            {props.breadcrumbs}
+              {props.breadcrumbs}
             </Row>
           </Col>
           {/* breadcrumb section end */}
@@ -41,16 +40,14 @@ const BaseLayout = (props) => {
           </Col>
         </Row>
       </Header>
-      <Content className="BaseLayoutContent">
-        {props.children}
-      </Content>
+      <Content className="BaseLayoutContent">{props.children}</Content>
     </Layout>
   );
 };
 
 BaseLayout.propTypes = {
-    children: PropTypes.node.isRequired,
-    breadcrumbs: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
+  breadcrumbs: PropTypes.node.isRequired,
 };
 
 export default BaseLayout;

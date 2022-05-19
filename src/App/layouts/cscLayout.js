@@ -1,32 +1,47 @@
-import React from "react";
-
-import { Layout, Menu, Breadcrumb } from "antd";
-
+import React, { useState } from "react";
+import { Layout, Button, Menu, Breadcrumb, Row, Col, Input } from "antd";
 import { Link, Route, Switch } from "react-router-dom";
 import MapDashboard from "../Map";
 import Contracts from "../Contracts";
+import UserMenu from "../navigation/UserMenu";
 import PackagesList from "../Packages/componets/PackagesList";
 import SubProjectsList from "../Sub-projects/components/SubProjectsList";
 import SafeGuard from "../Csc/components/safeguad";
 import Reports from "../Csc/components/Reports";
-
+import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import "./styles.css";
 import Overview from "../Csc/components/overview";
-
-const { Content, Sider } = Layout;
-
+const { Header, Content, Sider } = Layout;
 const CscLayout = ({ baseUrl }) => {
+  const [collapsed, setCollapse] = useState(false);
+
+  const toggle = () => {
+    setCollapse({
+      collapsed: !collapsed,
+    });
+  };
   return (
     <Layout>
-      <Sider width={300} className="sider-layout">
-
+      <Sider width={200} className="sider-layout">
+        <Row type="flex" justify="start">
+          <div className="header-logo">
+            {React.createElement(
+              collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+              {
+                className: "trigger",
+                onClick: toggle,
+              }
+            )}
+            <div className="logo">ReProST</div>
+          </div>{" "}
+        </Row>
         <Menu
           mode="inline"
           defaultSelectedKeys={["1"]}
           style={{ height: "100%", borderRight: 0, paddingBlockStart: "2rem" }}
           theme="dark"
         >
-                <h3 className="text-blue">Ilala</h3> 
+          <h3 className="text-blue">Ilala</h3>
 
           <Menu.Item>
             <span className="CustomizedIcon" />
@@ -34,11 +49,11 @@ const CscLayout = ({ baseUrl }) => {
           </Menu.Item>
           <Menu.Item>
             <span className="CustomizedIcon" />
-            <Link to={`${baseUrl}/safeguard`}>Safeguard Concern</Link>
+            <Link to={`${baseUrl}/reports`}>Report</Link>
           </Menu.Item>
           <Menu.Item>
             <span className="CustomizedIcon" />
-            <Link to={`${baseUrl}/reports`}>Report</Link>
+            <Link to={`${baseUrl}/safeguard`}>Safeguard Concern</Link>
           </Menu.Item>
           <Menu.Item>
             <span className="CustomizedIcon" />
@@ -56,53 +71,75 @@ const CscLayout = ({ baseUrl }) => {
             <span className="CustomizedIcon" />
             <Link to={`${baseUrl}/contractors`}>CSC Contractors</Link>
           </Menu.Item>
+          <div
+            style={{
+              marginLeft: "15px",
+              marginTop: "100%",
+            }}
+          >
+            <span className="CustomizedIcon" />
+            <Link to={`${baseUrl}/contractors`}>Setting</Link>
+          </div>
         </Menu>
       </Sider>
-      <Layout style={{ padding: "0 24px 24px" }} className="BaseLayout">
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Project</Breadcrumb.Item>
-          <Breadcrumb.Item>DMDP</Breadcrumb.Item>
-          <Breadcrumb.Item>Procuring Entities</Breadcrumb.Item>
-          <Breadcrumb.Item>Ilala</Breadcrumb.Item>
+      <Layout className="BaseLayout">
+        <Header className="header">
+          <Row type="flex">
+            <Col xxl={14} xl={14} lg={14} md={14} sm={24} xs={24}>
+              <Input
+                placeholder="Search here"
+                allowClear
+                className="TopbarSearch"
+                size="large"
+              />
+            </Col>
+            <Col xxl={2} xl={2} lg={2} md={2} sm={2} xs={2} offset={8}>
+              <Row type="flex" justify="end">
+                <Col span={12}>
+                  <UserMenu />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Header>
+        <div style={{ padding: "0 15px 15px" }}>
+          <Content
+            style={{
+              margin: 0,
+            }}
+            className="BaseLayoutContent"
+          >
+            <Switch>
+              <Route
+                path={`${baseUrl}/procuring_entity/overview`}
+                component={({ match }) => <Overview match={match} />}
+              />
+              <Route
+                path={`${baseUrl}/safeguard`}
+                component={({ match }) => <SafeGuard />}
+              />
+              <Route
+                path={`${baseUrl}/packages`}
+                component={({ match }) => <PackagesList match={match} />}
+              />
+              <Route
+                path={`${baseUrl}/reports`}
+                component={({ match }) => <Reports />}
+              />
+              <Route
+                path={`${baseUrl}/sub-projects`}
+                component={({ match }) => <SubProjectsList match={match} />}
+              />
 
-        </Breadcrumb>
-        <Content
-          style={{
-            margin: 0,
-          }}
-          className="BaseLayoutContent"
-        >
-            <h3>Overview</h3>
-          <Switch>
-            <Route
-              path={`${baseUrl}/procuring_entity/overview`}
-              component={({ match }) => <Overview match={match} />}
-            />
-            <Route
-              path={`${baseUrl}/safeguard`}
-              component={({ match }) => <SafeGuard />}
-            />
-            <Route
-              path={`${baseUrl}/packages`}
-              component={({ match }) => <PackagesList match={match} />}
-            />
-            <Route
-              path={`${baseUrl}/reports`}
-              component={({ match }) => <Reports />}
-            />
-            <Route
-              path={`${baseUrl}/sub-projects`}
-              component={({ match }) => <SubProjectsList match={match} />}
-            />
+              <Route path={`${baseUrl}/map`} component={MapDashboard} />
 
-            <Route path={`${baseUrl}/map`} component={MapDashboard} />
-
-            <Route
-              path={`${baseUrl}/contractors`}
-              component={(props) => <Contracts />}
-            />
-          </Switch>
-        </Content>
+              <Route
+                path={`${baseUrl}/contractors`}
+                component={(props) => <Contracts />}
+              />
+            </Switch>
+          </Content>
+        </div>
       </Layout>
     </Layout>
   );
