@@ -1,8 +1,25 @@
 .Toolbar {
   /* border-bottom: 1px solid #e8e8e8; */
   height: 50px;
-  margin-top: 40px;
+  margin-top: 20px;
   text-align: center;
+  /* background-color: aqua; */
+}
+.Toolbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.right-content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.right-content--col-2 .pagination {
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Toolbar .pagination {
@@ -50,9 +67,8 @@
   margin-inline-end: 0.4em;
 }
 
-.Toolbar-row .actionButton{
-  border: 1px solid #40a9ff;;
+.Toolbar-row .actionButton {
+  border: 1px solid #40a9ff;
   border-radius: 0;
-  padding:0 12px;
-
+  padding: 0 12px;
 }

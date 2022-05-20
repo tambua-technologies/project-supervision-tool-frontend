@@ -36,9 +36,17 @@ const Toolbar = ({
   onMapView,
 }) => (
   <div className="Toolbar">
-    <Row>
+    <Row className="Toolbar-content">
       {/* action bar */}
-      <Col xxl={12} xl={12} lg={12} md={10} sm={14} xs={12}>
+      <Col
+        xxl={12}
+        xl={12}
+        lg={12}
+        md={10}
+        sm={14}
+        xs={12}
+        className="left-content"
+      >
         <div className="Toolbar-col">
           {/* refresh  action */}
           {onRefresh && (
@@ -94,9 +102,17 @@ const Toolbar = ({
       {/* end action bar */}
 
       <Col xxl={12} xl={12} lg={12} md={14} sm={10} xs={12}>
-        <Row type="flex" justify="end">
+        <Row type="flex" justify="end" className="right-content">
           {/* selected and  number summary */}
-          <Col xxl={10} xl={12} lg={13} md={12} sm={0} xs={0}>
+          <Col
+            xxl={10}
+            xl={12}
+            lg={13}
+            md={12}
+            sm={0}
+            xs={0}
+            className="right-content--col-1"
+          >
             {selectedItemsCount > 0 && (
               <span
                 style={{ color: "#959595" }}
@@ -114,7 +130,15 @@ const Toolbar = ({
 
           {/* pagination */}
           {onPaginate && total > 0 && (
-            <Col xxl={6} xl={7} lg={9} md={9} sm={24} xs={24}>
+            <Col
+              xxl={6}
+              xl={7}
+              lg={9}
+              md={9}
+              sm={24}
+              xs={24}
+              className="right-content--col-2"
+            >
               <Pagination
                 simple
                 current={page}
