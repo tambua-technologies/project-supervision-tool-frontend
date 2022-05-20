@@ -28,7 +28,6 @@ const AppLayout = ({  match: { url: baseUrl }, project }) => {
       {true ? (
         <Layout>
           <CscLayout baseUrl={baseUrl} />
-         
         </Layout>
       ) : (
         <Layout>

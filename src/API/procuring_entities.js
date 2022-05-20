@@ -60,6 +60,19 @@ const getPackages = (filter = {}) =>
  * */
 const getPackage = (id) =>
     axios.get(`/procuring_entity_packages/${id}`).then((response) => response.data);
+
+
+/**
+ * @function
+ * @name getProcuringEntitiesStatistics
+ * @description get procuring entities statistics
+ * */
+ const getProcuringEntitiesStatistics = (id) =>
+ axios.get(`/procuring_entities/statistics/${id}`).then((response) => response.data);
+
+
+
+
 /**
  * detaches a project from list
  * @function
@@ -104,5 +117,6 @@ export default {
     getPackages,
     deletePackage,
     createPackage,
-    updatePackage
+    updatePackage,
+    getProcuringEntitiesStatistics
 }
