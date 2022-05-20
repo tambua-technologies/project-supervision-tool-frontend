@@ -1,7 +1,7 @@
 import React from "react";
 
-const SafeGuard = () => {
-    return ( <p>Safe guard component</p> );
-}
- 
-export default SafeGuard;
+const index = () => {
+  return <div>Safe guard</div>;
+};
+
+export default index;

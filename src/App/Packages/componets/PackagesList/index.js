@@ -146,8 +146,8 @@ const PackagesList = ({
 
   return (
     <>
-      <div style={{ padding: "0 15px 15px" }}>
-        <Breadcrumb separator=">" style={{ margin: "5px" }}>
+      <div style={{ padding: "0 0 15px 0" }}>
+        <Breadcrumb separator=">" style={{ marginBottom: "5px" }}>
           <Breadcrumb.Item>Project</Breadcrumb.Item>
           <Breadcrumb.Item>DMDP</Breadcrumb.Item>
           <Breadcrumb.Item>Procuring Entities</Breadcrumb.Item>
