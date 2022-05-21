@@ -1,0 +1,60 @@
+.FormModal {
+  width: 50% !important;
+}
+
+.sub-project-list {
+  color: #333333;
+}
+
+.sub-project-list:hover {
+  color: #333333;
+}
+
+@media screen and (max-width: 1024px) {
+  .FormModal {
+    width: 70% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .FormModal {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .FormModal {
+    width: 90% !important;
+  }
+  .SurveyFormDrawer .ant-drawer-content-wrapper {
+    width: 100% !important;
+    height: 100vh;
+  }
+  .SurveyFormDrawer .ant-drawer-body {
+    padding: 0 !important;
+  }
+  #form-title {
+    padding: 0 !important;
+  }
+  .SurveyTable thead>tr, .SurveyTable tbody>tr>th, .SurveyTable td {
+    display: block;
+    width: auto !important;
+    border: none;
+  }
+  .card-container .ant-tabs-nav {
+    width: inherit !important;
+    margin: 0 !important;
+    /* padding-bottom: 25px; */
+  }
+  .surveyForm .ant-drawer-content-wrapper, .subProjectForm .ant-drawer-content-wrapper, .projectForm .ant-drawer-content-wrapper {
+    width: 310px !important;
+  }
+}
+
+.HumanResourceForm .ant-input-number, .HumanResourceForm .ant-picker {
+  width: 100% !important;
+}
+
+.text {
+  color: #1b98d1
+}

@@ -8,7 +8,7 @@ import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
 import { Link } from "react-router-dom";
 import { getIdFromUrlPath, getSurveyIdByCategory } from "../../../../Util";
-import SubProjectForm from "../Form";
+
 import {
   subProjectsActions,
   subProjectsSelectors,
@@ -22,7 +22,7 @@ import {
   ticketActions,
   ticketSelectors,
 } from "../../../../redux/modules/Tickets";
-import TicketForm from "../../../Tickets/components/Form";
+
 import BaseLayout from "../../../layouts/BaseLayout";
 import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
 import {
@@ -447,15 +447,7 @@ class SubProjectsList extends Component {
             destroyOnClose
             maskClosable={false}
             className="subProjectForm"
-          >
-            <SubProjectForm
-              isEditForm={isEditForm}
-              onCancel={this.closeSubProjectForm}
-              procuringEntityPackage={procuringEntityPackage}
-              closeSubProjectForm={this.closeSubProjectForm}
-              selected={selected}
-            />
-          </Drawer>
+          ></Drawer>
 
           {/* Create Survey form */}
           <Drawer
@@ -495,9 +487,7 @@ class SubProjectsList extends Component {
             destroyOnClose
             maskClosable={false}
             className="projectForm"
-          >
-            <TicketForm selected={selected} isSelected={isSelected} />
-          </Drawer>
+          ></Drawer>
         </div>
       </>
     );
