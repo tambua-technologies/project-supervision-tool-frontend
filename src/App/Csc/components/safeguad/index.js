@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
@@ -14,6 +14,7 @@ import {
   Card,
   Input,
 } from "antd";
+import API from '../../../../API';
 import BreadCrumbContent from "../../../components/BreadCrumbContent/BreadCrumbContent";
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const concernType = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -58,11 +59,21 @@ const dummyData = [
 // const dummyData = [];
 
 const Index = ({ packages, loading, handleRefresh, match }) => {
+
+
   const history = useHistory();
   const handleViewDetails = (item) => {
     const path = `${match.url}/${item.id}`;
     history.push(path);
   };
+
+
+
+  useEffect(() => {
+    API.getSafeguardConcerns()
+    .then(res => console.log('safeguard concerns', res))
+    .catch(err => console.log(err))
+  }, []);
 
   return (
     <>
