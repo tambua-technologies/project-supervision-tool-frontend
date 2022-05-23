@@ -14,23 +14,22 @@ import {
   Card,
   Input,
 } from "antd";
-const nameSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const descriptionSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const contractNoSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const contractorSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const estimentedAmountNoSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const completeDateSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const financialProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const Contractor = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const concernType = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const issue = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const commitment = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const stepsTaken = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const challenges = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const mitigationMeasures = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 
 const headerLayout = [
-  { ...nameSpan, header: "Package" },
-  { ...descriptionSpan, header: "Concern Type" },
-  { ...contractNoSpan, header: "Issue" },
-  { ...contractorSpan, header: "Commitment" },
-  { ...estimentedAmountNoSpan, header: "Steps Taken" },
-  { ...completeDateSpan, header: "Challenges" },
-  { ...financialProgress, header: "Mitigation Measures" },
+  { ...packageSpan, header: "Package" },
+  { ...concernType, header: "Concern Type" },
+  { ...issue, header: "Issue" },
+  { ...commitment, header: "Commitment" },
+  { ...stepsTaken, header: "Steps Taken" },
+  { ...challenges, header: "Challenges" },
+  { ...mitigationMeasures, header: "Mitigation Measures" },
 ];
 const { Content } = Layout;
 
@@ -148,21 +147,24 @@ const Index = ({ packages, loading, handleRefresh, match }) => {
             >
               {/* eslint-disable react/jsx-props-no-spreading */}
 
-              <Col {...nameSpan}>{item?.package ? item?.package : "N/A"}</Col>
-              <Col {...descriptionSpan} className="contentEllipse">
+              <Col {...packageSpan}>
+                {/* {item?.package ? item?.package : "N/A"} */}
+                {"package"}
+              </Col>
+              <Col {...concernType} className="contentEllipse">
                 {item?.concern_type ? item?.concern_type : "N/A"}
               </Col>
-              <Col {...contractNoSpan}>{item?.issue ? item?.issue : "N/A"}</Col>
-              <Col {...estimentedAmountNoSpan} className="contentEllipse">
+              <Col {...issue}>{item?.issue ? item?.issue : "N/A"}</Col>
+              <Col {...commitment} className="contentEllipse">
                 {item?.commitment ? item?.commitment : "N/A"}
               </Col>
-              <Col {...estimentedAmountNoSpan} className="contentEllipse">
+              <Col {...stepsTaken} className="contentEllipse">
                 {item?.steps_taken ? item?.steps_taken : "N/A"}
               </Col>
-              <Col {...estimentedAmountNoSpan} className="contentEllipse">
+              <Col {...challenges} className="contentEllipse">
                 {item?.challenges ? item?.challenges : "N/A"}
               </Col>
-              <Col {...estimentedAmountNoSpan} className="contentEllipse">
+              <Col {...mitigationMeasures} className="contentEllipse">
                 {item?.mitigation_measures ? item?.mitigation_measures : "N/A"}
               </Col>
 

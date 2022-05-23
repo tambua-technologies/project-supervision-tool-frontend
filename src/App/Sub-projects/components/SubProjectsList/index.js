@@ -32,20 +32,19 @@ import {
 import "./styles.css";
 
 /* constants */
-const subProjectNameSpan = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 20, xs: 20 };
-const projectIdSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
-const itemsSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
+const subProjectNameSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 20, xs: 20 };
+const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const locationSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
 const statusSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
-const plannedPhyscalProgress = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
-const actualPhyscalProgress = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
+const plannedPhyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const actualPhyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const financialProgress = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
-const contractor = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
+const contractor = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 
 const { Content } = Layout;
 const headerLayout = [
   { ...subProjectNameSpan, header: "Name" },
-  { ...projectIdSpan, header: "Package" },
+  { ...packageSpan, header: "Package" },
   { ...locationSpan, header: "Location" },
   { ...statusSpan, header: "Status" },
   { ...plannedPhyscalProgress, header: "Planned Physcal Progress" },
@@ -415,22 +414,23 @@ class SubProjectsList extends Component {
                   </Link>
                 </Col>
 
-                <Col {...projectIdSpan} className="contentEllipse">
+                <Col {...packageSpan} className="contentEllipse">
                   {item?.project.code ? item?.project.code : "N/A"}
                 </Col>
 
-                <Col {...itemsSpan} className="contentEllipse">
+                <Col {...locationSpan} className="contentEllipse">
                   {item?.type ? item?.type?.name : "N/A"}
                 </Col>
-                <Col {...locationSpan} className="contentEllipse">
+                {/* <Col {...locationSpan} className="contentEllipse">
                   {item?.district?.name}
-                </Col>
+                </Col> */}
                 <Col {...statusSpan}>
                   {item?.status ? item?.status.name : "N/A"}
                 </Col>
-                <Col {...plannedPhyscalProgress}>{"data"}</Col>
-                <Col {...actualPhyscalProgress}>{"data"}</Col>
-                <Col {...financialProgress}>{"data"}</Col>
+                <Col {...plannedPhyscalProgress}>{"planned"}</Col>
+                <Col {...actualPhyscalProgress}>{"actual prog"}</Col>
+                <Col {...financialProgress}>{"financial"}</Col>
+                <Col {...contractor}>{"contractor"}</Col>
               </ListItem>
             )}
           />

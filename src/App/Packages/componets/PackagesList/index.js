@@ -29,22 +29,22 @@ import "./styles.css";
 import { useToggle } from "../../../../hooks/useToggle";
 // import TopSummary from "../../../../App/Csc/components/TopSummary/index";
 /* constants */
-const nameSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const descriptionSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const contractNoSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const contractorSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const estimentedAmountNoSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const completeDateSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
+const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const status = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const subProjects = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const actualPhysicalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const plannedPyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const timeElapsed = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
 const financialProgress = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
 const Contractor = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
 const { Content } = Layout;
 const headerLayout = [
-  { ...nameSpan, header: "Package" },
-  { ...descriptionSpan, header: "Status" },
-  { ...contractNoSpan, header: "Sub-projects" },
-  { ...contractorSpan, header: "Actial Physical Progress(%)" },
-  { ...estimentedAmountNoSpan, header: "Planned Physical Progress(%)" },
-  { ...completeDateSpan, header: "Time elapsed(%)" },
+  { ...packageSpan, header: "Package" },
+  { ...status, header: "Status" },
+  { ...subProjects, header: "Sub-projects" },
+  { ...actualPhysicalProgress, header: "Actial Physical Progress(%)" },
+  { ...plannedPyscalProgress, header: "Planned Physical Progress(%)" },
+  { ...timeElapsed, header: "Time elapsed(%)" },
   { ...financialProgress, header: "financial Progress(%)" },
   { ...Contractor, header: "Contractor" },
 ];
@@ -230,21 +230,21 @@ const PackagesList = ({
             >
               {/* eslint-disable react/jsx-props-no-spreading */}
 
-              <Col {...nameSpan}>{item?.name ? item?.name : "N/A"}</Col>
-              <Col {...descriptionSpan} className="contentEllipse">
+              <Col {...packageSpan}>{item?.name ? item?.name : "N/A"}</Col>
+              <Col {...status} className="contentEllipse">
                 Under Implemetation
               </Col>
-              <Col {...contractNoSpan}>[item.sub_projects.length]</Col>
-              <Col {...contractorSpan} className="contentEllipse">
+              <Col {...subProjects}>[item.sub_projects.length]</Col>
+              <Col {...actualPhysicalProgress} className="contentEllipse">
                 {"actual"}
               </Col>
-              <Col {...estimentedAmountNoSpan} className="contentEllipse">
+              <Col {...plannedPyscalProgress} className="contentEllipse">
                 {"actual funiancial"}
               </Col>
-              <Col {...completeDateSpan} className="contentEllipse">
+              <Col {...timeElapsed} className="contentEllipse">
                 {"time"}
               </Col>
-              <Col {...completeDateSpan} className="contentEllipse">
+              <Col {...timeElapsed} className="contentEllipse">
                 {"time"}
               </Col>
               <Col {...Contractor} className="contentEllipse">
