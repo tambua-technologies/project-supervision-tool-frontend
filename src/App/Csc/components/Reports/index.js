@@ -2,13 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
   Col,
-  Drawer,
-  Layout,
-  Button,
-  Menu,
-  Breadcrumb,
-  Row,
-  Input,
+  Drawer
 } from "antd";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
@@ -20,15 +14,14 @@ import {
   ProcuringEntitySelectors,
 } from "../../../../redux/modules/ProcuringEntities";
 import { isoDateToHumanReadableDate } from "../../../../Util";
-import ProgressReportForm from "./components/Form";
 import BreadCrumbContent from "../../../components/BreadCrumbContent/BreadCrumbContent";
+import DisplaySurveyForm from '../../../components/DisplaySurveyForm';
 
 const reportTitle = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 20 };
 const generatedOn = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 0 };
 const generatedBy = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
 const submitReport = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
 
-const { Content } = Layout;
 
 const headerLayout = [
   { ...reportTitle, header: "Name" },
@@ -98,41 +91,15 @@ function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
 
   return (
     <>
-      {/* <div style={{ padding: "0 0 15px 0" }}>
-        <Breadcrumb separator=">" style={{ marginBottom: "5px" }}>
-          <Breadcrumb.Item>Project</Breadcrumb.Item>
-          <Breadcrumb.Item>DMDP</Breadcrumb.Item>
-          <Breadcrumb.Item>Procuring Entities</Breadcrumb.Item>
-          <Breadcrumb.Item>Ilala</Breadcrumb.Item>
-        </Breadcrumb>
-        <Content
-          style={{
-            margin: 0,
-          }}
-          className="BaseLayoutContent"
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h3>Reports</h3>
-            <Button
-              style={{ border: "1.5px solid  #1890ff", color: "#1890ff" }}
-            >
-              Add EHS Update
-            </Button>
-          </div>
-        </Content>
-      </div> */}
       <BreadCrumbContent
         title={"Report"}
         name={"DMDP"}
         entity={"Procuring Entities"}
         location={"Ilala"}
-        btnTitle={"New Monthly Report"}
+        actionButton={{
+          onClick: handleOnOpenForm,
+          title: "+ New Report",
+        }}
       />
 
       <div>
@@ -200,21 +167,16 @@ function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
         {/* end list */}
 
         <Drawer
-          title={"Add New Procuring Entity Progress Report"}
-          width={550}
+          width={'100%'}
           onClose={handleOnCloseForm}
           footer={null}
           visible={showForm}
-          bodyStyle={{ paddingBottom: 80 }}
+          bodyStyle={{ padding: 0 }}
           destroyOnClose
           maskClosable={false}
           className="projectForm"
         >
-          <ProgressReportForm
-            closeForm={handleOnCloseForm}
-            procuringEntity={procuringEntity}
-            createReport={createReport}
-          />
+          <DisplaySurveyForm survey_id="apQUo4bqoEHmKNoPgaPq6F" />
         </Drawer>
       </div>
     </>

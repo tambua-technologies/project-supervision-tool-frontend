@@ -11,7 +11,7 @@ import {
 } from "antd";
 const { Content } = Layout;
 
-const BreadCrumbContent = ({ title, name, entity, location, btnTitle }) => {
+const BreadCrumbContent = ({ title, name, entity, location, actionButton }) => {
   return (
     <div style={{ padding: "0 0 15px 0" }}>
       <Breadcrumb separator=">" style={{ marginBottom: "5px" }}>
@@ -34,11 +34,12 @@ const BreadCrumbContent = ({ title, name, entity, location, btnTitle }) => {
           }}
         >
           <h3>{title}</h3>
-          {btnTitle ? (
+          {actionButton ? (
             <Button
               style={{ border: "1.5px solid  #1890ff", color: "#1890ff" }}
+              onClick={actionButton.onClick}
             >
-              {btnTitle}
+              {actionButton.title}
             </Button>
           ) : (
             " "
