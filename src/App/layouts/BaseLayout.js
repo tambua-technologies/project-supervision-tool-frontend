@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Menu, Row, Col, Input } from "antd";
 import { Link, Route, Switch } from "react-router-dom";
-import MapDashboard from "../Map";
 import Contract from "../ProcuringEntities/components/Contract";
 import UserMenu from "../Auth/components/UserMenu";
 import PackagesList from "../Packages/componets/PackagesList";
-import SubProjectsList from "../Sub-projects/components/SubProjectsList";
+import SubProjectsList from "../SubProjects/components/SubProjectsList";
 import SafeGuard from "../SafeguardConcerns";
 import API from '../../API';
 import Reports from "../Reports";
@@ -29,7 +28,7 @@ const BaseLayout = (props) => {
     })
     .catch(err => console.log(err));
   
-  }, []);
+  }, [params.procuringEntityId]);
 
   const toggle = () => {
     setCollapse({
@@ -82,7 +81,7 @@ const BaseLayout = (props) => {
           </Menu.Item>
           <Menu.Item>
             <span className="CustomizedIcon" />
-            <Link to={`${baseUrl}/map`}>Map</Link>
+            <Link to={`/map/procuring_entity/${props.match.params.procuringEntityId}`}>Map</Link>
           </Menu.Item>
           <Menu.Item>
             <span className="CustomizedIcon" />
@@ -131,7 +130,7 @@ const BaseLayout = (props) => {
               />
               <Route
                 path={`${baseUrl}/safeguard`}
-                component={({ match }) => <SafeGuard />}
+                component={({ match }) => <SafeGuard match={match}/>}
               />
               <Route
                 path={`${baseUrl}/packages`}
@@ -146,7 +145,7 @@ const BaseLayout = (props) => {
                 component={({ match }) => <SubProjectsList match={match} />}
               />
 
-              <Route path={`${baseUrl}/map`} component={MapDashboard} />
+              
 
               <Route
                 path={`${baseUrl}/contractors`}

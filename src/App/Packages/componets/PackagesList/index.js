@@ -8,27 +8,18 @@ import PropTypes from "prop-types";
 import {
   Col,
   Drawer,
-  Layout,
-  Button,
-  Menu,
-  Breadcrumb,
   Row,
   Card,
-  Input,
 } from "antd";
-import Topbar from "../../../components/Topbar";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
-import { getIdFromUrlPath, getAmount } from "../../../../Util";
+import { getIdFromUrlPath } from "../../../../Util";
 import PackageForm from "../Form";
 import { useHistory } from "react-router-dom";
-import BaseLayout from "../../../layouts/BaseLayout";
-import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
 import "./styles.css";
 import { useToggle } from "../../../../hooks/useToggle";
-import BreadCrumbContent from "../../../components/BreadCrumbContent/BreadCrumbContent";
-// import TopSummary from "../../../../App/Csc/components/TopSummary/index";
+
 /* constants */
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const status = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -38,7 +29,6 @@ const plannedPyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const timeElapsed = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
 const financialProgress = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
 const Contractor = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
-const { Content } = Layout;
 const headerLayout = [
   { ...packageSpan, header: "Package" },
   { ...status, header: "Status" },
@@ -71,35 +61,6 @@ const PackagesList = ({
   const procuringEntityId = getIdFromUrlPath(match.path, 4);
   const filter = { "filter[procuring_entity_id]": procuringEntityId };
 
-  const breadcrumbs = procuringEntity
-    ? [
-        {
-          title: "Projects",
-          url: "/projects",
-          name: "Projects",
-        },
-        {
-          title: procuringEntity.project.code,
-          url: `/projects/${procuringEntity.project.id}/`,
-          name: procuringEntity.project.name,
-        },
-        {
-          title: `Procuring Entities`,
-          url: `/projects/${procuringEntity.project.id}/procuring_entities`,
-          name: `Procuring Entities under ${procuringEntity.project.name}(${procuringEntity.project.code})`,
-        },
-        {
-          title: `${procuringEntity.agency.name}`,
-          url: `/projects/${procuringEntity.project.id}/procuring_entities/${procuringEntity.id}`,
-          name: `${procuringEntity.agency.name}`,
-        },
-        {
-          title: `Packages`,
-          url: match.url,
-          name: `Packages procured in ${procuringEntity.agency.name}`,
-        },
-      ]
-    : [];
 
   useEffect(() => {
     getPackages(filter);
@@ -147,42 +108,6 @@ const PackagesList = ({
 
   return (
     <>
-      {/* <div style={{ padding: "0 0 15px 0" }}>
-        <Breadcrumb separator=">" style={{ marginBottom: "5px" }}>
-          <Breadcrumb.Item>Project</Breadcrumb.Item>
-          <Breadcrumb.Item>DMDP</Breadcrumb.Item>
-          <Breadcrumb.Item>Procuring Entities</Breadcrumb.Item>
-          <Breadcrumb.Item>Ilala</Breadcrumb.Item>
-        </Breadcrumb>
-        <Content
-          style={{
-            margin: 0,
-          }}
-          className="BaseLayoutContent"
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h3>Packages</h3>
-            <Button
-              style={{ border: "1.5px solid  #1890ff", color: "#1890ff" }}
-            >
-              New Package
-            </Button>
-          </div>
-        </Content>
-      </div> */}
-      <BreadCrumbContent
-        title={"Packages"}
-        name={"DMDP"}
-        entity={"Procuring Entities"}
-        location={"Ilala"}
-        btnTitle={"Add EHS Update"}
-      />
       <div>
         <div className="site-card-wrapper">
           <Row gutter={16}>

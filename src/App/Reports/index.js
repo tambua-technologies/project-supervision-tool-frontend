@@ -40,14 +40,6 @@ function ProgressReports({ match, getProcuringEntity }) {
   const handleOnOpenForm = () => setShowForm(true);
   const handleOnCloseForm = () => setShowForm(false);
 
-  const createReport = async (payload) => {
-    setIsLoading(true);
-    handleOnCloseForm();
-    const response = await API.createProcuringEntitiesProgressReports(payload);
-    setProgressReports([response.data, ...progressReports]);
-    setIsLoading(false);
-  };
-
   const getReports = async () => {
     setIsLoading(true);
     const payload = `filter[procuring_entity_id]=${1}`;
@@ -55,10 +47,6 @@ function ProgressReports({ match, getProcuringEntity }) {
     setProgressReports(response.data);
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    console.log("useEffect", app);
-  },[]);
 
   const breadcrumb = [
     {

@@ -9,6 +9,7 @@ import { bindActionCreators } from "redux";
 import { appActions } from "./redux/modules/app";
 import PrivateRoute from "./App/Auth/PrivateRoute";
 import BaseLayout from "./App/layouts/BaseLayout";
+import SubProjectsMap from "./App/SubProjectsMap";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{ fontSize: 24 }} spin />);
 function App(props) {
@@ -24,6 +25,7 @@ function App(props) {
       <HashRouter hashType="hashbang">
         <Switch>
           <PrivateRoute path="/procuring_entity/:procuringEntityId" component={BaseLayout} />
+          <Route path="/map/procuring_entity/:procuringEntityId" component={SubProjectsMap} />
           <Route path="/signin" component={SignIn} />
           <Redirect to="/signin" />
         </Switch>
