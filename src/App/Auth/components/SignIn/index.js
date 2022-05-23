@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 import {authActions, authSelectors} from "../../../../redux/modules/auth";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
-import { checkForPermission } from "../../../../Util";
 
 
 /**

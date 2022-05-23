@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Col, Drawer, Layout, Button, Menu, Breadcrumb } from "antd";
+import { Col, Drawer } from "antd";
 import PropTypes from "prop-types";
-import Topbar from "../../../components/Topbar";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
@@ -22,9 +21,6 @@ import {
   ticketActions,
   ticketSelectors,
 } from "../../../../redux/modules/Tickets";
-import BreadCrumbContent from "../../../components/BreadCrumbContent/BreadCrumbContent";
-import BaseLayout from "../../../layouts/BaseLayout";
-import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
 import {
   ProcuringEntityActions,
   ProcuringEntitySelectors,
@@ -41,7 +37,6 @@ const actualPhyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const financialProgress = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
 const contractor = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 
-const { Content } = Layout;
 const headerLayout = [
   { ...subProjectNameSpan, header: "Name" },
   { ...packageSpan, header: "Package" },
@@ -280,7 +275,6 @@ class SubProjectsList extends Component {
   render() {
     const {
       subProjects,
-      searchQuery,
       loading,
       showForm,
       showSurveyForm,
@@ -292,87 +286,18 @@ class SubProjectsList extends Component {
       showCreateSurveyForm,
       closeSurveyForm,
       selected,
-      procuringEntityPackage,
     } = this.props;
-
-    const breadcrumbs = procuringEntityPackage
-      ? [
-          {
-            title: "Projects",
-            url: "/projects",
-            name: "Projects",
-          },
-          {
-            title: procuringEntityPackage?.procuring_entity?.project.code,
-            url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/`,
-            name: procuringEntityPackage?.procuring_entity?.project.name,
-          },
-          {
-            title: `Procuring Entities`,
-            url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities`,
-            name: `Procuring Entities under ${procuringEntityPackage?.procuring_entity?.project.name}(${procuringEntityPackage?.procuring_entity?.project.code})`,
-          },
-          {
-            title: `${procuringEntityPackage?.procuring_entity?.agency.name}`,
-            url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities/${procuringEntityPackage?.procuring_entity?.id}`,
-            name: `${procuringEntityPackage?.procuring_entity?.agency.name}`,
-          },
-          {
-            title: `Packages`,
-            url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities/${procuringEntityPackage?.procuring_entity?.id}/packages`,
-            name: `Packages procured in ${procuringEntityPackage?.procuring_entity?.agency.name}`,
-          },
-          {
-            title: `${procuringEntityPackage?.name}`,
-            url: `/projects/${procuringEntityPackage?.procuring_entity?.project.id}/procuring_entities/${procuringEntityPackage?.procuring_entity?.id}/packages/${procuringEntityPackage?.id}`,
-            name: `${procuringEntityPackage?.contract?.name}`,
-          },
-          {
-            title: `SubProjects`,
-            url: this.props.match.url,
-            name: `List of Sub Projects`,
-          },
-        ]
-      : [];
 
     const survey_id = selected?.surveys
       ? getSurveyIdByCategory("field_notes", selected?.surveys)
       : null;
 
-    const { isEditForm, previewOnMap, isSelected } = this.state;
+    const { isEditForm, previewOnMap } = this.state;
     return previewOnMap ? (
       <PreviewOnMap data={selected} />
     ) : (
       <>
-        {/* <div style={{ padding: "0 0 15px 0" }}>
-          <Breadcrumb separator=">" style={{ marginBottom: "5px" }}>
-            <Breadcrumb.Item>Project</Breadcrumb.Item>
-            <Breadcrumb.Item>DMDP</Breadcrumb.Item>
-            <Breadcrumb.Item>Ilala</Breadcrumb.Item>
-          </Breadcrumb>
-          <Content
-            style={{
-              margin: 0,
-            }}
-            className="BaseLayoutContent"
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <h3>Reports</h3>
-              <div>&nbsp;</div>
-            </div>
-          </Content>
-        </div> */}
-        <BreadCrumbContent
-          title={"Sub-projects"}
-          name={"DMDP"}
-          location={"Ilala"}
-        />
+        
         <div>
           {/* list starts */}
           <CustomList

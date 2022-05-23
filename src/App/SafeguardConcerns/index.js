@@ -5,12 +5,10 @@ import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import {
   Col,
-  Layout,
   Row,
   Card,
 } from "antd";
 import API from '../../API';
-import BreadCrumbContent from "../components/BreadCrumbContent/BreadCrumbContent";
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const concernType = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const issue = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -50,7 +48,6 @@ const dummyData = [
   },
 ];
 
-// const dummyData = [];
 
 const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
 
@@ -71,13 +68,7 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
 
   return (
     <>
-      <BreadCrumbContent
-        title={"Safeguard"}
-        name={"DMDP"}
-        entity={"Procuring Entities"}
-        location={"Ilala"}
-        btnTitle={"Add EHS Update"}
-      />
+     
       <div>
         <div className="site-card-wrapper">
           <Row gutter={16}>
