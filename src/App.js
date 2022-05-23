@@ -8,8 +8,7 @@ import SignIn from "./App/Auth/components/SignIn";
 import { bindActionCreators } from "redux";
 import { appActions } from "./redux/modules/app";
 import PrivateRoute from "./App/Auth/PrivateRoute";
-import AppLayout from "./App/layouts/appLayout";
-import CscLayout from "./App/layouts/cscLayout";
+import BaseLayout from "./App/layouts/BaseLayout";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{ fontSize: 24 }} spin />);
 function App(props) {
@@ -24,8 +23,7 @@ function App(props) {
     <div className="App">
       <HashRouter hashType="hashbang">
         <Switch>
-          <Route path="/app/:procuringEntityId" component={CscLayout} />
-
+          <PrivateRoute path="/procuring_entity/:procuringEntityId" component={BaseLayout} />
           <Route path="/signin" component={SignIn} />
           <Redirect to="/signin" />
         </Switch>
