@@ -58,7 +58,14 @@ function ProgressReports({ match, getProcuringEntity }) {
 
   useEffect(() => {
     console.log("useEffect", app);
-  },[app]);
+  },[]);
+
+  const breadcrumb = [
+    {
+      title: 'Ilala',
+      path: ''
+    }
+  ]
 
   useEffect(() => {
     console.log(match.params);
@@ -71,14 +78,11 @@ function ProgressReports({ match, getProcuringEntity }) {
   return (
     <>
       <div>
-        {/* Topbar */}
-
-        {/* end Topbar */}
-
         {/* list starts */}
         <CustomList
           itemName="Progress Reports"
           title={"Report"}
+          breadcrumb={breadcrumb}
           project={app?.project?.code}
           entity={"Procuring Entities"}
           location={"Ilala"}

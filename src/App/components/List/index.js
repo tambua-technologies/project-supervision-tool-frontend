@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { List } from "antd";
+import {
+  Layout,
+  Button,
+  List
+} from "antd";
 import map from "lodash/map";
 import remove from "lodash/remove";
 import Toolbar from "../Toolbar";
-import BreadCrumbContent from '../BreadCrumbContent/BreadCrumbContent';
 import ListHeader from "../ListHeader";
 import "./styles.css";
+
+const { Content } = Layout;
 
 /**
  * @function
@@ -36,13 +41,8 @@ const CustomList = ({
   headerLayout,
   onPaginate,
   onRefresh,
-  onMapView,
   title,
   actionButton,
-  project,
-  entity,
-  location,
-
   generateExportUrl,
   renderListItem,
 }) => {
@@ -85,13 +85,34 @@ const CustomList = ({
 
   return (
     <>
-     <BreadCrumbContent
-        title={title}
-        name={project}
-        entity={entity}
-        location={location}
-        actionButton={actionButton}
-      />
+      <div style={{ padding: "0 0 15px 0" }}>
+        <Content
+          style={{
+            margin: 0,
+          }}
+          className="BaseLayoutContent"
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <h3>{title}</h3>
+            {actionButton ? (
+              <Button
+                style={{ border: "1.5px solid  #1890ff", color: "#1890ff" }}
+                onClick={actionButton.onClick}
+              >
+                {actionButton.title}
+              </Button>
+            ) : (
+              " "
+            )}
+          </div>
+      </Content>
+    </div>
      <div className="List">
       <Toolbar
         itemName={itemName}
