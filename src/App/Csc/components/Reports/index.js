@@ -112,7 +112,7 @@ function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
           itemName="Progress Reports"
           items={progressReports}
           page={1}
-          itemCount={0}
+          itemCount={progressReports.length}
           loading={isLoading}
           onRefresh={() => {}}
           onMapView={() => {}}
