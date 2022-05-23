@@ -21,6 +21,7 @@ import {
 } from "../../../../redux/modules/ProcuringEntities";
 import { isoDateToHumanReadableDate } from "../../../../Util";
 import ProgressReportForm from "./components/Form";
+import BreadCrumbContent from "../../../components/BreadCrumbContent/BreadCrumbContent";
 
 const reportTitle = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 20 };
 const generatedOn = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 0 };
@@ -97,7 +98,7 @@ function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
 
   return (
     <>
-      <div style={{ padding: "0 0 15px 0" }}>
+      {/* <div style={{ padding: "0 0 15px 0" }}>
         <Breadcrumb separator=">" style={{ marginBottom: "5px" }}>
           <Breadcrumb.Item>Project</Breadcrumb.Item>
           <Breadcrumb.Item>DMDP</Breadcrumb.Item>
@@ -125,7 +126,14 @@ function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
             </Button>
           </div>
         </Content>
-      </div>
+      </div> */}
+      <BreadCrumbContent
+        title={"Report"}
+        name={"DMDP"}
+        entity={"Procuring Entities"}
+        location={"Ilala"}
+        btnTitle={"New Monthly Report"}
+      />
 
       <div>
         {/* Topbar */}

@@ -14,6 +14,7 @@ import {
   Card,
   Input,
 } from "antd";
+import BreadCrumbContent from "../../../components/BreadCrumbContent/BreadCrumbContent";
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const concernType = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const issue = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -65,7 +66,7 @@ const Index = ({ packages, loading, handleRefresh, match }) => {
 
   return (
     <>
-      <div style={{ padding: "0 0 15px 0" }}>
+      {/* <div style={{ padding: "0 0 15px 0" }}>
         <Breadcrumb separator=">" style={{ marginBottom: "5px" }}>
           <Breadcrumb.Item>Ilala</Breadcrumb.Item>
           <Breadcrumb.Item>Safeguard Concents</Breadcrumb.Item>
@@ -91,7 +92,14 @@ const Index = ({ packages, loading, handleRefresh, match }) => {
             </Button>
           </div>
         </Content>
-      </div>
+      </div> */}
+      <BreadCrumbContent
+        title={"Safeguard"}
+        name={"DMDP"}
+        entity={"Procuring Entities"}
+        location={"Ilala"}
+        btnTitle={"Add EHS Update"}
+      />
       <div>
         <div className="site-card-wrapper">
           <Row gutter={16}>

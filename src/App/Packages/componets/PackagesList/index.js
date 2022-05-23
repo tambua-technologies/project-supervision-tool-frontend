@@ -27,6 +27,7 @@ import BaseLayout from "../../../layouts/BaseLayout";
 import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
 import "./styles.css";
 import { useToggle } from "../../../../hooks/useToggle";
+import BreadCrumbContent from "../../../components/BreadCrumbContent/BreadCrumbContent";
 // import TopSummary from "../../../../App/Csc/components/TopSummary/index";
 /* constants */
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -146,7 +147,7 @@ const PackagesList = ({
 
   return (
     <>
-      <div style={{ padding: "0 0 15px 0" }}>
+      {/* <div style={{ padding: "0 0 15px 0" }}>
         <Breadcrumb separator=">" style={{ marginBottom: "5px" }}>
           <Breadcrumb.Item>Project</Breadcrumb.Item>
           <Breadcrumb.Item>DMDP</Breadcrumb.Item>
@@ -174,7 +175,14 @@ const PackagesList = ({
             </Button>
           </div>
         </Content>
-      </div>
+      </div> */}
+      <BreadCrumbContent
+        title={"Packages"}
+        name={"DMDP"}
+        entity={"Procuring Entities"}
+        location={"Ilala"}
+        btnTitle={"Add EHS Update"}
+      />
       <div>
         <div className="site-card-wrapper">
           <Row gutter={16}>

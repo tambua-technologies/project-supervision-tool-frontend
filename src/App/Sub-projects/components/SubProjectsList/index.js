@@ -22,7 +22,7 @@ import {
   ticketActions,
   ticketSelectors,
 } from "../../../../redux/modules/Tickets";
-
+import BreadCrumbContent from "../../../components/BreadCrumbContent/BreadCrumbContent";
 import BaseLayout from "../../../layouts/BaseLayout";
 import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
 import {
@@ -344,7 +344,7 @@ class SubProjectsList extends Component {
       <PreviewOnMap data={selected} />
     ) : (
       <>
-        <div style={{ padding: "0 0 15px 0" }}>
+        {/* <div style={{ padding: "0 0 15px 0" }}>
           <Breadcrumb separator=">" style={{ marginBottom: "5px" }}>
             <Breadcrumb.Item>Project</Breadcrumb.Item>
             <Breadcrumb.Item>DMDP</Breadcrumb.Item>
@@ -367,7 +367,12 @@ class SubProjectsList extends Component {
               <div>&nbsp;</div>
             </div>
           </Content>
-        </div>
+        </div> */}
+        <BreadCrumbContent
+          title={"Sub-projects"}
+          name={"DMDP"}
+          location={"Ilala"}
+        />
         <div>
           {/* list starts */}
           <CustomList
