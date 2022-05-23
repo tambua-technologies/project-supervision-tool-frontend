@@ -23,15 +23,7 @@ const SignIn = ({accessToken, loading, login, errorMsg, permissions}) => {
     let history  = useHistory();
     useEffect(() => {
         if(permissions.length > 0) {
-            if(checkForPermission(permissions, 'can manage packages')){
-                history.push('app/projects/1/procuring_entities/1');
-            }
-            else if(checkForPermission(permissions, 'can manage project')){
-                history.push('app/projects/1');
-            }
-            else {
-                history.push('app/projects');
-            }
+            history.push('app/procuring_entity/overview');
         }
 
     }, [permissions]); // eslint-disable-line react-hooks/exhaustive-deps
