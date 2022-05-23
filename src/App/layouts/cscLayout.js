@@ -16,15 +16,24 @@ const { Header, Content, Sider } = Layout;
 
 
 
-
+export const AppContext = React.createContext({
+  app: {
+    project: null,
+  procuringEntity: null,
+  }
+});
 const CscLayout = (props) => {
+  const [project, setProject] = useState(null);
+  const [procuringEntity, setProcuringEntity] = useState(null);
   const { match: { url: baseUrl, params} } = props;
-  console.log(params);
   const [collapsed, setCollapse] = useState(false);
 
   useEffect(() => {
     API.getProcuringEntity(params.procuringEntityId)
-    .then(res => console.log(res))
+    .then(res => {
+      setProcuringEntity(res.data);
+      setProject(res.data.project);
+    })
     .catch(err => console.log(err));
   
   }, []);
@@ -35,7 +44,8 @@ const CscLayout = (props) => {
     });
   };
   return (
-    <Layout>
+   <AppContext.Provider value={{app: { project, procuringEntity }}}>
+      <Layout>
       <Sider width={200} className="sider-layout">
         <Row type="flex" justify="start">
           <div className="header-logo">
@@ -156,6 +166,7 @@ const CscLayout = (props) => {
         </div>
       </Layout>
     </Layout>
+     </AppContext.Provider>
   );
 };
 

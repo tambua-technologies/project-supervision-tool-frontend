@@ -4,6 +4,8 @@ import {
   Col,
   Drawer
 } from "antd";
+
+import { AppContext } from "../../../layouts/cscLayout";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
@@ -31,6 +33,7 @@ const headerLayout = [
 
 function ProgressReports({ match, getProcuringEntity }) {
   const [progressReports, setProgressReports] = useState([]);
+  const app = React.useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
@@ -54,6 +57,10 @@ function ProgressReports({ match, getProcuringEntity }) {
   };
 
   useEffect(() => {
+    console.log("useEffect", app);
+  },[app]);
+
+  useEffect(() => {
     console.log(match.params);
     // getProcuringEntity(1);
     getReports();
@@ -72,7 +79,7 @@ function ProgressReports({ match, getProcuringEntity }) {
         <CustomList
           itemName="Progress Reports"
           title={"Report"}
-          project={"DMDP"}
+          project={app?.project?.code}
           entity={"Procuring Entities"}
           location={"Ilala"}
           actionButton={{
