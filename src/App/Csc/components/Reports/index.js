@@ -14,7 +14,6 @@ import {
   ProcuringEntitySelectors,
 } from "../../../../redux/modules/ProcuringEntities";
 import { isoDateToHumanReadableDate } from "../../../../Util";
-import BreadCrumbContent from "../../../components/BreadCrumbContent/BreadCrumbContent";
 import DisplaySurveyForm from '../../../components/DisplaySurveyForm';
 
 const reportTitle = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 20 };
@@ -30,7 +29,7 @@ const headerLayout = [
   { ...submitReport, header: "submitted on" },
 ];
 
-function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
+function ProgressReports({ match, getProcuringEntity }) {
   const [progressReports, setProgressReports] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -55,53 +54,15 @@ function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
   };
 
   useEffect(() => {
-    getProcuringEntity(1);
+    console.log(match.params);
+    // getProcuringEntity(1);
     getReports();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const breadcrumbs = procuringEntity
-    ? [
-        {
-          title: "Projects",
-          url: "/projects",
-          name: "Projects",
-        },
-        {
-          title: procuringEntity.project.code,
-          url: `/projects/${procuringEntity.project.id}/`,
-          name: procuringEntity.project.name,
-        },
-        {
-          title: `Procuring Entities`,
-          url: `/projects/${procuringEntity.project.id}/procuring_entities`,
-          name: `Procuring Entities under ${procuringEntity.project.name}(${procuringEntity.project.code})`,
-        },
-        {
-          title: `${procuringEntity.agency.name}`,
-          url: `/projects/${procuringEntity.project.id}/procuring_entities/${procuringEntity.id}`,
-          name: `${procuringEntity.agency.name}`,
-        },
-        {
-          title: `Progress Reports`,
-          url: "",
-          name: `Progress Reports`,
-        },
-      ]
-    : [];
+ 
 
   return (
     <>
-      <BreadCrumbContent
-        title={"Report"}
-        name={"DMDP"}
-        entity={"Procuring Entities"}
-        location={"Ilala"}
-        actionButton={{
-          onClick: handleOnOpenForm,
-          title: "+ New Report",
-        }}
-      />
-
       <div>
         {/* Topbar */}
 
@@ -110,6 +71,14 @@ function ProgressReports({ match, procuringEntity, getProcuringEntity }) {
         {/* list starts */}
         <CustomList
           itemName="Progress Reports"
+          title={"Report"}
+          project={"DMDP"}
+          entity={"Procuring Entities"}
+          location={"Ilala"}
+          actionButton={{
+            onClick: handleOnOpenForm,
+            title: "+ New Report",
+          }}
           items={progressReports}
           page={1}
           itemCount={progressReports.length}

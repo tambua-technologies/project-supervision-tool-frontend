@@ -4,6 +4,7 @@ import { List } from "antd";
 import map from "lodash/map";
 import remove from "lodash/remove";
 import Toolbar from "../Toolbar";
+import BreadCrumbContent from '../BreadCrumbContent/BreadCrumbContent';
 import ListHeader from "../ListHeader";
 import "./styles.css";
 
@@ -36,6 +37,12 @@ const CustomList = ({
   onPaginate,
   onRefresh,
   onMapView,
+  title,
+  actionButton,
+  project,
+  entity,
+  location,
+
   generateExportUrl,
   renderListItem,
 }) => {
@@ -77,7 +84,15 @@ const CustomList = ({
   const isSelected = (item) => map(selectedItems, "_id").includes(item._id); // eslint-disable-line
 
   return (
-    <div className="List">
+    <>
+     <BreadCrumbContent
+        title={title}
+        name={project}
+        entity={entity}
+        location={location}
+        actionButton={actionButton}
+      />
+     <div className="List">
       <Toolbar
         itemName={itemName}
         page={page}
@@ -110,6 +125,8 @@ const CustomList = ({
         }
       />
     </div>
+    </>
+   
   );
 };
 

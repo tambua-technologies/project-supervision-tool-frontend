@@ -23,7 +23,7 @@ const SignIn = ({accessToken, loading, login, errorMsg, permissions}) => {
     let history  = useHistory();
     useEffect(() => {
         if(permissions.length > 0) {
-            history.push('app/procuring_entity/overview');
+            history.push('app/1/procuring_entity/overview');
         }
 
     }, [permissions]); // eslint-disable-line react-hooks/exhaustive-deps

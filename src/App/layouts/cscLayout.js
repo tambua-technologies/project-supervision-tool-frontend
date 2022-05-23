@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Button, Menu, Breadcrumb, Row, Col, Input } from "antd";
 import { Link, Route, Switch } from "react-router-dom";
 import MapDashboard from "../Map";
@@ -7,13 +7,27 @@ import UserMenu from "../navigation/UserMenu";
 import PackagesList from "../Packages/componets/PackagesList";
 import SubProjectsList from "../Sub-projects/components/SubProjectsList";
 import SafeGuard from "../Csc/components/safeguad";
+import API from '../../API';
 import Reports from "../Csc/components/Reports";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import "./styles.css";
 import Overview from "../Csc/components/overview";
 const { Header, Content, Sider } = Layout;
-const CscLayout = ({ baseUrl }) => {
+
+
+
+
+const CscLayout = (props) => {
+  const { match: { url: baseUrl, params} } = props;
+  console.log(params);
   const [collapsed, setCollapse] = useState(false);
+
+  useEffect(() => {
+    API.getProcuringEntity(params.procuringEntityId)
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+  
+  }, []);
 
   const toggle = () => {
     setCollapse({
@@ -124,7 +138,7 @@ const CscLayout = ({ baseUrl }) => {
               />
               <Route
                 path={`${baseUrl}/reports`}
-                component={({ match }) => <Reports />}
+                component={(props) => <Reports {...props} />}
               />
               <Route
                 path={`${baseUrl}/sub-projects`}

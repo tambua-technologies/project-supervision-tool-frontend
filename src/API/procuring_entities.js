@@ -63,6 +63,16 @@ const getPackage = (id) =>
 
 
 /**
+* @function
+* @name getProcuringEntity
+* @description get procuring entity
+* */
+const getProcuringEntity = (id) =>
+    axios.get(`/procuring_entities/${id}`).then((response) => response.data);
+
+
+
+/**
  * @function
  * @name getProcuringEntitiesStatistics
  * @description get procuring entities statistics
@@ -118,5 +128,6 @@ export default {
     deletePackage,
     createPackage,
     updatePackage,
-    getProcuringEntitiesStatistics
+    getProcuringEntitiesStatistics,
+    getProcuringEntity
 }
