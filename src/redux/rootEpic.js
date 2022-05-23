@@ -3,7 +3,6 @@ import { mapRootEpic } from "./modules/map/epics";
 import { projectsRootEpic } from "./modules/projects/epics";
 import { restoreAccessTokenEpic } from './modules/app/epics';
 import { authRootEpic } from "./modules/auth/epics";
-import { focalPeopleEpic } from "../App/FocalPeople/duck/epics";
 import { sectorsEpic } from './modules/ProjectsSectors/epics';
 import { projectDetailsEpic } from './modules/projectDetails/epics';
 import {subProjectsEpic} from './modules/subProjects/epics';
@@ -15,7 +14,6 @@ import { procuringEntitiesEpic } from './modules/ProcuringEntities/epics';
 export const rootEpic = combineEpics(
     authRootEpic,
     restoreAccessTokenEpic,
-    focalPeopleEpic,
     restoreAccessTokenEpic,
     mapRootEpic,
     projectsRootEpic,

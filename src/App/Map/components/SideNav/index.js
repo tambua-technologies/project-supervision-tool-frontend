@@ -10,7 +10,7 @@ import projectsIcon from '../../../../assets/icons/projects-white.svg';
 import homeIcon from '../../../../assets/icons/home-white.svg';
 import {Drawer} from 'antd';
 import { MenuUnfoldOutlined } from '@ant-design/icons';
-import UserMenu from '../../../navigation/UserMenu';
+import UserMenu from '../../../Auth/components/UserMenu';
 import './styles.css';
 
 function SideNav({setActiveMapSideMenuItem, activeItem}) {

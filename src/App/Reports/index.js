@@ -5,18 +5,18 @@ import {
   Drawer
 } from "antd";
 
-import { AppContext } from "../../../../context/AppContext";
-import CustomList from "../../../components/List";
-import ListItem from "../../../components/ListItem";
-import ListItemActions from "../../../components/ListItemActions";
-import API from "../../../../API";
-import { API_BASE_URL } from "../../../../API/config";
+import { AppContext } from "../../context/AppContext";
+import CustomList from "../components/List";
+import ListItem from "../components/ListItem";
+import ListItemActions from "../components/ListItemActions";
+import API from "../../API";
+import { API_BASE_URL } from "../../API/config";
 import {
   ProcuringEntityActions,
   ProcuringEntitySelectors,
-} from "../../../../redux/modules/ProcuringEntities";
-import { isoDateToHumanReadableDate } from "../../../../Util";
-import DisplaySurveyForm from '../../../components/DisplaySurveyForm';
+} from "../../redux/modules/ProcuringEntities";
+import { isoDateToHumanReadableDate } from "../../Util";
+import DisplaySurveyForm from '../components/DisplaySurveyForm';
 
 const reportTitle = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 20 };
 const generatedOn = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 0 };

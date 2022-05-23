@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Col, Row } from "antd";
 import "./styles.css";
-import { isoDateToHumanReadableDate } from "../../../../Util";
+import { isoDateToHumanReadableDate } from "../../../Util";
 
 const TopSummary = ({packages,subProjects,contractors, latestReport}) => {
     return (

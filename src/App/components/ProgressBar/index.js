@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, Col, Row } from "antd";
 import randomColor from "randomcolor";
-import ProgressBar from "../../../components/Progress";
+import ProgressBar from "../Progress";
 
 import "./styles.css";
 

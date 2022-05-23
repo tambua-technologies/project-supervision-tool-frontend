@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Button, Menu, Breadcrumb, Row, Col, Input } from "antd";
+import { Layout, Menu, Row, Col, Input } from "antd";
 import { Link, Route, Switch } from "react-router-dom";
 import MapDashboard from "../Map";
-import Contracts from "../Contracts";
-import UserMenu from "../navigation/UserMenu";
+import Contract from "../ProcuringEntities/components/Contract";
+import UserMenu from "../Auth/components/UserMenu";
 import PackagesList from "../Packages/componets/PackagesList";
 import SubProjectsList from "../Sub-projects/components/SubProjectsList";
-import SafeGuard from "../Csc/components/safeguad";
+import SafeGuard from "../SafeguardConcerns";
 import API from '../../API';
-import Reports from "../Csc/components/Reports";
+import Reports from "../Reports";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import "./styles.css";
-import Overview from "../Csc/components/overview";
 import {AppContext} from "../../context/AppContext";
+import ProcuringEntity from "../ProcuringEntities/components/ProcuringEntity";
 const { Header, Content, Sider } = Layout;
 
 const BaseLayout = (props) => {
@@ -127,7 +127,7 @@ const BaseLayout = (props) => {
             <Switch>
               <Route
                 path={`${baseUrl}/overview`}
-                component={({ match }) => <Overview match={match} />}
+                component={({ match }) => <ProcuringEntity match={match} />}
               />
               <Route
                 path={`${baseUrl}/safeguard`}
@@ -150,7 +150,7 @@ const BaseLayout = (props) => {
 
               <Route
                 path={`${baseUrl}/contractors`}
-                component={(props) => <Contracts />}
+                component={(props) => <Contract />}
               />
             </Switch>
           </Content>

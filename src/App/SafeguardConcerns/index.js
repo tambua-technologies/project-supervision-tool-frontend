@@ -1,21 +1,16 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import CustomList from "../../../components/List";
-import ListItem from "../../../components/ListItem";
-import ListItemActions from "../../../components/ListItemActions";
+import CustomList from "../components/List";
+import ListItem from "../components/ListItem";
+import ListItemActions from "../components/ListItemActions";
 import {
   Col,
-  Drawer,
   Layout,
-  Button,
-  Menu,
-  Breadcrumb,
   Row,
   Card,
-  Input,
 } from "antd";
-import API from '../../../../API';
-import BreadCrumbContent from "../../../components/BreadCrumbContent/BreadCrumbContent";
+import API from '../../API';
+import BreadCrumbContent from "../components/BreadCrumbContent/BreadCrumbContent";
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const concernType = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const issue = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -33,7 +28,6 @@ const headerLayout = [
   { ...challenges, header: "Challenges" },
   { ...mitigationMeasures, header: "Mitigation Measures" },
 ];
-const { Content } = Layout;
 
 const dummyData = [
   {
@@ -58,7 +52,7 @@ const dummyData = [
 
 // const dummyData = [];
 
-const Index = ({ packages, loading, handleRefresh, match }) => {
+const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
 
 
   const history = useHistory();
@@ -77,33 +71,6 @@ const Index = ({ packages, loading, handleRefresh, match }) => {
 
   return (
     <>
-      {/* <div style={{ padding: "0 0 15px 0" }}>
-        <Breadcrumb separator=">" style={{ marginBottom: "5px" }}>
-          <Breadcrumb.Item>Ilala</Breadcrumb.Item>
-          <Breadcrumb.Item>Safeguard Concents</Breadcrumb.Item>
-        </Breadcrumb>
-        <Content
-          style={{
-            margin: 0,
-          }}
-          className="BaseLayoutContent"
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h3>Safeguard Concerns</h3>
-            <Button
-              style={{ border: "1.5px solid  #1890ff", color: "#1890ff" }}
-            >
-              + New Safeguard Concern
-            </Button>
-          </div>
-        </Content>
-      </div> */}
       <BreadCrumbContent
         title={"Safeguard"}
         name={"DMDP"}
@@ -196,4 +163,4 @@ const Index = ({ packages, loading, handleRefresh, match }) => {
   );
 };
 
-export default Index;
+export default SafeguardConcerns;

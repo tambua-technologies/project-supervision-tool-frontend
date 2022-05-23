@@ -1,14 +1,12 @@
 import { Row, Col } from "antd";
 import React, { useEffect, useState } from "react";
-import TopSummary from "../TopSummary";
-import ProgressBarOverview from "../ProgressBar";
-import MapDashboard from "../../../Map";
-// import LatestReport from "../Reports/components/LatestReport";
+import TopSummary from "../../../components/TopSummary";
+import ProgressBarOverview from "../../../components/ProgressBar";
 import "./styles.css";
 import BaseMap from "../../../Map/components/BaseMap";
 import API from "../../../../API";
 
-const Overview = () => {
+const ProcuringEntity = () => {
   const [statistics, setStatistics] = useState(null);
   const [physicalProgress, setPysicalProgress] = useState([]);
   const [financialProgress, setFinancialProgress] = useState([]);
@@ -29,7 +27,7 @@ useEffect(() => {
 }, []);
 
   return statistics ? (
-    <div className="Overview">
+    <div className="ProcuringEntity">
       <TopSummary
         packages={statistics.packages}
          subProjects={statistics.subProjects}
@@ -37,7 +35,7 @@ useEffect(() => {
          latestReport={statistics?.reports?.length > 0 ? statistics.reports[0].created_at : null}
          />
 
-      <section className="Overview-progress">
+      <section className="ProcuringEntity-progress">
         <Row gutter={16}>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>
             <ProgressBarOverview
@@ -57,7 +55,7 @@ useEffect(() => {
         </Row>
       </section>
 
-      <section className="Overview-map-report">
+      <section className="ProcuringEntity-map-report">
         <Row gutter={16}>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24} style={{ height: "50px" }}>
             <h4 className="text-blue" style={{ marginBottom: 30, fontSize: 16 }}>
@@ -78,4 +76,4 @@ useEffect(() => {
   ) : '';
 };
 
-export default Overview;
+export default ProcuringEntity;

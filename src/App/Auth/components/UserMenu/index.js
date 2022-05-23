@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
-import {authActions} from '../../redux/modules/auth';
+import {authActions} from '../../../../redux/modules/auth';
 import './styles.css';
 
 /**
