@@ -4,12 +4,8 @@ import CustomList from "../components/List";
 import TopSummary from "../components/TopSummary";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
-import {
-  Col,
-  Row,
-  Card,
-} from "antd";
-import API from '../../API';
+import { Col, Row, Card } from "antd";
+import API from "../../API";
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const concernType = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const issue = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -49,65 +45,47 @@ const dummyData = [
   },
 ];
 
-
 const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
-
-
   const history = useHistory();
   const handleViewDetails = (item) => {
     const path = `${match.url}/${item.id}`;
     history.push(path);
   };
 
-
-
   useEffect(() => {
     API.getSafeguardConcerns()
-    .then(res => console.log('safeguard concerns', res))
-    .catch(err => console.log(err))
+      .then((res) => console.log("safeguard concerns", res))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <>
-     
       <div>
-        {/* <div className="site-card-wrapper">
-          <Row gutter={16}>
-            <Col xxl={6} xl={6} lg={6} md={12} sm={24} xs={24}>
-              <Card bordered={true} className="text-blue">
-                <span>10</span>
-                <h4>Environmental Concerns</h4>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={6} lg={6} md={12} sm={24} xs={24}>
-              <Card bordered={true} className="text-blue">
-                <span>3</span>
-                <h4>Social Concerns</h4>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={6} lg={6} md={12} sm={24} xs={24}>
-              <Card bordered={true} className="text-blue">
-                <span>2</span>
-                <h4>Healthy & Safety Concerns</h4>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={6} lg={6} md={12} sm={24} xs={24}>
-              <Card bordered={true} className="text-blue">
-                <h4>Lastest report</h4>
-                <h4>May 12 2021</h4>
-              </Card>
-            </Col>
-          </Row>
-        </div> */}
-
         <CustomList
           itemName="Packages"
           items={dummyData}
-          topSummary= {<TopSummary summaries={[{label: 'iddi', value: 'msangi' }, {label: 'iddi', value: 'msangi' }, {label: 'iddi', value: 'msangi' }]} />}
+          topSummary={
+            <TopSummary
+              summaries={[
+                { label: "iddi", value: "msangi" },
+                { label: "iddi", value: "msangi" },
+                { label: "iddi", value: "msangi" },
+              ]}
+            />
+          }
           page={1}
           itemCount={dummyData.length}
           loading={loading}
           onRefresh={handleRefresh}
+          actionButtonProp={{
+            title: "Safeguard Concerns",
+            arrActions: [
+              {
+                btnName: "Add EHS Update ",
+                btnAction: () => {},
+              }
+            ],
+          }}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
             <ListItem

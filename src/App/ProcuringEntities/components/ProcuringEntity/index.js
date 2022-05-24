@@ -7,6 +7,7 @@ import BaseMap from "../../../Map/components/BaseMap";
 import API from "../../../../API";
 import { isoDateToHumanReadableDate } from "../../../../Util";
 import { LoadingOutlined } from "@ant-design/icons";
+import ActionBar from "../../../components/ActionBar";
 
 const ProcuringEntity = () => {
   const [physicalProgress, setPysicalProgress] = useState([]);
@@ -35,6 +36,7 @@ const ProcuringEntity = () => {
                 ? isoDateToHumanReadableDate(res.data.reports[0].created_at)
                 : null,
             value: "Latest Report",
+            cardType: 'date'
           },
         ];
 
@@ -57,8 +59,22 @@ const ProcuringEntity = () => {
 
   return summaries.length > 0 ? (
     <div className="ProcuringEntity">
+      <ActionBar
+        actionButtonProp={{
+          title: "Overview",
+          arrActions: [
+            {
+              btnName: "Add Field Note ",
+              btnAction: () => {},
+            },
+            {
+              btnName: "New Monthly Report ",
+              btnAction: () => {},
+            },
+          ],
+        }}
+      />
       <TopSummary summaries={summaries} />
-
       <section className="ProcuringEntity-progress">
         <Row gutter={16}>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>

@@ -5,12 +5,7 @@ import {
   ProcuringEntitySelectors,
 } from "../../../../redux/modules/ProcuringEntities";
 import PropTypes from "prop-types";
-import {
-  Col,
-  Drawer,
-  Row,
-  Card,
-} from "antd";
+import { Col, Drawer, Row, Card } from "antd";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
@@ -19,7 +14,7 @@ import PackageForm from "../Form";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
 import { useToggle } from "../../../../hooks/useToggle";
-
+import TopSummary from "../../../components/TopSummary";
 /* constants */
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const status = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -60,7 +55,6 @@ const PackagesList = ({
   const { isEditForm, setIsEditForm, setVisible } = useToggle(false);
   const procuringEntityId = getIdFromUrlPath(match.path, 4);
   const filter = { "filter[procuring_entity_id]": procuringEntityId };
-
 
   useEffect(() => {
     getPackages(filter);
@@ -109,40 +103,31 @@ const PackagesList = ({
   return (
     <>
       <div>
-        <div className="site-card-wrapper">
-          <Row gutter={16}>
-            <Col xxl={6} xl={6} lg={6} md={12} sm={24} xs={24}>
-              <Card bordered={true} className="text-blue">
-                <span>10</span>
-                <h4>In progress</h4>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={6} lg={6} md={12} sm={24} xs={24}>
-              <Card bordered={true} className="text-blue">
-                <span>3</span>
-                <h4>Completed</h4>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={6} lg={6} md={12} sm={24} xs={24}>
-              <Card bordered={true} className="text-blue">
-                <span>2</span>
-                <h4>Challenges</h4>
-              </Card>
-            </Col>
-            <Col xxl={6} xl={6} lg={6} md={12} sm={24} xs={24}>
-              <Card bordered={true} className="text-blue">
-                <h4>Last report</h4>
-                <h4>May 12 2021</h4>
-              </Card>
-            </Col>
-          </Row>
-        </div>
+        
         {/* list starts */}
         <CustomList
           itemName="Packages"
           items={packages}
           page={1}
           itemCount={packages.length}
+          topSummary={
+            <TopSummary
+              summaries={[
+                { label: "iddi", value: "msangi" },
+                { label: "iddi", value: "msangi" },
+                { label: "iddi", value: "msangi" },
+              ]}
+            />
+          }
+          actionButtonProp={{
+            title: "Packages",
+            arrActions: [
+              {
+                btnName: "Add EHS Update ",
+                btnAction: () => {},
+              }
+            ],
+          }}
           loading={loading}
           onRefresh={handleRefresh}
           headerLayout={headerLayout}

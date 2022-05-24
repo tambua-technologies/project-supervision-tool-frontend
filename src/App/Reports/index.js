@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {
-  Col,
-  Drawer
-} from "antd";
+import { Col, Drawer } from "antd";
 
 import { AppContext } from "../../context/AppContext";
 import CustomList from "../components/List";
@@ -16,13 +13,12 @@ import {
   ProcuringEntitySelectors,
 } from "../../redux/modules/ProcuringEntities";
 import { isoDateToHumanReadableDate } from "../../Util";
-import DisplaySurveyForm from '../components/DisplaySurveyForm';
+import DisplaySurveyForm from "../components/DisplaySurveyForm";
 
 const reportTitle = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 20 };
 const generatedOn = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 0 };
 const generatedBy = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
 const submitReport = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
-
 
 const headerLayout = [
   { ...reportTitle, header: "Name" },
@@ -50,18 +46,16 @@ function ProgressReports({ match, getProcuringEntity }) {
 
   const breadcrumb = [
     {
-      title: 'Ilala',
-      path: ''
-    }
-  ]
+      title: "Ilala",
+      path: "",
+    },
+  ];
 
   useEffect(() => {
     console.log(match.params);
     // getProcuringEntity(1);
     getReports();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
- 
 
   return (
     <>
@@ -74,10 +68,10 @@ function ProgressReports({ match, getProcuringEntity }) {
           project={app?.project?.code}
           entity={"Procuring Entities"}
           location={"Ilala"}
-          actionButton={{
-            onClick: handleOnOpenForm,
-            title: "+ New Report",
-          }}
+          actionButtonProp={{ title: "Reports", arrActions: [ {
+            btnName: "New Monthly Report ",
+            btnAction: () => {},
+          }] }}
           items={progressReports}
           page={1}
           itemCount={progressReports.length}
@@ -135,7 +129,7 @@ function ProgressReports({ match, getProcuringEntity }) {
         {/* end list */}
 
         <Drawer
-          width={'100%'}
+          width={"100%"}
           onClose={handleOnCloseForm}
           footer={null}
           visible={showForm}

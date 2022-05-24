@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import {
-  Layout,
-  Button,
-  List
-} from "antd";
+import { Layout, Button, List } from "antd";
 import map from "lodash/map";
 import remove from "lodash/remove";
 import Toolbar from "../Toolbar";
 import ListHeader from "../ListHeader";
 import "./styles.css";
-
-const { Content } = Layout;
+import ActionBar from "../ActionBar";
 
 /**
  * @function
@@ -41,8 +36,7 @@ const CustomList = ({
   headerLayout,
   onPaginate,
   onRefresh,
-  title,
-  actionButton,
+  actionButtonProp,
   topSummary,
   generateExportUrl,
   renderListItem,
@@ -86,70 +80,42 @@ const CustomList = ({
 
   return (
     <>
-    {topSummary && topSummary}
-      <div style={{ padding: "0 0 15px 0" }}>
-        <Content
-          style={{
-            margin: 0,
-          }}
-          className="BaseLayoutContent"
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h3>{title}</h3>
-            {actionButton ? (
-              <Button
-                style={{ border: "1.5px solid  #1890ff", color: "#1890ff" }}
-                onClick={actionButton.onClick}
-              >
-                {actionButton.title}
-              </Button>
-            ) : (
-              " "
-            )}
-          </div>
-      </Content>
-    </div>
-     <div className="List">
-      <Toolbar
-        itemName={itemName}
-        page={page}
-        total={itemCount}
-        selectedItemsCount={selectedItems.length}
-        onPaginate={(nextPage) => onPaginate(nextPage)}
-        onRefresh={onRefresh}
-        exportUrl={
-          generateExportUrl
-            ? generateExportUrl({
-                filter: { _id: map(selectedItems, "_id") },
-                // token: getJwtToken(),
-              })
-            : null
-        }
-      />
+      <ActionBar actionButtonProp={actionButtonProp} />
+      {topSummary && topSummary}
+      <div className="List">
+        <Toolbar
+          itemName={itemName}
+          page={page}
+          total={itemCount}
+          selectedItemsCount={selectedItems.length}
+          onPaginate={(nextPage) => onPaginate(nextPage)}
+          onRefresh={onRefresh}
+          exportUrl={
+            generateExportUrl
+              ? generateExportUrl({
+                  filter: { _id: map(selectedItems, "_id") },
+                  // token: getJwtToken(),
+                })
+              : null
+          }
+        />
 
-      <ListHeader headerLayout={headerLayout} />
+        <ListHeader headerLayout={headerLayout} />
 
-      <List
-        loading={loading}
-        dataSource={items}
-        renderItem={(item) =>
-          renderListItem({
-            item,
-            isSelected: isSelected(item),
-            onSelectItem: () => handleSelectItem(item),
-            onDeselectItem: () => handleDeselectItem(item),
-          })
-        }
-      />
-    </div>
+        <List
+          loading={loading}
+          dataSource={items}
+          renderItem={(item) =>
+            renderListItem({
+              item,
+              isSelected: isSelected(item),
+              onSelectItem: () => handleSelectItem(item),
+              onDeselectItem: () => handleDeselectItem(item),
+            })
+          }
+        />
+      </div>
     </>
-   
   );
 };
 

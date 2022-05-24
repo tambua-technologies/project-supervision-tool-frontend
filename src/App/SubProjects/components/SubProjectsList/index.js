@@ -29,22 +29,14 @@ import "./styles.css";
 
 /* constants */
 const subProjectNameSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 20, xs: 20 };
-const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const locationSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
-const statusSpan = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
-const plannedPhyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const actualPhyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const financialProgress = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
-const contractor = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const packageSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
+const statusSpan = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 0, xs: 0 };
+const contractor ={ xxl: 6, xl: 6, lg: 6, md: 6, sm: 0, xs: 0 };
 
 const headerLayout = [
   { ...subProjectNameSpan, header: "Name" },
   { ...packageSpan, header: "Package" },
-  { ...locationSpan, header: "Location" },
   { ...statusSpan, header: "Status" },
-  { ...plannedPhyscalProgress, header: "Planned Physcal Progress" },
-  { ...actualPhyscalProgress, header: "Actual Physcal Progress" },
-  { ...financialProgress, header: "Financial Progress" },
   { ...contractor, header: "Contractor" },
 ];
 
@@ -297,7 +289,6 @@ class SubProjectsList extends Component {
       <PreviewOnMap data={selected} />
     ) : (
       <>
-        
         <div>
           {/* list starts */}
           <CustomList
@@ -306,6 +297,7 @@ class SubProjectsList extends Component {
             page={page}
             itemCount={total}
             loading={loading}
+            actionButtonProp={{ title: "Sub-projects", arrActions: [] }}
             onPaginate={(nextPage) => {
               paginateSubProject(nextPage);
             }}
@@ -347,19 +339,12 @@ class SubProjectsList extends Component {
                 <Col {...packageSpan} className="contentEllipse">
                   {item?.project.code ? item?.project.code : "N/A"}
                 </Col>
-
-                <Col {...locationSpan} className="contentEllipse">
-                  {item?.type ? item?.type?.name : "N/A"}
-                </Col>
                 {/* <Col {...locationSpan} className="contentEllipse">
                   {item?.district?.name}
                 </Col> */}
                 <Col {...statusSpan}>
                   {item?.status ? item?.status.name : "N/A"}
                 </Col>
-                <Col {...plannedPhyscalProgress}>{"planned"}</Col>
-                <Col {...actualPhyscalProgress}>{"actual prog"}</Col>
-                <Col {...financialProgress}>{"financial"}</Col>
                 <Col {...contractor}>{"contractor"}</Col>
               </ListItem>
             )}
