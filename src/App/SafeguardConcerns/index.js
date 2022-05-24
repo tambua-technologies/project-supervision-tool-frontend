@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CustomList from "../components/List";
+import TopSummary from "../components/TopSummary";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import {
@@ -70,7 +71,7 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
     <>
      
       <div>
-        <div className="site-card-wrapper">
+        {/* <div className="site-card-wrapper">
           <Row gutter={16}>
             <Col xxl={6} xl={6} lg={6} md={12} sm={24} xs={24}>
               <Card bordered={true} className="text-blue">
@@ -97,11 +98,12 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
               </Card>
             </Col>
           </Row>
-        </div>
+        </div> */}
 
         <CustomList
           itemName="Packages"
           items={dummyData}
+          topSummary= {<TopSummary summaries={[{label: 'iddi', value: 'msangi' }, {label: 'iddi', value: 'msangi' }, {label: 'iddi', value: 'msangi' }]} />}
           page={1}
           itemCount={dummyData.length}
           loading={loading}

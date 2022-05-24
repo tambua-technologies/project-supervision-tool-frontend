@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Col, Row } from "antd";
 import "./styles.css";
-import { isoDateToHumanReadableDate } from "../../../Util";
 
 
 const TopSummaryItem = (props) => {
@@ -15,10 +14,18 @@ const TopSummaryItem = (props) => {
   </Col>);
 }
 
+
+/**
+ * @function 
+ * @name TopSummary
+ * @description Top summary component
+ * @param {object[]} summaries list of summaries
+ * @param {object} summaries.label label
+ * @param {object} summaries.value value
+ * @param {*} props 
+ * @returns 
+ */
 const TopSummary = ({summaries}) => {
-
-  
-
   return (
     <div className="site-card-wrapper">
       <Row gutter={16}>

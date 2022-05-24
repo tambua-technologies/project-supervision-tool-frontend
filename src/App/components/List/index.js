@@ -43,6 +43,7 @@ const CustomList = ({
   onRefresh,
   title,
   actionButton,
+  topSummary,
   generateExportUrl,
   renderListItem,
 }) => {
@@ -85,6 +86,7 @@ const CustomList = ({
 
   return (
     <>
+    {topSummary && topSummary}
       <div style={{ padding: "0 0 15px 0" }}>
         <Content
           style={{
