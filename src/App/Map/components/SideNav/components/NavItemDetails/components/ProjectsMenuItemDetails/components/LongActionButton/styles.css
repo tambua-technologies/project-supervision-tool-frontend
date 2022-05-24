@@ -1,0 +1,10 @@
+
+
+.LongActionButton a {
+    text-transform: uppercase;
+}
+
+.LongActionButton {
+    color: #2d98d4;
+    margin: 10px 0 10px 0;
+}

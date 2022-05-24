@@ -1,0 +1,10 @@
+
+.SubProjectElementDetails .top-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.SubProjectElementDetails {
+    padding: 5px 10px 10px;
+}
+

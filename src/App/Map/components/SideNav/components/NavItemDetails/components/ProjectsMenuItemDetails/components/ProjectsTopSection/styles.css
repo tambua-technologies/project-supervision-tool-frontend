@@ -1,0 +1,17 @@
+
+
+.ProjectsTopSection {
+    padding: 20px 10px 0 10px;
+}
+
+.ProjectsTopSection section {
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.ProjectsTopSection section div {
+    color: #2f333b;
+    font-weight: bold;
+}

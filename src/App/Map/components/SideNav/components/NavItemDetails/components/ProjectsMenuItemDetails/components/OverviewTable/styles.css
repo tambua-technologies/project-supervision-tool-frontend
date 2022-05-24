@@ -1,0 +1,13 @@
+
+.OverviewTable {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 30px 5px 10px;
+    flex-wrap: wrap;
+    background: #f6f6f6;
+}
+
+.OverviewTable .value {
+    font-weight: bold;
+    color: #2f333b;
+}

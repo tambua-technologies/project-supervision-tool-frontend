@@ -1,0 +1,35 @@
+
+.NavItemDetails .overview-table {
+    display: flex;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background: #e8eaf3;
+}
+
+
+.NavItemDetails .overview-table-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.NavItemDetails .overview-table-item div:nth-child(2) {
+    font-weight: bold;
+}
+
+.NavItemDetails .overview-title {
+    font-weight: bold;
+}
+
+.NavItemDetails .overview .overview-details{
+    display: flex;
+    padding: 20px  0 10px 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.NavItemDetails .overview {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px 10px 10px;
+}

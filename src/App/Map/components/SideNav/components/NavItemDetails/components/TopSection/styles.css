@@ -1,0 +1,16 @@
+.TopSection {
+    padding: 10px 40px 0 10px;
+}
+
+.TopSection section {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.TopSection section h3 {
+    color: #0f6788;
+    text-transform: uppercase;
+    font-size: 13px;
+}
