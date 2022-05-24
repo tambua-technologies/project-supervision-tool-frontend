@@ -103,7 +103,6 @@ const PackagesList = ({
   return (
     <>
       <div>
-        
         {/* list starts */}
         <CustomList
           itemName="Packages"
@@ -113,9 +112,10 @@ const PackagesList = ({
           topSummary={
             <TopSummary
               summaries={[
-                { label: "iddi", value: "msangi" },
-                { label: "iddi", value: "msangi" },
-                { label: "iddi", value: "msangi" },
+                { label: "In progress", value: "10" },
+                { label: "Complete", value: "3" },
+                { label: "Challenges", value: "2" },
+                { label: "Latest Report", value: "March 12, 2022" },
               ]}
             />
           }
@@ -125,7 +125,7 @@ const PackagesList = ({
               {
                 btnName: "Add EHS Update ",
                 btnAction: () => {},
-              }
+              },
             ],
           }}
           loading={loading}

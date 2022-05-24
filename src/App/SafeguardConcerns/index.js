@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import CustomList from "../components/List";
 import TopSummary from "../components/TopSummary";
@@ -24,28 +24,31 @@ const headerLayout = [
   { ...mitigationMeasures, header: "Mitigation Measures" },
 ];
 
-const dummyData = [
-  {
-    package: "Package 1",
-    concern_type: "Environmental",
-    issue: "Noise and vibration",
-    commitment: "High Impact noise and vibration",
-    steps_taken: "compiled",
-    challenges: "none",
-    mitigation_measures: " - ",
-  },
-  {
-    package: "Package 2",
-    concern_type: "Social",
-    issue: "Employment",
-    commitment: "About 148 workers have been employed",
-    steps_taken: "employees provided with contracts",
-    challenges: "none",
-    mitigation_measures: " - ",
-  },
-];
+
+
+// const dummyData = [
+//   {
+//     package: "Package 1",
+//     concern_type: "Environmental",
+//     issue: "Noise and vibration",
+//     commitment: "High Impact noise and vibration",
+//     steps_taken: "compiled",
+//     challenges: "none",
+//     mitigation_measures: " - ",
+//   },
+//   {
+//     package: "Package 2",
+//     concern_type: "Social",
+//     issue: "Employment",
+//     commitment: "About 148 workers have been employed",
+//     steps_taken: "employees provided with contracts",
+//     challenges: "none",
+//     mitigation_measures: " - ",
+//   },
+// ];
 
 const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
+  const [safeguardData, setSafeguardData] = useState([]);
   const history = useHistory();
   const handleViewDetails = (item) => {
     const path = `${match.url}/${item.id}`;
@@ -54,28 +57,33 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
 
   useEffect(() => {
     API.getSafeguardConcerns()
-      .then((res) => console.log("safeguard concerns", res))
+      .then((res) => {
+        setSafeguardData(res.data.data);
+        console.log("safeguard concerns", res.data.data);
+   
+      })
       .catch((err) => console.log(err));
   }, []);
-
+  console.log(safeguardData);
   return (
     <>
       <div>
         <CustomList
           itemName="Packages"
-          items={dummyData}
+          items={safeguardData}
           topSummary={
             <TopSummary
               summaries={[
-                { label: "iddi", value: "msangi" },
-                { label: "iddi", value: "msangi" },
-                { label: "iddi", value: "msangi" },
+                { label: "Environmental Concerns", value: "4" },
+                { label: "Social Concerns", value: "3" },
+                { label: "Safety and Health Concern", value: "2" },
+                { label: "Latest Report", value: "March 12, 2022" },
               ]}
             />
           }
           page={1}
-          itemCount={dummyData.length}
-          loading={loading}
+          itemCount={safeguardData.length}
+          loading={safeguardData.length === 0 }
           onRefresh={handleRefresh}
           actionButtonProp={{
             title: "Safeguard Concerns",
@@ -83,14 +91,14 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
               {
                 btnName: "Add EHS Update ",
                 btnAction: () => {},
-              }
+              },
             ],
           }}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
             <ListItem
               key={item.id} // eslint-disable-line
-              name={item?.package}
+              name={item?.package.name}
               item={item}
               renderActions={() => (
                 <ListItemActions
@@ -106,7 +114,7 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
 
               <Col {...packageSpan}>
                 {/* {item?.package ? item?.package : "N/A"} */}
-                {"package"}
+                {item?.package?.name ? item?.package?.name : "N/A"}
               </Col>
               <Col {...concernType} className="contentEllipse">
                 {item?.concern_type ? item?.concern_type : "N/A"}

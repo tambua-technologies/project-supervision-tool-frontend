@@ -297,7 +297,7 @@ class SubProjectsList extends Component {
             page={page}
             itemCount={total}
             loading={loading}
-            actionButtonProp={{ title: "Sub-projects", arrActions: [] }}
+            actionButtonProp={{ title: "Sub-project", arrActions: [] }}
             onPaginate={(nextPage) => {
               paginateSubProject(nextPage);
             }}
@@ -339,9 +339,6 @@ class SubProjectsList extends Component {
                 <Col {...packageSpan} className="contentEllipse">
                   {item?.project.code ? item?.project.code : "N/A"}
                 </Col>
-                {/* <Col {...locationSpan} className="contentEllipse">
-                  {item?.district?.name}
-                </Col> */}
                 <Col {...statusSpan}>
                   {item?.status ? item?.status.name : "N/A"}
                 </Col>
