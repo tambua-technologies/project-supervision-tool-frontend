@@ -5,35 +5,38 @@ import ProgressBarOverview from "../../../components/ProgressBar";
 import "./styles.css";
 import BaseMap from "../../../Map/components/BaseMap";
 import API from "../../../../API";
+import { isoDateToHumanReadableDate } from "../../../../Util";
 
 const ProcuringEntity = () => {
-  const [statistics, setStatistics] = useState(null);
   const [physicalProgress, setPysicalProgress] = useState([]);
   const [financialProgress, setFinancialProgress] = useState([]);
+  const [summaries, setSummaries] = useState([]);
 
 
 useEffect(() => {
   API.getProcuringEntitiesStatistics(1)
   .then(res => {
+    console.log('statics', res);
     const physicalProgress = res.data.package_progress.map((p) => ({name: p.package_name, complete: p.actual_physical_progress}));
     const financialProgress = res.data.package_progress.map((p) => ({name: p.package_name, complete: p.actual_financial_progress}));
+    const statisticsSummaries = [
+      {label: "Packages", value: res.data.packages},
+      {label: "Sub Projects", value: res.data.subProjects},
+      {label: "Contractors", value: res.data.contractors},
+      {label: res.data.reports?.length > 0 ? isoDateToHumanReadableDate(res.data.reports[0].created_at) : null, value: 'Latest Report'}
+    ];
 
     setFinancialProgress(financialProgress);
     setPysicalProgress(physicalProgress);
-    setStatistics(res.data);
+    setSummaries(statisticsSummaries);
 
   })
   .catch(err => console.log(err));
 }, []);
 
-  return statistics ? (
+  return summaries.length > 0 ? (
     <div className="ProcuringEntity">
-      <TopSummary
-        packages={statistics.packages}
-         subProjects={statistics.subProjects}
-         contractors={statistics.contractors}
-         latestReport={statistics?.reports?.length > 0 ? statistics.reports[0].created_at : null}
-         />
+      <TopSummary summaries={summaries}/>
 
       <section className="ProcuringEntity-progress">
         <Row gutter={16}>
@@ -73,7 +76,7 @@ useEffect(() => {
         </Row>
       </section>
     </div>
-  ) : '';
+  ): '';
 };
 
 export default ProcuringEntity;
