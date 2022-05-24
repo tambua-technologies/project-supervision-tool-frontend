@@ -121,7 +121,7 @@ const BaseLayout = (props) => {
           </Row>
         </Header>
 
-        <div style={{ padding: "0 15px 15px" }}>
+        <div style={{ padding: "0 15px 15px", height:"100%" }}>
           <Content style={{ margin: 0, paddingTop: 20 }} className="BaseLayoutContent" >
             <Switch>
               <Route
