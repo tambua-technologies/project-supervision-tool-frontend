@@ -56,6 +56,7 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
     API.getSafeguardConcerns()
       .then((res) => console.log("safeguard concerns", res))
       .catch((err) => console.log(err));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

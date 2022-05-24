@@ -14,7 +14,7 @@ function SubProjectsMap(props) {
 
     useEffect(() => {
         dispatch(mapSubProjectActions.getSubProjectsStart())
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
