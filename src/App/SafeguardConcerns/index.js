@@ -4,7 +4,8 @@ import CustomList from "../components/List";
 import TopSummary from "../components/TopSummary";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
-import { Col, Row, Card } from "antd";
+import {isoDateToHumanReadableDate} from "../../Util"
+import { Col } from "antd";
 import API from "../../API";
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const concernType = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -25,29 +26,8 @@ const headerLayout = [
 ];
 
 
-
-// const dummyData = [
-//   {
-//     package: "Package 1",
-//     concern_type: "Environmental",
-//     issue: "Noise and vibration",
-//     commitment: "High Impact noise and vibration",
-//     steps_taken: "compiled",
-//     challenges: "none",
-//     mitigation_measures: " - ",
-//   },
-//   {
-//     package: "Package 2",
-//     concern_type: "Social",
-//     issue: "Employment",
-//     commitment: "About 148 workers have been employed",
-//     steps_taken: "employees provided with contracts",
-//     challenges: "none",
-//     mitigation_measures: " - ",
-//   },
-// ];
-
 const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
+  const [safeguardStatData, setSafeguardStatData] = useState([]);
   const [safeguardData, setSafeguardData] = useState([]);
   const history = useHistory();
   const handleViewDetails = (item) => {
@@ -58,12 +38,27 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
   useEffect(() => {
     API.getSafeguardConcerns()
       .then((res) => {
-        setSafeguardData(res.data.data);
+        setSafeguardStatData(res.data.data);
         console.log("safeguard concerns", res.data.data);
-   
+       
       })
       .catch((err) => console.log(err));
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    API.getProcuringEntitiesStatistics(1).then((res) => {
+      console.log(res.data);
+      const safeguardStats = [
+        { label: "Environmental Concerns", value: res.data.environmental_concerns_count },
+        { label: "Social Concerns", value: res.data.social_concerns_count },
+        { label: "Safety and Health Concern", value: res.data.health_and_safety_concerns_count },
+        { label: "Latest Report", value: isoDateToHumanReadableDate(res.data.latestReport.created_at )},
+      ]
+      setSafeguardData(safeguardStats)
+    }
+    );
+
   }, []);
   console.log(safeguardData);
   return (
@@ -71,20 +66,15 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
       <div>
         <CustomList
           itemName="Packages"
-          items={safeguardData}
+          items={safeguardStatData}
           topSummary={
             <TopSummary
-              summaries={[
-                { label: "Environmental Concerns", value: "4" },
-                { label: "Social Concerns", value: "3" },
-                { label: "Safety and Health Concern", value: "2" },
-                { label: "Latest Report", value: "March 12, 2022" },
-              ]}
+              summaries={safeguardData}
             />
           }
           page={1}
-          itemCount={safeguardData.length}
-          loading={safeguardData.length === 0 }
+          itemCount={safeguardStatData.length}
+          loading={safeguardStatData.length === 0}
           onRefresh={handleRefresh}
           actionButtonProp={{
             title: "Safeguard Concerns",
@@ -99,7 +89,7 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
           renderListItem={({ item }) => (
             <ListItem
               key={item.id} // eslint-disable-line
-              name={item?.package.name}
+              name={"iddi"}
               item={item}
               renderActions={() => (
                 <ListItemActions
