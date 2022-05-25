@@ -1,4 +1,3 @@
-
 import axios from "./config";
 
 /**
@@ -7,7 +6,9 @@ import axios from "./config";
  * @description get Procuring Entities
  * */
 const getProcuringEntities = (filter = {}) =>
-    axios.get(`/procuring_entities`, {params: filter}).then((response) => response.data);
+  axios
+    .get(`/procuring_entities`, { params: filter })
+    .then((response) => response.data);
 
 /**
  * detaches a project from list
@@ -18,9 +19,9 @@ const getProcuringEntities = (filter = {}) =>
  * @since 0.1.0
  */
 const deleteProcuringEntity = (procuring_entity) => {
-    return axios
-        .delete(`procuring_entities/${procuring_entity}`)
-        .then((response) => response.data);
+  return axios
+    .delete(`procuring_entities/${procuring_entity}`)
+    .then((response) => response.data);
 };
 
 /**
@@ -28,7 +29,7 @@ const deleteProcuringEntity = (procuring_entity) => {
  * @name createProcuringEntity
  * */
 const createProcuringEntity = (details) =>
-    axios.post(`/procuring_entities`, details).then((response) => response.data);
+  axios.post(`/procuring_entities`, details).then((response) => response.data);
 
 /**
  * edit existing procuring entity
@@ -40,9 +41,9 @@ const createProcuringEntity = (details) =>
  * @since 0.1.0
  */
 const updateProcuringEntity = (project, id) => {
-    return axios
-        .patch(`/procuring_entities/${id}`, project)
-        .then((response) => response.data);
+  return axios
+    .patch(`/procuring_entities/${id}`, project)
+    .then((response) => response.data);
 };
 
 /**
@@ -51,7 +52,9 @@ const updateProcuringEntity = (project, id) => {
  * @description get getPackage
  * */
 const getPackages = (filter = {}) =>
-    axios.get(`/procuring_entity_packages`, {params: filter}).then((response) => response.data);
+  axios
+    .get(`/procuring_entity_packages`, { params: filter })
+    .then((response) => response.data);
 
 /**
  * @function
@@ -59,29 +62,27 @@ const getPackages = (filter = {}) =>
  * @description get getPackage
  * */
 const getPackage = (id) =>
-    axios.get(`/procuring_entity_packages/${id}`).then((response) => response.data);
-
+  axios
+    .get(`/procuring_entity_packages/${id}`)
+    .then((response) => response.data);
 
 /**
-* @function
-* @name getProcuringEntity
-* @description get procuring entity
-* */
+ * @function
+ * @name getProcuringEntity
+ * @description get procuring entity
+ * */
 const getProcuringEntity = (id) =>
-    axios.get(`/procuring_entities/${id}`).then((response) => response.data);
-
-
+  axios.get(`/procuring_entities/${id}`).then((response) => response.data);
 
 /**
  * @function
  * @name getProcuringEntitiesStatistics
  * @description get procuring entities statistics
  * */
- const getProcuringEntitiesStatistics = (id) =>
- axios.get(`/procuring_entities/statistics/${id}`).then((response) => response.data);
-
-
-
+const getProcuringEntitiesStatistics = (id) =>
+  axios
+    .get(`/procuring_entities/statistics/${id}`)
+    .then((response) => response.data);
 
 /**
  * detaches a project from list
@@ -91,9 +92,9 @@ const getProcuringEntity = (id) =>
  * @since 0.1.0
  */
 const deletePackage = (package_id) => {
-    return axios
-        .delete(`procuring_entity_packages/${package_id}`)
-        .then((response) => response.data);
+  return axios
+    .delete(`procuring_entity_packages/${package_id}`)
+    .then((response) => response.data);
 };
 
 /**
@@ -101,7 +102,9 @@ const deletePackage = (package_id) => {
  * @name createPackage
  * */
 const createPackage = (details) =>
-    axios.post(`/procuring_entity_packages`, details).then((response) => response.data);
+  axios
+    .post(`/procuring_entity_packages`, details)
+    .then((response) => response.data);
 
 /**
  * edit existing procuring entity
@@ -113,21 +116,28 @@ const createPackage = (details) =>
  * @since 0.1.0
  */
 const updatePackage = (project, id) => {
-    return axios
-        .patch(`/procuring_entity_packages/${id}`, project)
-        .then((response) => response.data);
+  return axios
+    .patch(`/procuring_entity_packages/${id}`, project)
+    .then((response) => response.data);
+};
+
+const getPackageStatistics = (id) => {
+  return axios
+    .get(`/procuring_entities/${id}/packages/statistics`)
+    .then((res) => res.data);
 };
 
 export default {
-    getProcuringEntities,
-    deleteProcuringEntity,
-    createProcuringEntity,
-    updateProcuringEntity,
-    getPackage,
-    getPackages,
-    deletePackage,
-    createPackage,
-    updatePackage,
-    getProcuringEntitiesStatistics,
-    getProcuringEntity
-}
+  getProcuringEntities,
+  deleteProcuringEntity,
+  createProcuringEntity,
+  updateProcuringEntity,
+  getPackage,
+  getPackages,
+  deletePackage,
+  createPackage,
+  updatePackage,
+  getProcuringEntitiesStatistics,
+  getProcuringEntity,
+  getPackageStatistics
+};

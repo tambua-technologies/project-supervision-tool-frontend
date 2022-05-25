@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
   ProcuringEntityActions,
@@ -10,7 +10,9 @@ import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
 import { getIdFromUrlPath } from "../../../../Util";
+import API from "../../../../API";
 import PackageForm from "../Form";
+import { isoDateToHumanReadableDate } from "../../../../Util";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
 import { useToggle } from "../../../../hooks/useToggle";
@@ -53,6 +55,7 @@ const PackagesList = ({
 }) => {
   const history = useHistory();
   const { isEditForm, setIsEditForm, setVisible } = useToggle(false);
+  const [packageStatisticsValues, setPackageStatisticsValues] = useState([]);
   const procuringEntityId = getIdFromUrlPath(match.path, 4);
   const filter = { "filter[procuring_entity_id]": procuringEntityId };
 
@@ -60,7 +63,23 @@ const PackagesList = ({
     getPackages(filter);
     getProcuringEntity(procuringEntityId);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  useEffect(() => {
+    API.getPackageStatistics(1).then((response) => {
+      console.log(response);
+      const packageStats = [
+        { label: "In progress", value: response.data.in_progress },
+        { label: "Complete", value: response.data.completed },
+        { label: "Challenges", value: response.data.challenges },
+        {
+          label: "Latest Report",
+          value: isoDateToHumanReadableDate(
+            response.data.latestReport.created_at
+          ),
+        },
+      ];
+      setPackageStatisticsValues(packageStats);
+    });
+  }, []);
   /**
    * @function
    * @name handleViewDetails
@@ -109,16 +128,7 @@ const PackagesList = ({
           items={packages}
           page={1}
           itemCount={packages.length}
-          topSummary={
-            <TopSummary
-              summaries={[
-                { label: "In progress", value: "10" },
-                { label: "Complete", value: "3" },
-                { label: "Challenges", value: "2" },
-                { label: "Latest Report", value: "March 12, 2022" },
-              ]}
-            />
-          }
+          topSummary={<TopSummary summaries={packageStatisticsValues} />}
           actionButtonProp={{
             title: "Packages",
             arrActions: [
