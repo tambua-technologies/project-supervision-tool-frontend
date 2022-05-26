@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Layout, Button, List } from "antd";
+import { List } from "antd";
 import map from "lodash/map";
 import remove from "lodash/remove";
 import Toolbar from "../Toolbar";

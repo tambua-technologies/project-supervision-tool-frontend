@@ -126,7 +126,11 @@ const getPackageStatistics = (id) => {
     .get(`/procuring_entities/${id}/packages/statistics`)
     .then((res) => res.data);
 };
-
+const getPackageStatisticsData = (id) => {
+  return axios
+    .get(`/procuring_entity_packages?filter%5Bprocuring_entity_id%5D=${id}`)
+    .then((res) => res.data);
+};
 export default {
   getProcuringEntities,
   deleteProcuringEntity,
@@ -139,5 +143,6 @@ export default {
   updatePackage,
   getProcuringEntitiesStatistics,
   getProcuringEntity,
-  getPackageStatistics
+  getPackageStatistics,
+  getPackageStatisticsData
 };

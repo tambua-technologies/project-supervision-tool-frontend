@@ -87,10 +87,7 @@
   margin-top: 0.8rem;
   margin-left: 15px;
 }
-.ant-layout {
-  height: 100vh;
-  overflow-y: hidden;
-}
+
 .sider-layout .ant-menu.ant-menu-dark,
 .sider-layout .ant-menu-dark .ant-menu-inline.ant-menu-sub {
   background: #f5f5f5;

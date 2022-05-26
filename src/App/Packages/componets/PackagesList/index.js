@@ -56,6 +56,7 @@ const PackagesList = ({
   const history = useHistory();
   const { isEditForm, setIsEditForm, setVisible } = useToggle(false);
   const [packageStatisticsValues, setPackageStatisticsValues] = useState([]);
+  const [packData, setPackData] = useState([]);
   const procuringEntityId = getIdFromUrlPath(match.path, 4);
   const filter = { "filter[procuring_entity_id]": procuringEntityId };
 
@@ -64,21 +65,27 @@ const PackagesList = ({
     getProcuringEntity(procuringEntityId);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    API.getPackageStatistics(1).then((response) => {
-      console.log(response);
-      const packageStats = [
-        { label: "In progress", value: response.data.in_progress },
-        { label: "Complete", value: response.data.completed },
-        { label: "Challenges", value: response.data.challenges },
-        {
-          label: "Latest Report",
-          value: isoDateToHumanReadableDate(
-            response.data.latestReport.created_at
-          ),
-        },
-      ];
-      setPackageStatisticsValues(packageStats);
-    });
+    API.getPackageStatistics(1).then(
+      (response) => {
+        console.log(response);
+        const packageStats = [
+          { label: "In progress", value: response.data.in_progress },
+          { label: "Complete", value: response.data.completed },
+          { label: "Challenges", value: response.data.challenges },
+          {
+            label: "Latest Report",
+            value: isoDateToHumanReadableDate(
+              response.data.latestReport.created_at
+            ),
+          },
+        ];
+        setPackageStatisticsValues(packageStats);
+      },
+      API.getPackageStatisticsData(1).then((res) => {
+        console.log(res.data);
+        setPackData(res.data);
+      })
+    );
   }, []);
   /**
    * @function
@@ -125,9 +132,9 @@ const PackagesList = ({
         {/* list starts */}
         <CustomList
           itemName="Packages"
-          items={packages}
+          items={packData}
           page={1}
-          itemCount={packages.length}
+          itemCount={packData.length}
           topSummary={<TopSummary summaries={packageStatisticsValues} />}
           actionButtonProp={{
             title: "Packages",
@@ -162,12 +169,14 @@ const PackagesList = ({
               <Col {...status} className="contentEllipse">
                 Under Implemetation
               </Col>
-              <Col {...subProjects}>[item.sub_projects.length]</Col>
+              <Col {...subProjects}>
+                {item.sub_projects_count ? item.sub_projects_count : "N/A"}
+              </Col>
               <Col {...actualPhysicalProgress} className="contentEllipse">
-                {"actual"}
+                {item.progress.actual_physical_progress}
               </Col>
               <Col {...plannedPyscalProgress} className="contentEllipse">
-                {"actual funiancial"}
+                {item.progress.planned_physical_progress}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
                 {"time"}
