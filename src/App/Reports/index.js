@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Col, Drawer } from "antd";
-
 import { AppContext } from "../../context/AppContext";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
@@ -50,7 +49,9 @@ function ProgressReports({ match, getProcuringEntity }) {
       path: "",
     },
   ];
-
+  const refreshPage = () => {
+    window.location.reload(false);
+  };
   useEffect(() => {
     console.log(match.params);
     // getProcuringEntity(1);
@@ -68,16 +69,20 @@ function ProgressReports({ match, getProcuringEntity }) {
           project={app?.project?.code}
           entity={"Procuring Entities"}
           location={"Ilala"}
-          actionButtonProp={{ title: "Reports", arrActions: [ {
-            btnName: "New Monthly Report ",
-            btnAction: () => {},
-          }] }}
+          actionButtonProp={{
+            title: "Reports",
+            arrActions: [
+              {
+                btnName: "New Monthly Report ",
+                btnAction: () => {},
+              },
+            ],
+          }}
           items={progressReports}
           page={1}
           itemCount={progressReports.length}
           loading={isLoading}
-          onRefresh={() => {}}
-          onMapView={() => {}}
+          onRefresh={() => getReports()}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
             <ListItem
