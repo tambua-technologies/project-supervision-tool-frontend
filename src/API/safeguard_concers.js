@@ -10,7 +10,7 @@ const getSafeguardConcerns = () =>
 
 const getProcuringEntitiesStatistics = (id) =>
   axios
-    .get(`/procuring_entities/${id}/safeguard_concerns/statistics`)
+    .get(`/procuring_entities/statistics/${id}`)
     .then((response) => response.data);
 export default {
   getSafeguardConcerns,
