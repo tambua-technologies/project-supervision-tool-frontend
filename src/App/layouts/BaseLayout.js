@@ -96,15 +96,10 @@ const BaseLayout = (props) => {
               <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/contract`}>CSC Contract</Link>
             </Menu.Item>
-            <div
-              style={{
-                marginLeft: "15px",
-                marginTop: "100%",
-              }}
-            >
-              <span className="CustomizedIcon" />
+            <Menu.Item style={{position:"absolute", bottom:"0"}}>
+            <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/settings`}>Settings</Link>
-            </div>
+            </Menu.Item>
           </Menu>
         </Sider>
 
