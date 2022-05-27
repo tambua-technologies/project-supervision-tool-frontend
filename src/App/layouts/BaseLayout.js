@@ -110,22 +110,18 @@ const BaseLayout = (props) => {
 
         <Layout className="BaseLayout">
           <Header className="header">
-            <Row type="flex">
-              <Col xxl={14} xl={14} lg={14} md={14} sm={24} xs={24}>
-                <Input
+            <Row type="flex" className="header-content">
+              <div className="header-left-content">
+              <Input
                   placeholder="Search here"
                   allowClear
                   className="TopbarSearch"
                   size="large"
                 />
-              </Col>
-              <Col xxl={2} xl={2} lg={2} md={2} sm={2} xs={2} offset={8}>
-                <Row type="flex" justify="end">
-                  <Col span={12}>
-                    <UserMenu />
-                  </Col>
-                </Row>
-              </Col>
+              </div>
+              <div>
+              <UserMenu />
+              </div>
             </Row>
           </Header>
 

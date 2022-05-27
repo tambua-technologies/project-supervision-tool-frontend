@@ -20,8 +20,6 @@
 
 .BaseLayoutContent {
   background-color: #fff;
-  /* overflow-y: hidden; */
-  /* overflow-x: hidden; */
   height: 100%;
 }
 .ant-layout-header {
@@ -29,12 +27,23 @@
   position: fixed;
   z-index: 1000;
 }
+.header-content{
+  display: flex;
+  justify-content: space-between;
+}
+.header-left-content {
+  width: 50%;
+}
+.header-right-content {
+  width: 50%;
+}
+
 @media screen and (max-width: 768px) {
   .ant-layout-header {
     padding: 0 20px;
   }
 }
-.maincontent-layout{
+.maincontent-layout {
   padding: 0 15px 15px;
   height: 100%;
   width: calc(100% - 200px);
@@ -94,6 +103,7 @@
 .header .TopbarSearch {
   margin-top: 0.8rem;
   margin-left: 15px;
+  min-width: 300px;
 }
 
 .sider-layout .ant-menu.ant-menu-dark,
