@@ -48,6 +48,7 @@
   height: 100%;
   width: calc(100% - 200px);
   margin-left: 200px;
+  box-shadow: 0 2px 2px #ceced194;
 }
 @media screen and (max-width: 426px) {
   .ant-layout-header {
@@ -108,7 +109,7 @@
 
 .sider-layout .ant-menu.ant-menu-dark,
 .sider-layout .ant-menu-dark .ant-menu-inline.ant-menu-sub {
-  background: #0f6788;
+  background: #fafafa;
   width: 200px;
 }
 .ant-layout-sider {

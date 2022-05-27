@@ -51,7 +51,7 @@ const ProcuringEntity = () => {
     <LoadingOutlined
       style={{
         fontSize: 54,
-        marginTop: "20%",
+        marginTop: "30%",
       }}
       spin
     />
