@@ -26,13 +26,20 @@
 }
 .ant-layout-header {
   padding: 0;
+  position: fixed;
+  z-index: 1000;
 }
 @media screen and (max-width: 768px) {
   .ant-layout-header {
     padding: 0 20px;
   }
 }
-
+.maincontent-layout{
+  padding: 0 15px 15px;
+  height: 100%;
+  width: calc(100% - 200px);
+  margin-left: 200px;
+}
 @media screen and (max-width: 426px) {
   .ant-layout-header {
     padding: 0 20px;
@@ -65,7 +72,8 @@
   border-bottom: 1px solid #dddddd;
   box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px,
     rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
-  width: 100%;
+  width: calc(100% - 200px);
+  margin-left: 200px;
 }
 
 .header-logo {
@@ -90,10 +98,15 @@
 
 .sider-layout .ant-menu.ant-menu-dark,
 .sider-layout .ant-menu-dark .ant-menu-inline.ant-menu-sub {
-  background: #f5f5f5;
+  background: #0f6788;
+  width: 200px;
+}
+.ant-layout-sider {
+  position: fixed;
+  z-index: 1000;
+  height: 100%;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
-
 .sider-layout .ant-menu-dark .ant-menu-item {
   margin: 0 !important;
 }

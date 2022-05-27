@@ -39,7 +39,7 @@ const BaseLayout = (props) => {
   return (
     <AppContext.Provider value={{ app: { project, procuringEntity } }}>
       <Layout style={{ height: "100vh" }}>
-        <Sider width={200} className="sider-layout">
+        <Sider  className="sider-layout">
           <Row type="flex" justify="start">
             <div className="header-logo">
               {React.createElement(
@@ -129,7 +129,7 @@ const BaseLayout = (props) => {
             </Row>
           </Header>
 
-          <div style={{ padding: "0 15px 15px", height: "100%" }}>
+          <div className="maincontent-layout">
             <Content
               style={{ margin: 0, paddingTop: 20 }}
               className="BaseLayoutContent"
