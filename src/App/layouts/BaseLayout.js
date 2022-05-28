@@ -4,7 +4,7 @@ import { Link, Route, Switch } from "react-router-dom";
 import Contract from "../ProcuringEntities/components/Contract";
 import UserMenu from "../Auth/components/UserMenu";
 import Packages from "../Packages";
-import SubProjectsList from "../SubProjects/components/SubProjectsList";
+import SubProjects from "../SubProjects";
 import SafeGuard from "../SafeguardConcerns";
 import API from "../../API";
 import Reports from "../Reports";
@@ -144,7 +144,7 @@ const BaseLayout = (props) => {
                 />
                 <Route
                   path={`${baseUrl}/sub-projects`}
-                  component={({ match }) => <SubProjectsList match={match} />}
+                  component={({ match }) => <SubProjects match={match} />}
                 />
 
                 <Route
