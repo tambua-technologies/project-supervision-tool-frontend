@@ -50,15 +50,15 @@ const ProjectDetails = ({ project, loading, getProject, match }) => {
   const closing_date = project?.closing_date ? isoDateToHumanReadableDate(project?.closing_date) : 'N/A'
 
   return (
-  <BaseLayout breadcrumbs={<DynamicBreadcrumbs breadcrumbs={breadcrumbs} />}>
     <Layout className="project-layout">
       <Spin spinning={loading} tip="Loading..." >
-        <Content className="contents">
+        <Content >
+          <h3 className="text-blue" >Overview</h3>
           <h3>{project?.name}</h3>
           <Layout className="project-inner-layout" >
             <Content className="project-contents">
               <div className="card-container">
-                <div className="container description" >
+                <div className="description" >
                   <h4 className="text-blue">Project Development Objective</h4>
                   <p>{project ? project?.description : 'N/A'}</p>
                 </div>
@@ -84,7 +84,6 @@ const ProjectDetails = ({ project, loading, getProject, match }) => {
         </Content>
       </Spin>
     </Layout>
-   </BaseLayout>
   )
 }
 

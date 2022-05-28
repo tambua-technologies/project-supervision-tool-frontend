@@ -1,0 +1,11 @@
+.ProcuringEntity-map-report {
+    margin-block-start: 2rem;
+}
+
+.LatestReports{
+    background-color: #f5f5f5;
+
+}
+.LatestReports .Toolbar{
+    display: none;
+}

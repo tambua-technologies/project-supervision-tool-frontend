@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { List } from 'antd';
-import map from 'lodash/map';
-import remove from 'lodash/remove';
-import Toolbar from '../Toolbar';
-import ListHeader from '../ListHeader';
-import './styles.css';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { List } from "antd";
+import map from "lodash/map";
+import remove from "lodash/remove";
+import Toolbar from "../Toolbar";
+import ListHeader from "../ListHeader";
+import "./styles.css";
+import ActionBar from "../ActionBar";
 
 /**
  * @function
@@ -35,7 +36,8 @@ const CustomList = ({
   headerLayout,
   onPaginate,
   onRefresh,
-  onMapView,
+  actionButtonProp,
+  topSummary,
   generateExportUrl,
   renderListItem,
 }) => {
@@ -74,45 +76,46 @@ const CustomList = ({
    * @version 0.1.0
    * @since 0.1.0
    */
-  const isSelected = (item) => map(selectedItems, '_id').includes(item._id); // eslint-disable-line
+  const isSelected = (item) => map(selectedItems, "_id").includes(item._id); // eslint-disable-line
 
   return (
-    <div className="List">
-      <Toolbar
-        itemName={itemName}
-        page={page}
-        total={itemCount}
-        selectedItemsCount={selectedItems.length}
-        onPaginate={(nextPage) => onPaginate(nextPage)}
-        onRefresh={onRefresh}
-        onMapView={onMapView}
-        exportUrl={
-          generateExportUrl
-            ? generateExportUrl({
-              filter: { _id: map(selectedItems, '_id') },
-              // token: getJwtToken(),
+    <>
+      <ActionBar actionButtonProp={actionButtonProp} />
+      {topSummary && topSummary}
+      <div className="List">
+        <Toolbar
+          itemName={itemName}
+          page={page}
+          total={itemCount}
+          selectedItemsCount={selectedItems.length}
+          onPaginate={(nextPage) => onPaginate(nextPage)}
+          onRefresh={onRefresh}
+          exportUrl={
+            generateExportUrl
+              ? generateExportUrl({
+                  filter: { _id: map(selectedItems, "_id") },
+                  // token: getJwtToken(),
+                })
+              : null
+          }
+        />
+
+        <ListHeader headerLayout={headerLayout} />
+
+        <List
+          loading={loading}
+          dataSource={items}
+          renderItem={(item) =>
+            renderListItem({
+              item,
+              isSelected: isSelected(item),
+              onSelectItem: () => handleSelectItem(item),
+              onDeselectItem: () => handleDeselectItem(item),
             })
-            : null
-        }
-      />
-
-      <ListHeader
-        headerLayout={headerLayout}
-      />
-
-      <List
-        loading={loading}
-        dataSource={items}
-        renderItem={(item) =>
-          renderListItem({
-            item,
-            isSelected: isSelected(item),
-            onSelectItem: () => handleSelectItem(item),
-            onDeselectItem: () => handleDeselectItem(item),
-          })
-        }
-      />
-    </div>
+          }
+        />
+      </div>
+    </>
   );
 };
 

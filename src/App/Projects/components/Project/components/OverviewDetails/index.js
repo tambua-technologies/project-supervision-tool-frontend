@@ -26,6 +26,7 @@ const OverviewDetails = ({
   totalProjectCost,
   approval_date,
   closing_date,
+
 }) => {
 
   const commitment_amount = project?.commitment_amount?.amount;

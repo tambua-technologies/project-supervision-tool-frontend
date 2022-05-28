@@ -45,6 +45,8 @@
   "scripts": {
     "start": "react-scripts start",
     "start:debug": "BROWSER='google chrome' BROWSER_ARGS='--remote-debugging-port=9222' react-scripts start",
+    "start:debug:linux": "BROWSER='google-chrome' BROWSER_ARGS='--remote-debugging-port=9222' react-scripts start",
+
     "cypress:open": "cypress open",
     "commit": "cz",
     "build": "react-scripts build",

@@ -33,103 +33,129 @@ const Toolbar = ({
   exportUrl,
   onPaginate,
   onRefresh,
-  onMapView
+  onMapView,
 }) => (
-    <div className="Toolbar">
-      <Row>
-        {/* action bar */}
-        <Col xxl={12} xl={12} lg={12} md={10} sm={14} xs={12}>
-          <Row>
-            {/* refresh  action */}
-            {onRefresh && (
-              <Col xxl={3} xl={3} lg={6} md={6} sm={6} xs={6}>
-                <Button
-                  title="Refresh "
-                  className="actionButton"
-                  size="large"
-                  onClick={onRefresh}
-                  data-cy="reflesh"
-                >
-                  Refresh
-              </Button>
-              </Col>
-            )}
-            {/* end refresh  action */}
-
-             {/* refresh  action */}
-             {onMapView && (
-              <Col xxl={3} xl={3} lg={4} md={4} sm={0} xs={0} >
+  <div className="Toolbar">
+    <Row className="Toolbar-content">
+      {/* action bar */}
+      <Col
+        xxl={12}
+        xl={12}
+        lg={12}
+        md={10}
+        sm={14}
+        xs={12}
+        className="left-content"
+      >
+        <div className="Toolbar-col">
+          {/* refresh  action */}
+          {onRefresh && (
+            <div className="Toolbar-row">
               <Button
-                  title="View on Map"
+                title="Refresh "
+                className="actionButton"
+                size="large"
+                onClick={onRefresh}
+                data-cy="reflesh"
+              >
+                <span className="ToolbarIcon" />
+                Refresh
+              </Button>
+            </div>
+          )}
+          {/* end refresh  action */}
+
+          {/* refresh  action */}
+          {onMapView && (
+            <div className="Toolbar-row">
+              <Button
+                title="View on Map"
+                className="actionButton"
+                size="large"
+                onClick={onMapView}
+              >
+                <span className="ToolbarIcon" />
+                View on Map
+              </Button>
+            </div>
+          )}
+          {/* end refresh  action */}
+
+          {/* export action */}
+          {exportUrl && (
+            <div className="Toolbar-row">
+              <a href={exportUrl} download>
+                <Button
+                  title="Export Data"
                   className="actionButton"
                   size="large"
-                  onClick={onMapView}
                 >
-                  View on Map
-              </Button>
-              </Col>
-            )}
-            {/* end refresh  action */}
-
-            {/* export action */}
-            {exportUrl && (
-              <Col xxl={3} xl={3} lg={3} md={4} sm={6} xs={6}>
-                <a href={exportUrl} download>
-                  <Button
-                    title="Export Data"
-                    className="actionButton"
-                    size="large"
-                  >
-                    Export
+                  <span className="ToolbarIcon" />
+                  Export
                 </Button>
-                </a>
-              </Col>
-            )}
-            {/* end export action */}
+              </a>
+            </div>
+          )}
+          {/* end export action */}
+        </div>
+      </Col>
+      {/* end action bar */}
 
-          </Row>
-        </Col>
-        {/* end action bar */}
-
-        <Col xxl={12} xl={12} lg={12} md={14} sm={10} xs={12}>
-          <Row type="flex" justify="end">
-            {/* selected and  number summary */}
-            <Col xxl={10} xl={12} lg={13} md={12} sm={0} xs={0}>
-              {selectedItemsCount > 0 && (
-                <span
-                  style={{ color: "#959595" }}
-                >{`selected ${selectedItemsCount} out of `}</span>
-              )}
+      <Col xxl={12} xl={12} lg={12} md={14} sm={10} xs={12}>
+        <Row type="flex" justify="end" className="right-content">
+          {/* selected and  number summary */}
+          <Col
+            xxl={10}
+            xl={12}
+            lg={13}
+            md={12}
+            sm={0}
+            xs={0}
+            className="right-content--col-1"
+          >
+            {selectedItemsCount > 0 && (
               <span
-                style={{ color: "#959595", fontSize: 15, fontWeight: 600 }}
-              >{`${total} ${
-                total > 1
-                  ? startCase(pluralize(itemName))
-                  : startCase(singularize(itemName))
-                }`}</span>
-            </Col>
-            {/* end selected and  number summary */}
-
-            {/* pagination */}
-            {onPaginate && total > 0 && (
-              <Col xxl={6} xl={7} lg={9} md={9} sm={24} xs={24}>
-                <Pagination
-                  simple
-                  current={page}
-                  defaultCurrent={page}
-                  total={total}
-                  defaultPageSize={10}
-                  className="pagination"
-                  onChange={onPaginate}
-                />
-              </Col>
+                style={{ color: "#959595" }}
+              >{`selected ${selectedItemsCount} out of `}</span>
             )}
-            {/* end pagination */}
-          </Row>
-        </Col>
-      </Row>
-    </div>
-  );
+            <span
+              style={{ color: "#959595", fontSize: 15, fontWeight: 600 }}
+            >{`${total} ${
+              total > 1
+                ? startCase(pluralize(itemName))
+                : startCase(singularize(itemName))
+            }`}</span>
+          </Col>
+          {/* end selected and  number summary */}
+
+          {/* pagination */}
+          {onPaginate && total > 0 && (
+            <Col
+              xxl={6}
+              xl={7}
+              lg={9}
+              md={9}
+              sm={24}
+              xs={24}
+              className="right-content--col-2"
+            >
+              <Pagination
+                simple
+                current={page}
+                defaultCurrent={page}
+                total={total}
+                defaultPageSize={10}
+                className="pagination"
+                onChange={onPaginate}
+              />
+            </Col>
+          )}
+          {/* end pagination */}
+        </Row>
+      </Col>
+    </Row>
+  </div>
+);
 
 /* props validation */
 Toolbar.propTypes = {

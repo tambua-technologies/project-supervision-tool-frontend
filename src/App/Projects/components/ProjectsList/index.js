@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import { Col, Drawer, Spin } from "antd";
 import PropTypes from "prop-types";
-import Topbar from "../../../components/Topbar";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
@@ -18,8 +17,6 @@ import ProjectComponentForm from "../Forms/components/projectComponentForm";
 import ProjectSubComponentForm from "../Forms/components/projectSubComponentForm";
 import { ticketActions, ticketSelectors } from "../../../../redux/modules/Tickets";
 import TicketForm from '../../../Tickets/components/Form';
-import BaseLayout from "../../../layouts/BaseLayout";
-import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
 import { useToggle } from '../../../../hooks/useToggle';
 import "./styles.css";
 
@@ -40,7 +37,7 @@ const headerLayout = [
   { ...statusSpan, header: "Status" },
   { ...approvalSpan, header: "Approve Date" },
   { ...closingSpan, header: "Closing Date" },
-  { ...projectCoordinatorSpan, header: "Impelementing Agency" },
+  { ...projectCoordinatorSpan, header: "Implementing Agency" },
   { ...projectLeadSpan, header: "LGA(s)" },
 ];
 
@@ -61,7 +58,6 @@ const ProjectsList  = (
   page,
   total,
   paginateProject,
-  searchQuery,
   showForm,
   selected,
   mapLoading,
@@ -69,15 +65,14 @@ const ProjectsList  = (
   showTicketForm,
   showComponentForm,
   showSubComponentForm,
-  
   getProject,
-  openProjectForm,
   selectProject,
   closeProjectForm,
   closeProjectComponent,
   closeProjectSubComponent,
   closeTicketForm,
-  searchProject
+  searchProject,
+  match : { url }
   }
   ) =>  {
   // eslint-disable-next-line react/state-in-constructor
@@ -89,10 +84,6 @@ const ProjectsList  = (
     fetchProjects();
   }, [])  // eslint-disable-line react-hooks/exhaustive-deps
 
-
-  
-
-  
   /**
    * @function
    * @name closeProjectCreateForm
@@ -151,18 +142,6 @@ const closeProjectComponentForm = () => {
 
   /**   
    * @function
-   * @name handleSearch
-   * @description Handle list search action
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
- const handleSearch = (event) => {   
-  searchProject(event.target.value)
-  };
-
-  /**   
-   * @function
    * @name handleRefresh
    * @description Handle refresh action
    *
@@ -183,7 +162,7 @@ const handleRefresh = () => {
   */
 const handleViewDetails = (item_id) => {
     getProject(item_id);
-    let path = `/projects/${item_id}`;  
+    let path = `${url}/${item_id}`;  
     history.push(path);
 
   };
@@ -197,7 +176,7 @@ const handleViewDetails = (item_id) => {
   * @since 0.1.0
   */
 const handleViewMap = () => {
-    let path = `/map`;   
+    let path = `app/map`;   
     history.push(path);
   };
 
@@ -218,19 +197,7 @@ const handleViewMap = () => {
         </BaseMap>
       </Spin>
     </div> : (
-      <BaseLayout breadcrumbs={<DynamicBreadcrumbs breadcrumbs={breadcrumbs} />}>
         <div>
-          {/* Topbar */}
-          <Topbar
-            search={{
-              size: "large",
-              placeholder: "Search for Projects here ...",
-              onChange: handleSearch,
-              value: searchQuery,
-            }}
-            
-          />
-          {/* end Topbar */}
 
           {/* list starts */}
           <CustomList
@@ -241,6 +208,7 @@ const handleViewMap = () => {
             itemCount={total}
             onRefresh={handleRefresh}
             onMapView={handleViewMap}
+            generateExportUrl={() => {}}
             onPaginate={(nextPage) => {
               paginateProject({ page: nextPage });
             }}
@@ -372,7 +340,6 @@ const handleViewMap = () => {
             />
           </Drawer>
         </div>
-      </BaseLayout>
     );
   }
 

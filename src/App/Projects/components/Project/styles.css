@@ -4,7 +4,7 @@
 
 .project-layout h3, .sub-project-layout h3 {
     padding: 15px;
-    padding-left: 230px;
+    /* padding-left: 230px; */
     position: relative;
     font-weight: 500;
     margin-bottom: 0;
@@ -162,8 +162,7 @@ h2#sider-title {
     }
     .project-layout h3 {
         /* padding: 20px 250px; */
-        font-size: 22px;
+        font-size: 20px;
         margin: 0;
-        left: 210px;
     }
 }

@@ -1,0 +1,19 @@
+
+.LayerItemActions {
+    font-size: 1em;
+    line-height: 16px;
+    font-weight: 700;
+    margin-left: 5px;
+    cursor: pointer;
+    text-align: right;
+}
+
+.LayerItemActions .add {
+    color: #0f6788;;
+}
+
+
+.LayerItemActions .close {
+    color: #dd4f48;
+    padding: 0 10px 0 10px;
+}

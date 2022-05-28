@@ -1,6 +1,6 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 
 /**
  * @function
@@ -18,11 +18,11 @@ import PropTypes from 'prop-types';
 const PrivateRoute = (properties) => {
   const { component: Component, ...rest } = properties;
   const isLogin = () => {
-    if (localStorage.getItem('accessToken')) {
-        return true;
+    if (localStorage.getItem("accessToken")) {
+      return true;
     }
     return false;
-} 
+  };
 
   return (
     <Route
@@ -31,12 +31,16 @@ const PrivateRoute = (properties) => {
       render={(props) =>
         isLogin() ? (
           // eslint-disable-next-line react/jsx-props-no-spreading
-          Component ? <Component {...props} /> : rest.render(props)
-        ) : (
-            <Redirect
-              to={{ pathname: '/signin', state: { from: props.location } }} // eslint-disable-line
-            />
+          Component ? (
+            <Component {...props} />
+          ) : (
+            rest.render(props)
           )
+        ) : (
+          <Redirect
+            to={{ pathname: "/signin", state: { from: props.location } }} // eslint-disable-line
+          />
+        )
       }
     />
   );

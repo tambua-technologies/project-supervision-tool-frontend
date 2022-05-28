@@ -19,6 +19,7 @@ import subProjectSurveyAPI from './sub_project_survey';
 import ticketsAPI from './tickets';
 import procuringEntityAPI from './procuring_entities';
 import procuringEntityProgressReportsAPI from './procuring_entities_progress_reports';
+import safeguardCconcersAPI from './safeguard_concers';
 import unitAPI from './unit'
 
 export default {
@@ -42,5 +43,6 @@ export default {
     ...ticketsAPI,
     ...procuringEntityAPI,
     ...unitAPI,
-    ...procuringEntityProgressReportsAPI
+    ...procuringEntityProgressReportsAPI,
+    ...safeguardCconcersAPI
 }

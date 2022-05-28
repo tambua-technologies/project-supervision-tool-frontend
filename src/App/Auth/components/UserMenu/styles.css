@@ -1,0 +1,44 @@
+.ModuleNavMenu {
+  width: 200px;
+}
+
+.ModuleNavMenu .NavItem {
+  margin: 10px;
+}
+
+.ModuleNavMenu .NavItem:hover {
+  background-color: #fafafb;
+}
+
+.ModuleNavMenu .NavItem .image {
+  display: block;
+  margin: 0 auto;
+}
+
+.ModuleNavMenu .NavItem .text {
+  font-size: 11px;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  color: #1b98d1;
+}
+
+.ModuleNavMenu .NavItem .text-disabled {
+  color: #a0b0b8;
+}
+
+.UserButton {
+  margin-left: 8px;
+  border-radius: 50%;
+}
+
+.ProjectMenu{
+  padding-block-start: 2rem;
+}
+
+.ProjectMenu h3{
+  padding-inline-start: 24px;
+    font-weight: 600;
+    font-size: 16px;
+    padding-block-end: 1rem;
+}

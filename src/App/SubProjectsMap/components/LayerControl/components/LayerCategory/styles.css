@@ -1,0 +1,24 @@
+.DataSet {
+    display: flex;
+    font-size: 1em;
+    padding: 0 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.DataSet .data-set-info {
+    padding: 0 15px 0 0;
+}
+
+.DataSet .data-set-name-source {
+    width: 80%;
+}
+
+.data-set-section {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.ant-popover.ant-popover-placement-right {
+    left: 441px !important;
+
+}

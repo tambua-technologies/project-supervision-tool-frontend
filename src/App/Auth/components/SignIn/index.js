@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 import {authActions, authSelectors} from "../../../../redux/modules/auth";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
-import { checkForPermission } from "../../../../Util";
 
 
 /**
@@ -23,15 +22,7 @@ const SignIn = ({accessToken, loading, login, errorMsg, permissions}) => {
     let history  = useHistory();
     useEffect(() => {
         if(permissions.length > 0) {
-            if(checkForPermission(permissions, 'can manage packages')){
-                history.push('/projects/1/procuring_entities/1');
-            }
-            else if(checkForPermission(permissions, 'can manage project')){
-                history.push('/projects/1');
-            }
-            else {
-                history.push('/projects');
-            }
+            history.push('procuring_entity/1/overview');
         }
 
     }, [permissions]); // eslint-disable-line react-hooks/exhaustive-deps

@@ -1,0 +1,28 @@
+.ProgressBarOverview{
+    background-color: #f5f5f5;
+    margin-block-start: 1rem;
+
+}
+.ProgressBarOverview h4{
+    font-size: 16px;
+}
+.progressBar-content{
+    display: flex;
+    align-items: center;
+    width: 120px;
+}
+.progressBar-content span{
+  margin-bottom: 5px;
+}
+
+.ProgressBarRow{
+    width: 100%;
+    min-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.progressbar{
+    height: 12px;
+    margin-top: -6px;
+}
