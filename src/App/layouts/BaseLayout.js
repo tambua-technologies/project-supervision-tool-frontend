@@ -36,7 +36,7 @@ const BaseLayout = (props) => {
     });
   };
   return (
-   <AppContext.Provider value={{app: { project, procuringEntity }}}>
+   <AppContext.Provider value={{  project, procuringEntity }}>
       <Layout>
       <Sider width={200} className="sider-layout">
         <Row type="flex" justify="start">
@@ -144,11 +144,8 @@ const BaseLayout = (props) => {
                 path={`${baseUrl}/sub-projects`}
                 component={({ match }) => <SubProjectsList match={match} />}
               />
-
-              
-
               <Route
-                path={`${baseUrl}/contractors`}
+                path={`${baseUrl}/contract`}
                 component={(props) => <Contract />}
               />
             </Switch>
