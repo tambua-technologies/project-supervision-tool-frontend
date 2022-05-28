@@ -26,13 +26,12 @@ const headerLayout = [
   { ...submitReport, header: "submitted on" },
 ];
 
-function ProgressReports({ match, getProcuringEntity }) {
+function ProgressReports({ match }) {
   const [progressReports, setProgressReports] = useState([]);
   const app = React.useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
-  const handleOnOpenForm = () => setShowForm(true);
   const handleOnCloseForm = () => setShowForm(false);
 
   const getReports = async () => {
@@ -49,9 +48,6 @@ function ProgressReports({ match, getProcuringEntity }) {
       path: "",
     },
   ];
-  const refreshPage = () => {
-    window.location.reload(false);
-  };
   useEffect(() => {
     console.log(match.params);
     // getProcuringEntity(1);

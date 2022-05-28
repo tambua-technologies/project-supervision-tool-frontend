@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Menu, Row, Col, Input } from "antd";
+import { Layout, Menu, Row, Input } from "antd";
 import { Link, Route, Switch } from "react-router-dom";
 import Contract from "../ProcuringEntities/components/Contract";
 import UserMenu from "../Auth/components/UserMenu";

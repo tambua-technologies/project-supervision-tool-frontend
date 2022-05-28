@@ -5,7 +5,7 @@ import {
   ProcuringEntitySelectors,
 } from "../../../../redux/modules/ProcuringEntities";
 import PropTypes from "prop-types";
-import { Col, Drawer, Row, Card } from "antd";
+import { Col, Drawer } from "antd";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
