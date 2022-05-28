@@ -3,7 +3,7 @@ import { Layout, Menu, Row, Input } from "antd";
 import { Link, Route, Switch } from "react-router-dom";
 import Contract from "../ProcuringEntities/components/Contract";
 import UserMenu from "../Auth/components/UserMenu";
-import PackagesList from "../Packages/componets/PackagesList";
+import Packages from "../Packages";
 import SubProjectsList from "../SubProjects/components/SubProjectsList";
 import SafeGuard from "../SafeguardConcerns";
 import API from "../../API";
@@ -136,7 +136,7 @@ const BaseLayout = (props) => {
                 />
                 <Route
                   path={`${baseUrl}/packages`}
-                  component={({ match }) => <PackagesList match={match} />}
+                  component={({ match }) => <Packages match={match} />}
                 />
                 <Route
                   path={`${baseUrl}/reports`}
