@@ -9,3 +9,16 @@
     padding: 10px;
 }
 
+.LatestReports .list .list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.LatestReports .list .list-header .header-item {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
