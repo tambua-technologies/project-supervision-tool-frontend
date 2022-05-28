@@ -1,0 +1,11 @@
+
+.LatestReports {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+}
+
+.LatestReports .title {
+    padding: 10px;
+}
+
