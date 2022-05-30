@@ -1,6 +1,7 @@
 .ProgressBarOverview{
     background-color: #f5f5f5;
     margin-block-start: 1rem;
+    padding: 20px 10px;
 
 }
 .ProgressBarOverview h4{
@@ -18,8 +19,9 @@
 .ProgressBarRow{
     width: 100%;
     min-width: 500px;
+    padding: 5px 0 5px 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 .progressbar{
