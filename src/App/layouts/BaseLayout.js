@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Menu, Row, Input } from "antd";
-import { Link, Route, Switch } from "react-router-dom";
+import { Link, Switch } from "react-router-dom";
+import PrivateRoute from "../Auth/PrivateRoute";
 import Contract from "../ProcuringEntities/components/Contract";
 import UserMenu from "../Auth/components/UserMenu";
 import Packages from "../Packages";
@@ -144,28 +145,33 @@ const BaseLayout = (props) => {
               className="BaseLayoutContent"
             >
               <Switch>
-                <Route
+                <PrivateRoute
                   path={`${baseUrl}/overview`}
                   component={({ match }) => <ProcuringEntity match={match} />}
                 />
-                <Route
+                <PrivateRoute
                   path={`${baseUrl}/safeguard`}
                   component={({ match }) => <SafeGuard match={match} />}
                 />
-                <Route
+                <PrivateRoute
                   path={`${baseUrl}/packages`}
                   component={({ match }) => <Packages match={match} />}
                 />
-                <Route
+
+                {/*  Reports routes */}
+                <PrivateRoute
                   path={`${baseUrl}/reports`}
                   component={(props) => <Reports {...props} />}
                 />
-                <Route
+
+
+
+                <PrivateRoute
                   path={`${baseUrl}/sub-projects`}
                   component={({ match }) => <SubProjects match={match} />}
                 />
 
-                <Route
+                <PrivateRoute
                   path={`${baseUrl}/contractors`}
                   component={(props) => <Contract />}
                 />

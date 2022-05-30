@@ -127,20 +127,6 @@ function ProgressReports({ match }) {
             </ListItem>
           )}
         />
-        {/* end list */}
-
-        <Drawer
-          width={"100%"}
-          onClose={handleOnCloseForm}
-          footer={null}
-          visible={showForm}
-          bodyStyle={{ padding: 0 }}
-          destroyOnClose
-          maskClosable={false}
-          className="projectForm"
-        >
-          <DisplaySurveyForm survey_id="apQUo4bqoEHmKNoPgaPq6F" />
-        </Drawer>
       </div>
     </>
   );
