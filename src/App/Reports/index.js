@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Col, Drawer } from "antd";
+import { Col } from "antd";
 import { AppContext } from "../../context/AppContext";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
@@ -12,7 +12,6 @@ import {
   ProcuringEntitySelectors,
 } from "../../redux/modules/ProcuringEntities";
 import { isoDateToHumanReadableDate } from "../../Util";
-import DisplaySurveyForm from "../components/DisplaySurveyForm";
 
 const reportTitle = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 20 };
 const reportNumber = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 0 };
@@ -30,9 +29,6 @@ function ProgressReports({ match }) {
   const [progressReports, setProgressReports] = useState([]);
   const app = React.useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [showForm, setShowForm] = useState(false);
-
-  const handleOnCloseForm = () => setShowForm(false);
 
   const getReports = async () => {
     setIsLoading(true);

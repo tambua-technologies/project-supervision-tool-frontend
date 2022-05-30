@@ -44,7 +44,6 @@
   }
 }
 .maincontent-layout {
-  padding: 0 15px 15px;
   height: 100%;
   width: calc(100% - 200px);
   margin-left: 200px;

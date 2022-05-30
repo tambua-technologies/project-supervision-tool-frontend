@@ -13,6 +13,7 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import "./styles.css";
 import { AppContext } from "../../context/AppContext";
 import ProcuringEntity from "../ProcuringEntities/components/ProcuringEntity";
+import CreateReportForm from "../Reports/components/CreateReportForm";
 const { Header, Content, Sider } = Layout;
 
 const BaseLayout = (props) => {
@@ -141,7 +142,7 @@ const BaseLayout = (props) => {
 
           <div className="maincontent-layout">
             <Content
-              style={{ margin: 0, paddingTop: 90 }}
+              style={{ margin: 0, paddingTop: '5%' }}
               className="BaseLayoutContent"
             >
               <Switch>
@@ -160,8 +161,13 @@ const BaseLayout = (props) => {
 
                 {/*  Reports routes */}
                 <PrivateRoute
+                  exact
                   path={`${baseUrl}/reports`}
                   component={(props) => <Reports {...props} />}
+                />
+                <PrivateRoute
+                  path={`${baseUrl}/reports/create`}
+                  component={(props) => <CreateReportForm {...props} />}
                 />
 
 

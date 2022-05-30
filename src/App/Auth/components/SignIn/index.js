@@ -25,6 +25,9 @@ const SignIn = ({accessToken, loading, login, errorMsg, permissions}) => {
             history.push('procuring_entity/1/overview');
         }
 
+        // remove currentMenuItem from localStorage
+        localStorage.removeItem("currentMenu");
+
     }, [permissions]); // eslint-disable-line react-hooks/exhaustive-deps
 
      /**

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import TopSummary from "../../../components/TopSummary";
 import ProgressBarOverview from "../../../components/ProgressBar";
 import "./styles.css";
-import BaseMap from "../../../Map/components/BaseMap";
 import API from "../../../../API";
 import { isoDateToHumanReadableDate } from "../../../../Util";
 import { LoadingOutlined } from "@ant-design/icons";
