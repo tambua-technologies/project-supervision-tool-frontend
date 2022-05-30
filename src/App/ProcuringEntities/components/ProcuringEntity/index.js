@@ -8,6 +8,7 @@ import { isoDateToHumanReadableDate } from "../../../../Util";
 import { LoadingOutlined } from "@ant-design/icons";
 import ActionBar from "../../../components/ActionBar";
 import LatestReports from "../LatestReports";
+import { useHistory } from "react-router-dom";
 
 const ProcuringEntity = (props) => {
   const [physicalProgress, setPysicalProgress] = useState([]);
@@ -17,6 +18,8 @@ const ProcuringEntity = (props) => {
   
   const { match: {url} } = props;
   const allReportsUrl = url.replace('overview', 'reports');
+  const createReportFormUrl = `${allReportsUrl}/create`;
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -74,7 +77,7 @@ const ProcuringEntity = (props) => {
             },
             {
               btnName: "New Monthly Report ",
-              btnAction: () => {},
+              btnAction: () => history.push(createReportFormUrl),
             },
           ],
         }}
