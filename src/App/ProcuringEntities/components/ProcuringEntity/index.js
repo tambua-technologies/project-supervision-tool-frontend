@@ -23,7 +23,8 @@ const ProcuringEntity = (props) => {
 
 
   useEffect(() => {
-    API.getProcuringEntitiesStatistics(1)
+    const { procuringEntityId } = props.match.params;
+    API.getProcuringEntitiesStatistics(procuringEntityId)
       .then((res) => {
         const physicalProgress = res.data.package_progress.map((p) => ({
           name: p.package_name,

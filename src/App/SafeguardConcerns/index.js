@@ -26,8 +26,9 @@ const headerLayout = [
 ];
 
 
-const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
+const SafeguardConcerns = ({ match }) => {
   const [safeguardStatData, setSafeguardStatData] = useState([]);
+  const {procuringEntityId} = match.params;
   const [safeguardData, setSafeguardData] = useState([]);
   const history = useHistory();
   const handleViewDetails = (item) => {
@@ -35,55 +36,42 @@ const SafeguardConcerns = ({ packages, loading, handleRefresh, match }) => {
     history.push(path);
   };
 
-  useEffect(() => {
-    API.getSafeguardConcerns()
-      .then((res) => {
-        setSafeguardStatData(res.data.data);
-        console.log("safeguard concerns", res.data.data);
-       
-      })
-      .catch((err) => console.log(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const getData = (id) => Promise.all([API.getSafeguardConcernsStatistics(id), API.getSafeguardConcerns(id)])
+  .then(values => {
+    const [safeguardStats, safeguardConcerns] = values;
+    const stats = [
+      { label: "Environmental Concerns", value: safeguardStats.data.environmental_concerns_count },
+      { label: "Social Concerns", value: safeguardStats.data.social_concerns_count },
+      { label: "Safety and Health Concern", value: safeguardStats.data.health_and_safety_concerns_count },
+      { label: "Latest Report", value: isoDateToHumanReadableDate(safeguardStats.data.latestReport.created_at ), cardType: 'date' },
+    ];
+    setSafeguardStatData(stats);
+    setSafeguardData(safeguardConcerns.data);
+
+  })
 
   useEffect(() => {
-    API.getProcuringEntitiesStatistics(1).then((res) => {
-      console.log(res.data);
-      const safeguardStats = [
-        { label: "Environmental Concerns", value: res.data.environmental_concerns_count },
-        { label: "Social Concerns", value: res.data.social_concerns_count },
-        { label: "Safety and Health Concern", value: res.data.health_and_safety_concerns_count },
-        { label: "Latest Report", value: isoDateToHumanReadableDate(res.data.latestReport.created_at )},
-      ]
-      setSafeguardData(safeguardStats)
-    }
-    );
-
+    getData(procuringEntityId);
   }, []);
-  console.log(safeguardData);
+
   return (
     <>
-      <div>
+      <div style={{padding: '30px 10px 20px 20px'}}>
         <CustomList
-          itemName="Packages"
-          items={safeguardStatData}
+          itemName="Safeguard Concerns"
+          items={safeguardData}
           topSummary={
             <TopSummary
-              summaries={safeguardData}
+              summaries={safeguardStatData}
             />
           }
           page={1}
-          itemCount={safeguardStatData.length}
-          loading={safeguardStatData.length === 0}
-          onRefresh={handleRefresh}
+          itemCount={safeguardData.length}
+          loading={safeguardData.length === 0}
+          onRefresh={() => getData(procuringEntityId)}
           actionButtonProp={{
             title: "Safeguard Concerns",
-            arrActions: [
-              {
-                btnName: "Add EHS Update ",
-                btnAction: () => {},
-              },
-            ],
+            arrActions: [],
           }}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (

@@ -114,11 +114,11 @@ const BaseLayout = (props) => {
             </Menu.Item>
             <Menu.Item key="csc-contract">
               <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/contract`}>CSC Contract</Link>
+              <Link to={`/procuring_entity/:procuringEntityId/contract`}>CSC Contract</Link>
             </Menu.Item>
             <Menu.Item style={{position:"absolute", bottom:"0"}} key="settings">
             <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/settings`}>Settings</Link>
+              <Link to={`/procuring_entity/:procuringEntityId/settings`}>Settings</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -147,15 +147,15 @@ const BaseLayout = (props) => {
             >
               <Switch>
                 <PrivateRoute
-                  path={`${baseUrl}/overview`}
+                  path={`/procuring_entity/:procuringEntityId/overview`}
                   component={({ match }) => <ProcuringEntity match={match} />}
                 />
                 <PrivateRoute
-                  path={`${baseUrl}/safeguard`}
+                  path={`/procuring_entity/:procuringEntityId/safeguard`}
                   component={({ match }) => <SafeGuard match={match} />}
                 />
                 <PrivateRoute
-                  path={`${baseUrl}/packages`}
+                  path={`/procuring_entity/:procuringEntityId/packages`}
                   component={({ match }) => <Packages match={match} />}
                 />
 
@@ -166,19 +166,19 @@ const BaseLayout = (props) => {
                   component={(props) => <Reports {...props} />}
                 />
                 <PrivateRoute
-                  path={`${baseUrl}/reports/create`}
+                  path={`/procuring_entity/:procuringEntityId/reports/create`}
                   component={(props) => <CreateReportForm {...props} />}
                 />
 
 
 
                 <PrivateRoute
-                  path={`${baseUrl}/sub-projects`}
+                  path={`/procuring_entity/:procuringEntityId/sub-projects`}
                   component={({ match }) => <SubProjects match={match} />}
                 />
 
                 <PrivateRoute
-                  path={`${baseUrl}/contractors`}
+                  path={`/procuring_entity/:procuringEntityId/contractors`}
                   component={(props) => <Contract />}
                 />
               </Switch>
