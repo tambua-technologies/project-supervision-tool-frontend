@@ -6,6 +6,10 @@
     padding: 10px;
 }
 
+.LatestReports .title {
+    font-weight: bold;
+}
+
 .LatestReports .list .list-header {
     border-bottom: 1px solid #e5e5e5;
     padding: 0 24px 10px 48px;
