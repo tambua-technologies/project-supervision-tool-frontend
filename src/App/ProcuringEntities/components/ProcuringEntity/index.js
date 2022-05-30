@@ -58,8 +58,7 @@ const ProcuringEntity = (props) => {
   const antIcon = (
     <LoadingOutlined
       style={{
-        fontSize: 54,
-        marginTop: "30%",
+        fontSize: 54
       }}
       spin
     />
@@ -103,33 +102,6 @@ const ProcuringEntity = (props) => {
           </Col>
         </Row>
       </section>
-
-      <section className="ProcuringEntity-map-report">
-        <Row gutter={16}>
-          <Col
-            xxl={12}
-            xl={12}
-            lg={12}
-            md={24}
-            sm={24}
-            xs={24}
-            style={{ height: "50px" }}
-          >
-            <h4
-              className="text-blue"
-              style={{ marginBottom: 30, fontSize: 16 }}
-            >
-              Procuring Entity map
-            </h4>
-            <div className="project-map">
-              <BaseMap zoomControl={true} position={[-5.856, 34.074]}></BaseMap>
-            </div>
-          </Col>
-          <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>
-            {/* <LatestReport /> */}
-          </Col>
-        </Row>
-      </section>
     </div>
   ) : (
     <Spin
@@ -138,6 +110,7 @@ const ProcuringEntity = (props) => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        height: '100vh'
       }}
       indicator={antIcon}
     />

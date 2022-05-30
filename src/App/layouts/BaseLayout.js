@@ -17,10 +17,19 @@ const { Header, Content, Sider } = Layout;
 const BaseLayout = (props) => {
   const [project, setProject] = useState(null);
   const [procuringEntity, setProcuringEntity] = useState(null);
+  const [currentMenu, setCurrentMenu] = useState("");
   const {
     match: { url: baseUrl, params },
   } = props;
   const [collapsed, setCollapse] = useState(false);
+
+  // persist current menu in local storage
+  useEffect(() => {
+    if(currentMenu) {
+      localStorage.setItem('currentMenu', currentMenu);
+    }
+    console.log(currentMenu);
+  }, [currentMenu]);
 
   useEffect(() => {
     API.getProcuringEntity(params.procuringEntityId)
@@ -31,6 +40,13 @@ const BaseLayout = (props) => {
       .catch((err) => console.log(err));
   }, [params.procuringEntityId]);
 
+  // set current menu from local storage
+  useEffect(() => {
+    const menu = localStorage.getItem("currentMenu");
+    menu ? setCurrentMenu(menu) : setCurrentMenu("overview");
+ 
+  }, []);
+
   const toggle = () => {
     setCollapse({
       collapsed: !collapsed,
@@ -38,7 +54,7 @@ const BaseLayout = (props) => {
   };
   return (
     <AppContext.Provider value={{ app: { project, procuringEntity } }}>
-      <Layout style={{ height: "100vh" }}>
+      <Layout style={{ minHeight: "100vh" }}>
         <Sider  className="sider-layout">
           <Row type="flex" justify="start">
             <div className="header-logo">
@@ -54,7 +70,8 @@ const BaseLayout = (props) => {
           </Row>
           <Menu
             mode="inline"
-            defaultSelectedKeys={["1"]}
+            selectedKeys={[currentMenu]}
+            onSelect={({ key }) => setCurrentMenu(key)}
             style={{
               height: "100%",
               borderRight: 0,
@@ -64,27 +81,28 @@ const BaseLayout = (props) => {
           >
             <h3 className="text-blue">Ilala</h3>
 
-            <Menu.Item>
+            <Menu.Item key="overview">
               <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/overview`}>Overview</Link>
             </Menu.Item>
-            <Menu.Item>
+
+            <Menu.Item key="reports">
               <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/reports`}>Report</Link>
+              <Link to={`${baseUrl}/reports`}>Reports</Link>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="safeguard">
               <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/safeguard`}>Safeguard Concern</Link>
+              <Link to={`${baseUrl}/safeguard`}>Safeguard Concerns</Link>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="packages">
               <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/packages`}>Package</Link>
+              <Link to={`${baseUrl}/packages`}>Packages</Link>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="sub-projects">
               <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/sub-projects`}>sub-project</Link>
+              <Link to={`${baseUrl}/sub-projects`}>Sub-Projects</Link>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="map">
               <span className="CustomizedIcon" />
               <Link
                 to={`/map/procuring_entity/${props.match.params.procuringEntityId}`}
@@ -92,11 +110,11 @@ const BaseLayout = (props) => {
                 Map
               </Link>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="csc-contract">
               <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/contract`}>CSC Contract</Link>
             </Menu.Item>
-            <Menu.Item style={{position:"absolute", bottom:"0"}}>
+            <Menu.Item style={{position:"absolute", bottom:"0"}} key="settings">
             <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/settings`}>Settings</Link>
             </Menu.Item>
