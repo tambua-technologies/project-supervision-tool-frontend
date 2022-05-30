@@ -26,25 +26,24 @@ const headerLayout = [
   { ...submitReport, header: "Submitted On" },
 ];
 
-function ProgressReports({ match }) {
-  const [progressReports, setProgressReports] = useState([]);
+function Reports({ match }) {
+  const [reports, setReports] = useState([]);
   const app = React.useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
-  const getReports = async () => {
+  const getReports = async (id) => {
     setIsLoading(true);
-    const payload = `filter[procuring_entity_id]=${1}`;
+    const payload = `filter[procuring_entity_id]=${id}`;
     const response = await API.getProcuringEntitiesProgressReports(payload);
-    setProgressReports(response.data);
+    setReports(response.data);
     setIsLoading(false);
   };
 
 
   useEffect(() => {
-    console.log(match.params);
-    // getProcuringEntity(1);
-    getReports();
+    const {procuringEntityId} = match.params;
+    getReports(procuringEntityId);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -66,9 +65,9 @@ function ProgressReports({ match }) {
               },
             ],
           }}
-          items={progressReports}
+          items={reports}
           page={1}
-          itemCount={progressReports.length}
+          itemCount={reports.length}
           loading={isLoading}
           onRefresh={() => getReports()}
           headerLayout={headerLayout}
@@ -132,4 +131,4 @@ const mapDispatchToProps = {
   getProcuringEntity: ProcuringEntityActions.getProcuringEntityStart,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProgressReports);
+export default connect(mapStateToProps, mapDispatchToProps)(Reports);

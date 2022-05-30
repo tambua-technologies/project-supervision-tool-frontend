@@ -22,7 +22,6 @@ const ProcuringEntity = (props) => {
   useEffect(() => {
     API.getProcuringEntitiesStatistics(1)
       .then((res) => {
-        console.log("statics", res);
         const physicalProgress = res.data.package_progress.map((p) => ({
           name: p.package_name,
           complete: p.actual_physical_progress,

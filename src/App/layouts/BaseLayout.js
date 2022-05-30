@@ -162,7 +162,7 @@ const BaseLayout = (props) => {
                 {/*  Reports routes */}
                 <PrivateRoute
                   exact
-                  path={`${baseUrl}/reports`}
+                  path={'/procuring_entity/:procuringEntityId/reports'}
                   component={(props) => <Reports {...props} />}
                 />
                 <PrivateRoute
