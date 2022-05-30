@@ -52,6 +52,7 @@ const SafeguardConcerns = ({ match }) => {
 
   useEffect(() => {
     getData(procuringEntityId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
