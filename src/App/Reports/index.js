@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { Col } from "antd";
 import { AppContext } from "../../context/AppContext";
@@ -29,6 +30,7 @@ function ProgressReports({ match }) {
   const [progressReports, setProgressReports] = useState([]);
   const app = React.useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
 
   const getReports = async () => {
     setIsLoading(true);
@@ -38,12 +40,7 @@ function ProgressReports({ match }) {
     setIsLoading(false);
   };
 
-  const breadcrumb = [
-    {
-      title: "Ilala",
-      path: "",
-    },
-  ];
+
   useEffect(() => {
     console.log(match.params);
     // getProcuringEntity(1);
@@ -52,12 +49,11 @@ function ProgressReports({ match }) {
 
   return (
     <>
-      <div>
+      <div style={{padding: '30px 10px 20px 10px'}}>
         {/* list starts */}
         <CustomList
           itemName="Progress Reports"
           title={"Report"}
-          breadcrumb={breadcrumb}
           project={app?.project?.code}
           entity={"Procuring Entities"}
           location={"Ilala"}
@@ -66,7 +62,7 @@ function ProgressReports({ match }) {
             arrActions: [
               {
                 btnName: "New Monthly Report ",
-                btnAction: () => {},
+                btnAction: () => history.push(`${match.url}/create`),
               },
             ],
           }}
