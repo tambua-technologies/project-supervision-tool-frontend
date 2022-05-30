@@ -6,6 +6,7 @@ import UserMenu from "../Auth/components/UserMenu";
 import Packages from "../Packages";
 import SubProjects from "../SubProjects";
 import SafeGuard from "../SafeguardConcerns";
+import Package from "../Packages/componets/Package";
 import API from "../../API";
 import Reports from "../Reports";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
@@ -39,7 +40,7 @@ const BaseLayout = (props) => {
   return (
     <AppContext.Provider value={{ app: { project, procuringEntity } }}>
       <Layout style={{ height: "100vh" }}>
-        <Sider  className="sider-layout">
+        <Sider className="sider-layout">
           <Row type="flex" justify="start">
             <div className="header-logo">
               {React.createElement(
@@ -78,7 +79,7 @@ const BaseLayout = (props) => {
             </Menu.Item>
             <Menu.Item>
               <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/packages`}>Package</Link>
+              <Link to={`${baseUrl}/packages`}>Packages</Link>
             </Menu.Item>
             <Menu.Item>
               <span className="CustomizedIcon" />
@@ -96,8 +97,8 @@ const BaseLayout = (props) => {
               <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/contract`}>CSC Contract</Link>
             </Menu.Item>
-            <Menu.Item style={{position:"absolute", bottom:"0"}}>
-            <span className="CustomizedIcon" />
+            <Menu.Item style={{ position: "absolute", bottom: "0" }}>
+              <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/settings`}>Settings</Link>
             </Menu.Item>
           </Menu>
@@ -107,7 +108,7 @@ const BaseLayout = (props) => {
           <Header className="header">
             <Row type="flex" className="header-content">
               <div className="header-left-content">
-              <Input
+                <Input
                   placeholder="Search here"
                   allowClear
                   className="TopbarSearch"
@@ -115,14 +116,14 @@ const BaseLayout = (props) => {
                 />
               </div>
               <div>
-              <UserMenu />
+                <UserMenu />
               </div>
             </Row>
           </Header>
 
           <div className="maincontent-layout">
             <Content
-              style={{ margin: 0, paddingTop: 20 }}
+              style={{ margin: 0 }}
               className="BaseLayoutContent"
             >
               <Switch>
@@ -134,10 +135,18 @@ const BaseLayout = (props) => {
                   path={`${baseUrl}/safeguard`}
                   component={({ match }) => <SafeGuard match={match} />}
                 />
+
                 <Route
+                  exact={true}
                   path={`${baseUrl}/packages`}
                   component={({ match }) => <Packages match={match} />}
                 />
+
+                <Route
+                  path={`${baseUrl}/packages/:packageId`}
+                  component={({ match }) => <Package match={match} />}
+                />
+
                 <Route
                   path={`${baseUrl}/reports`}
                   component={(props) => <Reports {...props} />}

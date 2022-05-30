@@ -25,9 +25,9 @@
 .ant-layout-header {
   padding: 0;
   position: fixed;
-  z-index: 1000;
+  z-index: 10000;
 }
-.header-content{
+.header-content {
   display: flex;
   justify-content: space-between;
 }
@@ -44,7 +44,7 @@
   }
 }
 .maincontent-layout {
-  padding: 0 15px 15px;
+  padding: 70px 15px 15px;
   height: 100%;
   width: calc(100% - 200px);
   margin-left: 200px;

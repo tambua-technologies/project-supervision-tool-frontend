@@ -1,0 +1,33 @@
+.rectangle-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f5f5f5;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+.rectangle-container h3 span {
+  display: block;
+  color: rgb(58, 56, 56);
+}
+.image-container{
+   display: flex;
+   justify-content: center;
+}
+.image-container img{
+    width: 30%;
+    margin-left: 10px;
+}
+.container{
+    background-color: #f5f5f5;
+    width: 50%;
+    margin-left: 20px;
+    display: flex;
+    padding-top: 15px;
+    flex-direction: column;
+    justify-content: center;
+}
+.ant-table table {
+    background-color: #f5f5f5;
+}
