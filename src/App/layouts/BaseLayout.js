@@ -38,7 +38,7 @@ const BaseLayout = (props) => {
   };
   return (
     <AppContext.Provider value={{ app: { project, procuringEntity } }}>
-      <Layout style={{ height: "100vh" }}>
+      <Layout style={{ minHeight: "100vh" }}>
         <Sider  className="sider-layout">
           <Row type="flex" justify="start">
             <div className="header-logo">
