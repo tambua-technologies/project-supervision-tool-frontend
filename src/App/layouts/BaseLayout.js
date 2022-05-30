@@ -140,7 +140,7 @@ const BaseLayout = (props) => {
 
           <div className="maincontent-layout">
             <Content
-              style={{ margin: 0, paddingTop: 20 }}
+              style={{ margin: 0, paddingTop: 90 }}
               className="BaseLayoutContent"
             >
               <Switch>

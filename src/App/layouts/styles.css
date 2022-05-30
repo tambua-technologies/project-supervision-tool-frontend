@@ -49,6 +49,7 @@
   width: calc(100% - 200px);
   margin-left: 200px;
   box-shadow: 0 2px 2px #ceced194;
+  overflow: auto;
 }
 @media screen and (max-width: 426px) {
   .ant-layout-header {
