@@ -21,15 +21,6 @@ const ProgressBarOverview = ({ item, title, bgcolor }) => {
                   {data.name.charAt(0).toUpperCase()}
                 </Avatar>
                 <span>{data.name}</span>
-              {/* <Col xxl={1} xl={1} lg={1} md={1} sm={2} xs={2}>
-                <Avatar style={{ backgroundColor: avatarBackground }}>
-                  {data.name.charAt(0).toUpperCase()}
-                </Avatar>
-                <span>{data.name}</span>
-              </Col> */}
-              {/* <Col xxl={4} xl={4} lg={4} md={4} sm={4} xs={4} className="progress-name">
-                <p>{data.name}</p>
-              </Col> */}
             </Col>
             <Col xxl={18} xl={18} lg={18} md={18} sm={18} xs={18} className="progressbar">
               <ProgressBar completed={data.complete} bgcolor={bgcolor} />

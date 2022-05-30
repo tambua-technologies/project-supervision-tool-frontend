@@ -1,9 +1,65 @@
 
 import React from 'react';
+import { Avatar } from "antd";
+import randomColor from "randomcolor";
+
 
 import './styles.css';
 
+const LatestReportListItem = ({item}) => {
+const {name, createdAt, generatedBy, lastUpdated} = item;
+const avatarBackground = randomColor();
+
+    return (
+        <div className='LatestReportListItem'>
+            <Avatar 
+            style={{ backgroundColor: avatarBackground, marginRight: '20px' }}
+            size="small"
+            >
+                {name.charAt(0).toUpperCase()}
+            </Avatar>
+            <div className='item-value'>{name}</div>
+            <div className='item-value'>{createdAt}</div>
+            <div className='item-value'>{generatedBy}</div>
+            <div className='item-value'>{lastUpdated}</div>
+        </div>
+    );
+}
+
 const LatestReports = () => {
+
+    const latestReports = [
+        {
+            name: 'August 2021 Monthly Report',
+            createdAt: 'Aug 30,2021',
+            generatedBy: 'John Doe',
+            lastUpdated: 'Sep 10,2021'
+        },
+        {
+            name: 'July 2021 Monthly Report',
+            createdAt: 'Jul 30,2021',
+            generatedBy: 'John Doe',
+            lastUpdated: 'Aug 10,2021'
+        },
+        {
+            name: 'June 2021 Monthly Report',
+            createdAt: 'Jun 30,2021',
+            generatedBy: 'John Doe',
+            lastUpdated: 'Jul 10,2021'
+        },
+        {
+            name: 'May 2021 Monthly Report',
+            createdAt: 'May 30,2021',
+            generatedBy: 'John Doe',
+            lastUpdated: 'Jun 10,2021'
+        },
+        {
+            name: 'April 2021 Monthly Report',
+            createdAt: 'Apr 30,2021',
+            generatedBy: 'John Doe',
+            lastUpdated: 'May 10,2021'
+        }
+    ];
     return (
         <div className='LatestReports'>
             <div className='title peacock-blue_color'>Latest Reports</div>
@@ -15,34 +71,9 @@ const LatestReports = () => {
                     <div className='header-item'>Last Updated</div>
                 </div>
                 <div className='list-items'>
-                    <div className='list-item'>
-                        <div>August 2021 Monthly Report</div>
-                        <div>Aug 30,2021</div>
-                        <div>J. Doe</div>
-                        <div>Sep 10,2021</div>
-                    </div>
-                    <div className='list-item'>
-                        <div>September 2021 Monthly Report</div>
-                        <div>Sep 30,2021</div>
-                        <div>J. Doe</div>
-                        <div>Oct 10,2021</div>
-
-                    </div>
-                    <div className='list-item'>
-                        <div>October 2021 Monthly Report</div>
-                        <div>Oct 30,2021</div>
-                        <div>J. Doe</div>
-                        <div>Nov 10,2021</div>
-
-                    </div>
-                    <div className='list-item'>
-                        <div>November 2021 Monthly Report</div>
-                        <div>Nov 30,2021</div>
-                        <div>J. Doe</div>
-                        <div>Dec 10,2021</div>
-                    </div>
+                    {latestReports.map((item, index) => <LatestReportListItem key={index} item={item} />)}
                 </div>
-                <div className='list-footer'>View All Reports</div>
+                <div className='list-footer peacock-blue_color'><a>View All Reports</a></div>
             </div>
 
         </div>
