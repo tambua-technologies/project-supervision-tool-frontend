@@ -10,11 +10,15 @@ import { LoadingOutlined } from "@ant-design/icons";
 import ActionBar from "../../../components/ActionBar";
 import LatestReports from "../LatestReports";
 
-const ProcuringEntity = () => {
+const ProcuringEntity = (props) => {
   const [physicalProgress, setPysicalProgress] = useState([]);
   const [financialProgress, setFinancialProgress] = useState([]);
   const [summaries, setSummaries] = useState([]);
-  const reports = [];
+  const [reports, setReports] = useState([]);
+  
+  const { match: {url} } = props;
+  const allReportsUrl = url.replace('overview', 'reports');
+
 
   useEffect(() => {
     API.getProcuringEntitiesStatistics(1)
@@ -42,6 +46,8 @@ const ProcuringEntity = () => {
           },
         ];
 
+        
+        setReports(res.data.reports);
         setFinancialProgress(financialProgress);
         setPysicalProgress(physicalProgress);
         setSummaries(statisticsSummaries);
@@ -77,7 +83,7 @@ const ProcuringEntity = () => {
         }}
       />
       <TopSummary summaries={summaries} />
-      <LatestReports reports={reports}/>
+      <LatestReports reports={reports} allReportsUrl={allReportsUrl}/>
       <section className="ProcuringEntity-progress">
         <Row gutter={16}>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>
