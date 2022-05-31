@@ -114,11 +114,11 @@ const BaseLayout = (props) => {
             </Menu.Item>
             <Menu.Item key="csc-contract">
               <span className="CustomizedIcon" />
-              <Link to={`/procuring_entity/:procuringEntityId/contract`}>CSC Contract</Link>
+              <Link to={`${baseUrl}/contract`}>CSC Contract</Link>
             </Menu.Item>
             <Menu.Item style={{position:"absolute", bottom:"0"}} key="settings">
             <span className="CustomizedIcon" />
-              <Link to={`/procuring_entity/:procuringEntityId/settings`}>Settings</Link>
+              <Link to={`${baseUrl}/settings`}>Settings</Link>
             </Menu.Item>
           </Menu>
         </Sider>

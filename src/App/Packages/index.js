@@ -56,6 +56,18 @@ const PackagesList = ({
   const procuringEntityId = getIdFromUrlPath(match.path, 4);
   const filter = { "filter[procuring_entity_id]": procuringEntityId };
 
+  // calculate time elapsed in months
+  const getTimeElapsed = (startDate, endDate) => {
+    let start = new Date(startDate);
+    let end = new Date(endDate);
+    let months =
+      (end.getFullYear() - start.getFullYear()) * 12 +
+      end.getMonth() -
+      start.getMonth();
+    return months;  // returns the number of months
+
+  }
+
   useEffect(() => {
     getPackages(filter);
     getProcuringEntity(procuringEntityId);
@@ -125,7 +137,8 @@ const PackagesList = ({
 
   return (
     <>
-      <div style={{padding: '30px 20px 20px 20px'}}>
+      <div>
+
         {/* list starts */}
         <CustomList
           itemName="Packages"
@@ -137,7 +150,7 @@ const PackagesList = ({
             title: "Packages",
             arrActions: [
               {
-                btnName: "Add EHS Update ",
+                btnName: "+ New Package",
                 btnAction: () => {},
               },
             ],
@@ -176,7 +189,7 @@ const PackagesList = ({
                 {item.progress.planned_physical_progress}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
-                {"time"}
+                {getTimeElapsed(item.start_date, item.end_date)}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
                 {"time"}

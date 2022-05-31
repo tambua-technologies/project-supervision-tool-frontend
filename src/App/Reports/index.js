@@ -48,7 +48,7 @@ function Reports({ match }) {
 
   return (
     <>
-      <div style={{padding: '30px 10px 20px 20px'}}>
+      <div>
         {/* list starts */}
         <CustomList
           itemName="Progress Reports"
