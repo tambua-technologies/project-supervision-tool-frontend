@@ -2,7 +2,9 @@ import React from "react";
 import TopSummary from "../../../components/TopSummary";
 import { Table } from "antd";
 import "./style.css";
+import LatestReports from "../../../components/TableComponent";
 import Img from "../../../../../src/assets/img/prof.jpg";
+
 
 const columns = [
   {
@@ -48,6 +50,8 @@ const data = [
 ];
 
 const Package = (props) => {
+  const { match: {url} } = props;
+  const allReportsUrl = url.replace('overview', 'reports');
   const summaries = [
     { label: "Actual Progress", value: "22" },
     { label: "Planned Progress", value: "42" },
@@ -81,7 +85,7 @@ const Package = (props) => {
         }}
       >
         <div style={{ width: "50%", backgroundColor: "#F5F5F5" }}>
-          <Table columns={columns} className="table-container" pagination={false} dataSource={data} size="middle" />
+          <LatestReports  reports={columns} allReportsUrl={allReportsUrl}/>
         </div>
         <div className="container">
           <h2 style={{marginLeft:"15px", fontSize:"15px", color:"blue"}}>Site photes</h2>
@@ -94,8 +98,7 @@ const Package = (props) => {
         </div>
       </section>
       <div>
-      <Table pagination={false} columns={columns} dataSource={data} size="middle" />
-
+      <LatestReports  reports={columns} allReportsUrl={allReportsUrl}/>
       </div>
     </div>
   );
