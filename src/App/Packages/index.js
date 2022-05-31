@@ -68,6 +68,19 @@ const PackagesList = ({
 
   }
 
+  // calculate percentage of time elapsed
+  const getTimeElapsedPercentage = (startDate, endDate) => {
+    const totalTime = getTimeElapsed(startDate, endDate);
+    const today = new Date();
+    const timeElapsed = getTimeElapsed(startDate, today);
+
+    if(timeElapsed >= totalTime) return 100;
+    const percentTime = (timeElapsed / totalTime) * 100;
+
+    return Math.round(percentTime);
+
+  }
+
   useEffect(() => {
     getPackages(filter);
     getProcuringEntity(procuringEntityId);
@@ -151,7 +164,7 @@ const PackagesList = ({
             arrActions: [
               {
                 btnName: "+ New Package",
-                btnAction: () => {},
+                btnAction: () => { },
               },
             ],
           }}
@@ -189,13 +202,13 @@ const PackagesList = ({
                 {item.progress.planned_physical_progress}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
-                {getTimeElapsed(item.start_date, item.end_date)}
+                {getTimeElapsedPercentage(item.contract.date_of_commencement_of_works, item.contract.date_of_contract_completion)}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
-                {"time"}
+                {item.progress.actual_financial_progress}
               </Col>
               <Col {...Contractor} className="contentEllipse">
-                {"constructor"}
+                {item.contract.contractor.name}
               </Col>
 
               {/* eslint-enable react/jsx-props-no-spreading */}
@@ -267,7 +280,7 @@ PackagesList.defaultProps = {
   loading: null,
   isEditForm: null,
   showForm: null,
-  getPackage: () => {},
+  getPackage: () => { },
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackagesList);
