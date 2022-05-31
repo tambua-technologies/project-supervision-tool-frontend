@@ -14,6 +14,7 @@ import "./styles.css";
 import { AppContext } from "../../context/AppContext";
 import ProcuringEntity from "../ProcuringEntities/components/ProcuringEntity";
 import CreateReportForm from "../Reports/components/CreateReportForm";
+import Package from "../Packages/componets/Package";
 const { Header, Content, Sider } = Layout;
 
 const BaseLayout = (props) => {
@@ -57,7 +58,7 @@ const BaseLayout = (props) => {
   return (
     <AppContext.Provider value={{ app: { project, procuringEntity } }}>
       <Layout style={{ height: "100vh" }}>
-        <Sider  className="sider-layout">
+        <Sider className="sider-layout">
           <Row type="flex" justify="start">
             <div className="header-logo">
               {React.createElement(
@@ -114,11 +115,18 @@ const BaseLayout = (props) => {
             </Menu.Item>
             <Menu.Item key="csc-contract">
               <span className="CustomizedIcon" />
-              <Link to={`/procuring_entity/:procuringEntityId/contract`}>CSC Contract</Link>
+              <Link to={`/procuring_entity/:procuringEntityId/contract`}>
+                CSC Contract
+              </Link>
             </Menu.Item>
-            <Menu.Item style={{position:"absolute", bottom:"0"}} key="settings">
-            <span className="CustomizedIcon" />
-              <Link to={`/procuring_entity/:procuringEntityId/settings`}>Settings</Link>
+            <Menu.Item
+              style={{ position: "absolute", bottom: "0" }}
+              key="settings"
+            >
+              <span className="CustomizedIcon" />
+              <Link to={`/procuring_entity/:procuringEntityId/settings`}>
+                Settings
+              </Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -127,7 +135,7 @@ const BaseLayout = (props) => {
           <Header className="header">
             <Row type="flex" className="header-content">
               <div className="header-left-content">
-              <Input
+                <Input
                   placeholder="Search here"
                   allowClear
                   className="TopbarSearch"
@@ -135,14 +143,14 @@ const BaseLayout = (props) => {
                 />
               </div>
               <div>
-              <UserMenu />
+                <UserMenu />
               </div>
             </Row>
           </Header>
 
           <div className="maincontent-layout">
             <Content
-              style={{ margin: 0, paddingTop: '5%' }}
+              style={{ margin: 0, paddingTop: "5%" }}
               className="BaseLayoutContent"
             >
               <Switch>
@@ -154,23 +162,28 @@ const BaseLayout = (props) => {
                   path={`/procuring_entity/:procuringEntityId/safeguard`}
                   component={({ match }) => <SafeGuard match={match} />}
                 />
+
+                {/* Packages routes */}
                 <PrivateRoute
+                  exact
                   path={`/procuring_entity/:procuringEntityId/packages`}
                   component={({ match }) => <Packages match={match} />}
+                />
+                <PrivateRoute
+                  path={`/procuring_entity/:procuringEntityId/packages/:packageId`}
+                  component={({ match }) => <Package match={match} />}
                 />
 
                 {/*  Reports routes */}
                 <PrivateRoute
                   exact
-                  path={'/procuring_entity/:procuringEntityId/reports'}
+                  path={"/procuring_entity/:procuringEntityId/reports"}
                   component={(props) => <Reports {...props} />}
                 />
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/reports/create`}
                   component={(props) => <CreateReportForm {...props} />}
                 />
-
-
 
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/sub-projects`}

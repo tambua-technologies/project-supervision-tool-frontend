@@ -1,5 +1,6 @@
 import { Row, Col, Spin } from "antd";
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import TopSummary from "../../../components/TopSummary";
 import ProgressBarOverview from "../../../components/ProgressBar";
 import "./styles.css";
@@ -7,8 +8,7 @@ import API from "../../../../API";
 import { isoDateToHumanReadableDate } from "../../../../Util";
 import { LoadingOutlined } from "@ant-design/icons";
 import ActionBar from "../../../components/ActionBar";
-import LatestReports from "../LatestReports";
-import { useHistory } from "react-router-dom";
+import LatestReports from "../../../components/TableComponent";
 
 const ProcuringEntity = (props) => {
   const [physicalProgress, setPysicalProgress] = useState([]);
