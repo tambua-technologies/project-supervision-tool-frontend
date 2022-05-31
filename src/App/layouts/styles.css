@@ -25,9 +25,9 @@
 .ant-layout-header {
   padding: 0;
   position: fixed;
-  z-index: 10000;
+  z-index: 1000;
 }
-.header-content {
+.header-content{
   display: flex;
   justify-content: space-between;
 }
@@ -44,11 +44,11 @@
   }
 }
 .maincontent-layout {
-  padding: 70px 15px 15px;
   height: 100%;
   width: calc(100% - 200px);
   margin-left: 200px;
   box-shadow: 0 2px 2px #ceced194;
+  overflow: auto;
 }
 @media screen and (max-width: 426px) {
   .ant-layout-header {
@@ -110,7 +110,7 @@
 .sider-layout .ant-menu.ant-menu-dark,
 .sider-layout .ant-menu-dark .ant-menu-inline.ant-menu-sub {
   background: #fafafa;
-  width: 200px;
+  width: 210px;
 }
 .ant-layout-sider {
   position: fixed;

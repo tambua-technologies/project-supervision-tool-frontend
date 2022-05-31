@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import TopSummary from "../../../components/TopSummary";
 import ProgressBarOverview from "../../../components/ProgressBar";
 import "./styles.css";
-import BaseMap from "../../../Map/components/BaseMap";
 import API from "../../../../API";
 import { isoDateToHumanReadableDate } from "../../../../Util";
 import { LoadingOutlined } from "@ant-design/icons";
 import ActionBar from "../../../components/ActionBar";
 import LatestReports from "../LatestReports";
+import { useHistory } from "react-router-dom";
 
 const ProcuringEntity = (props) => {
   const [physicalProgress, setPysicalProgress] = useState([]);
@@ -18,12 +18,14 @@ const ProcuringEntity = (props) => {
   
   const { match: {url} } = props;
   const allReportsUrl = url.replace('overview', 'reports');
+  const createReportFormUrl = `${allReportsUrl}/create`;
+  const history = useHistory();
 
 
   useEffect(() => {
-    API.getProcuringEntitiesStatistics(1)
+    const { procuringEntityId } = props.match.params;
+    API.getProcuringEntitiesStatistics(procuringEntityId)
       .then((res) => {
-        console.log("statics", res);
         const physicalProgress = res.data.package_progress.map((p) => ({
           name: p.package_name,
           complete: p.actual_physical_progress,
@@ -53,6 +55,7 @@ const ProcuringEntity = (props) => {
         setSummaries(statisticsSummaries);
       })
       .catch((err) => console.log(err));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const antIcon = (
@@ -76,7 +79,7 @@ const ProcuringEntity = (props) => {
             },
             {
               btnName: "New Monthly Report ",
-              btnAction: () => {},
+              btnAction: () => history.push(createReportFormUrl),
             },
           ],
         }}
