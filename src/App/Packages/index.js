@@ -47,13 +47,12 @@ const PackagesList = ({
   selectPackage,
   selected,
   match,
-  getProcuringEntity,
 }) => {
   const history = useHistory();
   const { isEditForm, setIsEditForm, setVisible } = useToggle(false);
   const [packageStatisticsValues, setPackageStatisticsValues] = useState([]);
   const [packData, setPackData] = useState([]);
-  const procuringEntityId = getIdFromUrlPath(match.path, 4);
+  const {procuringEntityId} = match.params;
   const filter = { "filter[procuring_entity_id]": procuringEntityId };
 
   // calculate time elapsed in months
@@ -81,34 +80,31 @@ const PackagesList = ({
 
   }
 
+ 
   useEffect(() => {
-    getPackages(filter);
-    getProcuringEntity(procuringEntityId);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    API.getPackageStatistics(1).then(
-      (response) => {
-        console.log(response);
-        const packageStats = [
-          { label: "In progress", value: response.data.in_progress },
-          { label: "Complete", value: response.data.completed },
-          { label: "Challenges", value: response.data.challenges },
-          {
-            label: "Latest Report",
-            value: isoDateToHumanReadableDate(
-              response.data.latestReport.created_at
-            ),
-            cardType: "date",
-          },
-        ];
-        setPackageStatisticsValues(packageStats);
-      },
-      API.getPackageStatisticsData(1).then((res) => {
-        console.log(res.data);
-        setPackData(res.data);
-      })
-    );
+    
+    Promise.all([API.getPackageStatistics(procuringEntityId), API.getPackages(filter)])
+    .then((res) => {
+      const packageStats = [
+        { label: "In progress", value: res[0].data.in_progress },
+        { label: "Complete", value: res[0].data.completed },
+        { label: "Challenges", value: res[0].data.challenges },
+        {
+          label: "Latest Report",
+          value: isoDateToHumanReadableDate(
+            res[0].data.latestReport.created_at
+          ),
+          cardType: "date",
+        },
+      ];
+      setPackageStatisticsValues(packageStats);
+      setPackData(res[1].data);
+
+    });
   }, []);
+
+
+
   /**
    * @function
    * @name handleViewDetails
@@ -168,7 +164,7 @@ const PackagesList = ({
               },
             ],
           }}
-          loading={loading}
+          loading={packData.length === 0}
           onRefresh={handleRefresh}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
