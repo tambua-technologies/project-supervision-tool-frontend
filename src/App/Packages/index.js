@@ -32,20 +32,17 @@ const headerLayout = [
   { ...actualPhysicalProgress, header: "Actial Physical Progress(%)" },
   { ...plannedPyscalProgress, header: "Planned Physical Progress(%)" },
   { ...timeElapsed, header: "Time elapsed(%)" },
-  { ...financialProgress, header: "financial Progress(%)" },
+  { ...financialProgress, header: "Financial Progress(%)" },
   { ...Contractor, header: "Contractor" },
 ];
 
 const PackagesList = ({
   getPackages,
-  packages,
   loading,
   showForm,
-  deletePackage,
   createPackage,
   updatePackage,
   procuringEntity,
-  openPackageForm,
   closePackageForm,
   selectPackage,
   selected,
@@ -76,6 +73,7 @@ const PackagesList = ({
             value: isoDateToHumanReadableDate(
               response.data.latestReport.created_at
             ),
+            cardType: "date",
           },
         ];
         setPackageStatisticsValues(packageStats);
@@ -127,7 +125,7 @@ const PackagesList = ({
 
   return (
     <>
-      <div>
+      <div style={{padding: '30px 20px 20px 20px'}}>
         {/* list starts */}
         <CustomList
           itemName="Packages"
