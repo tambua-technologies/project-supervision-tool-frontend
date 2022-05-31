@@ -9,7 +9,7 @@ import { Col, Drawer } from "antd";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
-import { getIdFromUrlPath, isoDateToHumanReadableDate } from "../../Util";
+import { isoDateToHumanReadableDate } from "../../Util";
 import API from "../../API";
 import PackageForm from "./componets/Form";
 import { useHistory } from "react-router-dom";
@@ -104,6 +104,16 @@ const PackagesList = ({
   }, []);
 
 
+  const handlePackagesUpload = (e) => {
+    console.log(e);
+  }
+
+  const  triggerFileUpload = (e) => {
+    e.preventDefault();
+    document.getElementById("file-input").click();
+  }
+
+
 
   /**
    * @function
@@ -146,6 +156,13 @@ const PackagesList = ({
 
   return (
     <>
+    <input 
+    type="file" 
+    name="file" 
+    id="file-input" 
+    class="visuallyhidden"
+    onChange={handlePackagesUpload}
+     />
       <div>
 
         {/* list starts */}
@@ -159,8 +176,8 @@ const PackagesList = ({
             title: "Packages",
             arrActions: [
               {
-                btnName: "+ New Package",
-                btnAction: () => { },
+                btnName: "Import Packages",
+                btnAction: triggerFileUpload,
               },
             ],
           }}
