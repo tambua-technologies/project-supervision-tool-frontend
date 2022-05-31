@@ -32,20 +32,17 @@ const headerLayout = [
   { ...actualPhysicalProgress, header: "Actial Physical Progress(%)" },
   { ...plannedPyscalProgress, header: "Planned Physical Progress(%)" },
   { ...timeElapsed, header: "Time elapsed(%)" },
-  { ...financialProgress, header: "financial Progress(%)" },
+  { ...financialProgress, header: "Financial Progress(%)" },
   { ...Contractor, header: "Contractor" },
 ];
 
 const PackagesList = ({
   getPackages,
-  packages,
   loading,
   showForm,
-  deletePackage,
   createPackage,
   updatePackage,
   procuringEntity,
-  openPackageForm,
   closePackageForm,
   selectPackage,
   selected,
@@ -58,6 +55,31 @@ const PackagesList = ({
   const [packData, setPackData] = useState([]);
   const procuringEntityId = getIdFromUrlPath(match.path, 4);
   const filter = { "filter[procuring_entity_id]": procuringEntityId };
+
+  // calculate time elapsed in months
+  const getTimeElapsed = (startDate, endDate) => {
+    let start = new Date(startDate);
+    let end = new Date(endDate);
+    let months =
+      (end.getFullYear() - start.getFullYear()) * 12 +
+      end.getMonth() -
+      start.getMonth();
+    return months;  // returns the number of months
+
+  }
+
+  // calculate percentage of time elapsed
+  const getTimeElapsedPercentage = (startDate, endDate) => {
+    const totalTime = getTimeElapsed(startDate, endDate);
+    const today = new Date();
+    const timeElapsed = getTimeElapsed(startDate, today);
+
+    if(timeElapsed >= totalTime) return 100;
+    const percentTime = (timeElapsed / totalTime) * 100;
+
+    return Math.round(percentTime);
+
+  }
 
   useEffect(() => {
     getPackages(filter);
@@ -76,6 +98,7 @@ const PackagesList = ({
             value: isoDateToHumanReadableDate(
               response.data.latestReport.created_at
             ),
+            cardType: "date",
           },
         ];
         setPackageStatisticsValues(packageStats);
@@ -128,6 +151,7 @@ const PackagesList = ({
   return (
     <>
       <div>
+
         {/* list starts */}
         <CustomList
           itemName="Packages"
@@ -139,8 +163,8 @@ const PackagesList = ({
             title: "Packages",
             arrActions: [
               {
-                btnName: "Add EHS Update ",
-                btnAction: () => {},
+                btnName: "+ New Package",
+                btnAction: () => { },
               },
             ],
           }}
@@ -182,13 +206,13 @@ const PackagesList = ({
                 {item.progress.planned_physical_progress}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
-                {"time"}
+                {getTimeElapsedPercentage(item.contract.date_of_commencement_of_works, item.contract.date_of_contract_completion)}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
-                {"time"}
+                {item.progress.actual_financial_progress}
               </Col>
               <Col {...Contractor} className="contentEllipse">
-                {"constructor"}
+                {item.contract.contractor.name}
               </Col>
 
               {/* eslint-enable react/jsx-props-no-spreading */}
@@ -260,7 +284,7 @@ PackagesList.defaultProps = {
   loading: null,
   isEditForm: null,
   showForm: null,
-  getPackage: () => {},
+  getPackage: () => { },
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackagesList);
