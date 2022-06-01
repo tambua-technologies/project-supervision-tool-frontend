@@ -92,7 +92,7 @@ const PackagesList = ({
         {
           label: "Latest Report",
           value: isoDateToHumanReadableDate(
-            res[0].data.latestReport.created_at
+            res[0]?.data?.latestReport?.created_at
           ),
           cardType: "date",
         },
