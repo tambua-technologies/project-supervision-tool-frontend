@@ -105,7 +105,10 @@ const PackagesList = ({
 
 
   const handlePackagesUpload = (e) => {
-    console.log(e);
+    const file = e.target.files[0];
+    API.uploadPackages(file).then((res) => {
+      console.log(res);
+    })
   }
 
   const  triggerFileUpload = (e) => {
@@ -209,19 +212,19 @@ const PackagesList = ({
                 {item.sub_projects_count ? item.sub_projects_count : "N/A"}
               </Col>
               <Col {...actualPhysicalProgress} className="contentEllipse">
-                {item.progress.actual_physical_progress}
+                {item?.progress?.actual_physical_progress}
               </Col>
               <Col {...plannedPyscalProgress} className="contentEllipse">
-                {item.progress.planned_physical_progress}
+                {item?.progress?.planned_physical_progress}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
-                {getTimeElapsedPercentage(item.contract.date_of_commencement_of_works, item.contract.date_of_contract_completion)}
+                {getTimeElapsedPercentage(item?.contract?.date_of_commencement_of_works, item?.contract?.date_of_contract_completion)}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
-                {item.progress.actual_financial_progress}
+                {item?.progress?.actual_financial_progress}
               </Col>
               <Col {...Contractor} className="contentEllipse">
-                {item.contract.contractor.name}
+                {item?.contract?.contractor?.name}
               </Col>
 
               {/* eslint-enable react/jsx-props-no-spreading */}
