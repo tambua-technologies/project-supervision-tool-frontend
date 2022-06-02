@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-const TableContainer = () => {
+const TableContainer = ({}) => {
   return (
     <table class="table">
       <tr>

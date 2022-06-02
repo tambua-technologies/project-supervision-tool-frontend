@@ -1,12 +1,11 @@
-import React from 'react'
-import "./style.css"
-const TopContent = ({type, descrpt}) => {
+import React from "react";
+import "./style.css";
+const TopContent = ({ title, description }) => {
   return (
-        <h3>
-          {type} <span>{descrpt}</span>
-        </h3>
- 
-  )
-}
+    <h3>
+      {title} <span>{description}</span>
+    </h3>
+  );
+};
 
-export default TopContent
+export default TopContent;

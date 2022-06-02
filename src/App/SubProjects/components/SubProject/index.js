@@ -8,17 +8,17 @@ import Img3 from "../../../../../src/assets/img/mradi2.jpg";
 import "./style.css";
 const Subproject = () => {
   const contents = [
-    { type: "Work Type", descrpt: "Road" },
-    { type: "Name", descrpt: "Ndanda Road" },
-    { type: "Length", descrpt: "1.27km" },
-    { type: "Contractor", descrpt: "Mhandisi Consultancy Ltd" },
+    { title: "Work title", description: "Road" },
+    { title: "Name", description: "Ndanda Road" },
+    { title: "Length", description: "1.27km" },
+    { title: "Contractor", description: "Mhandisi Consultancy Ltd" },
   ];
   return (
     <div className="subproject-container">
       <h3>Ndanda Road</h3>
       <div className="rectangle-container">
         {contents.map((item) => (
-          <TopContent type={item.type} descrpt={item.descrpt} />
+          <TopContent title={item.title} description={item.description} />
         ))}
       </div>
       <div className="table-container">
