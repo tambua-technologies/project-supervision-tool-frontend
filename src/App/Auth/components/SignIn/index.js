@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {Input, Button, Form} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {authActions, authSelectors} from "../../../../redux/modules/auth";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
+import API from "../../../../API";
 
 
 /**
@@ -16,19 +17,11 @@ import "./styles.css";
  * @version 0.1.0
  * @since 0.1.0
  */
-const SignIn = ({accessToken, loading, login, errorMsg, permissions}) => {
+const SignIn = () => {
+    const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false);
+    const history = useHistory();
 
-
-    let history  = useHistory();
-    useEffect(() => {
-        if(permissions.length > 0) {
-            history.push('procuring_entity/1/overview');
-        }
-
-        // remove currentMenuItem from localStorage
-        localStorage.removeItem("currentMenu");
-
-    }, [permissions]); // eslint-disable-line react-hooks/exhaustive-deps
 
      /**
      * @function
@@ -38,8 +31,22 @@ const SignIn = ({accessToken, loading, login, errorMsg, permissions}) => {
      * @param {Object} values
      */
      const onFinish = (values) => {
-        login(values)
+        
+        setLoading(true);
+        API.login(values)
+        .then(res => {
+            // save access token to local storage
+            localStorage.setItem("accessToken", res.data.access_token);
+            setLoading(false);
+            history.push('/procuring_entity/1/overview');
+            
+        })
+        .catch( err => {
+            setErrorMessage(err.message);
+            setLoading(false);
+        })
     }
+    
 
         return (
             <div className="SignIn">
@@ -48,7 +55,7 @@ const SignIn = ({accessToken, loading, login, errorMsg, permissions}) => {
                             <h2>Projects Supervison tool</h2>
                             <h5>Please Login to your account</h5>
                         </div>
-                        <div style={{color: 'red'}}>{!loading && errorMsg ? errorMsg : ''}</div>
+                        <div style={{color: 'red'}}>{errorMessage}</div>
                         <Form autoComplete="off" onFinish={onFinish}>
                             {/* username field */}
                             <Form.Item

@@ -9,7 +9,7 @@ import { Col, Drawer } from "antd";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
-import { getIdFromUrlPath, isoDateToHumanReadableDate } from "../../Util";
+import { isoDateToHumanReadableDate } from "../../Util";
 import API from "../../API";
 import PackageForm from "./componets/Form";
 import { useHistory, Link } from "react-router-dom";
@@ -47,13 +47,12 @@ const PackagesList = ({
   selectPackage,
   selected,
   match,
-  getProcuringEntity,
 }) => {
   const history = useHistory();
   const { isEditForm, setIsEditForm, setVisible } = useToggle(false);
   const [packageStatisticsValues, setPackageStatisticsValues] = useState([]);
   const [packData, setPackData] = useState([]);
-  const procuringEntityId = getIdFromUrlPath(match.path, 4);
+  const {procuringEntityId} = match.params;
   const filter = { "filter[procuring_entity_id]": procuringEntityId };
 
   // calculate time elapsed in months
@@ -81,34 +80,44 @@ const PackagesList = ({
 
   }
 
+ 
   useEffect(() => {
-    getPackages(filter);
-    getProcuringEntity(procuringEntityId);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    API.getPackageStatistics(1).then(
-      (response) => {
-        console.log(response);
-        const packageStats = [
-          { label: "In progress", value: response.data.in_progress },
-          { label: "Complete", value: response.data.completed },
-          { label: "Challenges", value: response.data.challenges },
-          {
-            label: "Latest Report",
-            value: isoDateToHumanReadableDate(
-              response.data.latestReport.created_at
-            ),
-            cardType: "date",
-          },
-        ];
-        setPackageStatisticsValues(packageStats);
-      },
-      API.getPackageStatisticsData(1).then((res) => {
-        console.log(res.data);
-        setPackData(res.data);
-      })
-    );
+    
+    Promise.all([API.getPackageStatistics(procuringEntityId), API.getPackages(filter)])
+    .then((res) => {
+      const packageStats = [
+        { label: "In progress", value: res[0].data.in_progress },
+        { label: "Complete", value: res[0].data.completed },
+        { label: "Challenges", value: res[0].data.challenges },
+        {
+          label: "Latest Report",
+          value: isoDateToHumanReadableDate(
+            res[0]?.data?.latestReport?.created_at
+          ),
+          cardType: "date",
+        },
+      ];
+      setPackageStatisticsValues(packageStats);
+      setPackData(res[1].data);
+
+    });
   }, []);
+
+
+  const handlePackagesUpload = (e) => {
+    const file = e.target.files[0];
+    API.uploadPackages(file).then((res) => {
+      console.log(res);
+    })
+  }
+
+  const  triggerFileUpload = (e) => {
+    e.preventDefault();
+    document.getElementById("file-input").click();
+  }
+
+
+
   /**
    * @function
    * @name handleViewDetails
@@ -150,6 +159,13 @@ const PackagesList = ({
 
   return (
     <>
+    <input 
+    type="file" 
+    name="file" 
+    id="file-input" 
+    class="visuallyhidden"
+    onChange={handlePackagesUpload}
+     />
       <div>
 
         {/* list starts */}
@@ -163,12 +179,12 @@ const PackagesList = ({
             title: "Packages",
             arrActions: [
               {
-                btnName: "+ New Package",
-                btnAction: () => { },
+                btnName: "Import Packages",
+                btnAction: triggerFileUpload,
               },
             ],
           }}
-          loading={loading}
+          loading={packData.length === 0}
           onRefresh={handleRefresh}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
@@ -200,19 +216,19 @@ const PackagesList = ({
                 {item.sub_projects_count ? item.sub_projects_count : "N/A"}
               </Col>
               <Col {...actualPhysicalProgress} className="contentEllipse">
-                {item.progress.actual_physical_progress}
+                {item?.progress?.actual_physical_progress}
               </Col>
               <Col {...plannedPyscalProgress} className="contentEllipse">
-                {item.progress.planned_physical_progress}
+                {item?.progress?.planned_physical_progress}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
-                {getTimeElapsedPercentage(item.contract.date_of_commencement_of_works, item.contract.date_of_contract_completion)}
+                {getTimeElapsedPercentage(item?.contract?.date_of_commencement_of_works, item?.contract?.date_of_contract_completion)}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
-                {item.progress.actual_financial_progress}
+                {item?.progress?.actual_financial_progress}
               </Col>
               <Col {...Contractor} className="contentEllipse">
-                {item.contract.contractor.name}
+                {item?.contract?.contractor?.name}
               </Col>
 
               {/* eslint-enable react/jsx-props-no-spreading */}

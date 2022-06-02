@@ -43,7 +43,7 @@ const SafeguardConcerns = ({ match }) => {
       { label: "Environmental Concerns", value: safeguardStats.data.environmental_concerns_count },
       { label: "Social Concerns", value: safeguardStats.data.social_concerns_count },
       { label: "Safety and Health Concern", value: safeguardStats.data.health_and_safety_concerns_count },
-      { label: "Latest Report", value: isoDateToHumanReadableDate(safeguardStats.data.latestReport.created_at ), cardType: 'date' },
+      { label: "Latest Report", value: isoDateToHumanReadableDate(safeguardStats.data?.latestReport?.created_at ), cardType: 'date' },
     ];
     setSafeguardStatData(stats);
     setSafeguardData(safeguardConcerns.data);
