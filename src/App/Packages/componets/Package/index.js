@@ -1,6 +1,7 @@
 import React from "react";
 import TopSummary from "../../../components/TopSummary";
 import { Table } from "antd";
+import TopContent from "../../../components/TopContent";
 import "./style.css";
 import LatestReports from "../../../components/TableComponent";
 import Img from "../../../../../src/assets/img/prof.jpg";
@@ -58,24 +59,20 @@ const Package = (props) => {
     { label: "Sub-Projects", value: "202" },
     { label: "Challenges", value: "202" },
   ];
+  const contents = [
+    {type:"Work Type", descrpt:"Drainage system, Road"},
+    {type:"Work Type", descrpt:"Drainage system, Road"},
+    {type:"Work Type", descrpt:"Drainage system, Road"},
+    {type:"Work Type", descrpt:"Drainage system, Road"},
+  ]
 
   return (
     <div>
       <TopSummary summaries={summaries} />
       <div className="rectangle-container">
-        <h3>
-          Works Types <span>Drainage system, Road</span>
-        </h3>
-        <h3>
-          Works Types <span>Drainage system, Road</span>
-        </h3>
-        <h3>
-          Works Types <span>Drainage system, Road</span>
-        </h3>
-        <h3>
-          Works Types <span>Drainage system, Road</span>
-        </h3>
+      {contents.map(item =>(<TopContent type={item.type} descrpt={item.descrpt}/>))}
       </div>
+      {/* {contents.map(item =>(<TopContent type={item.type} descrpt={item.descrpt}/>))} */}
       <section
         style={{
           width: "100%",

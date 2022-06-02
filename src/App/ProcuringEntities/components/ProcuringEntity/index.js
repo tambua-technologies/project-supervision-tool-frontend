@@ -15,12 +15,13 @@ const ProcuringEntity = (props) => {
   const [financialProgress, setFinancialProgress] = useState([]);
   const [summaries, setSummaries] = useState([]);
   const [reports, setReports] = useState([]);
-  
-  const { match: {url} } = props;
-  const allReportsUrl = url.replace('overview', 'reports');
+
+  const {
+    match: { url },
+  } = props;
+  const allReportsUrl = url.replace("overview", "reports");
   const createReportFormUrl = `${allReportsUrl}/create`;
   const history = useHistory();
-
 
   useEffect(() => {
     const { procuringEntityId } = props.match.params;
@@ -44,24 +45,23 @@ const ProcuringEntity = (props) => {
                 ? isoDateToHumanReadableDate(res.data.reports[0].created_at)
                 : null,
             value: "Latest Report",
-            cardType: 'date'
+            cardType: "date",
           },
         ];
 
-        
         setReports(res.data.reports);
         setFinancialProgress(financialProgress);
         setPysicalProgress(physicalProgress);
         setSummaries(statisticsSummaries);
       })
       .catch((err) => console.log(err));
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const antIcon = (
     <LoadingOutlined
       style={{
-        fontSize: 54
+        fontSize: 54,
       }}
       spin
     />
@@ -85,7 +85,7 @@ const ProcuringEntity = (props) => {
         }}
       />
       <TopSummary summaries={summaries} />
-      <LatestReports reports={reports} allReportsUrl={allReportsUrl}/>
+      <LatestReports reports={reports} allReportsUrl={allReportsUrl} />
       <section className="ProcuringEntity-progress">
         <Row gutter={16}>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>
@@ -113,7 +113,7 @@ const ProcuringEntity = (props) => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: '100vh'
+        height: "100vh",
       }}
       indicator={antIcon}
     />

@@ -1,0 +1,13 @@
+.rectangle-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f5f5f5;
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+  .rectangle-container h3 span {
+    display: block;
+    color: rgb(58, 56, 56);
+  }

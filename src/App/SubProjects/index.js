@@ -278,6 +278,7 @@ class SubProjectsList extends Component {
       showCreateSurveyForm,
       closeSurveyForm,
       selected,
+      match
     } = this.props;
 
     const survey_id = selected?.surveys
@@ -328,7 +329,7 @@ class SubProjectsList extends Component {
                   {" "}
                   <Link
                     to={{
-                      pathname: `/app/sub_projects/${item.id}`,
+                      pathname: `${match.url}/${item.id}`,
                     }}
                     className="sub-project-list"
                   >

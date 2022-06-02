@@ -7,6 +7,7 @@ import UserMenu from "../Auth/components/UserMenu";
 import Packages from "../Packages";
 import SubProjects from "../SubProjects";
 import SafeGuard from "../SafeguardConcerns";
+import Subproject from "../SubProjects/components/SubProject";
 import API from "../../API";
 import Reports from "../Reports";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
@@ -28,8 +29,8 @@ const BaseLayout = (props) => {
 
   // persist current menu in local storage
   useEffect(() => {
-    if(currentMenu) {
-      localStorage.setItem('currentMenu', currentMenu);
+    if (currentMenu) {
+      localStorage.setItem("currentMenu", currentMenu);
     }
     console.log(currentMenu);
   }, [currentMenu]);
@@ -47,7 +48,6 @@ const BaseLayout = (props) => {
   useEffect(() => {
     const menu = localStorage.getItem("currentMenu");
     menu ? setCurrentMenu(menu) : setCurrentMenu("overview");
- 
   }, []);
 
   const toggle = () => {
@@ -117,8 +117,11 @@ const BaseLayout = (props) => {
               <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/contract`}>CSC Contract</Link>
             </Menu.Item>
-            <Menu.Item style={{position:"absolute", bottom:"0"}} key="settings">
-            <span className="CustomizedIcon" />
+            <Menu.Item
+              style={{ position: "absolute", bottom: "0" }}
+              key="settings"
+            >
+              <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/settings`}>Settings</Link>
             </Menu.Item>
           </Menu>
@@ -179,8 +182,14 @@ const BaseLayout = (props) => {
                 />
 
                 <PrivateRoute
+                exact
                   path={`/procuring_entity/:procuringEntityId/sub-projects`}
                   component={({ match }) => <SubProjects match={match} />}
+                />
+
+                <PrivateRoute
+                  path={`/procuring_entity/:procuringEntityId/sub-projects/:subProjectId`}
+                  component={({ match }) => <Subproject match={match} />}
                 />
 
                 <PrivateRoute
