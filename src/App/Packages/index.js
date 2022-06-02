@@ -113,11 +113,6 @@ const PackagesList = ({
     })
   }
 
-  const  triggerFileUpload = (e) => {
-    e.preventDefault();
-    document.getElementById("file-input").click();
-  }
-
 
 
   /**
@@ -161,13 +156,6 @@ const PackagesList = ({
 
   return (
     <>
-    <input 
-    type="file" 
-    name="file" 
-    id="file-input" 
-    class="visuallyhidden"
-    onChange={handlePackagesUpload}
-     />
       <div>
 
         {/* list starts */}
@@ -182,7 +170,8 @@ const PackagesList = ({
             arrActions: [
               {
                 btnName: "Import Packages",
-                btnAction: triggerFileUpload,
+                btnAction: handlePackagesUpload,
+                btnType: "upload",
               },
             ],
           }}
