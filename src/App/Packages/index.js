@@ -11,6 +11,7 @@ import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import { isoDateToHumanReadableDate } from "../../Util";
 import API from "../../API";
+import { UPLOAD_PACKAGES_ENDPOINT } from "../../API/endpoints";
 import PackageForm from "./componets/Form";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
@@ -107,7 +108,7 @@ const PackagesList = ({
 
   const handlePackagesUpload = (e) => {
     const file = e.target.files[0];
-    API.uploadPackages(file).then((res) => {
+    API.upload(UPLOAD_PACKAGES_ENDPOINT, file).then((res) => {
       console.log(res);
     })
   }
