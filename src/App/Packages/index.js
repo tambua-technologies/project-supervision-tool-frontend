@@ -101,6 +101,7 @@ const PackagesList = ({
       setPackData(res[1].data);
 
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
