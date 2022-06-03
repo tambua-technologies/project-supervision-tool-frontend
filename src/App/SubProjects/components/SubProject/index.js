@@ -13,6 +13,38 @@ const Subproject = () => {
     { title: "Length", description: "1.27km" },
     { title: "Contractor", description: "Mhandisi Consultancy Ltd" },
   ];
+  const titles = [
+    {title:"Sub-Project"},
+    {title:"Progress of Works"},
+    {title:"Remarks"},
+    {title:"Challenges"}
+  ]
+  const data = [
+    {
+      Sub_name:"Ndanda Road",
+      progress:"Lower Sub grade (G7)",
+      remark:"1.45km",
+      Challenge:"-"
+    },
+    {
+      Sub_name:"Ndanda Road",
+      progress:"Lower Sub grade (G7)",
+      remark:"1.45km",
+      Challenge:"-"
+    },
+    {
+      Sub_name:"Ndanda Road",
+      progress:"Lower Sub grade (G7)",
+      remark:"1.45km",
+      Challenge:"-"
+    },
+    {
+      Sub_name:"Ndanda Road",
+      progress:"Lower Sub grade (G7)",
+      remark:"1.45km",
+      Challenge:"-"
+    }
+  ]
   return (
     <div className="subproject-container">
       <h3>Ndanda Road</h3>
@@ -23,7 +55,7 @@ const Subproject = () => {
       </div>
       <div className="table-container">
         <h3>Detailed Progress</h3>
-        <TableContainer />
+        <TableContainer titles={titles} tableData={data} />
       </div>
       <div className="container-content">
         <div className="map-container">

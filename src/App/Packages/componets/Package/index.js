@@ -29,26 +29,26 @@ const columns = [
     dataIndex: "address",
   },
 ];
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-];
+// const data = [
+//   {
+//     key: "1",
+//     name: "John Brown",
+//     age: 32,
+//     address: "New York No. 1 Lake Park",
+//   },
+//   {
+//     key: "2",
+//     name: "Jim Green",
+//     age: 42,
+//     address: "London No. 1 Lake Park",
+//   },
+//   {
+//     key: "3",
+//     name: "Joe Black",
+//     age: 32,
+//     address: "Sidney No. 1 Lake Park",
+//   },
+// ];
 
 const Package = (props) => {
   const {
@@ -67,6 +67,50 @@ const Package = (props) => {
     { title: "Works Types", description: "Drainage system, Road" },
     { title: "Works Types", description: "Drainage system, Road" },
   ];
+  const titles = [
+    { title: "Sub-Project" },
+    { title: "Status" },
+    { title: "Actual Physical progress(%)" },
+    { title: "Financial Progress(%)" },
+    // { title: "Latest Update" },
+  ];
+  const data = [
+    {
+      Sub_name: "Ndanda Road",
+      progress: "Ongoing",
+      remark: "55",
+      Challenge: "50",
+      // latest: "Jan 10,2022",
+    },
+    {
+      Sub_name: "Ndanda Road",
+      progress: "Ongoing",
+      remark: "55",
+      Challenge: "50",
+      // latest: "Jan 10,2022",
+    },
+    {
+      Sub_name: "Ndanda Road",
+      progress: "Ongoing",
+      remark: "55",
+      Challenge: "50",
+      // latest: "Jan 10,2022",
+    },
+    {
+      Sub_name: "Ndanda Road",
+      progress: "Ongoing",
+      remark: "55",
+      Challenge: "50",
+      // latest: "Jan 10,2022",
+    },
+    // {
+    //   Sub_name:"Ndanda Road",
+    //   progress:"Ongoing",
+    //   remark:"55",
+    //   Challenge:"50",
+    //   latest:"Jan 10,2022"
+    // },
+  ];
   return (
     <div>
       <TopSummary summaries={summaries} />
@@ -84,7 +128,7 @@ const Package = (props) => {
         }}
       >
         <div style={{ width: "50%", backgroundColor: "#F5F5F5" }}>
-          <TableContainer />
+          <TableContainer tableData={data} titles={titles} />
         </div>
         <div className="container">
           <h2 style={{ marginLeft: "15px", fontSize: "15px", color: "blue" }}>
@@ -107,7 +151,7 @@ const Package = (props) => {
           marginBottom: "20px",
         }}
       >
-        <TableContainer />
+        <TableContainer tableData={data} titles={titles} />
       </div>
     </div>
   );
