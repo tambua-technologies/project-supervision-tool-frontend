@@ -19,6 +19,7 @@ import ActionBar from "../ActionBar";
  * @param {boolean} props.loading list loading flag
  * @param {number} props.itemCount list item count
  * @param {object} props.headerLayout list header layout
+ * @param {object[]} props.actionButtonProp list action button props
  * @param {Function} props.onPaginate list paginate callback
  * @param {Function} props.onRefresh list refresh callback
  * @param {Function} props.generateExportUrl list export url callback

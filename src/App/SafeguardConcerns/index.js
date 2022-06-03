@@ -7,6 +7,7 @@ import ListItemActions from "../components/ListItemActions";
 import {isoDateToHumanReadableDate} from "../../Util"
 import { Col } from "antd";
 import API from "../../API";
+import { UPLOAD_SAFEGUARD_CONCERNS_ENDPOINT} from '../../API/endpoints';
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const concernType = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const issue = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -55,6 +56,14 @@ const SafeguardConcerns = ({ match }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
+  const handleOnUploadSafeguardConcerns = (e) =>  {
+    const file = e.target.files[0];
+    API.upload(UPLOAD_SAFEGUARD_CONCERNS_ENDPOINT, file);
+  }
+
+
+
   return (
     <>
       <div style={{padding: '30px 10px 20px 20px'}}>
@@ -72,7 +81,9 @@ const SafeguardConcerns = ({ match }) => {
           onRefresh={() => getData(procuringEntityId)}
           actionButtonProp={{
             title: "Safeguard Concerns",
-            arrActions: [],
+            arrActions: [
+              {btnName: 'Import Safeguard Concerns', btnAction: handleOnUploadSafeguardConcerns, btnType: 'upload'}
+            ],
           }}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
