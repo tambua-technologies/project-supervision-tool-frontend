@@ -29,6 +29,7 @@ const headerLayout = [
 
 const SafeguardConcerns = ({ match }) => {
   const [safeguardStatData, setSafeguardStatData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const {procuringEntityId} = match.params;
   const [safeguardData, setSafeguardData] = useState([]);
   const history = useHistory();
@@ -37,19 +38,23 @@ const SafeguardConcerns = ({ match }) => {
     history.push(path);
   };
 
-  const getData = (id) => Promise.all([API.getSafeguardConcernsStatistics(id), API.getSafeguardConcerns(id)])
-  .then(values => {
-    const [safeguardStats, safeguardConcerns] = values;
-    const stats = [
-      { label: "Environmental Concerns", value: safeguardStats.data.environmental_concerns_count },
-      { label: "Social Concerns", value: safeguardStats.data.social_concerns_count },
-      { label: "Safety and Health Concern", value: safeguardStats.data.health_and_safety_concerns_count },
-      { label: "Latest Report", value: isoDateToHumanReadableDate(safeguardStats.data?.latestReport?.created_at ), cardType: 'date' },
-    ];
-    setSafeguardStatData(stats);
-    setSafeguardData(safeguardConcerns.data);
-
-  })
+  const getData = (id) => {
+    setIsLoading(true);
+    Promise.all([API.getSafeguardConcernsStatistics(id), API.getSafeguardConcerns(id)])
+    .then(values => {
+      setIsLoading(false);
+      const [safeguardStats, safeguardConcerns] = values;
+      const stats = [
+        { label: "Environmental Concerns", value: safeguardStats.data.environmental_concerns_count },
+        { label: "Social Concerns", value: safeguardStats.data.social_concerns_count },
+        { label: "Safety and Health Concern", value: safeguardStats.data.health_and_safety_concerns_count },
+        { label: "Latest Report", value: isoDateToHumanReadableDate(safeguardStats.data?.latestReport?.created_at ), cardType: 'date' },
+      ];
+      setSafeguardStatData(stats);
+      setSafeguardData(safeguardConcerns.data);
+  
+    })
+  }
 
   useEffect(() => {
     getData(procuringEntityId);
@@ -77,7 +82,7 @@ const SafeguardConcerns = ({ match }) => {
           }
           page={1}
           itemCount={safeguardData.length}
-          loading={safeguardData.length === 0}
+          loading={isLoading}
           onRefresh={() => getData(procuringEntityId)}
           actionButtonProp={{
             title: "Safeguard Concerns",

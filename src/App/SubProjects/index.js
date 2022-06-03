@@ -352,12 +352,12 @@ class SubProjectsList extends Component {
                 </Col>
 
                 <Col {...packageSpan} className="contentEllipse">
-                  {item?.project.code ? item?.project.code : "N/A"}
+                  {item?.package?.name || "N/A" }
                 </Col>
                 <Col {...statusSpan}>
-                  {item?.status ? item?.status.name : "N/A"}
+                  { item?.status?.name || "N/A" }
                 </Col>
-                <Col {...contractor}>{"contractor"}</Col>
+                <Col {...contractor}>{ item?.package?.contract?.contractor?.name || "N/A" }</Col>
               </ListItem>
             )}
           />

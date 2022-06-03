@@ -53,9 +53,6 @@ function Reports({ match }) {
         <CustomList
           itemName="Progress Reports"
           title={"Report"}
-          project={app?.project?.code}
-          entity={"Procuring Entities"}
-          location={"Ilala"}
           actionButtonProp={{
             title: "Reports",
             arrActions: [

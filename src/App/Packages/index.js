@@ -53,6 +53,7 @@ const PackagesList = ({
   const { isEditForm, setIsEditForm, setVisible } = useToggle(false);
   const [packageStatisticsValues, setPackageStatisticsValues] = useState([]);
   const [packData, setPackData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const {procuringEntityId} = match.params;
   const filter = { "filter[procuring_entity_id]": procuringEntityId };
 
@@ -83,9 +84,10 @@ const PackagesList = ({
 
  
   useEffect(() => {
-    
+    setIsLoading(true);
     Promise.all([API.getPackageStatistics(procuringEntityId), API.getPackages(filter)])
     .then((res) => {
+      setIsLoading(false);
       const packageStats = [
         { label: "In progress", value: res[0].data.in_progress },
         { label: "Complete", value: res[0].data.completed },
@@ -175,7 +177,7 @@ const PackagesList = ({
               },
             ],
           }}
-          loading={packData.length === 0}
+          loading={isLoading}
           onRefresh={handleRefresh}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
