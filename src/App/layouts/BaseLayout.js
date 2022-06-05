@@ -15,6 +15,8 @@ import "./styles.css";
 import { AppContext } from "../../context/AppContext";
 import ProcuringEntity from "../ProcuringEntities/components/ProcuringEntity";
 import CreateReportForm from "../Reports/components/CreateReportForm";
+import HumanResources from "../Packages/componets/Package/HumanResource";
+import EquipmentMobilization from "../Packages/componets/Package/EquipmentMobilization";
 import Package from "../Packages/componets/Package";
 const { Header, Content, Sider } = Layout;
 
@@ -101,6 +103,16 @@ const BaseLayout = (props) => {
               <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/packages`}>Packages</Link>
             </Menu.Item>
+            <Menu.Item key="packages">
+              <span className="CustomizedIcon" />
+              <Link to={`${baseUrl}/HumanResources`}>Human Resources</Link>
+            </Menu.Item>
+            <Menu.Item key="packages">
+              <span className="CustomizedIcon" />
+              <Link to={`${baseUrl}/EquipmentMobilization`}>
+                Equipment Mobilization
+              </Link>
+            </Menu.Item>
             <Menu.Item key="sub-projects">
               <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/sub-projects`}>Sub-Projects</Link>
@@ -169,6 +181,16 @@ const BaseLayout = (props) => {
                   path={`/procuring_entity/:procuringEntityId/packages/:packageId`}
                   component={({ match }) => <Package match={match} />}
                 />
+                <PrivateRoute
+                  path={`/procuring_entity/:procuringEntityId/HumanResources`}
+                  component={({ match }) => <HumanResources match={match} />}
+                />
+                <PrivateRoute
+                  path={`/procuring_entity/:procuringEntityId/EquipmentMobilization`}
+                  component={({ match }) => (
+                    <EquipmentMobilization match={match} />
+                  )}
+                />
 
                 {/*  Reports routes */}
                 <PrivateRoute
@@ -182,7 +204,7 @@ const BaseLayout = (props) => {
                 />
 
                 <PrivateRoute
-                exact
+                  exact
                   path={`/procuring_entity/:procuringEntityId/sub-projects`}
                   component={({ match }) => <SubProjects match={match} />}
                 />
