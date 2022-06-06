@@ -164,7 +164,7 @@ const BaseLayout = (props) => {
               <Switch>
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/overview`}
-                  component={({ match }) => <ProcuringEntity match={match} />}
+                  component={({ match }) => <ProcuringEntity match={match} setCurrentMenu={setCurrentMenu} />}
                 />
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/safeguard`}

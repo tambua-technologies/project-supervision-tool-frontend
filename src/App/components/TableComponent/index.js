@@ -29,7 +29,7 @@ const avatarBackground = randomColor();
     );
 }
 const LatestReports = (props) => {
-    const {reports, allReportsUrl} = props;
+    const {reports, allReportsUrl, setCurrentMenu } = props;
     return (
         <div className='LatestReports'>
             <div className='title peacock-blue_color'>Latest Reports</div>
@@ -43,7 +43,7 @@ const LatestReports = (props) => {
                 <div className='list-items'>
                     {reports.map((item, index) => <LatestReportListItem key={index} item={item} />)}
                 </div>
-                <div className='list-footer peacock-blue_color'><Link to={allReportsUrl}>View All Reports</Link></div>
+                <div className='list-footer peacock-blue_color'><Link onClick={() => setCurrentMenu('reports')} to={allReportsUrl}>View All Reports</Link></div>
                     
             </div>
 

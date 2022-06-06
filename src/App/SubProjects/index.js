@@ -26,6 +26,8 @@ import {
   ProcuringEntitySelectors,
 } from "../../redux/modules/ProcuringEntities";
 import "./styles.css";
+import API from "../../API";
+import { UPLOAD_SUBPROJECTS_ENDPOINT } from '../../API/endpoints'
 
 /* constants */
 const subProjectNameSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 20, xs: 20 };
@@ -264,6 +266,13 @@ class SubProjectsList extends Component {
     closeTicketForm();
   };
 
+
+  handleOnSubProjectsImport = (e) => {
+     const file = e.target.files[0];
+     API.upload(UPLOAD_SUBPROJECTS_ENDPOINT, file);
+
+  }
+
   render() {
     const {
       subProjects,
@@ -298,7 +307,13 @@ class SubProjectsList extends Component {
             page={page}
             itemCount={total}
             loading={loading}
-            actionButtonProp={{ title: "Sub-project", arrActions: [] }}
+            actionButtonProp={{ title: "Sub-project", arrActions: [
+              {
+                btnName: "Import SubProjects",
+                btnType: "upload",
+                btnAction: this.handleOnSubProjectsImport,
+              }
+            ] }}
             onPaginate={(nextPage) => {
               paginateSubProject(nextPage);
             }}
@@ -338,12 +353,12 @@ class SubProjectsList extends Component {
                 </Col>
 
                 <Col {...packageSpan} className="contentEllipse">
-                  {item?.project.code ? item?.project.code : "N/A"}
+                  {item?.package?.name || "N/A" }
                 </Col>
                 <Col {...statusSpan}>
-                  {item?.status ? item?.status.name : "N/A"}
+                  { item?.status?.name || "N/A" }
                 </Col>
-                <Col {...contractor}>{"contractor"}</Col>
+                <Col {...contractor}>{ item?.package?.contract?.contractor?.name || "N/A" }</Col>
               </ListItem>
             )}
           />

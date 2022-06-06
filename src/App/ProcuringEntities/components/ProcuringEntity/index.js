@@ -16,10 +16,9 @@ const ProcuringEntity = (props) => {
   const [summaries, setSummaries] = useState([]);
   const [reports, setReports] = useState([]);
 
-  const {
-    match: { url },
-  } = props;
-  const allReportsUrl = url.replace("overview", "reports");
+  
+  const { match: {url}, setCurrentMenu } = props;
+  const allReportsUrl = url.replace('overview', 'reports');
   const createReportFormUrl = `${allReportsUrl}/create`;
   const history = useHistory();
 
@@ -85,7 +84,7 @@ const ProcuringEntity = (props) => {
         }}
       />
       <TopSummary summaries={summaries} />
-      <LatestReports reports={reports} allReportsUrl={allReportsUrl} />
+      <LatestReports reports={reports} allReportsUrl={allReportsUrl} setCurrentMenu={setCurrentMenu}/>
       <section className="ProcuringEntity-progress">
         <Row gutter={16}>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>

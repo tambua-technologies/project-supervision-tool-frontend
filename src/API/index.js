@@ -22,6 +22,7 @@ import procuringEntityProgressReportsAPI from './procuring_entities_progress_rep
 import safeguardCconcersAPI from './safeguard_concers';
 import unitAPI from './unit'
 import packages from './packages';
+import apiUtilities from './utilities';
 
 export default {
     ...projectsAPI,
@@ -46,5 +47,6 @@ export default {
     ...unitAPI,
     ...procuringEntityProgressReportsAPI,
     ...safeguardCconcersAPI,
-    ...packages
+    ...packages,
+    ...apiUtilities
 }

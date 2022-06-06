@@ -11,6 +11,7 @@ import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import { isoDateToHumanReadableDate } from "../../Util";
 import API from "../../API";
+import { UPLOAD_PACKAGES_ENDPOINT } from "../../API/endpoints";
 import PackageForm from "./componets/Form";
 import { useHistory, Link } from "react-router-dom";
 import "./styles.css";
@@ -52,6 +53,7 @@ const PackagesList = ({
   const { isEditForm, setIsEditForm, setVisible } = useToggle(false);
   const [packageStatisticsValues, setPackageStatisticsValues] = useState([]);
   const [packData, setPackData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const {procuringEntityId} = match.params;
   const filter = { "filter[procuring_entity_id]": procuringEntityId };
 
@@ -82,9 +84,10 @@ const PackagesList = ({
 
  
   useEffect(() => {
-    
+    setIsLoading(true);
     Promise.all([API.getPackageStatistics(procuringEntityId), API.getPackages(filter)])
     .then((res) => {
+      setIsLoading(false);
       const packageStats = [
         { label: "In progress", value: res[0].data.in_progress },
         { label: "Complete", value: res[0].data.completed },
@@ -101,19 +104,15 @@ const PackagesList = ({
       setPackData(res[1].data);
 
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
   const handlePackagesUpload = (e) => {
     const file = e.target.files[0];
-    API.uploadPackages(file).then((res) => {
+    API.upload(UPLOAD_PACKAGES_ENDPOINT, file).then((res) => {
       console.log(res);
     })
-  }
-
-  const  triggerFileUpload = (e) => {
-    e.preventDefault();
-    document.getElementById("file-input").click();
   }
 
 
@@ -159,13 +158,6 @@ const PackagesList = ({
 
   return (
     <>
-    <input 
-    type="file" 
-    name="file" 
-    id="file-input" 
-    class="visuallyhidden"
-    onChange={handlePackagesUpload}
-     />
       <div>
 
         {/* list starts */}
@@ -180,11 +172,12 @@ const PackagesList = ({
             arrActions: [
               {
                 btnName: "Import Packages",
-                btnAction: triggerFileUpload,
+                btnAction: handlePackagesUpload,
+                btnType: "upload",
               },
             ],
           }}
-          loading={packData.length === 0}
+          loading={isLoading}
           onRefresh={handleRefresh}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
