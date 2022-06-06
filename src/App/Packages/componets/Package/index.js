@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import API from "../../../../API";
 import TopSummary from "../../../components/TopSummary";
-import ActionBar from "../../../components/ActionBar";
 import "./style.css";
-import LatestReports from "../../../components/TableComponent";
 import Img from "../../../../../src/assets/img/prof.jpg";
 import TopContent from "../../../components/TopContent";
 import TableContainer from "../../../components/TableContainer";
@@ -29,28 +28,11 @@ const columns = [
     dataIndex: "address",
   },
 ];
-// const data = [
-//   {
-//     key: "1",
-//     name: "John Brown",
-//     age: 32,
-//     address: "New York No. 1 Lake Park",
-//   },
-//   {
-//     key: "2",
-//     name: "Jim Green",
-//     age: 42,
-//     address: "London No. 1 Lake Park",
-//   },
-//   {
-//     key: "3",
-//     name: "Joe Black",
-//     age: 32,
-//     address: "Sidney No. 1 Lake Park",
-//   },
-// ];
 
 const Package = (props) => {
+
+  const [subProjects, setSubProjects] = useState([]);
+
   const {
     match: { url },
   } = props;
@@ -68,18 +50,25 @@ const Package = (props) => {
     { title: "Works Types", description: "Drainage system, Road" },
   ];
   const titles = [
-    { title: "Sub-Project" },
-    { title: "Status" },
-    { title: "Actual Physical progress(%)" },
-    { title: "Financial Progress(%)" },
+    { title: "Sub-Project", key: "Sub_name", avatar: true },
+    { title: "Status", key: "progress" },
+    { title: "Actual Physical progress(%)", key: "remark" },
+    { title: "Financial Progress(%)", key: "Challenge" },
     // { title: "Latest Update" },
+  ];
+
+  const subProjetsConfigs = [
+    {title: "Sub-Project", key: "name", avatar: true},
+    {title: "Status", key: "status.name"},
   ];
   const data = [
     {
-      Sub_name: "Ndanda Road",
       progress: "Ongoing",
-      remark: "55",
+      Sub_name: "Ndanda Road",
+      
+     
       Challenge: "50",
+      remark: "55",
       // latest: "Jan 10,2022",
     },
     {
@@ -91,16 +80,18 @@ const Package = (props) => {
     },
     {
       Sub_name: "Ndanda Road",
-      progress: "Ongoing",
       remark: "55",
+      progress: "Ongoing",
+      
       Challenge: "50",
       // latest: "Jan 10,2022",
     },
     {
-      Sub_name: "Ndanda Road",
+      
       progress: "Ongoing",
       remark: "55",
       Challenge: "50",
+      Sub_name: "Ndanda Road",
       // latest: "Jan 10,2022",
     },
     // {
@@ -111,6 +102,17 @@ const Package = (props) => {
     //   latest:"Jan 10,2022"
     // },
   ];
+
+  useEffect(() => {
+    API.get(`/sub_projects/`, {page: 1, per_page: 3})
+    .then(res => {
+      setSubProjects(res.data);
+      console.log(res.data)
+    })
+
+  }, []);
+
+
   return (
     <div>
       <TopSummary summaries={summaries} />
@@ -128,7 +130,8 @@ const Package = (props) => {
         }}
       >
         <div style={{ width: "50%", backgroundColor: "#F5F5F5" }}>
-          <TableContainer tableData={data} titles={titles} />
+          {/* Sub projects table */}
+          <TableContainer tableData={subProjects} titles={subProjetsConfigs} />
         </div>
         <div className="container">
           <h2 style={{ marginLeft: "15px", fontSize: "15px", color: "blue" }}>
@@ -151,6 +154,7 @@ const Package = (props) => {
           marginBottom: "20px",
         }}
       >
+        {/* safeguards concerns table */}
         <TableContainer tableData={data} titles={titles} />
       </div>
     </div>

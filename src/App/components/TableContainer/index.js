@@ -1,44 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import get from 'just-safe-get';
 import "./style.css";
 import { Avatar } from "antd";
 import randomColor from "randomcolor";
+
+
+const TableRow = (props) => {
+  const { data, avatarBackground, keys } = props;
+
+  const renderData = keys.map(({ key }) => {
+    return <td class="table__content">{get(data, key)}</td>;
+
+  });
+
+  const renderAvatar = keys.map(({ key, avatar = false }) => {
+    if (avatar) return (<td class="table__content">
+      <Avatar style={{ backgroundColor: avatarBackground }} size="small">
+        {data[key].charAt(0)?.toUpperCase()}
+      </Avatar>
+    </td>);
+
+    return '';
+
+  })
+
+  return (
+
+    <tr class="table__row">
+      {renderAvatar}
+      {renderData}
+    </tr>
+
+  );
+}
+
+
 const TableContainer = ({ titles, tableData }) => {
   const avatarBackground = randomColor();
-  const [titless, setTitles] = useState([]);
-  const [tableDatas, setTableDatas] = useState([]);
-  useEffect(() => {
-    setTitles(titles);
-    setTableDatas(tableData);
-  }, [titless, tableDatas]);
+
 
   return (
     <table class="table">
       <tr>
         <th class="table__heading"></th>
-        {titless.map((item) => (
+        {titles.map((item) => (
           <th class="table__heading">{item.title}</th>
         ))}
       </tr>
-      {tableDatas.map((item) => (
-        <tr class="table__row">
-          <td class="table__content" data-heading="Sub-Project">
-            <Avatar style={{ backgroundColor: avatarBackground }} size="small">
-              {item.title?.charAt(0)?.toUpperCase() || "B"}
-            </Avatar>
-          </td>
-          <td class="table__content" data-heading="Sub-Project">
-            {item.Sub_name}
-          </td>
-          <td class="table__content" data-heading="Progress of Works">
-            {item.progress}
-          </td>
-          <td class="table__content" data-heading="Remarks">
-            {item.remark}
-          </td>
-          <td class="table__content" data-heading="Challenges">
-            {item.Challenge}
-          </td>
-        </tr>
+      {tableData.map((item) => (
+        <TableRow data={item} keys={titles} avatarBackground={avatarBackground} />
       ))}
     </table>
   );
