@@ -30,7 +30,6 @@ const columns = [
 ];
 
 const Package = (props) => {
-
   const [subProjects, setSubProjects] = useState([]);
 
   const {
@@ -58,15 +57,16 @@ const Package = (props) => {
   ];
 
   const subProjetsConfigs = [
-    {title: "Sub-Project", key: "name", avatar: true},
-    {title: "Status", key: "status.name"},
+    { title: "Sub-Project", key: "name", avatar: true },
+    { title: "Status", key: "status.name" },
+    { title: "Actual Physical Progress(%)", key: "status.name" },
+    { title: "Financial Progress(%)", key: "status.name" },
+    { title: "Latest Report", key: "status.name" },
   ];
   const data = [
     {
       progress: "Ongoing",
       Sub_name: "Ndanda Road",
-      
-     
       Challenge: "50",
       remark: "55",
       // latest: "Jan 10,2022",
@@ -82,36 +82,25 @@ const Package = (props) => {
       Sub_name: "Ndanda Road",
       remark: "55",
       progress: "Ongoing",
-      
+
       Challenge: "50",
       // latest: "Jan 10,2022",
     },
     {
-      
       progress: "Ongoing",
       remark: "55",
       Challenge: "50",
       Sub_name: "Ndanda Road",
       // latest: "Jan 10,2022",
     },
-    // {
-    //   Sub_name:"Ndanda Road",
-    //   progress:"Ongoing",
-    //   remark:"55",
-    //   Challenge:"50",
-    //   latest:"Jan 10,2022"
-    // },
   ];
 
   useEffect(() => {
-    API.get(`/sub_projects/`, {page: 1, per_page: 3})
-    .then(res => {
+    API.get(`/sub_projects/`, { page: 1, per_page: 3 }).then((res) => {
       setSubProjects(res.data);
-      console.log(res.data)
-    })
-
+      console.log(res.data);
+    });
   }, []);
-
 
   return (
     <div>
@@ -129,7 +118,7 @@ const Package = (props) => {
           marginBottom: "20px",
         }}
       >
-        <div style={{ width: "50%", backgroundColor: "#F5F5F5" }}>
+        <div className="table-container">
           {/* Sub projects table */}
           <TableContainer tableData={subProjects} titles={subProjetsConfigs} />
         </div>
