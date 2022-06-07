@@ -103,16 +103,6 @@ const BaseLayout = (props) => {
               <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/packages`}>Packages</Link>
             </Menu.Item>
-            <Menu.Item key="packages">
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/HumanResources`}>Human Resources</Link>
-            </Menu.Item>
-            <Menu.Item key="packages">
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/EquipmentMobilization`}>
-                Equipment Mobilization
-              </Link>
-            </Menu.Item>
             <Menu.Item key="sub-projects">
               <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/sub-projects`}>Sub-Projects</Link>
@@ -164,31 +154,31 @@ const BaseLayout = (props) => {
               <Switch>
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/overview`}
-                  component={({ match }) => <ProcuringEntity match={match} setCurrentMenu={setCurrentMenu} />}
+                  component={(props) => <ProcuringEntity {...props} setCurrentMenu={setCurrentMenu} />}
                 />
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/safeguard`}
-                  component={({ match }) => <SafeGuard match={match} />}
+                  component={(props) => <SafeGuard {...props} />}
                 />
 
                 {/* Packages routes */}
                 <PrivateRoute
                   exact
                   path={`/procuring_entity/:procuringEntityId/packages`}
-                  component={({ match }) => <Packages match={match} />}
+                  component={(props) => <Packages {...props} />}
                 />
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/packages/:packageId`}
-                  component={({ match }) => <Package match={match} />}
+                  component={(props) => <Package {...props} />}
                 />
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/HumanResources`}
-                  component={({ match }) => <HumanResources match={match} />}
+                  component={(props) => <HumanResources {...props} />}
                 />
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/EquipmentMobilization`}
-                  component={({ match }) => (
-                    <EquipmentMobilization match={match} />
+                  component={(props) => (
+                    <EquipmentMobilization {...props} />
                   )}
                 />
 
@@ -206,12 +196,12 @@ const BaseLayout = (props) => {
                 <PrivateRoute
                   exact
                   path={`/procuring_entity/:procuringEntityId/sub-projects`}
-                  component={({ match }) => <SubProjects match={match} />}
+                  component={(props) => <SubProjects {...props} />}
                 />
 
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/sub-projects/:subProjectId`}
-                  component={({ match }) => <Subproject match={match} />}
+                  component={(props) => <Subproject {...props} />}
                 />
 
                 <PrivateRoute
