@@ -31,3 +31,14 @@
 .ant-table table {
   background-color: #f5f5f5;
 }
+.table-container {
+  /* style={{ width: "80%", backgroundColor: "#F5F5F5" }} */
+  width: 75%;
+  background-color: #f5f5f5;
+}
+.table-container .table tr th {
+  font-size: 13px;
+}
+.table-container .table tr td {
+  font-size: 13px;
+}
