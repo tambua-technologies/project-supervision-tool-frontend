@@ -6,6 +6,7 @@ import Img1 from "../../../../../src/assets/img/flyover.png";
 import Img2 from "../../../../../src/assets/img/mradi1.png";
 import Img3 from "../../../../../src/assets/img/mradi2.jpg";
 import "./style.css";
+
 const Subproject = () => {
   const contents = [
     { title: "Work title", description: "Road" },
@@ -14,35 +15,35 @@ const Subproject = () => {
     { title: "Contractor", description: "Mhandisi Consultancy Ltd" },
   ];
   const titles = [
-    {title:"Sub-Project"},
-    {title:"Progress of Works"},
-    {title:"Remarks"},
-    {title:"Challenges"}
+    { title: "Sub-Project", key: 'Sub_name', avatar: true },
+    { title: "Progress of Works", key: 'progress' },
+    { title: "Remarks", key: 'remark' },
+    { title: "Challenges", key: 'Challenge' },
   ]
   const data = [
     {
-      Sub_name:"Ndanda Road",
-      progress:"Lower Sub grade (G7)",
-      remark:"1.45km",
-      Challenge:"-"
+      Sub_name: "Ndanda Road",
+      progress: "Lower Sub grade (G7)",
+      remark: "1.45km",
+      Challenge: "-"
     },
     {
-      Sub_name:"Ndanda Road",
-      progress:"Lower Sub grade (G7)",
-      remark:"1.45km",
-      Challenge:"-"
+      Sub_name: "Ndanda Road",
+      progress: "Lower Sub grade (G7)",
+      remark: "1.45km",
+      Challenge: "-"
     },
     {
-      Sub_name:"Ndanda Road",
-      progress:"Lower Sub grade (G7)",
-      remark:"1.45km",
-      Challenge:"-"
+      Sub_name: "Ndanda Road",
+      progress: "Lower Sub grade (G7)",
+      remark: "1.45km",
+      Challenge: "-"
     },
     {
-      Sub_name:"Ndanda Road",
-      progress:"Lower Sub grade (G7)",
-      remark:"1.45km",
-      Challenge:"-"
+      Sub_name: "Ndanda Road",
+      progress: "Lower Sub grade (G7)",
+      remark: "1.45km",
+      Challenge: "-"
     }
   ]
   return (
