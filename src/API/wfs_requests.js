@@ -1,7 +1,7 @@
 
 import Axios from 'axios';
 
-const baseUrl = 'https://geonode.project-supervision-tool.ga/geoserver/wfs';
+const baseUrl = `${process.env.REACT_APP_GEONODE_URL}/geoserver/wfs`;
 
 const axiosGeoserver = Axios.create({
     headers: {
@@ -9,7 +9,7 @@ const axiosGeoserver = Axios.create({
     },
 });
 
-const geoserverUrl = 'https://geonode.project-supervision-tool.ga/geoserver';
+const geoserverUrl = `${process.env.REACT_APP_GEONODE_URL}/geoserver`;
 
 
 /**

@@ -13,7 +13,7 @@ import { isoDateToHumanReadableDate } from "../../Util";
 import API from "../../API";
 import { UPLOAD_PACKAGES_ENDPOINT } from "../../API/endpoints";
 import PackageForm from "./componets/Form";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "./styles.css";
 import { useToggle } from "../../hooks/useToggle";
 import TopSummary from "../components/TopSummary";
@@ -197,7 +197,11 @@ const PackagesList = ({
             >
               {/* eslint-disable react/jsx-props-no-spreading */}
 
-              <Col {...packageSpan}>{item?.name ? item?.name : "N/A"}</Col>
+              <Col {...packageSpan}>
+                <Link to={{ pathname: `${match.url}/${item.id}` }}>
+                  {item?.name ? item?.name : "N/A"}
+                </Link>
+              </Col>
               <Col {...status} className="contentEllipse">
                 Under Implemetation
               </Col>

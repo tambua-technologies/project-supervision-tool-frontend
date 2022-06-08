@@ -1,0 +1,44 @@
+.Toolbar {
+  /* border-bottom: 1px solid #e8e8e8; */
+  height: 50px;
+  margin-top: 40px;
+    text-align: center;
+
+}
+
+.Toolbar .pagination {
+  padding-top: 8px;
+  float: right;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 12px;
+  }
+
+  .ant-pagination-simple .ant-pagination-simple-pager,
+  .ant-pagination-simple .ant-pagination-prev,
+  .ant-pagination-simple .ant-pagination-next,
+  .ant-pagination-simple .ant-pagination-simple-pager input {
+    margin: 0px;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  body {
+    font-size: 12px;
+  }
+
+  .ant-pagination-simple .ant-pagination-simple-pager,
+  .ant-pagination-simple .ant-pagination-prev,
+  .ant-pagination-simple .ant-pagination-next,
+  .ant-pagination-simple .ant-pagination-simple-pager input {
+    margin: 0px;
+  }
+}
+.ToolbarFilter{
+  display: flex;
+}
+.ToolbarFilter p {
+  padding: 10px 12px 0 12px;
+}

@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import randomColor from "randomcolor";
 
 
-import './styles.css';
-import { isoDateToHumanReadableDate } from '../../../../Util';
+import './style.css';
+import { isoDateToHumanReadableDate } from '../../../Util';
 
 const LatestReportListItem = ({item}) => {
 const {report_title, start, end, generatedBy = 'N/A', updated_at} = item;
@@ -19,7 +19,7 @@ const avatarBackground = randomColor();
             style={{ backgroundColor: avatarBackground, marginRight: '20px' }}
             size="small"
             >
-                {report_title.charAt(0).toUpperCase()}
+                {report_title?.charAt(0)?.toUpperCase() || "B"}
             </Avatar>
             <div className='item-value'>{report_title}</div>
             <div className='item-value'>{period}</div>

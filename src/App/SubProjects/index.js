@@ -1,33 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Col, Drawer } from "antd";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
+
+import { Col } from "antd";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import { Link } from "react-router-dom";
-import { getIdFromUrlPath, getSurveyIdByCategory } from "../../Util";
-
-import {
-  subProjectsActions,
-  subProjectsSelectors,
-} from "../../redux/modules/subProjects";
-import { bindActionCreators } from "redux";
-import { mapActions } from "../../redux/modules/map";
-import PreviewOnMap from "./components/PreviewOnMap";
-import SurveyForm from "./components/SurveyForm";
-import DisplaySurveyForm from "../components/DisplaySurveyForm";
-import {
-  ticketActions,
-  ticketSelectors,
-} from "../../redux/modules/Tickets";
-import {
-  ProcuringEntityActions,
-  ProcuringEntitySelectors,
-} from "../../redux/modules/ProcuringEntities";
 import "./styles.css";
 import API from "../../API";
-import { UPLOAD_SUBPROJECTS_ENDPOINT } from '../../API/endpoints'
+import { UPLOAD_SUBPROJECTS_ENDPOINT, GET_SUBPROJECTS_ENDPOINT } from '../../API/endpoints'
 
 /* constants */
 const subProjectNameSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 20, xs: 20 };
@@ -43,59 +23,22 @@ const headerLayout = [
 ];
 
 /**
- * @class
+ * @function
  * @name SubProjects
  * @description Render actions list which have search box, actions and Sub Projects list
  *
  * @version 0.1.0
  * @since 0.1.0
  */
-class SubProjectsList extends Component {
-  packageId = getIdFromUrlPath(this.props.match.url, 6);
-  subProjectsFilter = { "filter[procuring_entity_package_id]": this.packageId };
-  state = {
-    showShare: false,
-    isEditForm: false,
-    cached: null,
-    visible: false,
-    previewOnMap: false,
-    isSelected: false,
-  };
+const SubProjects = (props) => {
+  const { match, history } = props;
+  const [subProjects, setSubProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  componentDidMount() {
-    const { fetchSubProjects, getProcuringEntityPackage } = this.props;
-    fetchSubProjects(this.subProjectsFilter);
-    getProcuringEntityPackage(this.packageId);
+  const handleOnSubProjectsImport  = (e) => {
+    const file = e.target.files[0];
+    API.upload(UPLOAD_SUBPROJECTS_ENDPOINT, file);
   }
-
-  /**
-   * @function
-   * @name handleMapPreview
-   * @description Handle map preview
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  handleMapPreview = (item_id) => {
-    const { getSubProject } = this.props;
-    this.setState({ previewOnMap: true });
-    getSubProject(item_id);
-    console.log(item_id);
-    let path = "/app/map";
-    this.props.history.push(path);
-  };
-
-  /**
-   * @function
-   * @name createSurvey
-   * @description creates new survey through kobotoolbox and  attach to sub project
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  createSurvey = (subProject) => {
-    console.log("inside createSurvey", subProject);
-  };
 
   /**
    * @function
@@ -105,218 +48,42 @@ class SubProjectsList extends Component {
    * @version 0.1.0
    * @since 0.1.0
    */
-  handleViewDetails = (item_id) => {
-    const { getSubProject, match } = this.props;
-    getSubProject(item_id);
+  const handleViewDetails = (item_id) => {
+    
     let path = `${match.url}/${item_id}`;
-    this.props.history.push(path);
+    history.push(path);
   };
 
-  /**
-   * @function
-   * @name fillSurvey
-   * @description Opens  kobotoolbox survey form
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  fillSurvey = (subProject) => {
-    const { openSurveyForm, selectSubProject } = this.props;
-    selectSubProject(subProject);
-    openSurveyForm();
-  };
-
-  /**
-   * @function
-   * @name openSubProjectForm
-   * @description Open Create SubProject form
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  openSubProjectForm = () => {
-    const { openSubProjectForm } = this.props;
-    openSubProjectForm();
-  };
-
-  /**
-   * @function
-   * @name openSubProjectSurveyForm
-   * @description Open Create SubProject Survey form
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  openSubProjectSurveyForm = (subProject) => {
-    const { openCreateSurveyForm, selectSubProject } = this.props;
-    selectSubProject(subProject);
-    openCreateSurveyForm();
-  };
-
-  /**
-   * @function
-   * @name closeSubProjectForm
-   * @description close Create SubProject form
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  closeSubProjectForm = () => {
-    this.setState({ isEditForm: false, visible: false });
-    const { closeSubProjectForm, selectSubProject } = this.props;
-    selectSubProject(null);
-    closeSubProjectForm();
-  };
-
-  /**
-   * @function
-   * @name closeSubProjectSurveyForm
-   * @description close Create Survey Form
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  closeSubProjectSurveyForm = () => {
-    const { closeSubProjectSurveyForm, selectSubProject } = this.props;
-    selectSubProject(null);
-    closeSubProjectSurveyForm();
-  };
-
-  /**
-   * @function
-   * @name handleEdit
-   * @description Handle on Edit action for list item
-   *
-   * @param {object} subProject Action Catalogue to be edited
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  handleEdit = (subProject) => {
-    const { selectSubProject, openSubProjectForm } = this.props;
-    selectSubProject(subProject);
-    this.setState({ isEditForm: true });
-    openSubProjectForm();
-  };
-
-  /**
-   * @function
-   * @name handleRefreshSubProjects
-   * @description Handle list refresh action
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  handleRefreshSubProjects = () => {
-    const { page, fetchSubProjects } = this.props;
-    fetchSubProjects({ ...this.subProjectsFilter, page });
-  };
-
-  /**
-   * @function
-   * @name searchSubProject
-   * @description Handle list refresh action
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  searchSubProject = (searchData) => {
-    const { searchSubProject } = this.props;
-    searchSubProject(searchData);
-  };
-
-  /**
-   * @function
-   * @name closeProjectSubComponentForm
-   * @description close form
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  closeProjectSubComponentForm = () => {
-    this.setState({ isEditForm: false, visible: false });
-    const { closeProjectSubComponentForm } = this.props;
-    closeProjectSubComponentForm();
-  };
-
-  /**
-   * @function
-   * @name openIssueForm
-   * @description Open form
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  openIssueForm = (sub_project) => {
-    this.setState({ isSelected: true });
-    const { openTicketForm, selectSubProject } = this.props;
-    selectSubProject(sub_project);
-    openTicketForm();
-  };
-
-  /**
-   * @function
-   * @name closeIssueForm
-   * @description close form
-   * @version 0.1.0
-   * @since 0.1.0
-   */
-  closeIssueForm = () => {
-    this.setState({ isEditForm: false, isSelected: false });
-    const { closeTicketForm } = this.props;
-    closeTicketForm();
-  };
-
-
-  handleOnSubProjectsImport = (e) => {
-     const file = e.target.files[0];
-     API.upload(UPLOAD_SUBPROJECTS_ENDPOINT, file);
-
+  const getSubProjects = () => {
+    setIsLoading(true);
+    API.get(GET_SUBPROJECTS_ENDPOINT)
+  .then(res => {
+    setSubProjects(res.data);
+    setIsLoading(false)
+  })
   }
 
-  render() {
-    const {
-      subProjects,
-      loading,
-      showForm,
-      showSurveyForm,
-      showTicketForm,
-      page,
-      total,
-      paginateSubProject,
-      closeCreateSurveyForm,
-      showCreateSurveyForm,
-      closeSurveyForm,
-      selected,
-    } = this.props;
+  useEffect(() => {
+    getSubProjects();
 
-    const survey_id = selected?.surveys
-      ? getSurveyIdByCategory("field_notes", selected?.surveys)
-      : null;
+  }, []);
 
-    const { isEditForm, previewOnMap } = this.state;
-    return previewOnMap ? (
-      <PreviewOnMap data={selected} />
-    ) : (
+    return (
       <>
-        <div>
-          {/* list starts */}
           <CustomList
             itemName="Sub-projects"
             items={subProjects}
-            page={page}
-            itemCount={total}
-            loading={loading}
+            page={1}
+            itemCount={subProjects.length}
+            loading={isLoading}
             actionButtonProp={{ title: "Sub-project", arrActions: [
               {
                 btnName: "Import SubProjects",
                 btnType: "upload",
-                btnAction: this.handleOnSubProjectsImport,
+                btnAction: handleOnSubProjectsImport,
               }
             ] }}
-            onPaginate={(nextPage) => {
-              paginateSubProject(nextPage);
-            }}
-            onRefresh={this.handleRefreshSubProjects}
+            onRefresh={getSubProjects}
             headerLayout={headerLayout}
             renderListItem={({ item }) => (
               <ListItem
@@ -328,7 +95,7 @@ class SubProjectsList extends Component {
                     view={{
                       name: "View Details",
                       title: "View more detail of selected sub project",
-                      onClick: () => this.handleViewDetails(item.id),
+                      onClick: () => handleViewDetails(item.id),
                     }}
                   />
                 )}
@@ -338,13 +105,11 @@ class SubProjectsList extends Component {
                 <Col
                   {...subProjectNameSpan}
                   className="contentEllipse"
-                  title={item.description}
+                  title={item.name}
                 >
                   {" "}
                   <Link
-                    to={{
-                      pathname: `/app/sub_projects/${item.id}`,
-                    }}
+                    onClick={() => handleViewDetails(item.id)}
                     className="sub-project-list"
                   >
                     {item.name}
@@ -352,163 +117,22 @@ class SubProjectsList extends Component {
                 </Col>
 
                 <Col {...packageSpan} className="contentEllipse">
-                  {item?.package?.name || "N/A" }
+                  {item?.procuring_entity_package?.name || "N/A" }
                 </Col>
                 <Col {...statusSpan}>
                   { item?.status?.name || "N/A" }
                 </Col>
-                <Col {...contractor}>{ item?.package?.contract?.contractor?.name || "N/A" }</Col>
+                <Col {...contractor}>{ item?.procuring_entity_package?.contract?.contractor?.name || "N/A" }</Col>
               </ListItem>
             )}
           />
-          {/* end list */}
-
-          {/* Sub project form */}
-          <Drawer
-            title={isEditForm ? "Edit Sub Projects" : "Add New Sub Projects"}
-            width={550}
-            onClose={this.closeSubProjectForm}
-            footer={null}
-            visible={showForm}
-            bodyStyle={{ paddingBottom: 80 }}
-            destroyOnClose
-            maskClosable={false}
-            className="subProjectForm"
-          ></Drawer>
-
-          {/* Create Survey form */}
-          <Drawer
-            width={550}
-            onClose={closeCreateSurveyForm}
-            footer={null}
-            visible={showCreateSurveyForm}
-            destroyOnClose
-            maskClosable={false}
-            className="surveyForm"
-          >
-            <SurveyForm
-              onCancel={closeCreateSurveyForm}
-              closeSubProjectSurveyForm={closeCreateSurveyForm}
-              selected={selected}
-            />
-          </Drawer>
-
-          {/* Survey form */}
-          <Drawer
-            width={550}
-            onClose={closeSurveyForm}
-            footer={null}
-            visible={showSurveyForm}
-            destroyOnClose
-            maskClosable={false}
-          >
-            <DisplaySurveyForm survey_id={survey_id} />
-          </Drawer>
-          <Drawer
-            title={isEditForm ? "Edit Ticket" : "Add New Ticket"}
-            width={550}
-            onClose={this.closeIssueForm}
-            footer={null}
-            visible={showTicketForm}
-            bodyStyle={{ paddingBottom: 80 }}
-            destroyOnClose
-            maskClosable={false}
-            className="projectForm"
-          ></Drawer>
-        </div>
       </>
     );
-  }
+  
 }
 
-const mapStateToProps = (state) => {
-  return {
-    subProjects: subProjectsSelectors.getSubProjectsSelector(state),
-    loading: subProjectsSelectors.getSubProjectsLoadingSelector(state),
-    showForm: subProjectsSelectors.getSubProjectShowFormSelector(state),
-    showSurveyForm: subProjectsSelectors.getShowSurveyFormSelector(state),
-    showCreateSurveyForm:
-      subProjectsSelectors.getShowCreateSurveyFormSelector(state),
-    page: subProjectsSelectors.getSubProjectsPageSelector(state),
-    total: subProjectsSelectors.getSubProjectsTotalSelector(state),
-    selected: subProjectsSelectors.selectedSubProject(state),
-    showTicketForm: ticketSelectors.getTicketShowFormSelector(state),
-    procuringEntityPackage: ProcuringEntitySelectors.getPackageSelector(state),
-  };
-};
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchSubProjects: bindActionCreators(
-    subProjectsActions.getSubProjectsStart,
-    dispatch
-  ),
-  deleteSubproject: bindActionCreators(
-    subProjectsActions.deleteSubProjectStart,
-    dispatch
-  ),
-  paginateSubProject(page) {
-    dispatch(subProjectsActions.getSubProjectsStart({ page }));
-  },
-  searchSubProject(searchQuery) {
-    dispatch(subProjectsActions.getSubProjectsStart({ searchQuery }));
-  },
-  getSubProject: bindActionCreators(
-    subProjectsActions.getSubProjectStart,
-    dispatch
-  ),
-  openSubProjectForm: bindActionCreators(
-    subProjectsActions.openSubProjectForm,
-    dispatch
-  ),
-  openCreateSurveyForm: bindActionCreators(
-    subProjectsActions.openSubProjectSurveyForm,
-    dispatch
-  ),
-  closeCreateSurveyForm: bindActionCreators(
-    subProjectsActions.closeSubProjectSurveyForm,
-    dispatch
-  ),
-  openSurveyForm: bindActionCreators(
-    subProjectsActions.openSurveyForm,
-    dispatch
-  ),
-  closeSurveyForm: bindActionCreators(
-    subProjectsActions.closeSurveyForm,
-    dispatch
-  ),
-  closeSubProjectForm: bindActionCreators(
-    subProjectsActions.closeSubProjectForm,
-    dispatch
-  ),
-  selectSubProject: bindActionCreators(
-    subProjectsActions.selectedSubProject,
-    dispatch
-  ),
-  getWfsLayerData: bindActionCreators(
-    mapActions.getWfsLayerDataStart,
-    dispatch
-  ),
-  openTicketForm: bindActionCreators(ticketActions.openTicketForm, dispatch),
-  closeTicketForm: bindActionCreators(ticketActions.closeTicketForm, dispatch),
-  getProcuringEntityPackage: bindActionCreators(
-    ProcuringEntityActions.getPackageStart,
-    dispatch
-  ),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubProjectsList);
 
-SubProjectsList.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  subProjects: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string }))
-    .isRequired,
-  page: PropTypes.number,
-  searchQuery: PropTypes.string,
-  total: PropTypes.number,
-};
 
-SubProjectsList.defaultProps = {
-  subProjects: [],
-  searchQuery: undefined,
-  loading: null,
-};
+export default SubProjects;

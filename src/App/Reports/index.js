@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { Col } from "antd";
-import { AppContext } from "../../context/AppContext";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
@@ -28,7 +27,6 @@ const headerLayout = [
 
 function Reports({ match }) {
   const [reports, setReports] = useState([]);
-  const app = React.useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 

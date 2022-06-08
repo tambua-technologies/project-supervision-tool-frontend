@@ -51,7 +51,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
         const {LatLonBoundingBox} = myLayer;
         console.log(myLayer);
 
-        const geonodeLayer = L.tileLayer.wms("https://geonode.project-supervision-tool.ga/geoserver/ows", {
+        const geonodeLayer = L.tileLayer.wms(`${process.env.REACT_APP_GEONODE_URL}/geoserver/ows`, {
             layers: dataSet.typename,
             format: 'image/png',
             transparent: true,
@@ -122,7 +122,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                         }
                         <div className="dataset-load_more">
                             <p>Load More</p>
-                            <a href='https://geonode.project-supervision-tool.ga/' target="_blank"
+                            <a href={`${process.env.REACT_APP_GEONODE_URL}`} target="_blank"
                                rel='noopener noreferrer'>
                                 <p>Open Geonode</p>
                             </a>
