@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../../../../API";
+import { Link } from "react-router-dom";
 import TopSummary from "../../../components/TopSummary";
 import "./style.css";
 import Img from "../../../../../src/assets/img/prof.jpg";
@@ -45,6 +46,18 @@ const Package = (props) => {
     { title: "Status", key: "status.name" },
   ];
 
+
+ const equipmentMob = [
+    { title: "Name", key: "name", avatar: true },
+    { title: "Capacity", key: "status.name" },
+    { title: "Contract Amount", key: "status.name" },
+    { title: "Mobilized Amount", key: "status.name" },
+  ];
+  const humanRes = [
+    { title: "Name", key: "name", avatar: true },
+    { title: "Contract Amount", key: "status.name" },
+    { title: "Mobilized Amount", key: "status.name" },
+  ];
   const data = [
     {
       progress: "Ongoing",
@@ -153,13 +166,24 @@ const Package = (props) => {
           marginBottom: "20px",
         }}
       >
-        <div className="table-container1">
+        <div className="table-container1 table-container">
           <h3>Equipment Mobilization</h3>
-          <TableContainer tableData={subProjects} titles={subProjetsConfigs} />
+          <TableContainer tableData={subProjects} titles={equipmentMob} />
         </div>
-        <div className="table-container1">
+        <div className="table-container1 table-container">
           <h3>Human Resources</h3>
-          <TableContainer tableData={subProjects} titles={subProjetsConfigs} />
+          <TableContainer tableData={subProjects} titles={humanRes} />
+          <div
+          className="list-footer "
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Link to={`/`} style={{ textDecoration: "underline" }}>
+            View All Reports
+          </Link>
+        </div>
         </div>
       </section>
       <div
@@ -172,6 +196,17 @@ const Package = (props) => {
       >
         {/* safeguards concerns table */}
         <TableContainer tableData={safeguardConfig} titles={headings} />
+        <div
+          className="list-footer "
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Link to={'/'} style={{ textDecoration: "underline" }}>
+            View All Reports
+          </Link>
+        </div>
       </div>
     </div>
   );
