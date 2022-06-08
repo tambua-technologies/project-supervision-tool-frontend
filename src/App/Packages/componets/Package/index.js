@@ -5,17 +5,20 @@ import "./style.css";
 import Img from "../../../../../src/assets/img/prof.jpg";
 import TopContent from "../../../components/TopContent";
 import TableContainer from "../../../components/TableContainer";
-
+import HumanResources from "./HumanResource";
+import EquipmentMobilization from "./EquipmentMobilization";
 const Package = (props) => {
   const [subProjects, setSubProjects] = useState([]);
   const [safeguardConfig, setSafeguardConfig] = useState([]);
+  const [cardData, setCardData] = useState([]);
+  const [contents, setContents] = useState([]);
 
   const { match } = props;
   const packageId = match.params;
   console.log(packageId);
   useEffect(() => {
     API.get("safeguard_concerns").then((res) => {
-      setSafeguardConfig(res.data);
+      // setSafeguardConfig(res.data);
       console.log(res.data);
     });
   }, []);
@@ -25,12 +28,6 @@ const Package = (props) => {
     { label: "Planned Progress", value: "42" },
     { label: "Sub-Projects", value: "202" },
     { label: "Challenges", value: "202" },
-  ];
-  const contents = [
-    { title: "Works Types", description: "Drainage system, Road" },
-    { title: "Works Types", description: "Drainage system, Road" },
-    { title: "Works Types", description: "Drainage system, Road" },
-    { title: "Works Types", description: "Drainage system, Road" },
   ];
 
   const headings = [
@@ -86,10 +83,37 @@ const Package = (props) => {
       console.log(res.data);
     });
   }, []);
+  useEffect(() => {
+    API.get("/procuring_entity_packages/1").then((resp) => {
+      console.log(resp);
+      const summariess = [
+        {
+          label: "Actual Progress",
+          value: resp.progress.actual_physical_progress,
+        },
+        {
+          label: "Planned Progress",
+          value: resp.progress.planned_physical_progress,
+        },
+        { label: "Sub-Projects", value: resp.sub_projects.length },
+        { label: "Challenges", value: "202" },
+      ];
+      const contents_data = [
+        { title: "Works Types", description: "Drainage system, Road" },
+        { title: "Contract Number", description: resp.contract.contract_no },
+        { title: "Contract Amount", description: "Drainage system, Road" },
+        { title: "Contractor", description: "Drainage system, Road" },
+      ];
+      setSafeguardConfig(resp.safeguard_concerns);
+
+      setContents(contents_data);
+      setCardData(summariess);
+    });
+  }, []);
   console.log(subProjects);
   return (
     <div>
-      <TopSummary summaries={summaries} />
+      <TopSummary summaries={cardData} />
       <div className="rectangle-container">
         {contents.map((content) => (
           <TopContent title={content.title} description={content.description} />
@@ -119,6 +143,23 @@ const Package = (props) => {
           <h2 style={{ fontSize: "15px", color: "blue", marginLeft: "78%" }}>
             view All Photos
           </h2>
+        </div>
+      </section>
+      <section
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "20px",
+        }}
+      >
+        <div className="table-container1">
+          <h3>Equipment Mobilization</h3>
+          <TableContainer tableData={subProjects} titles={subProjetsConfigs} />
+        </div>
+        <div className="table-container1">
+          <h3>Human Resources</h3>
+          <TableContainer tableData={subProjects} titles={subProjetsConfigs} />
         </div>
       </section>
       <div
