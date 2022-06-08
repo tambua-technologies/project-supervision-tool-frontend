@@ -31,6 +31,7 @@ const headerLayout = [
  * @since 0.1.0
  */
 const SubProjects = (props) => {
+  const { match, history } = props;
   const [subProjects, setSubProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,6 +39,20 @@ const SubProjects = (props) => {
     const file = e.target.files[0];
     API.upload(UPLOAD_SUBPROJECTS_ENDPOINT, file);
   }
+
+  /**
+   * @function
+   * @name handleViewDetails
+   * @description Handle detail preview
+   *
+   * @version 0.1.0
+   * @since 0.1.0
+   */
+  const handleViewDetails = (item_id) => {
+    
+    let path = `${match.url}/${item_id}`;
+    history.push(path);
+  };
 
   const getSubProjects = () => {
     setIsLoading(true);
@@ -80,7 +95,7 @@ const SubProjects = (props) => {
                     view={{
                       name: "View Details",
                       title: "View more detail of selected sub project",
-                      onClick: () => this.handleViewDetails(item.id),
+                      onClick: () => handleViewDetails(item.id),
                     }}
                   />
                 )}
@@ -94,7 +109,7 @@ const SubProjects = (props) => {
                 >
                   {" "}
                   <Link
-                    onClick={() => this.handleViewDetails(item.id)}
+                    onClick={() => handleViewDetails(item.id)}
                     className="sub-project-list"
                   >
                     {item.name}
