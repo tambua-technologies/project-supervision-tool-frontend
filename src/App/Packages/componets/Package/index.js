@@ -6,36 +6,20 @@ import Img from "../../../../../src/assets/img/prof.jpg";
 import TopContent from "../../../components/TopContent";
 import TableContainer from "../../../components/TableContainer";
 
-const columns = [
-  {
-    title: "Sub-Project",
-    dataIndex: "name",
-  },
-  {
-    title: "Status",
-    dataIndex: "age",
-  },
-  {
-    title: "Actual Physcal Progress(%)",
-    dataIndex: "address",
-  },
-  {
-    title: "Financial Progress(%)",
-    dataIndex: "address",
-  },
-  {
-    title: "Latest Update",
-    dataIndex: "address",
-  },
-];
-
 const Package = (props) => {
   const [subProjects, setSubProjects] = useState([]);
+  const [safeguardConfig, setSafeguardConfig] = useState([]);
 
-  const {
-    match: { url },
-  } = props;
-  const allReportsUrl = url.replace("overview", "reports");
+  const { match } = props;
+  const packageId = match.params;
+  console.log(packageId);
+  useEffect(() => {
+    API.get("safeguard_concerns").then((res) => {
+      setSafeguardConfig(res.data);
+      console.log(res.data);
+    });
+  }, []);
+  console.log(safeguardConfig);
   const summaries = [
     { label: "Actual Progress", value: "22" },
     { label: "Planned Progress", value: "42" },
@@ -48,21 +32,22 @@ const Package = (props) => {
     { title: "Works Types", description: "Drainage system, Road" },
     { title: "Works Types", description: "Drainage system, Road" },
   ];
-  const titles = [
-    { title: "Sub-Project", key: "Sub_name", avatar: true },
-    { title: "Status", key: "progress" },
-    { title: "Actual Physical progress(%)", key: "remark" },
-    { title: "Financial Progress(%)", key: "Challenge" },
-    // { title: "Latest Update" },
+
+  const headings = [
+    { title: "Concern Type", key: "concern_type", avatar: true },
+    { title: "Issue", key: "issue" },
+    { title: "Commitment", key: "commitment" },
+    { title: "Steps Taken", key: "steps_taken" },
+    { title: "Challenges", key: "challenges" },
+    { title: "Mitigation Measures", key: "mitigation_measures" },
+    { title: "Latest Update", key: "updated_at" },
   ];
 
   const subProjetsConfigs = [
     { title: "Sub-Project", key: "name", avatar: true },
     { title: "Status", key: "status.name" },
-    { title: "Actual Physical Progress(%)", key: "status.name" },
-    { title: "Financial Progress(%)", key: "status.name" },
-    { title: "Latest Report", key: "status.name" },
   ];
+
   const data = [
     {
       progress: "Ongoing",
@@ -101,7 +86,7 @@ const Package = (props) => {
       console.log(res.data);
     });
   }, []);
-
+  console.log(subProjects);
   return (
     <div>
       <TopSummary summaries={summaries} />
@@ -142,9 +127,10 @@ const Package = (props) => {
           padding: "15px",
           marginBottom: "20px",
         }}
+        className="bottom-table"
       >
         {/* safeguards concerns table */}
-        <TableContainer tableData={data} titles={titles} />
+        <TableContainer tableData={safeguardConfig} titles={headings} />
       </div>
     </div>
   );

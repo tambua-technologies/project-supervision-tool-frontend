@@ -8,13 +8,13 @@ const TableRow = (props) => {
   const { data, avatarBackground, keys } = props;
 
   const renderData = keys.map(({ key }) => {
-    return <td class="table__content">{get(data, key)}</td>;
+    return <td className="table__content">{get(data, key)}</td>;
   });
 
   const renderAvatar = keys.map(({ key, avatar = false }) => {
     if (avatar)
       return (
-        <td class="table__content">
+        <td className="table__content">
           <Avatar style={{ backgroundColor: avatarBackground }} size="small">
             {data[key].charAt(0)?.toUpperCase()}
           </Avatar>
@@ -25,7 +25,7 @@ const TableRow = (props) => {
   });
 
   return (
-    <tr class="table__row">
+    <tr className="table__row">
       {renderAvatar}
       {renderData}
     </tr>
@@ -36,11 +36,11 @@ const TableContainer = ({ titles, tableData }) => {
   const avatarBackground = randomColor();
 
   return (
-    <table class="table">
+    <table className="table">
       <tr>
-        <th class="table__heading"></th>
+        <th className="table__heading"></th>
         {titles.map((item) => (
-          <th class="table__heading">{item.title}</th>
+          <th className="table__heading">{item.title}</th>
         ))}
       </tr>
       {tableData.map((item) => (
