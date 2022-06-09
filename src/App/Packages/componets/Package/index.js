@@ -1,67 +1,62 @@
 import React, { useEffect, useState } from "react";
 import API from "../../../../API";
+import { Link } from "react-router-dom";
 import TopSummary from "../../../components/TopSummary";
 import "./style.css";
 import Img from "../../../../../src/assets/img/prof.jpg";
 import TopContent from "../../../components/TopContent";
 import TableContainer from "../../../components/TableContainer";
-
-const columns = [
-  {
-    title: "Sub-Project",
-    dataIndex: "name",
-  },
-  {
-    title: "Status",
-    dataIndex: "age",
-  },
-  {
-    title: "Actual Physcal Progress(%)",
-    dataIndex: "address",
-  },
-  {
-    title: "Financial Progress(%)",
-    dataIndex: "address",
-  },
-  {
-    title: "Latest Update",
-    dataIndex: "address",
-  },
-];
-
+import HumanResources from "./HumanResource";
+import EquipmentMobilization from "./EquipmentMobilization";
 const Package = (props) => {
   const [subProjects, setSubProjects] = useState([]);
+  const [safeguardConfig, setSafeguardConfig] = useState([]);
+  const [cardData, setCardData] = useState([]);
+  const [contents, setContents] = useState([]);
 
-  const {
-    match: { url },
-  } = props;
-  const allReportsUrl = url.replace("overview", "reports");
+  const { match } = props;
+  const packageId = match.params;
+  console.log(packageId);
+  useEffect(() => {
+    API.get("safeguard_concerns").then((res) => {
+      // setSafeguardConfig(res.data);
+      console.log(res.data);
+    });
+  }, []);
+  console.log(safeguardConfig);
   const summaries = [
     { label: "Actual Progress", value: "22" },
     { label: "Planned Progress", value: "42" },
     { label: "Sub-Projects", value: "202" },
     { label: "Challenges", value: "202" },
   ];
-  const contents = [
-    { title: "Works Types", description: "Drainage system, Road" },
-    { title: "Works Types", description: "Drainage system, Road" },
-    { title: "Works Types", description: "Drainage system, Road" },
-    { title: "Works Types", description: "Drainage system, Road" },
-  ];
-  const titles = [
-    { title: "Sub-Project", key: "Sub_name", avatar: true },
-    { title: "Status", key: "progress" },
-    { title: "Actual Physical progress(%)", key: "remark" },
-    { title: "Financial Progress(%)", key: "Challenge" },
-    // { title: "Latest Update" },
+
+  const headings = [
+    { title: "Concern Type", key: "concern_type", avatar: true },
+    { title: "Issue", key: "issue" },
+    { title: "Commitment", key: "commitment" },
+    { title: "Steps Taken", key: "steps_taken" },
+    { title: "Challenges", key: "challenges" },
+    { title: "Mitigation Measures", key: "mitigation_measures" },
+    { title: "Latest Update", key: "updated_at" },
   ];
 
   const subProjetsConfigs = [
     { title: "Sub-Project", key: "name", avatar: true },
     { title: "Status", key: "status.name" },
-    { title: "Actual Physical Progress(%)", key: "status.name" },
-    { title: "Financial Progress(%)", key: "status.name" },
-    { title: "Latest Report", key: "status.name" },
+  ];
+
+
+ const equipmentMob = [
+    { title: "Name", key: "name", avatar: true },
+    { title: "Capacity", key: "status.name" },
+    { title: "Contract Amount", key: "status.name" },
+    { title: "Mobilized Amount", key: "status.name" },
+  ];
+  const humanRes = [
+    { title: "Name", key: "name", avatar: true },
+    { title: "Contract Amount", key: "status.name" },
+    { title: "Mobilized Amount", key: "status.name" },
   ];
   const data = [
     {
@@ -101,10 +96,37 @@ const Package = (props) => {
       console.log(res.data);
     });
   }, []);
+  useEffect(() => {
+    API.get("/procuring_entity_packages/1").then((resp) => {
+      console.log(resp);
+      const summariess = [
+        {
+          label: "Actual Progress",
+          value: resp.progress.actual_physical_progress,
+        },
+        {
+          label: "Planned Progress",
+          value: resp.progress.planned_physical_progress,
+        },
+        { label: "Sub-Projects", value: resp.sub_projects.length },
+        { label: "Challenges", value: "202" },
+      ];
+      const contents_data = [
+        { title: "Works Types", description: "Drainage system, Road" },
+        { title: "Contract Number", description: resp.contract.contract_no },
+        { title: "Contract Amount", description: "Drainage system, Road" },
+        { title: "Contractor", description: "Drainage system, Road" },
+      ];
+      setSafeguardConfig(resp.safeguard_concerns);
 
+      setContents(contents_data);
+      setCardData(summariess);
+    });
+  }, []);
+  console.log(subProjects);
   return (
     <div>
-      <TopSummary summaries={summaries} />
+      <TopSummary summaries={cardData} />
       <div className="rectangle-container">
         {contents.map((content) => (
           <TopContent title={content.title} description={content.description} />
@@ -136,15 +158,55 @@ const Package = (props) => {
           </h2>
         </div>
       </section>
+      <section
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "20px",
+        }}
+      >
+        <div className="table-container1 table-container">
+          <h3>Equipment Mobilization</h3>
+          <TableContainer tableData={subProjects} titles={equipmentMob} />
+        </div>
+        <div className="table-container1 table-container">
+          <h3>Human Resources</h3>
+          <TableContainer tableData={subProjects} titles={humanRes} />
+          <div
+          className="list-footer "
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Link to={`/`} style={{ textDecoration: "underline" }}>
+            View All Reports
+          </Link>
+        </div>
+        </div>
+      </section>
       <div
         style={{
           backgroundColor: "#f5f5f5",
           padding: "15px",
           marginBottom: "20px",
         }}
+        className="bottom-table"
       >
         {/* safeguards concerns table */}
-        <TableContainer tableData={data} titles={titles} />
+        <TableContainer tableData={safeguardConfig} titles={headings} />
+        <div
+          className="list-footer "
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Link to={'/'} style={{ textDecoration: "underline" }}>
+            View All Reports
+          </Link>
+        </div>
       </div>
     </div>
   );

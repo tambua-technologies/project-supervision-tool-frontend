@@ -71,8 +71,8 @@ const HumanResource_reports = [
     }
 ]
   useEffect(() => {
-    const { procuringEntityId } = match.params;
-    getReports(procuringEntityId);
+    // const { procuringEntityId } = match.params;
+    // getReports(procuringEntityId);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
