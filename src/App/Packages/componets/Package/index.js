@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
 import API from "../../../../API";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import TopSummary from "../../../components/TopSummary";
 import "./style.css";
 import Img from "../../../../../src/assets/img/prof.jpg";
 import TopContent from "../../../components/TopContent";
 import TableContainer from "../../../components/TableContainer";
-import HumanResources from "./HumanResource";
-import EquipmentMobilization from "./EquipmentMobilization";
+import { moneyFormat } from "../../../../Util";
+
 const Package = (props) => {
   const [subProjects, setSubProjects] = useState([]);
   const [safeguardConfig, setSafeguardConfig] = useState([]);
   const [cardData, setCardData] = useState([]);
   const [contents, setContents] = useState([]);
+  const history = useHistory();
 
-  const { match } = props;
-  const packageId = match.params;
-  console.log(packageId);
+  const {
+    match: { url, params },
+  } = props;
+  console.log(url);
+  const HumanResourceUrl = url.replace("packages/1", "HumanResources");
+  const EquipmentUrl = url.replace("packages/1", "EquipmentMobilization");
+
   useEffect(() => {
     API.get("safeguard_concerns").then((res) => {
       // setSafeguardConfig(res.data);
@@ -46,8 +51,7 @@ const Package = (props) => {
     { title: "Status", key: "status.name" },
   ];
 
-
- const equipmentMob = [
+  const equipmentMob = [
     { title: "Name", key: "name", avatar: true },
     { title: "Capacity", key: "status.name" },
     { title: "Contract Amount", key: "status.name" },
@@ -98,6 +102,9 @@ const Package = (props) => {
   }, []);
   useEffect(() => {
     API.get("/procuring_entity_packages/1").then((resp) => {
+      const workTypeArr = [];
+      resp.work_types.map((item) => workTypeArr.push(item.name));
+      console.log(workTypeArr);
       console.log(resp);
       const summariess = [
         {
@@ -112,9 +119,12 @@ const Package = (props) => {
         { label: "Challenges", value: "202" },
       ];
       const contents_data = [
-        { title: "Works Types", description: "Drainage system, Road" },
+        { title: "Works Types", description: workTypeArr.join(",") },
         { title: "Contract Number", description: resp.contract.contract_no },
-        { title: "Contract Amount", description: "Drainage system, Road" },
+        {
+          title: "Contract Amount",
+          description: moneyFormat(resp.contract.original_contract_sum.amount),
+        },
         { title: "Contractor", description: "Drainage system, Road" },
       ];
       setSafeguardConfig(resp.safeguard_concerns);
@@ -169,21 +179,30 @@ const Package = (props) => {
         <div className="table-container1 table-container">
           <h3>Equipment Mobilization</h3>
           <TableContainer tableData={subProjects} titles={equipmentMob} />
+          <Link
+            to={EquipmentUrl}
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              textDecoration: "underline",
+            }}
+          >
+            View All Reports
+          </Link>
         </div>
         <div className="table-container1 table-container">
           <h3>Human Resources</h3>
           <TableContainer tableData={subProjects} titles={humanRes} />
-          <div
-          className="list-footer "
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
-          <Link to={`/`} style={{ textDecoration: "underline" }}>
+          <Link
+            to={HumanResourceUrl}
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              textDecoration: "underline",
+            }}
+          >
             View All Reports
           </Link>
-        </div>
         </div>
       </section>
       <div
@@ -203,7 +222,11 @@ const Package = (props) => {
             justifyContent: "flex-end",
           }}
         >
-          <Link to={'/'} style={{ textDecoration: "underline" }}>
+          <Link
+            to={HumanResourceUrl}
+            onClick={() => history.push(HumanResourceUrl)}
+            style={{ textDecoration: "underline" }}
+          >
             View All Reports
           </Link>
         </div>
