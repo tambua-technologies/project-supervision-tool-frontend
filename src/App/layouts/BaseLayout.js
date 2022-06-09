@@ -86,7 +86,7 @@ const BaseLayout = (props) => {
             }}
             theme="dark"
           >
-            <h3 className="text-blue">Ilala</h3>
+            <h3 className="text-blue">Temeke</h3>
 
             <Menu.Item key="overview">
               <span className="CustomizedIcon" />
