@@ -42,3 +42,10 @@
 .table-container .table tr td {
   font-size: 13px;
 }
+.bottom-table .table tr th {
+  font-size: 13px;
+}
+.table-container1{
+  width: 49%;
+  background-color: #f5f5f5;
+}

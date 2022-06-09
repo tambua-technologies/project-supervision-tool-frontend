@@ -8,6 +8,7 @@
 
 .LatestReports .title {
     font-weight: bold;
+    text-decoration:underline;
 }
 
 .LatestReports .list .list-header {

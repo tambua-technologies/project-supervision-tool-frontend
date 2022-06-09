@@ -28,13 +28,13 @@ const EquipmentMobilization = ({ match }) => {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
-  const getReports = async (id) => {
-    setIsLoading(true);
-    const payload = `filter[procuring_entity_id]=${id}`;
-    const response = await API.getProcuringEntitiesProgressReports(payload);
-    setReports(response.data);
-    setIsLoading(false);
-  };
+  // const getReports = async (id) => {
+  //   setIsLoading(true);
+  //   const payload = `filter[procuring_entity_id]=${id}`;
+  //   const response = await API.getProcuringEntitiesProgressReports(payload);
+  //   setReports(response.data);
+  //   setIsLoading(false);
+  // };
 const HumanResource_reports = [
     {
         report_title:"Project Manager",
@@ -82,8 +82,8 @@ const HumanResource_reports = [
     }
 ]
   useEffect(() => {
-    const { procuringEntityId } = match.params;
-    getReports(procuringEntityId);
+    // const { procuringEntityId } = match.params;
+    // getReports(procuringEntityId);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

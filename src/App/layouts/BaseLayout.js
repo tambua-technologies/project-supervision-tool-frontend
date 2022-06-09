@@ -7,6 +7,7 @@ import UserMenu from "../Auth/components/UserMenu";
 import Packages from "../Packages";
 import SubProjects from "../SubProjects";
 import SafeGuard from "../SafeguardConcerns";
+import CreateFieldNoteForm from "../FieldNotes/componets/CreateFieldNoteForm";
 import Subproject from "../SubProjects/components/SubProject";
 import API from "../../API";
 import Reports from "../Reports";
@@ -18,6 +19,7 @@ import CreateReportForm from "../Reports/components/CreateReportForm";
 import HumanResources from "../Packages/componets/Package/HumanResource";
 import EquipmentMobilization from "../Packages/componets/Package/EquipmentMobilization";
 import Package from "../Packages/componets/Package";
+
 const { Header, Content, Sider } = Layout;
 
 const BaseLayout = (props) => {
@@ -154,7 +156,12 @@ const BaseLayout = (props) => {
               <Switch>
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/overview`}
-                  component={(props) => <ProcuringEntity {...props} setCurrentMenu={setCurrentMenu} />}
+                  component={(props) => (
+                    <ProcuringEntity
+                      {...props}
+                      setCurrentMenu={setCurrentMenu}
+                    />
+                  )}
                 />
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/safeguard`}
@@ -177,9 +184,7 @@ const BaseLayout = (props) => {
                 />
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/EquipmentMobilization`}
-                  component={(props) => (
-                    <EquipmentMobilization {...props} />
-                  )}
+                  component={(props) => <EquipmentMobilization {...props} />}
                 />
 
                 {/*  Reports routes */}
@@ -191,6 +196,10 @@ const BaseLayout = (props) => {
                 <PrivateRoute
                   path={`/procuring_entity/:procuringEntityId/reports/create`}
                   component={(props) => <CreateReportForm {...props} />}
+                />
+                <PrivateRoute
+                  path={`/procuring_entity/:procuringEntityId/fields_Note/create`}
+                  component={(props) => <CreateFieldNoteForm {...props} />}
                 />
 
                 <PrivateRoute
