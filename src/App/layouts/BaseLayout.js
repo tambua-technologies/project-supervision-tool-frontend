@@ -214,7 +214,7 @@ const BaseLayout = (props) => {
                 />
 
                 <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/contractors`}
+                  path={`/procuring_entity/:procuringEntityId/contract`}
                   component={(props) => <Contract />}
                 />
               </Switch>
