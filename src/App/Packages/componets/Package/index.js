@@ -13,6 +13,8 @@ const Package = (props) => {
   const [safeguardConfig, setSafeguardConfig] = useState([]);
   const [cardData, setCardData] = useState([]);
   const [contents, setContents] = useState([]);
+  const [humanResData, setHumanResData] = useState([]);
+  const [equipmentMobilizationData, setEquipmentMobilization] = useState([]);
   const history = useHistory();
 
   const {
@@ -24,7 +26,7 @@ const Package = (props) => {
 
   useEffect(() => {
     API.get("safeguard_concerns").then((res) => {
-      // setSafeguardConfig(res.data);
+      setSafeguardConfig(res.data);
       console.log(res.data);
     });
   }, []);
@@ -56,6 +58,11 @@ const Package = (props) => {
     { title: "Capacity", key: "status.name" },
     { title: "Contract Amount", key: "status.name" },
     { title: "Mobilized Amount", key: "status.name" },
+  ];
+  const equipmentMobilization = [
+    { title: "Equipment", key: "equipment_name", avatar: true },
+    { title: "quantity mobilized", key: "mobilized" },
+    { title: "remarks", key: "status_of_equipment" },
   ];
   const humanRes = [
     { title: "Name", key: "name", avatar: true },
@@ -105,6 +112,7 @@ const Package = (props) => {
       const workTypeArr = [];
       resp.work_types.map((item) => workTypeArr.push(item.name));
       console.log(workTypeArr);
+      console.log("challenge");
       console.log(resp);
       const summariess = [
         {
@@ -116,7 +124,7 @@ const Package = (props) => {
           value: resp.progress.planned_physical_progress,
         },
         { label: "Sub-Projects", value: resp.sub_projects.length },
-        { label: "Challenges", value: "202" },
+        { label: "Challenges", value: resp.challenges_count },
       ];
       const contents_data = [
         { title: "Works Types", description: workTypeArr.join(",") },
@@ -125,14 +133,24 @@ const Package = (props) => {
           title: "Contract Amount",
           description: moneyFormat(resp.contract.original_contract_sum.amount),
         },
-        { title: "Contractor", description: "Drainage system, Road" },
+        { title: "Contractor", description: resp.contract.contractor.name },
       ];
       setSafeguardConfig(resp.safeguard_concerns);
-
+      setHumanResData(resp.staffs);
+      console.log(resp.staffs[0].position.name);
       setContents(contents_data);
+      setEquipmentMobilization(resp.equipments);
       setCardData(summariess);
     });
   }, []);
+  const humanResource = [
+    { title: "position", key: "position.name", avatar: true },
+    { title: "proposed_name", key: "proposed_name" },
+    { title: "replacement", key: "replacement" },
+    { title: "remarks", key: "remarks" },
+  ];
+  console.log(equipmentMobilizationData);
+  console.log(humanResData);
   console.log(subProjects);
   return (
     <div>
@@ -178,7 +196,12 @@ const Package = (props) => {
       >
         <div className="table-container1 table-container">
           <h3>Equipment Mobilization</h3>
-          <TableContainer tableData={subProjects} titles={equipmentMob} />
+          {/* <TableContainer tableData={subProjects} titles={equipmentMob} /> */}
+          <TableContainer
+            tableData={equipmentMobilizationData}
+            titles={equipmentMobilization}
+          />
+
           <Link
             to={EquipmentUrl}
             style={{
@@ -192,7 +215,7 @@ const Package = (props) => {
         </div>
         <div className="table-container1 table-container">
           <h3>Human Resources</h3>
-          <TableContainer tableData={subProjects} titles={humanRes} />
+          <TableContainer tableData={humanResData} titles={humanResource} />
           <Link
             to={HumanResourceUrl}
             style={{

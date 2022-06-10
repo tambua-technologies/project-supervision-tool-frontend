@@ -16,7 +16,7 @@ const TableRow = (props) => {
       return (
         <td className="table__content">
           <Avatar style={{ backgroundColor: avatarBackground }} size="small">
-            {data[key].charAt(0)?.toUpperCase()}
+            {get(data,key).charAt(0)?.toUpperCase()}
           </Avatar>
         </td>
       );
