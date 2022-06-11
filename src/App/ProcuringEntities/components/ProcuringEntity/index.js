@@ -23,7 +23,7 @@ const ProcuringEntity = (props) => {
     setCurrentMenu,
   } = props;
   const allReportsUrl = url.replace("overview", "reports");
-  const addFieldUrl = url.replace("overview", "fields_Note");
+  const addFieldUrl = url.replace("overview", "field-notes");
   const createReportFormUrl = `${allReportsUrl}/create`;
   const fieldNoteUrl = `${addFieldUrl}/create`;
   const history = useHistory();

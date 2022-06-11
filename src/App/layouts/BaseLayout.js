@@ -19,6 +19,7 @@ import CreateReportForm from "../Reports/components/CreateReportForm";
 import HumanResources from "../Packages/componets/Package/HumanResource";
 import EquipmentMobilization from "../Packages/componets/Package/EquipmentMobilization";
 import Package from "../Packages/componets/Package";
+import FieldNotes from "../FieldNotes";
 
 const { Header, Content, Sider } = Layout;
 
@@ -109,6 +110,14 @@ const BaseLayout = (props) => {
               <span className="CustomizedIcon" />
               <Link to={`${baseUrl}/sub-projects`}>Sub-Projects</Link>
             </Menu.Item>
+            <Menu.Item key="csc-contract">
+              <span className="CustomizedIcon" />
+              <Link to={`${baseUrl}/contract`}>CSC Contract</Link>
+            </Menu.Item>
+            <Menu.Item key="field-notes">
+              <span className="CustomizedIcon" />
+              <Link to={`${baseUrl}/field-notes`}>Field Notes</Link>
+            </Menu.Item>
             <Menu.Item key="map">
               <span className="CustomizedIcon" />
               <Link
@@ -116,10 +125,6 @@ const BaseLayout = (props) => {
               >
                 Map
               </Link>
-            </Menu.Item>
-            <Menu.Item key="csc-contract">
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/contract`}>CSC Contract</Link>
             </Menu.Item>
             <Menu.Item
               style={{ position: "absolute", bottom: "0" }}
@@ -197,8 +202,15 @@ const BaseLayout = (props) => {
                   path={`/procuring_entity/:procuringEntityId/reports/create`}
                   component={(props) => <CreateReportForm {...props} />}
                 />
+
+                {/* Field notes routes */}
                 <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/fields_Note/create`}
+                  exact
+                  path={`/procuring_entity/:procuringEntityId/field-notes`}
+                  component={(props) => <FieldNotes {...props} />}
+                />
+                <PrivateRoute
+                  path={`/procuring_entity/:procuringEntityId/field-notes/create`}
                   component={(props) => <CreateFieldNoteForm {...props} />}
                 />
 

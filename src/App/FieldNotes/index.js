@@ -29,7 +29,7 @@ const getAttachMentUrl = (attachments, name) => {
   return url.replace("?format=json", "");
 };
 
-function FieldNotes({ handleGoBack, showBackButton, match }) {
+function FieldNotes({ history, match }) {
   const [columns, setColumns] = useState([]);
   const [survey_id, setSurveyId] = useState("");
   const [features, setFeatures] = useState([]);
@@ -81,29 +81,12 @@ function FieldNotes({ handleGoBack, showBackButton, match }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const showModal = () => {
-    setIsModalVisible(true);
+    history.push(`${match.url}/create`);
   };
 
   const handleCancel = () => {
     getData(survey_id);
     setIsModalVisible(false);
-  };
-
-  const getBreadcrumbs = () => {
-    return procuringEntity
-      ? [
-          {
-            title: `${procuringEntity.agency.name}`,
-            url: `/projects/${procuringEntity.project.id}/procuring_entities/${procuringEntity.id}`,
-            name: `${procuringEntity.agency.name}`,
-          },
-          {
-            title: `Field Notes`,
-            url: match.url,
-            name: `Field Notes`,
-          },
-        ]
-      : [];
   };
 
   const handleOnMapCancel = () => setShowMapModal(false);
@@ -175,25 +158,27 @@ function FieldNotes({ handleGoBack, showBackButton, match }) {
         },
       }));
       setColumns(meta);
-      API.getAssetData(value).then((res) =>
-        setDataSource(
-          res.results.map((r) => {
-            const imageColumns = meta.filter(({ type }) => type === "image");
-            let withFomratedDates = {
-              ...r,
-              end: isoDateToHumanReadableDate(r.end),
-              start: isoDateToHumanReadableDate(r.start),
-            };
+      API.getAssetData(value).then((res) => {
+        const data = res.results.map((r) => {
+          const imageColumns = meta.filter(({ type }) => type === "image");
+          let withFomratedDates = {
+            ...r,
+            end: isoDateToHumanReadableDate(r.end),
+            start: isoDateToHumanReadableDate(r.start),
+            notes:  'to be determined'
+          };
 
-            for (let imageColumn of imageColumns) {
-              withFomratedDates[imageColumn.key] = getAttachMentUrl(
-                r._attachments,
-                r[imageColumn.key]
-              );
-            }
-            return withFomratedDates;
-          })
-        )
+          for (let imageColumn of imageColumns) {
+            withFomratedDates[imageColumn.key] = getAttachMentUrl(
+              r._attachments,
+              r[imageColumn.key]
+            );
+          }
+          return withFomratedDates;
+        });
+        setDataSource(data);
+      }
+       
       );
     });
 
@@ -202,10 +187,7 @@ function FieldNotes({ handleGoBack, showBackButton, match }) {
   }, [survey_id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return survey_id ? (
-    <BaseLayout
-      breadcrumbs={<DynamicBreadcrumbs breadcrumbs={getBreadcrumbs()} />}
-    >
-      <section className="container">
+      <section>
         <Toolbar
           total={dataSource.length}
           changeDataSource={() => console.log("data source changed")}
@@ -255,7 +237,6 @@ function FieldNotes({ handleGoBack, showBackButton, match }) {
           ""
         )}
       </section>
-    </BaseLayout>
   ) : (
     ""
   );

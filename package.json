@@ -13,7 +13,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@turf/turf": "^5.1.6",
     "algolia-places-react": "^1.6.1",
-    "antd": "^4.9.4",
+    "antd": "^4.21.0",
     "axios": "^0.21.2",
     "canvasjs-react-charts": "^1.0.5",
     "chart.js": "^2.9.4",
