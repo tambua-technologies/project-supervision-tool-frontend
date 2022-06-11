@@ -1,241 +1,55 @@
-import React, { useEffect, useState } from "react";
-import { Layout, Menu, Row, Input } from "antd";
-import { Link, Switch } from "react-router-dom";
-import PrivateRoute from "../Auth/PrivateRoute";
-import Contract from "../ProcuringEntities/components/Contract";
-import UserMenu from "../Auth/components/UserMenu";
-import Packages from "../Packages";
-import SubProjects from "../SubProjects";
-import SafeGuard from "../SafeguardConcerns";
-import CreateFieldNoteForm from "../FieldNotes/componets/CreateFieldNoteForm";
-import Subproject from "../SubProjects/components/SubProject";
-import API from "../../API";
-import Reports from "../Reports";
-import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
-import "./styles.css";
-import { AppContext } from "../../context/AppContext";
-import ProcuringEntity from "../ProcuringEntities/components/ProcuringEntity";
-import CreateReportForm from "../Reports/components/CreateReportForm";
-import HumanResources from "../Packages/componets/Package/HumanResource";
-import EquipmentMobilization from "../Packages/componets/Package/EquipmentMobilization";
-import Package from "../Packages/componets/Package";
-import FieldNotes from "../FieldNotes";
+import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
+import React from 'react';
+import SideMenu from '../components/SideMenu';
+import './styles.css'
+const { Header, Content, Footer, Sider } = Layout;
 
-const { Header, Content, Sider } = Layout;
+const App = () => (
+  <Layout>
+    <Sider
+      breakpoint="lg"
+      collapsedWidth="0"
+      onBreakpoint={(broken) => {
+        console.log(broken);
+      }}
+      onCollapse={(collapsed, type) => {
+        console.log(collapsed, type);
+      }}
+    >
+      <SideMenu />
+    </Sider>
+    <Layout>
+      <Header
+        className="site-layout-sub-header-background"
+        style={{
+          padding: 0,
+        }}
+      />
+      <Content
+        style={{
+          margin: '24px 16px 0',
+        }}
+      >
+        <div
+          className="site-layout-background"
+          style={{
+            padding: 24,
+            minHeight: 360,
+          }}
+        >
+          content
+        </div>
+      </Content>
+      <Footer
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        Ant Design ©2018 Created by Ant UED
+      </Footer>
+    </Layout>
+  </Layout>
+);
 
-const BaseLayout = (props) => {
-  const [project, setProject] = useState(null);
-  const [procuringEntity, setProcuringEntity] = useState(null);
-  const [currentMenu, setCurrentMenu] = useState("");
-  const {
-    match: { url: baseUrl, params },
-  } = props;
-  const [collapsed, setCollapse] = useState(false);
-
-  // persist current menu in local storage
-  useEffect(() => {
-    if (currentMenu) {
-      localStorage.setItem("currentMenu", currentMenu);
-    }
-    console.log(currentMenu);
-  }, [currentMenu]);
-
-  useEffect(() => {
-    API.getProcuringEntity(params.procuringEntityId)
-      .then((res) => {
-        setProcuringEntity(res.data);
-        setProject(res.data.project);
-      })
-      .catch((err) => console.log(err));
-  }, [params.procuringEntityId]);
-
-  // set current menu from local storage
-  useEffect(() => {
-    const menu = localStorage.getItem("currentMenu");
-    menu ? setCurrentMenu(menu) : setCurrentMenu("overview");
-  }, []);
-
-  const toggle = () => {
-    setCollapse({
-      collapsed: !collapsed,
-    });
-  };
-  return (
-    <AppContext.Provider value={{ app: { project, procuringEntity } }}>
-      <Layout style={{ height: "100vh" }}>
-        <Sider className="sider-layout">
-          <Row type="flex" justify="start">
-            <div className="header-logo">
-              {React.createElement(
-                collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-                {
-                  className: "trigger",
-                  onClick: toggle,
-                }
-              )}
-              <div className="logo">ReProST</div>
-            </div>{" "}
-          </Row>
-          <Menu
-            mode="inline"
-            selectedKeys={[currentMenu]}
-            onSelect={({ key }) => setCurrentMenu(key)}
-            style={{
-              height: "100%",
-              borderRight: 0,
-              paddingBlockStart: "2rem",
-            }}
-            theme="dark"
-          >
-            <h3 className="text-blue">Temeke</h3>
-
-            <Menu.Item key="overview">
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/overview`}>Overview</Link>
-            </Menu.Item>
-
-            <Menu.Item key="reports">
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/reports`}>Reports</Link>
-            </Menu.Item>
-            <Menu.Item key="safeguard">
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/safeguard`}>Safeguard Concerns</Link>
-            </Menu.Item>
-            <Menu.Item key="packages">
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/packages`}>Packages</Link>
-            </Menu.Item>
-            <Menu.Item key="sub-projects">
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/sub-projects`}>Sub-Projects</Link>
-            </Menu.Item>
-            <Menu.Item key="csc-contract">
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/contract`}>CSC Contract</Link>
-            </Menu.Item>
-            <Menu.Item key="field-notes">
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/field-notes`}>Field Notes</Link>
-            </Menu.Item>
-            <Menu.Item key="map">
-              <span className="CustomizedIcon" />
-              <Link
-                to={`/map/procuring_entity/${props.match.params.procuringEntityId}`}
-              >
-                Map
-              </Link>
-            </Menu.Item>
-            <Menu.Item
-              style={{ position: "absolute", bottom: "0" }}
-              key="settings"
-            >
-              <span className="CustomizedIcon" />
-              <Link to={`${baseUrl}/settings`}>Settings</Link>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-
-        <Layout className="BaseLayout">
-          <Header className="header">
-            <Row type="flex" className="header-content">
-              <div className="header-left-content">
-                <Input
-                  placeholder="Search here"
-                  allowClear
-                  className="TopbarSearch"
-                  size="large"
-                />
-              </div>
-              <div>
-                <UserMenu />
-              </div>
-            </Row>
-          </Header>
-
-          <div className="maincontent-layout">
-            <Content
-              style={{ margin: 0, paddingTop: "5%" }}
-              className="BaseLayoutContent"
-            >
-              <Switch>
-                <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/overview`}
-                  component={(props) => (
-                    <ProcuringEntity
-                      {...props}
-                      setCurrentMenu={setCurrentMenu}
-                    />
-                  )}
-                />
-                <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/safeguard`}
-                  component={(props) => <SafeGuard {...props} />}
-                />
-
-                {/* Packages routes */}
-                <PrivateRoute
-                  exact
-                  path={`/procuring_entity/:procuringEntityId/packages`}
-                  component={(props) => <Packages {...props} />}
-                />
-                <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/packages/:packageId`}
-                  component={(props) => <Package {...props} />}
-                />
-                <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/HumanResources`}
-                  component={(props) => <HumanResources {...props} />}
-                />
-                <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/EquipmentMobilization`}
-                  component={(props) => <EquipmentMobilization {...props} />}
-                />
-
-                {/*  Reports routes */}
-                <PrivateRoute
-                  exact
-                  path={"/procuring_entity/:procuringEntityId/reports"}
-                  component={(props) => <Reports {...props} />}
-                />
-                <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/reports/create`}
-                  component={(props) => <CreateReportForm {...props} />}
-                />
-
-                {/* Field notes routes */}
-                <PrivateRoute
-                  exact
-                  path={`/procuring_entity/:procuringEntityId/field-notes`}
-                  component={(props) => <FieldNotes {...props} />}
-                />
-                <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/field-notes/create`}
-                  component={(props) => <CreateFieldNoteForm {...props} />}
-                />
-
-                <PrivateRoute
-                  exact
-                  path={`/procuring_entity/:procuringEntityId/sub-projects`}
-                  component={(props) => <SubProjects {...props} />}
-                />
-
-                <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/sub-projects/:subProjectId`}
-                  component={(props) => <Subproject {...props} />}
-                />
-
-                <PrivateRoute
-                  path={`/procuring_entity/:procuringEntityId/contractors`}
-                  component={(props) => <Contract />}
-                />
-              </Switch>
-            </Content>
-          </div>
-        </Layout>
-      </Layout>
-    </AppContext.Provider>
-  );
-};
-
-export default BaseLayout;
+export default App;
