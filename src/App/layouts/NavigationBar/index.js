@@ -7,7 +7,7 @@ import './styles.css';
 const NavigationBar = () => {
     
     return (
-        <Row className="navigation-bar">
+        <Row>
             <Col span={14}>
                 <Input
                     placeholder="Search here"
@@ -17,7 +17,7 @@ const NavigationBar = () => {
                 />
 
             </Col>
-            <Col offset={8} span={2}>
+            <Col offset={9} span={1}>
                 <UserMenu />
             </Col>
         </Row>

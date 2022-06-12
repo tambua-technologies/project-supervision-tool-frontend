@@ -1,10 +1,27 @@
-
-.site-layout-background, .base-layout-header {
+.base-layout-sider,
+.base-layout-header,
+.base-layout-sider__header, .base-layout__content-layout {
   background: #fff;
 }
 
- .base-layout .ant-layout-header {
-  padding: 0;
+.base-layout-sider__header {
+  padding-left: 20px;
+}
+
+.base-layout-header {
+  padding-right: 20px;
+  border-bottom: 1px solid var(--mercury-color);
+}
+
+
+
+.base-layout__content {
+  padding: 24px;
+  min-height: 280px;
+}
+
+.base-layout-sider {
+  border-right: 1px solid var(--light-gray-color);
 }
 
 #root {
@@ -14,5 +31,3 @@
 .App {
   height: 100%;
 }
-
-
