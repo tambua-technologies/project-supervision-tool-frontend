@@ -12,13 +12,13 @@ const { Header, Content, Sider } = Layout;
 
 const BaseLayout = () => (
   <Layout className='base-layout' style={{height: '100%'}}>
+    <Sider width={200} className="site-layout-background">
+        <SideMenu />
+      </Sider>
+    <Layout>
     <Header className="base-layout-header">
      <NavigationBar />
     </Header>
-    <Layout>
-      <Sider width={200} className="site-layout-background">
-        <SideMenu />
-      </Sider>
       <Layout>
         <Content
           className="site-layout-background"
