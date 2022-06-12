@@ -33,6 +33,12 @@ const items = [
     label: 'Sub Projects',
   },
   {
+    key: 'field-notes',
+    icon: React.createElement(CustomIcon),
+    label: 'Field Notes',
+  },
+
+  {
     key: 'csc-contracts',
     icon: React.createElement(CustomIcon),
     label: 'CSC Contracts'
