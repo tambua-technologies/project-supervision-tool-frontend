@@ -1,55 +1,38 @@
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
 import React from 'react';
-import SideMenu from '../components/SideMenu';
-import './styles.css'
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout } from 'antd';
+import NavigationBar from './NavigationBar';
+import Routes from './Routes';
+import SideMenu from './SideMenu';
 
-const App = () => (
-  <Layout>
-    <Sider
-      breakpoint="lg"
-      collapsedWidth="0"
-      onBreakpoint={(broken) => {
-        console.log(broken);
-      }}
-      onCollapse={(collapsed, type) => {
-        console.log(collapsed, type);
-      }}
-    >
-      <SideMenu />
-    </Sider>
+import './styles.css'
+
+
+const { Header, Content, Sider } = Layout;
+
+
+const BaseLayout = () => (
+  <Layout className='base-layout' style={{height: '100%'}}>
+    <Header className="base-layout-header">
+     <NavigationBar />
+    </Header>
     <Layout>
-      <Header
-        className="site-layout-sub-header-background"
-        style={{
-          padding: 0,
-        }}
-      />
-      <Content
-        style={{
-          margin: '24px 16px 0',
-        }}
-      >
-        <div
+      <Sider width={200} className="site-layout-background">
+        <SideMenu />
+      </Sider>
+      <Layout>
+        <Content
           className="site-layout-background"
           style={{
             padding: 24,
-            minHeight: 360,
+            margin: 0,
+            minHeight: 280,
           }}
         >
-          content
-        </div>
-      </Content>
-      <Footer
-        style={{
-          textAlign: 'center',
-        }}
-      >
-        Ant Design ©2018 Created by Ant UED
-      </Footer>
+         <Routes />
+        </Content>
+      </Layout>
     </Layout>
   </Layout>
 );
 
-export default App;
+export default BaseLayout;

@@ -1,0 +1,10 @@
+.navigation-bar {
+  z-index: 1000;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid var(--mercury-color);
+}
+
+.navigation-bar__search-input{
+    width: 100%;
+}
