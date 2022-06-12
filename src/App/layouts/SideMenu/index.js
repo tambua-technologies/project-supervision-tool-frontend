@@ -59,10 +59,10 @@ const SideMenu = (props) => {
     }
   }
 
-    return (<Menu
+    return (
+    <Menu
         mode="inline"
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
+        defaultSelectedKeys={['overview']}
         className="side-menu"
         style={{
           height: '100%',
@@ -70,7 +70,8 @@ const SideMenu = (props) => {
         }}
         onClick={handleOnMenuItemClick}
         items={items}
-      />)
+      />
+      )
 }
 
 export default SideMenu;

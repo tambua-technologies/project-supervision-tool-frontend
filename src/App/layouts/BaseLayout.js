@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout } from 'antd';
 import NavigationBar from './NavigationBar';
 import Logo from './Logo';
@@ -16,16 +16,18 @@ const BaseLayout = (props) => {
     match: { url: baseUrl, params },
   } = props;
 
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
     <Layout className='base-layout' style={{ height: '100%' }}>
-      <Sider width={220} className="base-layout-sider">
+      <Sider width={collapsed ? 60 : 220} className="base-layout-sider">
         <Header className='base-layout-sider__header'>
-          <Logo />
+          <Logo collapsed={collapsed}  setCollapsed={setCollapsed}/>
         </Header>
         <Header className='base-layout-sider__menu-header'>
-          <div>Temeke</div>
+          { !collapsed && <div>Temeke</div> }
         </Header>
-        <SideMenu baseUrl={baseUrl} />
+        <SideMenu baseUrl={baseUrl} collapsed={collapsed} />
       </Sider>
       <Layout>
         <Header className="base-layout-header">

@@ -1,12 +1,12 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Row, Col } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 
 import './styles.css';
 
-const Logo = () => {
-    const [collapsed, setCollapsed] = useState(false);
+const Logo = (props) => {
+    const { collapsed, setCollapsed } = props;
     return (
         <Row>
             <Col span={6}>

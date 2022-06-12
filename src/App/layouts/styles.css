@@ -11,10 +11,12 @@
   font-size: 18px;
   font-weight: bold;
   padding-left: 24px;
+  padding-right: 0;
 }
 
 .base-layout-sider__header {
   padding-left: 20px;
+  width: 220px;
 }
 
 .base-layout-header {
