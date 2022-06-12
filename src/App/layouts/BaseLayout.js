@@ -5,7 +5,7 @@ import Logo from './Logo';
 import Routes from './Routes';
 import SideMenu from './SideMenu';
 
-import './styles.css'
+import './styles.css';
 
 
 const { Header, Content, Sider } = Layout;
@@ -16,6 +16,9 @@ const BaseLayout = () => (
     <Sider width={200} className="base-layout-sider">
       <Header className='base-layout-sider__header'>
         <Logo />
+      </Header>
+      <Header className='base-layout-sider__menu-header'>
+        <div>Temeke</div>
       </Header>
       <SideMenu />
     </Sider>

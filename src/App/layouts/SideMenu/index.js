@@ -2,6 +2,8 @@ import React from 'react';
 import { Menu } from 'antd';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 
+import './styles.css';
+
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
     const key = String(index + 1);
     return {
@@ -24,6 +26,7 @@ const SideMenu = () => {
         mode="inline"
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
+        className="side-menu"
         style={{
           height: '100%',
           borderRight: 0,

@@ -4,6 +4,10 @@
   background: #fff;
 }
 
+.base-layout-sider__menu-header {
+  background-color: var(--light-gray-color);
+}
+
 .base-layout-sider__header {
   padding-left: 20px;
 }
