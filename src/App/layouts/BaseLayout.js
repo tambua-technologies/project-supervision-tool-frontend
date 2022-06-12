@@ -16,7 +16,7 @@ const BaseLayout = (props) => {
     match: { url: baseUrl, params },
   } = props;
 
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <Layout className='base-layout' style={{ height: '100%' }}>

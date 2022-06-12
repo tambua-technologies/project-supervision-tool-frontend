@@ -16,82 +16,91 @@ import EquipmentMobilization from "../Packages/componets/Package/EquipmentMobili
 import Package from "../Packages/componets/Package";
 import FieldNotes from "../FieldNotes";
 
-const Routes = ({setCurrentMenu}) => (<Switch>
-    <PrivateRoute
-        path={`/procuring_entity/:procuringEntityId/overview`}
-        component={(props) => (
-            <ProcuringEntity
-                {...props}
-                setCurrentMenu={setCurrentMenu}
-            />
-        )}
-    />
-    <PrivateRoute
-        path={`/procuring_entity/:procuringEntityId/safeguard`}
-        component={(props) => <SafeGuard {...props} />}
-    />
+const baseUrl = '/procuring_entity/:procuringEntityId'
 
-    {/* Packages routes */}
-    <PrivateRoute
-        exact
-        path={`/procuring_entity/:procuringEntityId/packages`}
-        component={(props) => <Packages {...props} />}
-    />
-    <PrivateRoute
-        path={`/procuring_entity/:procuringEntityId/packages/:packageId`}
-        component={(props) => <Package {...props} />}
-    />
-    <PrivateRoute
-        path={`/procuring_entity/:procuringEntityId/HumanResources`}
-        component={(props) => <HumanResources {...props} />}
-    />
-    <PrivateRoute
-        path={`/procuring_entity/:procuringEntityId/EquipmentMobilization`}
-        component={(props) => <EquipmentMobilization {...props} />}
-    />
+const routes = [
+    {
+        path: `${baseUrl}/overview`,
+        component: ProcuringEntity,
+        exact: true,
+    },
+    {
+        path: `${baseUrl}/safeguard`,
+        component: SafeGuard,
+        exact: true,
+    },
+    {
+        path: `${baseUrl}/packages`,
+        component: Packages,
+        exact: true,
+    },
+    {
+        path: `${baseUrl}/packages/:packageId`,
+        component: Package,
+        exact: false,
+    },
+    {
+        path: `${baseUrl}/HumanResources`,
+        component: HumanResources,
+        exact: true,
+    },
+    {
+        path: `${baseUrl}/EquipmentMobilization`,
+        component: EquipmentMobilization,
+        exact: true,
+    },
+    {
+        path: `${baseUrl}/reports`,
+        component: Reports,
+        exact: true,
+    },
+    {
+        path: `${baseUrl}/field-notes`,
+        component: FieldNotes,
+        exact: true,
+    },
+    {
+        path: `${baseUrl}/sub-projects`,
+        component: SubProjects,
+        exact: true,
+    },
+    {
+        path: `${baseUrl}/sub-projects/:subProjectId`,
+        component: Subproject,
+        exact: false,
+    },
+    {
+        path: `${baseUrl}/contractors`,
+        component: Contract,
+        exact: true,
+    },
+    {
+        path: `${baseUrl}/reports/create`,
+        component: CreateReportForm,
+        exact: true,
 
-    {/*  Reports routes */}
-    <PrivateRoute
-        exact
-        path={"/procuring_entity/:procuringEntityId/reports"}
-        component={(props) => <Reports {...props} />}
-    />
-    <PrivateRoute
-        path={`/procuring_entity/:procuringEntityId/reports/create`}
-        component={(props) => <CreateReportForm {...props} />}
-    />
+    },
+    {
+        path: `${baseUrl}/field-notes/create`,
+        component: CreateFieldNoteForm,
+        exact: true,
+    }
+];
 
-    {/* Field notes routes */}
-    <PrivateRoute
-        exact
-        path={`/procuring_entity/:procuringEntityId/field-notes`}
-        component={(props) => <FieldNotes {...props} />}
-    />
-    <PrivateRoute
-        path={`/procuring_entity/:procuringEntityId/field-notes/create`}
-        component={(props) => <CreateFieldNoteForm {...props} />}
-    />
+const Routes = () => {
 
-    <PrivateRoute
-        exact
-        path={`/procuring_entity/:procuringEntityId/sub-projects`}
-        component={(props) => <SubProjects {...props} />}
-    />
+    return  (
+        <Switch>
+            {routes.map((route, i) => (
+            <PrivateRoute
+                key={`route-${i}`}
+                path={route.path}
+                exact={route.exact}
+                component={route.component}
+            />))}
+        </Switch>
+    );
+}
 
-    <PrivateRoute
-        path={`/procuring_entity/:procuringEntityId/sub-projects/:subProjectId`}
-        component={(props) => <Subproject {...props} />}
-    />
-
-    <PrivateRoute
-        path={`/procuring_entity/:procuringEntityId/contractors`}
-        component={(props) => <Contract />}
-    />
-
-    <PrivateRoute
-        path={`/procuring_entity/:procuringEntityId/contractors`}
-        component={(props) => <Contract />}
-    />
-</Switch>);
 
 export default Routes;
