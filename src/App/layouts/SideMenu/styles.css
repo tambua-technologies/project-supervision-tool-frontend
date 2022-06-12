@@ -2,3 +2,9 @@
 .side-menu {
     background-color: var(--light-gray-color);
 }
+
+.CustomIcon {
+    background: #a8a8a8;
+    padding: 10px;
+    margin-inline-end: 1.4em;
+}

@@ -1,26 +1,63 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
+import { useHistory } from 'react-router-dom';
 
 import './styles.css';
 
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-    const key = String(index + 1);
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
-      children: new Array(4).fill(null).map((_, j) => {
-        const subKey = index * 4 + j + 1;
-        return {
-          key: subKey,
-          label: `option${subKey}`,
-        };
-      }),
-    };
-  });
+const CustomIcon = () => (<span className="CustomIcon" />)
 
-const SideMenu = () => {
+const items = [
+  {
+    key: 'overview',
+    icon: React.createElement(CustomIcon),
+    label: 'Overview',
+  },
+  {
+    key: 'reports',
+    icon: React.createElement(CustomIcon),
+    label: 'Reports',
+  },
+  {
+    key: 'safeguard',
+    icon: React.createElement(CustomIcon),
+    label: 'Safeguard Concerns',
+  },
+  {
+    key: 'packages',
+    icon: React.createElement(CustomIcon),
+    label: 'Packages',
+  },
+  {
+    key: 'sub-projects',
+    icon: React.createElement(CustomIcon),
+    label: 'Sub Projects',
+  },
+  {
+    key: 'csc-contracts',
+    icon: React.createElement(CustomIcon),
+    label: 'CSC Contracts'
+  },
+  {
+    key: 'map',
+    icon: React.createElement(CustomIcon),
+    label: 'Map',
+  },
+
+];
+
+const SideMenu = (props) => {
+  const { baseUrl } = props;
+
+  const history = useHistory();
+
+  const handleOnMenuItemClick = e => {
+    if(e.key === 'map') {
+      history.push(`/map/${baseUrl}`);
+    }
+    else {
+      history.push(`${baseUrl}/${e.key}`);
+    }
+  }
 
     return (<Menu
         mode="inline"
@@ -31,7 +68,8 @@ const SideMenu = () => {
           height: '100%',
           borderRight: 0,
         }}
-        items={items2}
+        onClick={handleOnMenuItemClick}
+        items={items}
       />)
 }
 

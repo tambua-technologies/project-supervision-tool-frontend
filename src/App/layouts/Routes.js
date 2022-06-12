@@ -87,6 +87,11 @@ const Routes = ({setCurrentMenu}) => (<Switch>
         path={`/procuring_entity/:procuringEntityId/contractors`}
         component={(props) => <Contract />}
     />
+
+    <PrivateRoute
+        path={`/procuring_entity/:procuringEntityId/contractors`}
+        component={(props) => <Contract />}
+    />
 </Switch>);
 
 export default Routes;

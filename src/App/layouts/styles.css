@@ -5,7 +5,12 @@
 }
 
 .base-layout-sider__menu-header {
+  height: 44px;
   background-color: var(--light-gray-color);
+  color: var(--peacock-blue-color);
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 24px;
 }
 
 .base-layout-sider__header {
@@ -21,7 +26,7 @@
 
 .base-layout__content {
   padding: 24px;
-  min-height: 280px;
+  height: 280px;
 }
 
 .base-layout-sider {
