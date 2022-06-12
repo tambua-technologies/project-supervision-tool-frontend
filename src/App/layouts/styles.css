@@ -14,14 +14,13 @@
   padding-right: 0;
 }
 
-.base-layout-sider__header {
-  padding-left: 20px;
-  width: 220px;
+.base-layout-header {
+  padding-left: 24px;
 }
 
-.base-layout-header {
-  padding-right: 20px;
-  border-bottom: 1px solid var(--mercury-color);
+.base-layout-sider__header {
+  padding: 0px;
+  border-right: 1px solid var(--light-gray-color);
 }
 
 
@@ -29,11 +28,9 @@
 .base-layout__content {
   padding: 24px;
   height: 280px;
+  border-top: 1px solid var(--mercury-color);
 }
 
-.base-layout-sider {
-  border-right: 1px solid var(--light-gray-color);
-}
 
 #root {
   height: 100%;
