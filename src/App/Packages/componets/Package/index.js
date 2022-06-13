@@ -23,15 +23,10 @@ const Package = (props) => {
   } = props;
   console.log(url);
   console.log(params);
-  const HumanResourceUrl = url.replace("packages/1", "HumanResources");
-  const EquipmentUrl = url.replace("packages/1", "EquipmentMobilization");
 
-  // useEffect(() => {
-  //   API.get("safeguard_concerns").then((res) => {
-  //     setSafeguardConfig(res.data);
-  //     console.log(res.data);
-  //   });
-  // }, []);
+  const HumanResourceUrl = `${url}/human-resources`;
+  const EquipmentUrl = `${url}/equipment-mobilization`;
+
   console.log(safeguardConfig);
   const summaries = [
     { label: "Actual Progress", value: "22" },
@@ -143,7 +138,7 @@ const Package = (props) => {
         setSafeguardConfig(resp.safeguard_concerns);
         setHumanResData(resp.staffs);
         console.log(resp.staffs[0].position.name);
-        // setContents(contents_data);
+        setContents(contents_data);
         setEquipmentMobilization(resp.equipments);
         setCardData(summariess);
       }

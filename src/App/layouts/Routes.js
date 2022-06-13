@@ -16,91 +16,89 @@ import EquipmentMobilization from "../Packages/componets/Package/EquipmentMobili
 import Package from "../Packages/componets/Package";
 import FieldNotes from "../FieldNotes";
 
-const baseUrl = '/procuring_entity/:procuringEntityId'
+const baseUrl = "/procuring_entity/:procuringEntityId";
 
 const routes = [
-    {
-        path: `${baseUrl}/overview`,
-        component: ProcuringEntity,
-        exact: true,
-    },
-    {
-        path: `${baseUrl}/safeguard`,
-        component: SafeGuard,
-        exact: true,
-    },
-    {
-        path: `${baseUrl}/packages`,
-        component: Packages,
-        exact: true,
-    },
-    {
-        path: `${baseUrl}/packages/:packageId`,
-        component: Package,
-        exact: false,
-    },
-    {
-        path: `${baseUrl}/HumanResources`,
-        component: HumanResources,
-        exact: true,
-    },
-    {
-        path: `${baseUrl}/EquipmentMobilization`,
-        component: EquipmentMobilization,
-        exact: true,
-    },
-    {
-        path: `${baseUrl}/reports`,
-        component: Reports,
-        exact: true,
-    },
-    {
-        path: `${baseUrl}/field-notes`,
-        component: FieldNotes,
-        exact: true,
-    },
-    {
-        path: `${baseUrl}/sub-projects`,
-        component: SubProjects,
-        exact: true,
-    },
-    {
-        path: `${baseUrl}/sub-projects/:subProjectId`,
-        component: Subproject,
-        exact: false,
-    },
-    {
-        path: `${baseUrl}/contractors`,
-        component: Contract,
-        exact: true,
-    },
-    {
-        path: `${baseUrl}/reports/create`,
-        component: CreateReportForm,
-        exact: true,
-
-    },
-    {
-        path: `${baseUrl}/field-notes/create`,
-        component: CreateFieldNoteForm,
-        exact: true,
-    }
+  {
+    path: `${baseUrl}/overview`,
+    component: ProcuringEntity,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/safeguard`,
+    component: SafeGuard,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/packages`,
+    component: Packages,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/packages/:packageId`,
+    component: Package,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/packages/:packageId/human-resources`,
+    component: HumanResources,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/packages/:packageId/equipment-mobilization`,
+    component: EquipmentMobilization,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/reports`,
+    component: Reports,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/field-notes`,
+    component: FieldNotes,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/sub-projects`,
+    component: SubProjects,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/sub-projects/:subProjectId`,
+    component: Subproject,
+    exact: false,
+  },
+  {
+    path: `${baseUrl}/contractors`,
+    component: Contract,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/reports/create`,
+    component: CreateReportForm,
+    exact: true,
+  },
+  {
+    path: `${baseUrl}/field-notes/create`,
+    component: CreateFieldNoteForm,
+    exact: true,
+  },
 ];
 
 const Routes = () => {
-
-    return  (
-        <Switch>
-            {routes.map((route, i) => (
-            <PrivateRoute
-                key={`route-${i}`}
-                path={route.path}
-                exact={route.exact}
-                component={route.component}
-            />))}
-        </Switch>
-    );
-}
-
+  return (
+    <Switch>
+      {routes.map((route, i) => (
+        <PrivateRoute
+          key={`route-${i}`}
+          path={route.path}
+          exact={route.exact}
+          component={route.component}
+        />
+      ))}
+    </Switch>
+  );
+};
 
 export default Routes;

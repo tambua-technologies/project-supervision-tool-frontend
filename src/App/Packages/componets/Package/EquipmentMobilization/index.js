@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { AppContext } from "../../../../../context/AppContext";
-import { Col } from "antd";
+import { Col, Button } from "antd";
 import API from "../../../../../API";
 import CustomList from "../../../../components/List";
 import ListItem from "../../../../components/ListItem";
@@ -11,9 +11,9 @@ import { API_BASE_URL } from "../../../../../API/config";
 const Name = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
 const Capacity = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const ContractAmount = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
-const MobilizedAmount ={ xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
+const MobilizedAmount = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
 const MobilizedDate = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const Remarks ={ xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
+const Remarks = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
 const headerLayout = [
   { ...Name, header: "Name" },
   { ...Capacity, header: "Capacity" },
@@ -35,52 +35,48 @@ const EquipmentMobilization = ({ match }) => {
   //   setReports(response.data);
   //   setIsLoading(false);
   // };
-const HumanResource_reports = [
+  const HumanResource_reports = [
     {
-        report_title:"Project Manager",
-        report_number:1,
-        ContractAmount:0,
-        MobilizedAmount:1,
-        MobilizedDate:"Sanjay Partush",
-        Remarks:"completed"
+      report_title: "Project Manager",
+      report_number: 1,
+      ContractAmount: 0,
+      MobilizedAmount: 1,
+      MobilizedDate: "Sanjay Partush",
+      Remarks: "completed",
     },
     {
-        report_title:"Project Manager",
-        report_number:1,
-        ContractAmount:40,
-        MobilizedAmount:1,
-        MobilizedDate:"Sanjay Partush",
-        Remarks:"completed"
-
+      report_title: "Project Manager",
+      report_number: 1,
+      ContractAmount: 40,
+      MobilizedAmount: 1,
+      MobilizedDate: "Sanjay Partush",
+      Remarks: "completed",
     },
     {
-        report_title:"Project Manager",
-        report_number:12,
-        ContractAmount:0,
-        MobilizedAmount:1,
-        MobilizedDate:"Sanjay Partush",
-        Remarks:"completed"
-
+      report_title: "Project Manager",
+      report_number: 12,
+      ContractAmount: 0,
+      MobilizedAmount: 1,
+      MobilizedDate: "Sanjay Partush",
+      Remarks: "completed",
     },
     {
-        report_title:"Project Manager",
-        report_number:1,
-        ContractAmount:0,
-        MobilizedAmount:15,
-        MobilizedDate:"Sanjay Partush",
-        Remarks:"completed"
-
+      report_title: "Project Manager",
+      report_number: 1,
+      ContractAmount: 0,
+      MobilizedAmount: 15,
+      MobilizedDate: "Sanjay Partush",
+      Remarks: "completed",
     },
     {
-        report_title:"Project Manager",
-        report_number:1,
-        ContractAmount:0,
-        MobilizedAmount:1,
-        MobilizedDate:"Sanjay Partush",
-        Remarks:"completed"
-
-    }
-]
+      report_title: "Project Manager",
+      report_number: 1,
+      ContractAmount: 0,
+      MobilizedAmount: 1,
+      MobilizedDate: "Sanjay Partush",
+      Remarks: "completed",
+    },
+  ];
   useEffect(() => {
     // const { procuringEntityId } = match.params;
     // getReports(procuringEntityId);
@@ -89,6 +85,9 @@ const HumanResource_reports = [
   return (
     <>
       <div>
+        <Button onClick={() => history.goBack()} type="primary">
+          Back
+        </Button>
         {/* list starts */}
         <CustomList
           itemName="Progress Reports"
