@@ -3,6 +3,7 @@ import API from "../../../../API";
 import { Link, useHistory, useParams } from "react-router-dom";
 import TopSummary from "../../../components/TopSummary";
 import "./style.css";
+import { Image } from "antd";
 import Img from "../../../../../src/assets/img/prof.jpg";
 import TopContent from "../../../components/TopContent";
 import TableContainer from "../../../components/TableContainer";
@@ -26,7 +27,7 @@ const Package = (props) => {
 
   const HumanResourceUrl = `${url}/human-resources`;
   const EquipmentUrl = `${url}/equipment-mobilization`;
-
+  const GallaryUrl = `${url}/Gallary`;
   console.log(safeguardConfig);
   const summaries = [
     { label: "Actual Progress", value: "22" },
@@ -178,13 +179,16 @@ const Package = (props) => {
             Site photes
           </h2>
           <div className="image-container">
-            <img src={Img} alt="Img" />
-            <img src={Img} alt="Img" />
-            <img src={Img} alt="Img" />
+            <Image width={300} rootClassName="img-galary" src={Img} />
+            <Image width={300} rootClassName="img-galary" src={Img} />
+            <Image width={300} rootClassName="img-galary" src={Img} />
           </div>
-          <h2 style={{ fontSize: "15px", color: "blue", marginLeft: "78%" }}>
+          <Link
+            to={GallaryUrl}
+            style={{ fontSize: "15px", color: "blue", marginLeft: "78%" }}
+          >
             view All Photos
-          </h2>
+          </Link>
         </div>
       </section>
       <section
