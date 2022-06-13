@@ -8,7 +8,6 @@ import API from "../../../../API";
 import { isoDateToHumanReadableDate } from "../../../../Util";
 import { LoadingOutlined } from "@ant-design/icons";
 import ActionBar from "../../../components/ActionBar";
-import LatestReports from "../../../components/TableComponent";
 
 import TableContainer from "../../../components/TableContainer";
 

@@ -58,7 +58,7 @@ const SideMenu = (props) => {
 
   const handleOnMenuItemClick = e => {
     if(e.key === 'map') {
-      history.push(`/map/${baseUrl}`);
+      history.push(`/map${baseUrl}`);
     }
     else {
       history.push(`${baseUrl}/${e.key}`);
