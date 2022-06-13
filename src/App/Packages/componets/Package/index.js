@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from "react";
 import API from "../../../../API";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import TopSummary from "../../../components/TopSummary";
 import "./style.css";
 import Img from "../../../../../src/assets/img/prof.jpg";
 import TopContent from "../../../components/TopContent";
 import TableContainer from "../../../components/TableContainer";
-import HumanResources from "./HumanResource";
-import EquipmentMobilization from "./EquipmentMobilization";
+import { moneyFormat } from "../../../../Util";
+
 const Package = (props) => {
   const [subProjects, setSubProjects] = useState([]);
   const [safeguardConfig, setSafeguardConfig] = useState([]);
   const [cardData, setCardData] = useState([]);
   const [contents, setContents] = useState([]);
+  const [humanResData, setHumanResData] = useState([]);
+  const [equipmentMobilizationData, setEquipmentMobilization] = useState([]);
+  const history = useHistory();
 
-  const { match } = props;
-  const packageId = match.params;
-  console.log(packageId);
+  const {
+    match: { url, params },
+  } = props;
+  console.log(url);
+  const HumanResourceUrl = url.replace("packages/1", "HumanResources");
+  const EquipmentUrl = url.replace("packages/1", "EquipmentMobilization");
+
   useEffect(() => {
     API.get("safeguard_concerns").then((res) => {
-      // setSafeguardConfig(res.data);
+      setSafeguardConfig(res.data);
       console.log(res.data);
     });
   }, []);
@@ -46,12 +53,16 @@ const Package = (props) => {
     { title: "Status", key: "status.name" },
   ];
 
-
- const equipmentMob = [
+  const equipmentMob = [
     { title: "Name", key: "name", avatar: true },
     { title: "Capacity", key: "status.name" },
     { title: "Contract Amount", key: "status.name" },
     { title: "Mobilized Amount", key: "status.name" },
+  ];
+  const equipmentMobilization = [
+    { title: "Equipment", key: "equipment_name", avatar: true },
+    { title: "quantity mobilized", key: "mobilized" },
+    { title: "remarks", key: "status_of_equipment" },
   ];
   const humanRes = [
     { title: "Name", key: "name", avatar: true },
@@ -98,6 +109,10 @@ const Package = (props) => {
   }, []);
   useEffect(() => {
     API.get("/procuring_entity_packages/1").then((resp) => {
+      const workTypeArr = [];
+      resp.work_types.map((item) => workTypeArr.push(item.name));
+      console.log(workTypeArr);
+      console.log("challenge");
       console.log(resp);
       const summariess = [
         {
@@ -109,20 +124,33 @@ const Package = (props) => {
           value: resp.progress.planned_physical_progress,
         },
         { label: "Sub-Projects", value: resp.sub_projects.length },
-        { label: "Challenges", value: "202" },
+        { label: "Challenges", value: resp.challenges_count },
       ];
       const contents_data = [
-        { title: "Works Types", description: "Drainage system, Road" },
+        { title: "Works Types", description: workTypeArr.join(",") },
         { title: "Contract Number", description: resp.contract.contract_no },
-        { title: "Contract Amount", description: "Drainage system, Road" },
-        { title: "Contractor", description: "Drainage system, Road" },
+        {
+          title: "Contract Amount",
+          description: moneyFormat(resp.contract.original_contract_sum.amount),
+        },
+        { title: "Contractor", description: resp.contract.contractor.name },
       ];
       setSafeguardConfig(resp.safeguard_concerns);
-
+      setHumanResData(resp.staffs);
+      console.log(resp.staffs[0].position.name);
       setContents(contents_data);
+      setEquipmentMobilization(resp.equipments);
       setCardData(summariess);
     });
   }, []);
+  const humanResource = [
+    { title: "position", key: "position.name", avatar: true },
+    { title: "proposed_name", key: "proposed_name" },
+    { title: "replacement", key: "replacement" },
+    { title: "remarks", key: "remarks" },
+  ];
+  console.log(equipmentMobilizationData);
+  console.log(humanResData);
   console.log(subProjects);
   return (
     <div>
@@ -168,22 +196,36 @@ const Package = (props) => {
       >
         <div className="table-container1 table-container">
           <h3>Equipment Mobilization</h3>
-          <TableContainer tableData={subProjects} titles={equipmentMob} />
-        </div>
-        <div className="table-container1 table-container">
-          <h3>Human Resources</h3>
-          <TableContainer tableData={subProjects} titles={humanRes} />
-          <div
-          className="list-footer "
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
-          <Link to={`/`} style={{ textDecoration: "underline" }}>
+          {/* <TableContainer tableData={subProjects} titles={equipmentMob} /> */}
+          <TableContainer
+            tableData={equipmentMobilizationData}
+            titles={equipmentMobilization}
+          />
+
+          <Link
+            to={EquipmentUrl}
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              textDecoration: "underline",
+            }}
+          >
             View All Reports
           </Link>
         </div>
+        <div className="table-container1 table-container">
+          <h3>Human Resources</h3>
+          <TableContainer tableData={humanResData} titles={humanResource} />
+          <Link
+            to={HumanResourceUrl}
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              textDecoration: "underline",
+            }}
+          >
+            View All Reports
+          </Link>
         </div>
       </section>
       <div
@@ -203,7 +245,11 @@ const Package = (props) => {
             justifyContent: "flex-end",
           }}
         >
-          <Link to={'/'} style={{ textDecoration: "underline" }}>
+          <Link
+            to={HumanResourceUrl}
+            onClick={() => history.push(HumanResourceUrl)}
+            style={{ textDecoration: "underline" }}
+          >
             View All Reports
           </Link>
         </div>
