@@ -26,14 +26,6 @@ const ViewSubmissionOnMap = ({ data, showMApModal, handleOnCancel }) => (
   />
 );
 
-const getAttachMentUrl = (attachments, name) => {
-  const {download_small_url = ''} = attachments.find((attachment) => attachment.filename.includes(name));
-
-  const src= download_small_url.replace('?format=json', '');
-
-  return <Image width={200} src={src} />
-};
-
 // function FieldNotes({ history, match }) {
 //   const [columns, setColumns] = useState([]);
 //   const [survey_id, setSurveyId] = useState("");
@@ -291,31 +283,77 @@ const childTableColumns = [
 ];
 
 
-const prepareFieldNotes = (fieldNotes) => {
-  return fieldNotes.map((fieldNote) => {
-    const {notes} = fieldNote;
-    const children = notes.map((note) => {
-      const photo = getAttachMentUrl(fieldNote._attachments, note['notes/photo']);
-
-      return ({
-        description: note['notes/description'],
-         location: note['notes/location'],
-          photo
-        })
-    });
-
-    return {
-      package: fieldNote?.package || 'N/A',
-      subProject: fieldNote?.subProject || 'N/A',
-      children
-    };
-  })
-}
 
 
-const FieldNotes = () => {
+const getAttachMentUrl = (attachments, name) => {
+  const {download_small_url = ''} = attachments.find((attachment) => attachment.filename.includes(name));
+
+  const src= download_small_url.replace('?format=json', '');
+
+  return <Image width={200} src={src} />
+};
+
+
+/**
+ * @function FieldNotes
+ * @description Render the FieldNotes component
+ * @returns {JSX.Element}
+ */
+const FieldNotes = (props) => {
   const [fieldNotes, setFieldNotes] = useState([]);
+  const [showMapModal, setShowMapModal] = useState(false);
+  const [features, setFeatures] = useState([]);
+
   const fieldNotesFormId = process.env.REACT_APP_FIELD_NOTES_FORM_ID;
+  const {match:{url}, history } = props;
+
+
+
+  const handleOnPreviewSubmissionOnMap = (spatialData) => {
+    setFeatures([...features, spatialData]);
+    setShowMapModal(true);
+  };
+
+  const handleOnMapCancel = () => {
+    setShowMapModal(false);
+    setFeatures([]);
+  };
+
+  const prepareLocationValue = (location) => {
+    const geoJson = stringToGeoJson(location, "geopoint");
+    
+    return (
+    <Button 
+    onClick={() => {handleOnPreviewSubmissionOnMap(geoJson)}}
+    >
+      View on Map
+    </Button>
+    );
+  
+  
+  }
+  
+  const prepareFieldNotes = (fieldNotes) => {
+    return fieldNotes.map((fieldNote) => {
+      const {notes} = fieldNote;
+      const children = notes.map((note) => {
+        const photo = getAttachMentUrl(fieldNote._attachments, note['notes/photo']);
+        const location = prepareLocationValue(note['notes/location']);
+  
+        return ({
+          description: note['notes/description'],
+           location,
+            photo
+          })
+      });
+  
+      return {
+        package: fieldNote?.package || 'N/A',
+        subProject: fieldNote?.subProject || 'N/A',
+        children
+      };
+    })
+  }
 
 
  const getFieldNotes = () => {
@@ -332,18 +370,35 @@ const FieldNotes = () => {
   }, []);
   
 
- 
-
-  
   return (
-    <Table
-      className="components-table-demo-nested"
-      columns={columns}
-      expandable={{
-        expandedRowRender : (record) => (<Table columns={childTableColumns} dataSource={record?.children || [] } />),
-      }}
-      dataSource={fieldNotes}
-    />
+    <>
+      <Toolbar
+        onRefresh={() => getFieldNotes()}
+        itemName="Field Notes"
+        filterTo="To"
+        actions={[
+          {
+            label: "Fill Field Notes",
+            size: "large",
+            title: "Fill Field Notes",
+            onClick: () => history.push(`${url}/create`),
+          },
+        ]}
+      />
+      <Table
+        columns={columns}
+        expandable={{
+          expandedRowRender: (record) => (<Table columns={childTableColumns} dataSource={record?.children || []} />),
+        }}
+        dataSource={fieldNotes}
+      />
+      <ViewOnMap
+        data={features}
+        showMApModal={showMapModal}
+        handleOnCancel={handleOnMapCancel}
+      />
+    </>
+
   );
 };
 
