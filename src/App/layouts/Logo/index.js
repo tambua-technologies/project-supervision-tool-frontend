@@ -15,7 +15,7 @@ const Logo = (props) => {
                 </div>
             </Col>
             <Col offset={0} span={collapsed ? 0 : 17}>
-                <div className="logo__title">ReProST</div>
+                <div className="logo__title">DMDP</div>
             </Col>
         </Row>
     );

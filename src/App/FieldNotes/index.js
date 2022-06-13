@@ -45,7 +45,8 @@ const childTableColumns = [
 
 
 const getAttachMentUrl = (attachments, name) => {
-  const {download_small_url = ''} = attachments.find((attachment) => attachment.filename.includes(name));
+  const nameWithRemovedSpaces = name.replace(/\s/g, "_");
+  const {download_small_url = ''} = attachments.find((attachment) => attachment.filename.includes(nameWithRemovedSpaces)) || {};
 
   const src= download_small_url.replace('?format=json', '');
 
