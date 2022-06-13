@@ -179,9 +179,24 @@ const Package = (props) => {
             Site photes
           </h2>
           <div className="image-container">
-            <Image width={300} rootClassName="img-galary" src={Img} />
-            <Image width={300} rootClassName="img-galary" src={Img} />
-            <Image width={300} rootClassName="img-galary" src={Img} />
+            <Image
+              width={300}
+              style={{ padding: "10px" }}
+              rootClassName="img-galary"
+              src={Img}
+            />
+            <Image
+              width={300}
+              style={{ padding: "10px" }}
+              rootClassName="img-galary"
+              src={Img}
+            />
+            <Image
+              width={300}
+              style={{ padding: "10px" }}
+              rootClassName="img-galary"
+              src={Img}
+            />
           </div>
           <Link
             to={GallaryUrl}
