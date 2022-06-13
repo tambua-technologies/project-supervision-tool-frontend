@@ -27,8 +27,11 @@ const ViewSubmissionOnMap = ({ data, showMApModal, handleOnCancel }) => (
 );
 
 const getAttachMentUrl = (attachments, name) => {
-  const url = attachments.length > 0 ? attachments[0].download_url : "";
-  return url.replace("?format=json", "");
+  const {download_small_url = ''} = attachments.find((attachment) => attachment.filename.includes(name));
+
+  const src= download_small_url.replace('?format=json', '');
+
+  return <Image width={200} src={src} />
 };
 
 // function FieldNotes({ history, match }) {
@@ -256,87 +259,90 @@ const getAttachMentUrl = (attachments, name) => {
 // };
 
 
+const columns = [
+  {
+    title: 'Package',
+    dataIndex: 'package',
+    key: 'package',
+  },
+  {
+    title: 'SubProject',
+    dataIndex: 'subProject',
+    key: 'subProject',
+  },
+];
 
-const menu = (
-  <Menu
-    items={[
-      {
-        key: '1',
-        label: 'Action 1',
-      },
-      {
-        key: '2',
-        label: 'Action 2',
-      },
-    ]}
-  />
-);
+const childTableColumns = [
+  {
+    title: 'Description',
+    dataIndex: 'description',
+    key: 'description',
+  },
+  {
+    title: 'Photo',
+    dataIndex: 'photo',
+    key: 'photo',
+  },
+  {
+    title: 'Location',
+    dataIndex: 'location',
+    key: 'location'
+  },
+];
+
+
+const prepareFieldNotes = (fieldNotes) => {
+  return fieldNotes.map((fieldNote) => {
+    const {notes} = fieldNote;
+    const children = notes.map((note) => {
+      const photo = getAttachMentUrl(fieldNote._attachments, note['notes/photo']);
+
+      return ({
+        description: note['notes/description'],
+         location: note['notes/location'],
+          photo
+        })
+    });
+
+    return {
+      package: fieldNote?.package || 'N/A',
+      subProject: fieldNote?.subProject || 'N/A',
+      children
+    };
+  })
+}
+
 
 const FieldNotes = () => {
-  const expandedRowRender = (row) => {
-    console.log('expandedRowRender',row);
-    const columns = [
-      {
-        title: 'Description',
-        dataIndex: 'description',
-        key: 'description',
-      },
-      {
-        title: 'Upload Image',
-        dataIndex: 'Upload_Image',
-        key: 'Upload_Image',
-      },
-      
-      {
-        title: 'Location Image was taken',
-        dataIndex: 'Location_Image_was_taken',
-        key: 'Location_Image_was_taken',
-      }
-    ];
-    const data = [];
+  const [fieldNotes, setFieldNotes] = useState([]);
+  const fieldNotesFormId = process.env.REACT_APP_FIELD_NOTES_FORM_ID;
 
-    for (let i = 0; i < 3; ++i) {
-      data.push({
-        key: i,
-        Location_Image_was_taken: '2014-12-24 23:12:00',
-        description: 'This is production name',
-        Upload_Image: 'Upgraded: 56',
-      });
-    }
 
-    return <Table columns={columns} dataSource={data} pagination={false} />;
-  };
+ const getFieldNotes = () => {
+  API.getAssetData(fieldNotesFormId)
+  .then(res => {
+    const results = prepareFieldNotes(res.results);
+    setFieldNotes(results);
+  })
+ }
 
-  const columns = [
-    {
-      title: 'Package',
-      dataIndex: 'Package',
-      key: 'Package',
-    },
-    {
-      title: 'SubProject',
-      dataIndex: 'Sub_Project',
-      key: 'Sub_Project',
-    },
-  ];
-  const data = [];
+  useEffect(() => {
+    getFieldNotes();
+    
+  }, []);
+  
 
-  for (let i = 0; i < 3; ++i) {
-    data.push({
-      key: i,
-      Package: 'Screem',
-      Sub_Project: 'iOS',
-    });
-  }
+ 
 
+  
   return (
     <Table
       className="components-table-demo-nested"
       columns={columns}
       expandable={{
-        expandedRowRender,
+        expandedRowRender : (record) => (<Table columns={childTableColumns} dataSource={record?.children || [] } />),
       }}
-      dataSource={data}
+      dataSource={fieldNotes}
     />
   );
 };
