@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../../../../API";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import TopSummary from "../../../components/TopSummary";
 import "./style.css";
 import Img from "../../../../../src/assets/img/prof.jpg";
@@ -16,20 +16,22 @@ const Package = (props) => {
   const [humanResData, setHumanResData] = useState([]);
   const [equipmentMobilizationData, setEquipmentMobilization] = useState([]);
   const history = useHistory();
+  let { packageID } = useParams();
 
   const {
     match: { url, params },
   } = props;
   console.log(url);
+  console.log(params);
   const HumanResourceUrl = url.replace("packages/1", "HumanResources");
   const EquipmentUrl = url.replace("packages/1", "EquipmentMobilization");
 
-  useEffect(() => {
-    API.get("safeguard_concerns").then((res) => {
-      setSafeguardConfig(res.data);
-      console.log(res.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   API.get("safeguard_concerns").then((res) => {
+  //     setSafeguardConfig(res.data);
+  //     console.log(res.data);
+  //   });
+  // }, []);
   console.log(safeguardConfig);
   const summaries = [
     { label: "Actual Progress", value: "22" },
@@ -108,40 +110,44 @@ const Package = (props) => {
     });
   }, []);
   useEffect(() => {
-    API.get("/procuring_entity_packages/1").then((resp) => {
-      const workTypeArr = [];
-      resp.work_types.map((item) => workTypeArr.push(item.name));
-      console.log(workTypeArr);
-      console.log("challenge");
-      console.log(resp);
-      const summariess = [
-        {
-          label: "Actual Progress",
-          value: resp.progress.actual_physical_progress,
-        },
-        {
-          label: "Planned Progress",
-          value: resp.progress.planned_physical_progress,
-        },
-        { label: "Sub-Projects", value: resp.sub_projects.length },
-        { label: "Challenges", value: resp.challenges_count },
-      ];
-      const contents_data = [
-        { title: "Works Types", description: workTypeArr.join(",") },
-        { title: "Contract Number", description: resp.contract.contract_no },
-        {
-          title: "Contract Amount",
-          description: moneyFormat(resp.contract.original_contract_sum.amount),
-        },
-        { title: "Contractor", description: resp.contract.contractor.name },
-      ];
-      setSafeguardConfig(resp.safeguard_concerns);
-      setHumanResData(resp.staffs);
-      console.log(resp.staffs[0].position.name);
-      setContents(contents_data);
-      setEquipmentMobilization(resp.equipments);
-      setCardData(summariess);
-    });
+    API.get(`/procuring_entity_packages/${params.procuringEntityId}`).then(
+      (resp) => {
+        const workTypeArr = [];
+        resp.work_types.map((item) => workTypeArr.push(item.name));
+        // console.log(workTypeArr);
+        // console.log("challenge");
+        console.log(resp);
+        const summariess = [
+          {
+            label: "Actual Progress",
+            value: resp.progress.actual_physical_progress,
+          },
+          {
+            label: "Planned Progress",
+            value: resp.progress.planned_physical_progress,
+          },
+          { label: "Sub-Projects", value: resp.sub_projects.length },
+          { label: "Challenges", value: resp.challenges_count },
+        ];
+        const contents_data = [
+          { title: "Works Types", description: workTypeArr.join(",") },
+          { title: "Contract Number", description: resp.contract.contract_no },
+          {
+            title: "Contract Amount",
+            description: moneyFormat(
+              resp.contract.original_contract_sum.amount
+            ),
+          },
+          { title: "Contractor", description: resp.contract.contractor.name },
+        ];
+        setSafeguardConfig(resp.safeguard_concerns);
+        setHumanResData(resp.staffs);
+        console.log(resp.staffs[0].position.name);
+        // setContents(contents_data);
+        setEquipmentMobilization(resp.equipments);
+        setCardData(summariess);
+      }
+    );
   }, []);
   const humanResource = [
     { title: "position", key: "position.name", avatar: true },
@@ -149,9 +155,9 @@ const Package = (props) => {
     { title: "replacement", key: "replacement" },
     { title: "remarks", key: "remarks" },
   ];
-  console.log(equipmentMobilizationData);
-  console.log(humanResData);
-  console.log(subProjects);
+  // console.log(equipmentMobilizationData);
+  // console.log(humanResData);
+  // console.log(subProjects);
   return (
     <div>
       <TopSummary summaries={cardData} />
@@ -210,7 +216,7 @@ const Package = (props) => {
               textDecoration: "underline",
             }}
           >
-            View All Reports
+            View All
           </Link>
         </div>
         <div className="table-container1 table-container">
@@ -224,7 +230,7 @@ const Package = (props) => {
               textDecoration: "underline",
             }}
           >
-            View All Reports
+            View All
           </Link>
         </div>
       </section>
@@ -250,7 +256,7 @@ const Package = (props) => {
             onClick={() => history.push(HumanResourceUrl)}
             style={{ textDecoration: "underline" }}
           >
-            View All Reports
+            View All
           </Link>
         </div>
       </div>
