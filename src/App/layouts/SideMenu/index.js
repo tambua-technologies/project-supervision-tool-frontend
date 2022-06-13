@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import './styles.css';
 
+
 const CustomIcon = () => (<span className="CustomIcon" />)
 
 const items = [
