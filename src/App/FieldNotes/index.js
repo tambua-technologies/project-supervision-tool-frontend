@@ -303,6 +303,7 @@ const FieldNotes = (props) => {
   const [fieldNotes, setFieldNotes] = useState([]);
   const [showMapModal, setShowMapModal] = useState(false);
   const [features, setFeatures] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fieldNotesFormId = process.env.REACT_APP_FIELD_NOTES_FORM_ID;
   const {match:{url}, history } = props;
@@ -357,10 +358,12 @@ const FieldNotes = (props) => {
 
 
  const getFieldNotes = () => {
+  setLoading(true);
   API.getAssetData(fieldNotesFormId)
   .then(res => {
     const results = prepareFieldNotes(res.results);
     setFieldNotes(results);
+    setLoading(false);
   })
  }
 
@@ -387,6 +390,7 @@ const FieldNotes = (props) => {
       />
       <Table
         columns={columns}
+        loading={loading}
         expandable={{
           expandedRowRender: (record) => (<Table columns={childTableColumns} dataSource={record?.children || []} />),
         }}
