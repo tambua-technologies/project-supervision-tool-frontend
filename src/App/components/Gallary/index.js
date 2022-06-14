@@ -15,13 +15,13 @@ const Gallary = () => {
     <section className="gallary-container">
       <ActionBar
         actionButtonProp={{
-          title: "Gallary Photo",
+          title: "Photo Gallary",
           arrActions: [
             {
               btnName: "Back ",
               btnAction: () => history.goBack(),
-            }
-          ]
+            },
+          ],
         }}
       />
       <Row justify="space-between">
