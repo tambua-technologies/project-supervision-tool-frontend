@@ -45,7 +45,7 @@ const items = [
     label: 'CSC Contracts'
   },
   {
-    key: 'map',
+    key: 'sub-projects-map',
     icon: React.createElement(CustomIcon),
     label: 'Map',
   },
@@ -57,14 +57,7 @@ const SideMenu = (props) => {
 
   const history = useHistory();
 
-  const handleOnMenuItemClick = e => {
-    if(e.key === 'map') {
-      history.push(`/map${baseUrl}`);
-    }
-    else {
-      history.push(`${baseUrl}/${e.key}`);
-    }
-  }
+  const handleOnMenuItemClick = e =>   history.push(`${baseUrl}/${e.key}`);
 
     return (
     <Menu
