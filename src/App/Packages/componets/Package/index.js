@@ -8,8 +8,10 @@ import Img1 from "../../../../../src/assets/img/img1.jpg";
 import Img2 from "../../../../../src/assets/img/img2.jpg";
 import Img3 from "../../../../../src/assets/img/img3.jpg";
 import TopContent from "../../../components/TopContent";
+import ActionBar from "../../../components/ActionBar";
 import TableContainer from "../../../components/TableContainer";
 import { moneyFormat } from "../../../../Util";
+import { isoDateToHumanReadableDate } from "../../../../Util";
 
 const Package = (props) => {
   const [subProjects, setSubProjects] = useState([]);
@@ -30,7 +32,7 @@ const Package = (props) => {
   const HumanResourceUrl = `${url}/human-resources`;
   const EquipmentUrl = `${url}/equipment-mobilization`;
   const GallaryUrl = `${url}/Gallary`;
-  console.log(safeguardConfig);
+  // console.log(safeguardConfig);
   const summaries = [
     { label: "Actual Progress", value: "22" },
     { label: "Planned Progress", value: "42" },
@@ -104,48 +106,45 @@ const Package = (props) => {
   useEffect(() => {
     API.get(`/sub_projects/`, { page: 1, per_page: 3 }).then((res) => {
       setSubProjects(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     });
   }, []);
   useEffect(() => {
-    API.get(`/procuring_entity_packages/${params.procuringEntityId}`).then(
-      (resp) => {
-        const workTypeArr = [];
-        resp.work_types.map((item) => workTypeArr.push(item.name));
-        // console.log(workTypeArr);
-        // console.log("challenge");
-        console.log(resp);
-        const summariess = [
-          {
-            label: "Actual Progress",
-            value: resp?.progress?.actual_physical_progress || "N/A",
-          },
-          {
-            label: "Planned Progress",
-            value: resp?.progress?.planned_physical_progress || "N/A",
-          },
-          { label: "Sub-Projects", value: resp.sub_projects.length },
-          { label: "Challenges", value: resp.challenges_count },
-        ];
-        const contents_data = [
-          { title: "Works Types", description: workTypeArr.join(",") },
-          { title: "Contract Number", description: resp.contract.contract_no },
-          {
-            title: "Contract Amount",
-            description: moneyFormat(
-              resp.contract.original_contract_sum.amount
-            ),
-          },
-          { title: "Contractor", description: resp.contract.contractor.name },
-        ];
-        setSafeguardConfig(resp.safeguard_concerns);
-        setHumanResData(resp.staffs);
-        console.log(resp.staffs[0].position.name);
-        setContents(contents_data);
-        setEquipmentMobilization(resp.equipments);
-        setCardData(summariess);
-      }
-    );
+    API.get(`/procuring_entity_packages/${params.packageId}`).then((resp) => {
+      const workTypeArr = [];
+      resp.work_types.map((item) => workTypeArr.push(item.name));
+      // console.log(workTypeArr);
+      // console.log("challenge");
+      console.log(resp);
+      const summariess = [
+        {
+          label: "Actual Progress",
+          value: resp?.progress?.actual_physical_progress || "N/A",
+        },
+        {
+          label: "Planned Progress",
+          value: resp?.progress?.planned_physical_progress || "N/A",
+        },
+        { label: "Sub-Projects", value: resp.sub_projects.length },
+        { label: "Challenges", value: resp.challenges_count },
+      ];
+      const contents_data = [
+        { title: "Works Types", description: workTypeArr.join(",") },
+        { title: "Contract Number", description: resp.contract.contract_no },
+        {
+          title: "Contract Amount",
+          description: moneyFormat(resp.contract.original_contract_sum.amount),
+        },
+        { title: "Contractor", description: resp.contract.contractor.name },
+      ];
+    const dataSafeGuard =  resp.safeguard_concerns.map((item) => item)
+      console.log(dataSafeGuard);
+      setSafeguardConfig(resp.safeguard_concerns);
+      setHumanResData(resp.staffs);
+      setContents(contents_data);
+      setEquipmentMobilization(resp.equipments);
+      setCardData(summariess);
+    });
   }, []);
   const humanResource = [
     { title: "position", key: "position.name", avatar: true },
@@ -158,6 +157,11 @@ const Package = (props) => {
   // console.log(subProjects);
   return (
     <div>
+       <ActionBar
+        actionButtonProp={{
+          title:`Package ${params.packageId}`,
+        }}
+      />
       <TopSummary summaries={cardData} />
       <div className="rectangle-container">
         {contents.map((content) => (
@@ -183,19 +187,19 @@ const Package = (props) => {
           <div className="image-container">
             <Image
               width={300}
-              style={{ padding: "10px" }}
+              style={{ padding: "5px" }}
               rootClassName="img-galary"
               src={Img1}
             />
             <Image
               width={300}
-              style={{ padding: "10px" }}
+              style={{ padding: "5px" }}
               rootClassName="img-galary"
               src={Img2}
             />
             <Image
               width={300}
-              style={{ padding: "10px" }}
+              style={{ padding: "5px" }}
               rootClassName="img-galary"
               src={Img3}
             />
