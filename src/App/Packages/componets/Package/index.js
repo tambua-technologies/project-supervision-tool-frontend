@@ -116,11 +116,11 @@ const Package = (props) => {
         const summariess = [
           {
             label: "Actual Progress",
-            value: resp.progress.actual_physical_progress,
+            value: resp?.progress?.actual_physical_progress || 'N/A',
           },
           {
             label: "Planned Progress",
-            value: resp.progress.planned_physical_progress,
+            value: resp?.progress?.planned_physical_progress || 'N/A',
           },
           { label: "Sub-Projects", value: resp.sub_projects.length },
           { label: "Challenges", value: resp.challenges_count },
