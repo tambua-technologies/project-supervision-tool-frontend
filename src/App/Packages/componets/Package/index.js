@@ -4,7 +4,9 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import TopSummary from "../../../components/TopSummary";
 import "./style.css";
 import { Image } from "antd";
-import Img from "../../../../../src/assets/img/prof.jpg";
+import Img1 from "../../../../../src/assets/img/img1.jpg";
+import Img2 from "../../../../../src/assets/img/img2.jpg";
+import Img3 from "../../../../../src/assets/img/img3.jpg";
 import TopContent from "../../../components/TopContent";
 import TableContainer from "../../../components/TableContainer";
 import { moneyFormat } from "../../../../Util";
@@ -116,11 +118,11 @@ const Package = (props) => {
         const summariess = [
           {
             label: "Actual Progress",
-            value: resp?.progress?.actual_physical_progress || 'N/A',
+            value: resp?.progress?.actual_physical_progress || "N/A",
           },
           {
             label: "Planned Progress",
-            value: resp?.progress?.planned_physical_progress || 'N/A',
+            value: resp?.progress?.planned_physical_progress || "N/A",
           },
           { label: "Sub-Projects", value: resp.sub_projects.length },
           { label: "Challenges", value: resp.challenges_count },
@@ -183,19 +185,19 @@ const Package = (props) => {
               width={300}
               style={{ padding: "10px" }}
               rootClassName="img-galary"
-              src={Img}
+              src={Img1}
             />
             <Image
               width={300}
               style={{ padding: "10px" }}
               rootClassName="img-galary"
-              src={Img}
+              src={Img2}
             />
             <Image
               width={300}
               style={{ padding: "10px" }}
               rootClassName="img-galary"
-              src={Img}
+              src={Img3}
             />
           </div>
           <Link
