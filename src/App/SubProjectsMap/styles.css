@@ -7,6 +7,10 @@
     color: #fff;
 }
 
+.MapDashboard .base-layout__content {
+    padding: 0;
+}
+
 .marker-pin {
     position: absolute;
     transform: rotate(-45deg);
