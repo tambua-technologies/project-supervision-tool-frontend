@@ -47,6 +47,7 @@ function ViewOnMap({ data, showMApModal, handleOnCancel }) {
                 footer={null}
                 onCancel={() => handleOnCancel()}
                 visible={showMApModal}
+                destroyOnClose={true}
             >
 
             <BaseMap zoomControl={true} position={[state.lat, state.lng]}>

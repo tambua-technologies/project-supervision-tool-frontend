@@ -1,19 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
 import BaseMap from "./components/BaseMap";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import SideNav from './components/SideNav'
-import { mapSubProjectActions, mapSubProjectSelectors } from "../../redux/modules/map/subProjects";
 import "./styles.css";
 import SubProjectPoints from './components/SubProjectPoints';
+import API from '../../API';
 
 function SubProjectsMap(props) {
-    const dispatch = useDispatch();
+    const [subProjects, setSubProjects] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [project, setProject] = useState(null);
     
-    const subProjects = useSelector(mapSubProjectSelectors.getSubProjectsSelector);
 
     useEffect(() => {
-        dispatch(mapSubProjectActions.getSubProjectsStart())
+        Promise.all([
+            API.get('sub_projects_locations')
+                .then(res => {
+                    setSubProjects(res);
+                }),
+            API.get('projects/1')
+                .then(res => {
+                    setProject(res);
+                })
+        ])
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -21,15 +31,11 @@ function SubProjectsMap(props) {
         <div className="MapDashboard">
             <Spin spinning={subProjects.length === 0} tip="Loading data...">
                 <BaseMap position={[-5.856, 34.074]}>
-                    <SideNav 
-                    procuringEntity={subProjects.length > 0 ? subProjects[0].procuring_entity: null}
-                    project={subProjects.length > 0 ? subProjects[0].project: null}
-                    history={props.history}
-                     />
                     <SubProjectPoints subProjects={subProjects} />
                 </BaseMap>
             </Spin>
         </div>
+   
     );
 }
 

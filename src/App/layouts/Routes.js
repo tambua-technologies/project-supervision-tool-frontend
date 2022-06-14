@@ -16,6 +16,7 @@ import HumanResources from "../Packages/componets/Package/HumanResource";
 import EquipmentMobilization from "../Packages/componets/Package/EquipmentMobilization";
 import Package from "../Packages/componets/Package";
 import FieldNotes from "../FieldNotes";
+import SubProjectsMap from "../SubProjectsMap";
 
 const baseUrl = "/procuring_entity/:procuringEntityId";
 
@@ -90,6 +91,12 @@ const routes = [
   {
     path: `${baseUrl}/field-notes/create`,
     component: CreateFieldNoteForm,
+    exact: true,
+  },
+
+  {
+    path: `${baseUrl}/sub-projects-map`,
+    component: SubProjectsMap,
     exact: true,
   },
 ];

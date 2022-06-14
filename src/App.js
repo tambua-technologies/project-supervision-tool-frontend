@@ -25,7 +25,6 @@ function App(props) {
       <HashRouter hashType="hashbang">
         <Switch>
           <PrivateRoute path="/procuring_entity/:procuringEntityId" component={BaseLayout} />
-          <Route path="/map/procuring_entity/:procuringEntityId" component={SubProjectsMap} />
           <Route path="/signin" component={SignIn} />
           <Redirect to="/signin" />
         </Switch>
