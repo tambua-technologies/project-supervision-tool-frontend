@@ -38,7 +38,7 @@ const SignIn = () => {
             // save access token to local storage
             localStorage.setItem("accessToken", res.data.access_token);
             setLoading(false);
-            history.push('/procuring_entity/1/overview');
+            history.push('/procuring_entity/1/sub-projects-map');
             
         })
         .catch( err => {

@@ -8,7 +8,7 @@
 }
 
 .MapDashboard .base-layout__content {
-    padding: 0;
+    padding: 0 !important;
 }
 
 .marker-pin {

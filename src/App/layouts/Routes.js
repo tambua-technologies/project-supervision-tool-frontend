@@ -79,7 +79,7 @@ const routes = [
     exact: false,
   },
   {
-    path: `${baseUrl}/contractors`,
+    path: `${baseUrl}/contracts`,
     component: Contract,
     exact: true,
   },

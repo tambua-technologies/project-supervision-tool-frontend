@@ -9,19 +9,14 @@ const CustomIcon = () => (<span className="CustomIcon" />)
 
 const items = [
   {
+    key: 'sub-projects-map',
+    icon: React.createElement(CustomIcon),
+    label: 'Map',
+  },
+  {
     key: 'overview',
     icon: React.createElement(CustomIcon),
     label: 'Overview',
-  },
-  {
-    key: 'reports',
-    icon: React.createElement(CustomIcon),
-    label: 'Reports',
-  },
-  {
-    key: 'safeguard',
-    icon: React.createElement(CustomIcon),
-    label: 'Safeguard Concerns',
   },
   {
     key: 'packages',
@@ -31,24 +26,30 @@ const items = [
   {
     key: 'sub-projects',
     icon: React.createElement(CustomIcon),
-    label: 'Sub Projects',
+    label: 'Subprojects',
+  },
+
+  {
+    key: 'reports',
+    icon: React.createElement(CustomIcon),
+    label: 'Reports',
   },
   {
     key: 'field-notes',
     icon: React.createElement(CustomIcon),
     label: 'Field Notes',
   },
-
   {
-    key: 'csc-contracts',
+    key: 'safeguard',
     icon: React.createElement(CustomIcon),
-    label: 'CSC Contracts'
+    label: 'Safeguard Concerns',
   },
   {
-    key: 'sub-projects-map',
+    key: 'contracts',
     icon: React.createElement(CustomIcon),
-    label: 'Map',
+    label: 'Contracts'
   },
+ 
 
 ];
 
@@ -62,7 +63,7 @@ const SideMenu = (props) => {
     return (
     <Menu
         mode="inline"
-        defaultSelectedKeys={['overview']}
+        defaultSelectedKeys={['sub-projects-map']}
         className="side-menu"
         style={{
           height: '100%',
