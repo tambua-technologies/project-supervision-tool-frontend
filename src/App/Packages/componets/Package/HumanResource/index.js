@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../../../../../context/AppContext";
-import { Col } from "antd";
+import { Col, Button } from "antd";
 import API from "../../../../../API";
 import CustomList from "../../../../components/List";
 import ListItem from "../../../../components/ListItem";
@@ -33,43 +33,43 @@ const HumanResources = ({ match }) => {
     setReports(response.data);
     setIsLoading(false);
   };
-const HumanResource_reports = [
+  const HumanResource_reports = [
     {
-        report_title:"Project Manager",
-        report_number:1,
-        Gender_M:0,
-        Gender_F:1,
-        Name_s:"Sanjay Partush"
+      report_title: "Project Manager",
+      report_number: 1,
+      Gender_M: 0,
+      Gender_F: 1,
+      Name_s: "Sanjay Partush",
     },
     {
-        report_title:"Project Manager",
-        report_number:1,
-        Gender_M:40,
-        Gender_F:1,
-        Name_s:"Sanjay Partush"
+      report_title: "Project Manager",
+      report_number: 1,
+      Gender_M: 40,
+      Gender_F: 1,
+      Name_s: "Sanjay Partush",
     },
     {
-        report_title:"Project Manager",
-        report_number:12,
-        Gender_M:0,
-        Gender_F:1,
-        Name_s:"Sanjay Partush"
+      report_title: "Project Manager",
+      report_number: 12,
+      Gender_M: 0,
+      Gender_F: 1,
+      Name_s: "Sanjay Partush",
     },
     {
-        report_title:"Project Manager",
-        report_number:1,
-        Gender_M:0,
-        Gender_F:15,
-        Name_s:"Sanjay Partush"
+      report_title: "Project Manager",
+      report_number: 1,
+      Gender_M: 0,
+      Gender_F: 15,
+      Name_s: "Sanjay Partush",
     },
     {
-        report_title:"Project Manager",
-        report_number:1,
-        Gender_M:0,
-        Gender_F:1,
-        Name_s:"Sanjay Partush"
-    }
-]
+      report_title: "Project Manager",
+      report_number: 1,
+      Gender_M: 0,
+      Gender_F: 1,
+      Name_s: "Sanjay Partush",
+    },
+  ];
   useEffect(() => {
     // const { procuringEntityId } = match.params;
     // getReports(procuringEntityId);
@@ -78,6 +78,9 @@ const HumanResource_reports = [
   return (
     <>
       <div>
+        <Button onClick={() => history.goBack()} type="primary">
+          Back
+        </Button>
         {/* list starts */}
         <CustomList
           itemName="Progress Reports"

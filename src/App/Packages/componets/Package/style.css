@@ -13,11 +13,8 @@
 }
 .image-container {
   display: flex;
-  justify-content: center;
-}
-.image-container img {
-  width: 30%;
-  margin-left: 10px;
+  /* justify-content: space-between; */
+
 }
 .container {
   background-color: #f5f5f5;
