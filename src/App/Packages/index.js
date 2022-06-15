@@ -82,37 +82,52 @@ const PackagesList = ({
 
   }
 
- 
-  useEffect(() => {
+  const getPackagesStats = (data) => ([
+    {
+      label: "In progress",
+      value: data.in_progress
+    },
+    {
+      label: "Complete",
+      value: data.completed
+    },
+    {
+      label: "Challenges",
+      value: data.challenges
+    },
+    {
+      label: "Latest Report",
+      value: isoDateToHumanReadableDate(data?.latestReport?.created_at),
+      cardType: "date",
+    },
+  ]);
+
+  const getPackagesData = () => {
     setIsLoading(true);
     Promise.all([API.getPackageStatistics(procuringEntityId), API.getPackages(filter)])
     .then((res) => {
       setIsLoading(false);
-      const packageStats = [
-        { label: "In progress", value: res[0].data.in_progress },
-        { label: "Complete", value: res[0].data.completed },
-        { label: "Challenges", value: res[0].data.challenges },
-        {
-          label: "Latest Report",
-          value: isoDateToHumanReadableDate(
-            res[0]?.data?.latestReport?.created_at
-          ),
-          cardType: "date",
-        },
-      ];
+      const packageStats = getPackagesStats(res[0].data);
       setPackageStatisticsValues(packageStats);
       setPackData(res[1].data);
-
     });
+
+  }
+
+ 
+  useEffect(() => {
+    getPackagesData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
   const handlePackagesUpload = (e) => {
     const file = e.target.files[0];
+    setIsLoading(true);
     API.upload(UPLOAD_PACKAGES_ENDPOINT, file).then((res) => {
-      console.log(res);
-    })
+      setIsLoading(false);
+      getPackagesData();
+    });
   }
 
 
@@ -153,7 +168,7 @@ const PackagesList = ({
    * @since 0.1.0
    */
   const handleRefresh = () => {
-    getPackages(filter);
+    getPackagesData();
   };
 
   return (

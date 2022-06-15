@@ -36,8 +36,10 @@ const SubProjects = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOnSubProjectsImport  = (e) => {
+    setIsLoading(true);
     const file = e.target.files[0];
-    API.upload(UPLOAD_SUBPROJECTS_ENDPOINT, file);
+    API.upload(UPLOAD_SUBPROJECTS_ENDPOINT, file)
+    .then(() => getSubProjects());
   }
 
   /**

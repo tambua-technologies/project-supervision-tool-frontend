@@ -64,7 +64,9 @@ const SafeguardConcerns = ({ match }) => {
 
   const handleOnUploadSafeguardConcerns = (e) =>  {
     const file = e.target.files[0];
-    API.upload(UPLOAD_SAFEGUARD_CONCERNS_ENDPOINT, file);
+    setIsLoading(true);
+    API.upload(UPLOAD_SAFEGUARD_CONCERNS_ENDPOINT, file)
+    .then(() => getData(procuringEntityId));
   }
 
 
