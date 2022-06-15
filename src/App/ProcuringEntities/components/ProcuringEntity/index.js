@@ -1,5 +1,5 @@
 import { Row, Col, Spin } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import TopSummary from "../../../components/TopSummary";
 import ProgressBarOverview from "../../../components/ProgressBar";
@@ -8,24 +8,32 @@ import API from "../../../../API";
 import { isoDateToHumanReadableDate } from "../../../../Util";
 import { LoadingOutlined } from "@ant-design/icons";
 import ActionBar from "../../../components/ActionBar";
+import { setActiveMenuItem } from "../../../../redux/modules/app/actions"
 
 import TableContainer from "../../../components/TableContainer";
+import { useDispatch } from "react-redux";
+import { AppContext } from "../../../../context/AppContext";
 
 const ProcuringEntity = (props) => {
   const [physicalProgress, setPysicalProgress] = useState([]);
   const [financialProgress, setFinancialProgress] = useState([]);
   const [summaries, setSummaries] = useState([]);
   const [reports, setReports] = useState([]);
+  const { sideMenuKeys } = useContext(AppContext);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const {
-    match: { url },
-    setCurrentMenu,
-  } = props;
-  const allReportsUrl = url.replace("overview", "reports");
-  const addFieldUrl = url.replace("overview", "field-notes");
+  const { match: { url } } = props;
+  const allReportsUrl = url.replace(sideMenuKeys.overview, sideMenuKeys.reports);
+  const addFieldUrl = url.replace(sideMenuKeys.overview, sideMenuKeys.fieldNotes);
   const createReportFormUrl = `${allReportsUrl}/create`;
   const fieldNoteUrl = `${addFieldUrl}/create`;
-  const history = useHistory();
+
+  const handleOnClickViewAllReports = () => {
+    history.push(allReportsUrl);
+    dispatch(setActiveMenuItem(sideMenuKeys.reports));
+
+  }
 
   useEffect(() => {
     const { procuringEntityId } = props.match.params;
@@ -53,21 +61,18 @@ const ProcuringEntity = (props) => {
           },
         ];
         let dataArr = res.data.reports;
-        console.log(dataArr);
         const result = dataArr.map((repo) =>
           repo.start.length > 0
             ? {
-                ...repo,
-                generatedBy: "N/A",
-                period: `${isoDateToHumanReadableDate(
-                  repo.start
-                )} - ${isoDateToHumanReadableDate(repo.end)}`,
-                updated_at: isoDateToHumanReadableDate(repo.updated_at),
-              }
+              ...repo,
+              generatedBy: "N/A",
+              period: `${isoDateToHumanReadableDate(
+                repo.start
+              )} - ${isoDateToHumanReadableDate(repo.end)}`,
+              updated_at: isoDateToHumanReadableDate(repo.updated_at),
+            }
             : "N/A"
         );
-        console.log(result);
-        console.log(dataArr.reports);
         setReports(result);
         setFinancialProgress(financialProgress);
         setPysicalProgress(physicalProgress);
@@ -130,17 +135,11 @@ const ProcuringEntity = (props) => {
             justifyContent: "flex-end",
           }}
         >
-          <Link to={allReportsUrl} style={{ textDecoration: "underline" }}>
+          <Link onClick={handleOnClickViewAllReports} style={{ textDecoration: "underline" }}>
             View All Reports
           </Link>
         </div>
       </div>
-
-      {/* <LatestReports
-        reports={reports}
-        allReportsUrl={allReportsUrl}
-        setCurrentMenu={setCurrentMenu}
-      /> */}
       <section className="ProcuringEntity-progress">
         <Row gutter={16}>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>

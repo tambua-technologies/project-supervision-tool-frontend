@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { default as mapReducer } from './modules/map';
+import { default as appReducer } from './modules/app';
 import { default as projectReducer } from './modules/projects';
 import { default as authReducer } from './modules/auth';
 import { default as sectorReducer} from './modules/ProjectsSectors'
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     ...usersReducer,
     ...contractsReducer,
     ...ticketsReducer,
-    ...procuringEntitiesReducer
+    ...procuringEntitiesReducer,
+    ...appReducer
 });
 
 export default rootReducer;

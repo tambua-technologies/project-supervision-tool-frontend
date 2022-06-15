@@ -15,3 +15,11 @@ export const reloadPage = makeActionCreator(types.RELOAD_PAGE);
  */
 export const restoreAccessToken = makeActionCreator(types.RESTORE_ACCESS_TOKEN, 'payload');
 
+
+/**
+ * @function setActiveMenuItem
+ * @param {String} payload the active menu item
+ * @returns {Object}
+ */
+ export const setActiveMenuItem = makeActionCreator(types.SET_ACTIVE_MENU_ITEM, 'payload');
+
