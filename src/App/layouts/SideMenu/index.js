@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu } from 'antd';
 import { useHistory } from 'react-router-dom';
 
@@ -7,9 +7,11 @@ import './styles.css';
 
 const CustomIcon = () => (<span className="CustomIcon" />)
 
+const defaultActiveMenuItem = 'sub-projects-map';
+
 const items = [
   {
-    key: 'sub-projects-map',
+    key: defaultActiveMenuItem,
     icon: React.createElement(CustomIcon),
     label: 'Map',
   },
@@ -49,30 +51,50 @@ const items = [
     icon: React.createElement(CustomIcon),
     label: 'Contracts'
   },
- 
+
 
 ];
 
 const SideMenu = (props) => {
   const { baseUrl } = props;
+  const [activeMenuItem, setActiveMenuItem] = useState(defaultActiveMenuItem);
 
   const history = useHistory();
 
-  const handleOnMenuItemClick = e =>   history.push(`${baseUrl}/${e.key}`);
+  const handleOnMenuItemClick = e => {
+    setActiveMenuItem(e.key);
+    history.push(`${baseUrl}/${e.key}`);
+  };
 
-    return (
+  useEffect(() => {
+    // get active menu item from localStorage
+    const activeMenuItem = localStorage.getItem('activeMenuItem');
+    if (activeMenuItem) {
+      setActiveMenuItem(activeMenuItem);
+    }
+  }, []);
+
+
+  useEffect(() => {
+    // save active menu item in local storage
+    localStorage.setItem('activeMenuItem', activeMenuItem);
+  }, [activeMenuItem]);
+
+  
+
+  return (
     <Menu
-        mode="inline"
-        defaultSelectedKeys={['sub-projects-map']}
-        className="side-menu"
-        style={{
-          height: '100%',
-          borderRight: 0,
-        }}
-        onClick={handleOnMenuItemClick}
-        items={items}
-      />
-      )
+      mode="inline"
+      className="side-menu"
+      selectedKeys={[activeMenuItem]}
+      style={{
+        height: '100%',
+        borderRight: 0,
+      }}
+      onClick={handleOnMenuItemClick}
+      items={items}
+    />
+  )
 }
 
 export default SideMenu;

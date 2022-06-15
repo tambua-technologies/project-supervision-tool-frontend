@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {Input, Button, Form} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
@@ -46,6 +46,11 @@ const SignIn = () => {
             setLoading(false);
         })
     }
+
+    useEffect(() => {
+        // remove active menu item from local storage
+        localStorage.removeItem('activeMenuItem');
+    }, []);
     
 
         return (

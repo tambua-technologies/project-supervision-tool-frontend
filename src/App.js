@@ -9,7 +9,6 @@ import { bindActionCreators } from "redux";
 import { appActions } from "./redux/modules/app";
 import PrivateRoute from "./App/Auth/PrivateRoute";
 import BaseLayout from "./App/layouts/BaseLayout";
-import SubProjectsMap from "./App/SubProjectsMap";
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{ fontSize: 24 }} spin />);
 function App(props) {
