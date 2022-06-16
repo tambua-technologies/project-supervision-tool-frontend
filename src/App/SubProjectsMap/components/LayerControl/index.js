@@ -5,8 +5,6 @@ import LayerControlIcon from '../../../../assets/icons/geo-node-layers.svg';
 import {Collapse, Drawer, Spin} from "antd";
 import L from 'leaflet';
 import {CloseOutlined} from '@ant-design/icons';
-import TopSection from "../SideNav/components/TopSection";
-import CustomSearch from "../SideNav/components/CustomSearch";
 import LayerCategory from "./components/LayerCategory";
 import API from "../../../../API";
 import {useMap} from "react-leaflet";
@@ -103,10 +101,8 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
             >
                 <Spin spinning={false}>
                     <div className='DataSetsMenuItemDetails'>
-                        <TopSection searchPlaceHolder="Search Data " title={`MAP LAYERS`}/>
                         <hr/>
                         <div className="data-set-search">
-                            <CustomSearch placeholder='Search map layers'/>
                         </div>
                         {
                             layerCategories.length > 0 ?

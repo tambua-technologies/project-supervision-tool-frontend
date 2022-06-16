@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
 import BaseMap from "./components/BaseMap";
 import { useDispatch } from 'react-redux';
-import SideNav from './components/SideNav'
 import "./styles.css";
 import SubProjectPoints from './components/SubProjectPoints';
 import API from '../../API';
