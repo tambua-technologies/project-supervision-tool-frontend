@@ -40,7 +40,6 @@ const columns = [
 
 
 
-
 const removeUnderScoresInText = (text) => text.replace(/_/g, " ");
 
 const getAttachMentUrl = (attachments, name) => {
