@@ -15,26 +15,31 @@ const columns = [
     title: 'Package',
     dataIndex: 'package',
     key: 'package',
+    width: '10%',
   },
   {
     title: 'SubProject',
     dataIndex: 'subProject',
     key: 'subProject',
+    width: '40%',
   },
   {
     title: 'Field Notes',
     dataIndex: 'description',
     key: 'description',
+    width: '40%',
   },
   {
     title: 'Photo',
     dataIndex: 'photo',
     key: 'photo',
+    width: '20%',
   },
   {
     title: 'Location',
     dataIndex: 'location',
-    key: 'location'
+    key: 'location',
+    width: '10%',
   },
 ];
 
