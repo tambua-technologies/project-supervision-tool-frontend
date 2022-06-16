@@ -41,7 +41,11 @@ const columns = [
 
 
 
+<<<<<<< HEAD
 const removeUnderScoresInText = (text) => text.replace(/_/g, " ");
+=======
+
+>>>>>>> 7f647b12842b514c83ae21827fc9ea4aaf4e4875
 
 const getAttachMentUrl = (attachments, name) => {
   const nameWithRemovedSpaces = name.replace(/\s/g, "_");
