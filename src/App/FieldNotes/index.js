@@ -21,11 +21,8 @@ const columns = [
     dataIndex: 'subProject',
     key: 'subProject',
   },
-];
-
-const childTableColumns = [
   {
-    title: 'Description',
+    title: 'Field Notes',
     dataIndex: 'description',
     key: 'description',
   },
@@ -40,6 +37,8 @@ const childTableColumns = [
     key: 'location'
   },
 ];
+
+
 
 
 
@@ -97,23 +96,19 @@ const FieldNotes = (props) => {
   const prepareFieldNotes = (fieldNotes) => {
     return fieldNotes.map((fieldNote) => {
       const {notes} = fieldNote;
-      const children = notes.map((note) => {
+      return notes.map((note) => {
         const photo = getAttachMentUrl(fieldNote._attachments, note['notes/photo']);
         const location = prepareLocationValue(note['notes/location']);
   
         return ({
+          package: fieldNote?.package || 'N/A',
+          subProject: fieldNote?.subProject || 'N/A',
           description: note['notes/description'],
            location,
             photo
           })
       });
-  
-      return {
-        package: fieldNote?.package || 'N/A',
-        subProject: fieldNote?.subProject || 'N/A',
-        children
-      };
-    })
+    }).flat();
   }
 
 
@@ -155,9 +150,6 @@ const FieldNotes = (props) => {
       <Table
         columns={columns}
         loading={loading}
-        expandable={{
-          expandedRowRender: (record) => (<Table columns={childTableColumns} dataSource={record?.children || []} />),
-        }}
         dataSource={fieldNotes}
       />
       <ViewOnMap
