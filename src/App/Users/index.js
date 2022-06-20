@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import API from "../../API";
 import CustomList from "../components/List";
@@ -6,21 +6,25 @@ import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import { Col } from "antd";
 import { API_BASE_URL } from "../../API/config";
+
 import { isoDateToHumanReadableDate } from "../../Util";
-const reportTitle = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 20 };
-const reportNumber = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 0 };
-const reportingPeriod = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
-const submitReport = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
+const name = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 10, xs: 20 };
+const title = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 10, xs: 0 };
+const organization = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
+const email = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
+const role = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
 
 const headerLayout = [
-  { ...reportTitle, header: "Titlte" },
-  { ...reportNumber, header: "Report Number" },
-  { ...reportingPeriod, header: "Reporting Period" },
-  { ...submitReport, header: "Submitted On" },
+  { ...name, header: "Name" },
+  { ...title, header: "Title" },
+  { ...organization, header: "Organization" },
+  { ...email, header: "Email" },
+  { ...role, header: "Role" },
 ];
 
 const UsersList = ({ match }) => {
   const [reports, setReports] = useState([]);
+  const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
@@ -30,6 +34,9 @@ const UsersList = ({ match }) => {
     const response = await API.getProcuringEntitiesProgressReports(payload);
     setReports(response.data);
     setIsLoading(false);
+    let res = await API.get("users");
+    console.log(res.data);
+    setUsers(res.data);
   };
 
   useEffect(() => {
@@ -45,24 +52,24 @@ const UsersList = ({ match }) => {
           itemName="Progress Reports"
           title={"Report"}
           actionButtonProp={{
-            title: "Reports",
+            title: "Users",
             arrActions: [
               {
-                btnName: "New Monthly Report ",
+                btnName: "Add New User ",
                 btnAction: () => history.push(`${match.url}/create`),
               },
             ],
           }}
-          items={reports}
+          items={users}
           page={1}
-          itemCount={reports.length}
+          itemCount={users.length}
           loading={isLoading}
           onRefresh={() => getReports()}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
             <ListItem
               key={item.id} // eslint-disable-line
-              name={item?.report_title}
+              name={item?.first_name}
               item={item}
               renderActions={() => (
                 <ListItemActions
@@ -81,25 +88,27 @@ const UsersList = ({ match }) => {
               {/* eslint-disable react/jsx-props-no-spreading */}
 
               <Col
-                {...reportTitle}
+                {...name}
                 className="contentEllipse"
-                title={item?.report_title || "N/A"}
+                title={item?.first_name || "N/A"}
               >
-                {item?.report_title || "N/A"}
+                {item?.first_name || "N/A"}
               </Col>
 
-              <Col {...reportNumber} className="contentEllipse">
-                {item?.report_number}
+              <Col {...title} className="contentEllipse">
+                {"Supervisor"}
               </Col>
 
-              <Col {...reportingPeriod} className="contentEllipse">
-                {`${isoDateToHumanReadableDate(
-                  item.start
-                )} - ${isoDateToHumanReadableDate(item?.end)}`}
+              <Col {...organization} className="contentEllipse">
+                {`WB ORG`}
               </Col>
 
-              <Col {...submitReport} className="contentEllipse">
-                {isoDateToHumanReadableDate(item.created_at)}
+              <Col {...email} className="contentEllipse">
+                {item.email}
+              </Col>
+
+              <Col {...role} className="contentEllipse">
+                {"Role"}
               </Col>
 
               {/* eslint-enable react/jsx-props-no-spreading */}
