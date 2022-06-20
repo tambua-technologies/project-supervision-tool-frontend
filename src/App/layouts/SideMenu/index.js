@@ -16,12 +16,11 @@ const getMenuItems = (menuKeys) => {
     overview,
     packages,
     subProjects,
-    Users,
-    Roles,
+    users,
+    roles,
     reports,
     fieldNotes,
     safeguardConcerns,
-    contracts,
   } = menuKeys;
 
   return [
@@ -61,21 +60,18 @@ const getMenuItems = (menuKeys) => {
       icon: React.createElement(CustomIcon),
       label: "Safeguard Concerns",
     },
+
     {
-      key: contracts,
-      icon: React.createElement(CustomIcon),
-      label: "Contracts",
-    },
-    {
-      key: Users,
+      key: users,
       icon: React.createElement(CustomIcon),
       label: "Users",
     },
     {
-      key: Roles,
+      key: roles,
       icon: React.createElement(CustomIcon),
       label: "Roles",
-    },
+    }
+
   ];
 };
 

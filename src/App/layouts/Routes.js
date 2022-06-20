@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "../Auth/PrivateRoute";
 import Contract from "../ProcuringEntities/components/Contract";
+import Roles from '../Roles';
 import Packages from "../Packages";
 import SubProjects from "../SubProjects";
 import SafeGuard from "../SafeguardConcerns";
+import Users from "../Users";
 import CreateFieldNoteForm from "../FieldNotes/componets/CreateFieldNoteForm";
 import Subproject from "../SubProjects/components/SubProject";
 import Reports from "../Reports";
@@ -22,14 +24,24 @@ import { AppContext } from "../../context/AppContext";
 const baseUrl = "/procuring_entity/:procuringEntityId";
 
 const getRoutes = (menuKeys) => {
-  const { map, overview, packages, subProjects, reports, fieldNotes, safeguardConcerns, contracts } = menuKeys;
+  const {
+    map,
+    overview,
+    packages,
+    subProjects,
+    reports,
+    fieldNotes,
+    safeguardConcerns,
+    users,
+    roles,
+  } = menuKeys;
   return [
     {
       path: `${baseUrl}/${overview}`,
       component: ProcuringEntity,
       exact: true,
     },
-  
+
     {
       path: `${baseUrl}/${safeguardConcerns}`,
       component: SafeGuard,
@@ -40,7 +52,6 @@ const getRoutes = (menuKeys) => {
       component: Packages,
       exact: true,
     },
-  
     {
       path: `${baseUrl}/${packages}/:packageId`,
       component: Package,
@@ -82,11 +93,6 @@ const getRoutes = (menuKeys) => {
       exact: false,
     },
     {
-      path: `${baseUrl}/${contracts}`,
-      component: Contract,
-      exact: true,
-    },
-    {
       path: `${baseUrl}/${reports}/create`,
       component: CreateReportForm,
       exact: true,
@@ -96,18 +102,28 @@ const getRoutes = (menuKeys) => {
       component: CreateFieldNoteForm,
       exact: true,
     },
-  
+
     {
       path: `${baseUrl}/${map}`,
       component: SubProjectsMap,
       exact: true,
     },
+    {
+      path: `${baseUrl}/${users}`,
+      component: Users,
+      exact: true,
+    },
+    {
+      path: `${baseUrl}/${roles}`,
+      component: Roles,
+      exact: true,
+    },
   ];
-}
+};
 
 const Routes = () => {
-  const {sideMenuKeys} = useContext(AppContext);
-const routes = getRoutes(sideMenuKeys);
+  const { sideMenuKeys } = useContext(AppContext);
+  const routes = getRoutes(sideMenuKeys);
 
   return (
     <Switch>

@@ -17,15 +17,17 @@ import { AppContext } from "./context/AppContext";
  * the idea behid is to provide a single place to change side menu keys.
  */
  const sideMenuKeys = {
-  overview: 'overview',
-  reports: 'reports',
-  fieldNotes: 'field-notes',
-  map: 'sub-projects-map',
-  contract: 'contracts',
-  subProjects: 'sub-projects',
-  safeguardConcerns: 'safeguard-concerns',
-  packages: 'packages',
-}
+  overview: "overview",
+  reports: "reports",
+  fieldNotes: "field-notes",
+  map: "sub-projects-map",
+  contracts: "contracts",
+  subProjects: "sub-projects",
+  safeguardConcerns: "safeguard-concerns",
+  packages: "packages",
+  users: "users",
+  roles: "roles",
+};
 
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{ fontSize: 24 }} spin />);
