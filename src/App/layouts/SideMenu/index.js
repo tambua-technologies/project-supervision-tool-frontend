@@ -1,65 +1,83 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Menu } from 'antd';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setActiveMenuItem } from '../../../redux/modules/app/actions';
-import { activeMenuItemSelector } from '../../../redux/modules/app/selectors';
+import React, { useContext, useEffect, useState } from "react";
+import { Menu } from "antd";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveMenuItem } from "../../../redux/modules/app/actions";
+import { activeMenuItemSelector } from "../../../redux/modules/app/selectors";
 
-import './styles.css';
-import { AppContext } from '../../../context/AppContext';
+import "./styles.css";
+import { AppContext } from "../../../context/AppContext";
 
-
-const CustomIcon = () => (<span className="CustomIcon" />)
+const CustomIcon = () => <span className="CustomIcon" />;
 
 const getMenuItems = (menuKeys) => {
-  const { map, overview, packages, subProjects, reports, fieldNotes, safeguardConcerns, contracts } = menuKeys;
+  const {
+    map,
+    overview,
+    packages,
+    subProjects,
+    Users,
+    Roles,
+    reports,
+    fieldNotes,
+    safeguardConcerns,
+    contracts,
+  } = menuKeys;
 
-  return  [
+  return [
     {
       key: map,
       icon: React.createElement(CustomIcon),
-      label: 'Map',
+      label: "Map",
     },
     {
       key: overview,
       icon: React.createElement(CustomIcon),
-      label: 'Overview',
+      label: "Overview",
     },
     {
       key: packages,
       icon: React.createElement(CustomIcon),
-      label: 'Packages',
+      label: "Packages",
     },
     {
       key: subProjects,
       icon: React.createElement(CustomIcon),
-      label: 'Subprojects',
+      label: "Subprojects",
     },
-  
+
     {
       key: reports,
       icon: React.createElement(CustomIcon),
-      label: 'Reports',
+      label: "Reports",
     },
     {
       key: fieldNotes,
       icon: React.createElement(CustomIcon),
-      label: 'Field Notes',
+      label: "Field Notes",
     },
     {
       key: safeguardConcerns,
       icon: React.createElement(CustomIcon),
-      label: 'Safeguard Concerns',
+      label: "Safeguard Concerns",
     },
     {
       key: contracts,
       icon: React.createElement(CustomIcon),
-      label: 'Contracts'
+      label: "Contracts",
     },
-  
-  
+    {
+      key: Users,
+      icon: React.createElement(CustomIcon),
+      label: "Users",
+    },
+    {
+      key: Roles,
+      icon: React.createElement(CustomIcon),
+      label: "Roles",
+    },
   ];
-}
+};
 
 const SideMenu = (props) => {
   const { baseUrl } = props;
@@ -71,29 +89,25 @@ const SideMenu = (props) => {
 
   const items = getMenuItems(sideMenuKeys);
 
-  const handleOnMenuItemClick = e => {
+  const handleOnMenuItemClick = (e) => {
     dispatch(setActiveMenuItem(e.key));
     history.push(`${baseUrl}/${e.key}`);
   };
 
   useEffect(() => {
     // get active menu item from localStorage
-    const activeMenuItem = localStorage.getItem('activeMenuItem');
+    const activeMenuItem = localStorage.getItem("activeMenuItem");
     if (activeMenuItem) {
       dispatch(setActiveMenuItem(activeMenuItem));
-    }
-    else {
+    } else {
       dispatch(setActiveMenuItem(sideMenuKeys.map));
     }
   }, []);
 
-
   useEffect(() => {
     // save active menu item in local storage
-    localStorage.setItem('activeMenuItem', activeMenuItem);
+    localStorage.setItem("activeMenuItem", activeMenuItem);
   }, [activeMenuItem]);
-
-  
 
   return (
     <Menu
@@ -101,13 +115,13 @@ const SideMenu = (props) => {
       className="side-menu"
       selectedKeys={[activeMenuItem]}
       style={{
-        height: '100%',
+        height: "100%",
         borderRight: 0,
       }}
       onClick={handleOnMenuItemClick}
       items={items}
     />
-  )
-}
+  );
+};
 
 export default SideMenu;
