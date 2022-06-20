@@ -18,6 +18,7 @@ const headerLayout = [
 ];
 const Roles = ({ match }) => {
   const [reports, setReports] = useState([]);
+  const [roles, setRoles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
@@ -27,6 +28,9 @@ const Roles = ({ match }) => {
     const response = await API.getProcuringEntitiesProgressReports(payload);
     setReports(response.data);
     setIsLoading(false);
+    const res = await API.get("roles");
+    console.log(res);
+    setRoles(res);
   };
 
   useEffect(() => {
@@ -50,16 +54,16 @@ const Roles = ({ match }) => {
               },
             ],
           }}
-          items={reports}
+          items={roles}
           page={1}
-          itemCount={reports.length}
+          itemCount={roles.length}
           loading={isLoading}
           onRefresh={() => getReports()}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
             <ListItem
               key={item.id} // eslint-disable-line
-              name={item?.report_title}
+              name={item?.name}
               item={item}
               renderActions={() => (
                 <ListItemActions
@@ -80,19 +84,17 @@ const Roles = ({ match }) => {
               <Col
                 {...name}
                 className="contentEllipse"
-                title={item?.report_title || "N/A"}
+                title={item?.name || "N/A"}
               >
-                {item?.report_title || "N/A"}
+                {item?.name || "N/A"}
               </Col>
 
               <Col {...Description} className="contentEllipse">
-                {item?.report_number}
+                {"Descriptions"}
               </Col>
 
               <Col {...permission} className="contentEllipse">
-                {`${isoDateToHumanReadableDate(
-                  item.start
-                )} - ${isoDateToHumanReadableDate(item?.end)}`}
+                {`Permision`}
               </Col>
 
               {/* eslint-enable react/jsx-props-no-spreading */}
