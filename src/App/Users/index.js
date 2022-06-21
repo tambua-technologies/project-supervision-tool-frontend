@@ -4,7 +4,8 @@ import API from "../../API";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
-import { Col } from "antd";
+import UsersForm from "./usersForm";
+import { Col, Modal, Button } from "antd";
 import { API_BASE_URL } from "../../API/config";
 
 import { isoDateToHumanReadableDate } from "../../Util";
@@ -43,7 +44,27 @@ const UsersList = ({ match }) => {
     const { procuringEntityId } = match.params;
     getReports(procuringEntityId);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState("Content of the modal");
 
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setModalText("The modal will be closed after two seconds");
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
+  const handleCancel = () => {
+    console.log("Clicked cancel button");
+    setVisible(false);
+  };
   return (
     <>
       <div>
@@ -115,6 +136,19 @@ const UsersList = ({ match }) => {
             </ListItem>
           )}
         />
+        <Button type="primary" onClick={showModal}>
+          Open Modal with async logic
+        </Button>
+        <Modal
+          title="Title"
+          visible={visible}
+          onOk={handleOk}
+          confirmLoading={confirmLoading}
+          onCancel={handleCancel}
+        >
+          {/* <p>{modalText}</p> */}
+          <UsersForm />
+        </Modal>
       </div>
     </>
   );
