@@ -8,11 +8,11 @@ import {isoDateToHumanReadableDate} from "../../Util"
 import { Col } from "antd";
 import API from "../../API";
 import { UPLOAD_SAFEGUARD_CONCERNS_ENDPOINT} from '../../API/endpoints';
-const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const packageSpan = { xxl: 2, xl: 2, lg: 2, md: 3, sm: 0, xs: 0 };
 const concernType = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const issue = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const commitment = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const stepsTaken = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const issue = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 12, xs: 12 };
+const commitment = { xxl: 5, xl: 5, lg: 5, md: 3, sm: 0, xs: 0 };
+const stepsTaken = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 6, xs: 6 };
 const challenges = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const mitigationMeasures = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 
