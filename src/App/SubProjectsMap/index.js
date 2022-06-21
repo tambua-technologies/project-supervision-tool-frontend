@@ -28,7 +28,7 @@ function SubProjectsMap(props) {
     return (
         <div className="MapDashboard">
             <Spin spinning={subProjects.length === 0} tip="Loading data...">
-                <BaseMap position={[-5.856, 34.074]}>
+                <BaseMap position={[-6.7924, 39.2083]} zoom={10}>
                     <SubProjectPoints subProjects={subProjects} />
                 </BaseMap>
             </Spin>

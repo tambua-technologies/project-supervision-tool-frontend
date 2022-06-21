@@ -30,7 +30,7 @@ const state = {
 
 // const position = [state.lat, state.lng]
 
-const BaseMap = ({children, position}) => {
+const BaseMap = ({children, position, zoom = null }) => {
 
     const BASE_MAPS = [
 
@@ -62,7 +62,7 @@ const BaseMap = ({children, position}) => {
     }
 
     return (
-        <MapContainer center={position} whenCreated={whenCreated} fullscreenControl={{ position: 'topright'}} zoom={state.zoom} className="base-map" zoomControl={false} >
+        <MapContainer center={position} whenCreated={whenCreated} fullscreenControl={{ position: 'topright'}} zoom={zoom || state.zoom} className="base-map" zoomControl={false} >
             <LayerControl />
             {children}
         </MapContainer>
