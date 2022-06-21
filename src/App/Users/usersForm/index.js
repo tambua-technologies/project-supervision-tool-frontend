@@ -1,4 +1,5 @@
 import React from "react";
+import './style.css';
 import { Button, Form, Input, InputNumber } from "antd";
 const layout = {
   labelCol: {
@@ -28,6 +29,7 @@ const UsersForm = () => {
   };
   return (
     <Form
+    className="user-form"
       {...layout}
       name="nest-messages"
       onFinish={onFinish}
@@ -35,49 +37,28 @@ const UsersForm = () => {
     >
       <Form.Item
         name={["user", "name"]}
-        label="Name"
+        label="Role Name"
         rules={[
           {
             required: true,
           },
         ]}
       >
-        <Input />
+        <Input placeholder="Role Name" />
       </Form.Item>
       <Form.Item
         name={["user", "email"]}
-        label="Email"
+        label="Description"
         rules={[
           {
-            type: "email",
+            required: true,
           },
         ]}
       >
-        <Input />
+        <Input placeholder="Description"/>
       </Form.Item>
-      <Form.Item
-        name={["user", "age"]}
-        label="Age"
-        rules={[
-          {
-            type: "number",
-            min: 0,
-            max: 99,
-          },
-        ]}
-      >
-        <InputNumber />
-      </Form.Item>
-      <Form.Item name={["user", "website"]} label="Website">
-        <Input />
-      </Form.Item>
-      <Form.Item name={["user", "introduction"]} label="Introduction">
-        <Input.TextArea />
-      </Form.Item>
-      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
+      <Form.Item name={["user", "Permission"]} label="Permission">
+        <Input.TextArea placeholder="Permission" />
       </Form.Item>
     </Form>
   );

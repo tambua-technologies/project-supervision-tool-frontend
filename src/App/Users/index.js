@@ -77,7 +77,7 @@ const UsersList = ({ match }) => {
             arrActions: [
               {
                 btnName: "Add New User ",
-                btnAction: () => history.push(`${match.url}/create`),
+                btnAction:showModal
               },
             ],
           }}
@@ -136,11 +136,10 @@ const UsersList = ({ match }) => {
             </ListItem>
           )}
         />
-        <Button type="primary" onClick={showModal}>
-          Open Modal with async logic
-        </Button>
+  
         <Modal
-          title="Title"
+          className="custom-modal"
+          title="Add New User Role"
           visible={visible}
           onOk={handleOk}
           confirmLoading={confirmLoading}

@@ -1,0 +1,29 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+}
+.user-form .ant-row{
+    width: 100%;
+}
+.user-form .ant-row {
+  display: block;
+}
+.custom-modal {
+  background-color: aquamarine;
+}
+.custom-modal ant-modal {
+  top: 0;
+}
+.ant-modal {
+  width: 100%;
+  transform-origin: 85px 43px;
+  overflow: hidden;
+  height: -webkit-fill-available;
+  top: 0;
+}
+.custom-modal .ant-modal-content {
+  height: 100vh;
+}
+.custom-modal .ant-modal-footer {
+  display: none;
+}
