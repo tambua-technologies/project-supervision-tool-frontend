@@ -8,7 +8,7 @@ import SafeGuard from "../SafeguardConcerns";
 import CreateFieldNoteForm from "../FieldNotes/componets/CreateFieldNoteForm";
 import Subproject from "../SubProjects/components/SubProject";
 import Reports from "../Reports";
-import Gallary from "../components/Gallary";
+import Gallery from "../components/Gallery";
 import "./styles.css";
 import ProcuringEntity from "../ProcuringEntities/components/ProcuringEntity";
 import CreateReportForm from "../Reports/components/CreateReportForm";
@@ -48,7 +48,7 @@ const getRoutes = (menuKeys) => {
     },
     {
       path: `${baseUrl}/${packages}/:packageId/Gallary`,
-      component: Gallary,
+      component: Gallery,
       exact: true,
     },
     {

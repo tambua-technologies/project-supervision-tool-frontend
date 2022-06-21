@@ -23,8 +23,8 @@ const ButtonRender = (props) => {
 
       <Button
         style={{
-          border: "1.5px solid  #1890ff",
-          color: "#1890ff",
+          border: "1.5px solid  #0F6788",
+          color: "#0F6788",
           marginRight: "10px",
         }}
         onClick={ btnType === "upload" ? triggerFileUpload : btnAction }

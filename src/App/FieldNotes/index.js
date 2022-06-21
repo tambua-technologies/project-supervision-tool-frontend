@@ -21,7 +21,7 @@ const columns = [
     title: 'SubProject',
     dataIndex: 'subProject',
     key: 'subProject',
-    width: '40%',
+    width: '20%',
   },
   {
     title: 'Field Notes',

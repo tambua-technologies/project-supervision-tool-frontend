@@ -20,7 +20,7 @@ const headerLayout = [
   { ...packageSpan, header: "Package" },
   { ...concernType, header: "Concern Type" },
   { ...issue, header: "Issue" },
-  { ...commitment, header: "Commitment" },
+  { ...commitment, header: "Commitments" },
   { ...stepsTaken, header: "Steps Taken" },
   { ...challenges, header: "Challenges" },
   { ...mitigationMeasures, header: "Mitigation Measures" },
@@ -47,7 +47,7 @@ const SafeguardConcerns = ({ match }) => {
       const stats = [
         { label: "Environmental Concerns", value: safeguardStats.data.environmental_concerns_count },
         { label: "Social Concerns", value: safeguardStats.data.social_concerns_count },
-        { label: "Safety and Health Concern", value: safeguardStats.data.health_and_safety_concerns_count },
+        { label: "Safety and Health Concerns", value: safeguardStats.data.health_and_safety_concerns_count },
         { label: "Latest Report", value: isoDateToHumanReadableDate(safeguardStats.data?.latestReport?.created_at ), cardType: 'date' },
       ];
       setSafeguardStatData(stats);
