@@ -72,50 +72,6 @@ const UsersForm = ({
           <Input placeholder="Last Name" />
         </Form.Item>
       )}
-      {roleInp && (
-        <Form.Item
-          name={["user", "name"]}
-          label="Role"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="Role" />
-        </Form.Item>
-      )}
-      {phoneNumberInp && (
-        <Form.Item
-          name={["user", "name"]}
-          label="Phone Number"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="Phone Number" />
-        </Form.Item>
-      )}
-      {descriptionInpt && (
-        <Form.Item
-          name={["user", "name"]}
-          label="Description"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="Description" />
-        </Form.Item>
-      )}
-      {permissionInp && (
-        <Form.Item name={["user", "Permission"]} label="Permission">
-          <Input.TextArea placeholder="Permission" />
-        </Form.Item>
-      )}
       {titleInp && (
         <Form.Item
           name={["user", "title"]}
@@ -142,6 +98,45 @@ const UsersForm = ({
           <Input placeholder="organization" />
         </Form.Item>
       )}
+      {emailInp && (
+        <Form.Item
+          name={["user", "email"]}
+          label="email"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="email" />
+        </Form.Item>
+      )}
+      {roleInp && (
+        <Form.Item
+          name={["user", "name"]}
+          label="Role"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="Role" />
+        </Form.Item>
+      )}
+      {phoneNumberInp && (
+        <Form.Item
+          name={["user", "name"]}
+          label="Phone Number"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="Phone Number" />
+        </Form.Item>
+      )}
       {roleNameInp && (
         <Form.Item
           name={["user", "name"]}
@@ -155,17 +150,22 @@ const UsersForm = ({
           <Input placeholder="Role Name" />
         </Form.Item>
       )}
-      {emailInp && (
+      {descriptionInpt && (
         <Form.Item
-          name={["user", "email"]}
-          label="email"
+          name={["user", "name"]}
+          label="Description"
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input placeholder="email" />
+          <Input placeholder="Description" />
+        </Form.Item>
+      )}
+      {permissionInp && (
+        <Form.Item name={["user", "Permission"]} label="Permission">
+          <Input.TextArea placeholder="Permission" />
         </Form.Item>
       )}
     </Form>

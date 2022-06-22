@@ -2,14 +2,18 @@
   display: flex;
   flex-direction: column;
 }
-.user-form .ant-row{
-    width: 100%;
-}
 .user-form .ant-row {
+  width: 100%;
   display: block;
+  margin-bottom: 0;
 }
 .custom-modal {
-  background-color: aquamarine;
+  background-color: aqua;
+  margin-right: 0;
+  padding-right: 0;
+}
+.custom-modal .ant-modal-content {
+  height: 100vh;
 }
 .custom-modal ant-modal {
   top: 0;
@@ -21,9 +25,7 @@
   height: -webkit-fill-available;
   top: 0;
 }
-.custom-modal .ant-modal-content {
-  height: 100vh;
-}
+
 .custom-modal .ant-modal-footer {
   display: none;
 }
