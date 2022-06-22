@@ -63,8 +63,8 @@ const Package = (props) => {
   ];
   const equipmentMobilization = [
     { title: "Equipment", key: "equipment_name", avatar: true },
-    { title: "quantity mobilized", key: "mobilized" },
-    { title: "remarks", key: "status_of_equipment" },
+    { title: "Quantity Mobilized", key: "mobilized" },
+    { title: "Remarks", key: "status_of_equipment" },
   ];
   const humanRes = [
     { title: "Name", key: "name", avatar: true },
@@ -147,10 +147,10 @@ const Package = (props) => {
     });
   }, []);
   const humanResource = [
-    { title: "position", key: "position.name", avatar: true },
-    { title: "proposed_name", key: "proposed_name" },
-    { title: "replacement", key: "replacement" },
-    { title: "remarks", key: "remarks" },
+    { title: "Position", key: "position.name", avatar: true },
+    { title: "Proposed Name", key: "proposed_name" },
+    { title: "Replacement", key: "replacement" },
+    { title: "Remarks", key: "remarks" },
   ];
   // console.log(equipmentMobilizationData);
   // console.log(humanResData);
@@ -181,8 +181,8 @@ const Package = (props) => {
           <TableContainer tableData={subProjects} titles={subProjetsConfigs} />
         </div>
         <div className="container">
-          <h2 style={{ marginLeft: "15px", fontSize: "15px", color: "blue" }}>
-            Site photes
+          <h2 style={{ marginLeft: "15px", fontSize: "15px" }}>
+            Site Photos
           </h2>
           <div className="image-container">
             <Image
@@ -206,9 +206,9 @@ const Package = (props) => {
           </div>
           <Link
             to={GallaryUrl}
-            style={{ fontSize: "15px", color: "blue", marginLeft: "78%" }}
+            style={{ fontSize: "15px", marginLeft: "78%" }}
           >
-            view All Photos
+            View All Photos
           </Link>
         </div>
       </section>

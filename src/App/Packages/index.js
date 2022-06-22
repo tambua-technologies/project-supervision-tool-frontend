@@ -18,21 +18,21 @@ import "./styles.css";
 import { useToggle } from "../../hooks/useToggle";
 import TopSummary from "../components/TopSummary";
 /* constants */
-const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const status = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const subProjects = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const actualPhysicalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const plannedPyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
-const timeElapsed = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
-const financialProgress = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
-const Contractor = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
+const packageSpan = { xxl: 2, xl: 2, lg: 2, md: 4, sm: 6, xs: 6 };
+const status = { xxl: 3, xl: 3, lg: 3, md: 0, sm: 0, xs: 0 };
+const subProjects = { xxl: 3, xl: 3, lg: 3, md: 0, sm: 0, xs: 0 };
+const actualPhysicalProgress = { xxl: 3, xl: 3, lg: 3, md: 4, sm: 6, xs: 6 };
+const plannedPyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 4, sm: 0, xs: 0 };
+const timeElapsed = { xxl: 2, xl: 2, lg: 2, md: 4, sm: 0, xs: 0 };
+const financialProgress = { xxl: 2, xl: 2, lg: 2, md: 4, sm: 6, xs: 6 };
+const Contractor = { xxl: 3, xl: 3, lg: 3, md: 0, sm: 0, xs: 0 };
 const headerLayout = [
   { ...packageSpan, header: "Package" },
   { ...status, header: "Status" },
   { ...subProjects, header: "Sub-projects" },
-  { ...actualPhysicalProgress, header: "Actial Physical Progress(%)" },
+  { ...actualPhysicalProgress, header: "Actual Physical Progress(%)" },
   { ...plannedPyscalProgress, header: "Planned Physical Progress(%)" },
-  { ...timeElapsed, header: "Time elapsed(%)" },
+  { ...timeElapsed, header: "Time Elapsed(%)" },
   { ...financialProgress, header: "Financial Progress(%)" },
   { ...Contractor, header: "Contractor" },
 ];

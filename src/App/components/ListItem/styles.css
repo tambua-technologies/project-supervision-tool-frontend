@@ -1,9 +1,11 @@
 .ListItem {
   width: 100%;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid #f5f5f5;
   padding: 15px 0;
   height: 100%;
+  text-align: left;
 }
+
 
 .ListItem .Checkbox {
   padding: 0 8px;
@@ -11,11 +13,6 @@
 
 .ListItem:hover {
   background-color: #f5f5f5;
-}
-
-.ListItem .actionIcon:hover {
-  color: #008efa;
-  background-color: #e8e8e8;
 }
 
 .ListItem .actionIcon {
@@ -38,7 +35,7 @@
 
 .ListItem .actionIcon:hover {
   color: #008efa;
-  background-color: #e8e8e8;
+  background-color: #f5f5f5;
 }
 
 @media screen and (max-width: 1000px) {

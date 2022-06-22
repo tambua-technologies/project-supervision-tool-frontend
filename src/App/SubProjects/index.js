@@ -10,9 +10,9 @@ import API from "../../API";
 import { UPLOAD_SUBPROJECTS_ENDPOINT, GET_SUBPROJECTS_ENDPOINT } from '../../API/endpoints'
 
 /* constants */
-const subProjectNameSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 20, xs: 20 };
+const subProjectNameSpan = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 18, xs: 18 };
 const packageSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
-const statusSpan = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 0, xs: 0 };
+const statusSpan = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
 const contractor ={ xxl: 6, xl: 6, lg: 6, md: 6, sm: 0, xs: 0 };
 
 const headerLayout = [

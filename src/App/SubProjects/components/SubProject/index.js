@@ -9,7 +9,7 @@ import "./style.css";
 
 const Subproject = () => {
   const contents = [
-    { title: "Work title", description: "Road" },
+    { title: "Work Types", description: "Road" },
     { title: "Name", description: "Ndanda Road" },
     { title: "Length", description: "1.27km" },
     { title: "Contractor", description: "Mhandisi Consultancy Ltd" },
@@ -60,13 +60,13 @@ const Subproject = () => {
       </div>
       <div className="container-content">
         <div className="map-container">
-          <h3>Sub-project Map</h3>
+          <h3>Subproject Map</h3>
           <img src={ImgMapp} alt="map-img" />
         </div>
         <div className="photos-container">
           <div className="top-content">
-            <h3>Sub-Project-photos</h3>
-            <a href="#">View All photos</a>
+            <h3>Subproject Photos</h3>
+            <a href="#">View All Photos</a>
           </div>
           <div className="photos">
             <img src={Img1} alt="Img1" />
