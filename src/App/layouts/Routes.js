@@ -47,7 +47,7 @@ const getRoutes = (menuKeys) => {
       exact: true,
     },
     {
-      path: `${baseUrl}/${packages}/:packageId/Gallary`,
+      path: `${baseUrl}/${packages}/:packageId/Gallery`,
       component: Gallery,
       exact: true,
     },
