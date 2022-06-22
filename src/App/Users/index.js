@@ -139,7 +139,7 @@ const UsersList = ({ match }) => {
 
         <Modal
           className="custom-modal"
-          title="Add New User Role"
+          title="Add New User"
           visible={visible}
           onOk={handleOk}
           confirmLoading={confirmLoading}

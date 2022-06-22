@@ -4,7 +4,8 @@ import API from "../../API";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
-import { Col } from "antd";
+import { Col, Modal } from "antd";
+import UsersForm from "../Users/usersForm";
 import { API_BASE_URL } from "../../API/config";
 import { isoDateToHumanReadableDate } from "../../Util";
 const name = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 10, xs: 20 };
@@ -37,7 +38,27 @@ const Roles = ({ match }) => {
     const { procuringEntityId } = match.params;
     getReports(procuringEntityId);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState("Content of the modal");
 
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setModalText("The modal will be closed after two seconds");
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
+  const handleCancel = () => {
+    console.log("Clicked cancel button");
+    setVisible(false);
+  };
   return (
     <>
       <div>
@@ -50,7 +71,7 @@ const Roles = ({ match }) => {
             arrActions: [
               {
                 btnName: "Add New User Role ",
-                btnAction: () => history.push(`${match.url}/create`),
+                btnAction: showModal,
               },
             ],
           }}
@@ -101,6 +122,20 @@ const Roles = ({ match }) => {
             </ListItem>
           )}
         />
+        <Modal
+          className="custom-modal"
+          title="Add New User Role"
+          visible={visible}
+          onOk={handleOk}
+          confirmLoading={confirmLoading}
+          onCancel={handleCancel}
+        >
+          <UsersForm
+            roleNameInp={true}
+            descriptionInpt={true}
+            permissionInp={true}
+          />
+        </Modal>
       </div>
     </>
   );
