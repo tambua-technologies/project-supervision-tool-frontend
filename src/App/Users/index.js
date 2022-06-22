@@ -77,7 +77,7 @@ const UsersList = ({ match }) => {
             arrActions: [
               {
                 btnName: "Add New User ",
-                btnAction:showModal
+                btnAction: showModal,
               },
             ],
           }}
@@ -136,7 +136,7 @@ const UsersList = ({ match }) => {
             </ListItem>
           )}
         />
-  
+
         <Modal
           className="custom-modal"
           title="Add New User Role"
@@ -145,8 +145,15 @@ const UsersList = ({ match }) => {
           confirmLoading={confirmLoading}
           onCancel={handleCancel}
         >
-          {/* <p>{modalText}</p> */}
-          <UsersForm />
+          <UsersForm
+            firstNameInp={true}
+            lastNameInp={true}
+            titleInp={true}
+            organizationInp={true}
+            emailInp={true}
+            roleInp={true}
+            phoneNumberInp={true}
+          />
         </Modal>
       </div>
     </>

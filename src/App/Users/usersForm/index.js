@@ -1,5 +1,5 @@
 import React from "react";
-import './style.css';
+import "./style.css";
 import { Button, Form, Input, InputNumber } from "antd";
 const layout = {
   labelCol: {
@@ -23,43 +23,151 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-const UsersForm = () => {
+const UsersForm = ({
+  firstNameInp,
+  lastNameInp,
+  roleInp,
+  phoneNumberInp,
+  roleNameInp,
+  descriptionInpt,
+  permissionInp,
+  titleInp,
+  organizationInp,
+  emailInp,
+}) => {
   const onFinish = (values) => {
     console.log(values);
   };
   return (
     <Form
-    className="user-form"
+      className="user-form"
       {...layout}
       name="nest-messages"
       onFinish={onFinish}
       validateMessages={validateMessages}
     >
-      <Form.Item
-        name={["user", "name"]}
-        label="Role Name"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
-        <Input placeholder="Role Name" />
-      </Form.Item>
-      <Form.Item
-        name={["user", "email"]}
-        label="Description"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
-        <Input placeholder="Description"/>
-      </Form.Item>
-      <Form.Item name={["user", "Permission"]} label="Permission">
-        <Input.TextArea placeholder="Permission" />
-      </Form.Item>
+      {firstNameInp && (
+        <Form.Item
+          name={["user", "name"]}
+          label="First Name"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="First Name" />
+        </Form.Item>
+      )}
+      {lastNameInp && (
+        <Form.Item
+          name={["user", "name"]}
+          label="Last Name"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="Last Name" />
+        </Form.Item>
+      )}
+      {roleInp && (
+        <Form.Item
+          name={["user", "name"]}
+          label="Role"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="Role" />
+        </Form.Item>
+      )}
+      {phoneNumberInp && (
+        <Form.Item
+          name={["user", "name"]}
+          label="Phone Number"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="Phone Number" />
+        </Form.Item>
+      )}
+      {descriptionInpt && (
+        <Form.Item
+          name={["user", "name"]}
+          label="Description"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="Description" />
+        </Form.Item>
+      )}
+      {permissionInp && (
+        <Form.Item name={["user", "Permission"]} label="Permission">
+          <Input.TextArea placeholder="Permission" />
+        </Form.Item>
+      )}
+      {titleInp && (
+        <Form.Item
+          name={["user", "title"]}
+          label="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="title" />
+        </Form.Item>
+      )}
+      {organizationInp && (
+        <Form.Item
+          name={["user", "organization"]}
+          label="organization"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="organization" />
+        </Form.Item>
+      )}
+      {roleNameInp && (
+        <Form.Item
+          name={["user", "name"]}
+          label="Role Name"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="Role Name" />
+        </Form.Item>
+      )}
+      {emailInp && (
+        <Form.Item
+          name={["user", "email"]}
+          label="email"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input placeholder="email" />
+        </Form.Item>
+      )}
     </Form>
   );
 };
