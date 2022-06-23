@@ -4,7 +4,8 @@ import API from "../../API";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
-import { Col, Modal } from "antd";
+// import { Col, Modal } from "antd";
+import { Button, Drawer, Col } from "antd";
 import UsersForm from "../Users/usersForm";
 import { API_BASE_URL } from "../../API/config";
 import { isoDateToHumanReadableDate } from "../../Util";
@@ -38,25 +39,34 @@ const Roles = ({ match }) => {
     const { procuringEntityId } = match.params;
     getReports(procuringEntityId);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState("Content of the modal");
+  // const [visible, setVisible] = useState(false);
+  // const [confirmLoading, setConfirmLoading] = useState(false);
+  // const [modalText, setModalText] = useState("Content of the modal");
 
-  const showModal = () => {
+  // const showModal = () => {
+  //   setVisible(true);
+  // };
+
+  // const handleOk = () => {
+  //   setModalText("The modal will be closed after two seconds");
+  //   setConfirmLoading(true);
+  //   setTimeout(() => {
+  //     setVisible(false);
+  //     setConfirmLoading(false);
+  //   }, 2000);
+  // };
+
+  // const handleCancel = () => {
+  //   console.log("Clicked cancel button");
+  //   setVisible(false);
+  // };
+  const [visible, setVisible] = useState(false);
+
+  const showDrawer = () => {
     setVisible(true);
   };
 
-  const handleOk = () => {
-    setModalText("The modal will be closed after two seconds");
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    console.log("Clicked cancel button");
+  const onClose = () => {
     setVisible(false);
   };
   return (
@@ -71,7 +81,7 @@ const Roles = ({ match }) => {
             arrActions: [
               {
                 btnName: "Add New User Role ",
-                btnAction: showModal,
+                btnAction: showDrawer,
               },
             ],
           }}
@@ -122,7 +132,23 @@ const Roles = ({ match }) => {
             </ListItem>
           )}
         />
-        <Modal
+        <Button type="primary" onClick={showDrawer}>
+          Open
+        </Button>
+        <Drawer
+          title="Basic Drawer"
+          placement="right"
+          onClose={onClose}
+          visible={visible}
+          width={500}
+        >
+          <UsersForm
+            roleNameInp={true}
+            descriptionInpt={true}
+            permissionInp={true}
+          />
+        </Drawer>
+        {/* <Modal
           className="custom-modal"
           title="Add New User Role"
           visible={visible}
@@ -135,7 +161,7 @@ const Roles = ({ match }) => {
             descriptionInpt={true}
             permissionInp={true}
           />
-        </Modal>
+        </Modal> */}
       </div>
     </>
   );
