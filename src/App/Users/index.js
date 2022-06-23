@@ -5,7 +5,7 @@ import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import UsersForm from "./usersForm";
-import { Col, Modal, Button } from "antd";
+import { Drawer, Col } from "antd";
 import { API_BASE_URL } from "../../API/config";
 
 import { isoDateToHumanReadableDate } from "../../Util";
@@ -45,24 +45,12 @@ const UsersList = ({ match }) => {
     getReports(procuringEntityId);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState("Content of the modal");
 
-  const showModal = () => {
+  const showDrawer = () => {
     setVisible(true);
   };
 
-  const handleOk = () => {
-    setModalText("The modal will be closed after two seconds");
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    console.log("Clicked cancel button");
+  const onClose = () => {
     setVisible(false);
   };
   return (
@@ -77,7 +65,7 @@ const UsersList = ({ match }) => {
             arrActions: [
               {
                 btnName: "Add New User ",
-                btnAction: showModal,
+                btnAction: showDrawer,
               },
             ],
           }}
@@ -136,14 +124,12 @@ const UsersList = ({ match }) => {
             </ListItem>
           )}
         />
-
-        <Modal
-          className="custom-modal"
-          title="Add New User"
+        <Drawer
+          title="Add New User Role"
+          placement="right"
+          onClose={onClose}
           visible={visible}
-          onOk={handleOk}
-          confirmLoading={confirmLoading}
-          onCancel={handleCancel}
+          width={500}
         >
           <UsersForm
             firstNameInp={true}
@@ -154,7 +140,7 @@ const UsersList = ({ match }) => {
             roleInp={true}
             phoneNumberInp={true}
           />
-        </Modal>
+        </Drawer>
       </div>
     </>
   );
