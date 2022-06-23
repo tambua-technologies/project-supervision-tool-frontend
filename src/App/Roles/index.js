@@ -4,8 +4,9 @@ import API from "../../API";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
-import {  Drawer, Col } from "antd";
+import { Drawer, Col } from "antd";
 import UsersForm from "../Users/usersForm";
+import UserDrawer from "../components/UserDrawer";
 import { API_BASE_URL } from "../../API/config";
 import { isoDateToHumanReadableDate } from "../../Util";
 const name = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 10, xs: 20 };
@@ -123,6 +124,13 @@ const Roles = ({ match }) => {
             permissionInp={true}
           />
         </Drawer>
+        <UserDrawer>
+          <UsersForm
+            roleNameInp={true}
+            descriptionInpt={true}
+            permissionInp={true}
+          />
+        </UserDrawer>
       </div>
     </>
   );

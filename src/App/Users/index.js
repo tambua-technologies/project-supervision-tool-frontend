@@ -6,6 +6,7 @@ import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import UsersForm from "./usersForm";
 import { Drawer, Col } from "antd";
+import UserDrawer from "../components/UserDrawer";
 import { API_BASE_URL } from "../../API/config";
 
 import { isoDateToHumanReadableDate } from "../../Util";
