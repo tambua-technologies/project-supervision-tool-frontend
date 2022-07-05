@@ -45,9 +45,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
     const changeOpacity = (value, layer) => mapLayers[layer.typename]?.setOpacity(value);
 
     const addDataSet = (dataSet) => {
-        const myLayer = capabilities.Capability.Layer.Layer.find(l => l.Name === dataSet.typename );
-        const {LatLonBoundingBox} = myLayer;
-        console.log(myLayer);
+        
 
         const geonodeLayer = L.tileLayer.wms(`${process.env.REACT_APP_GEONODE_URL}/geoserver/ows`, {
             layers: dataSet.typename,
@@ -58,10 +56,6 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
         mapLayers[dataSet.typename] = geonodeLayer;
         setMapLayers(mapLayers);
         map.addLayer(geonodeLayer);
-        const corner1 = L.latLng(LatLonBoundingBox[1],LatLonBoundingBox[0]);
-        const corner2 = L.latLng(LatLonBoundingBox[3],LatLonBoundingBox[2]);
-        const bounds = L.latLngBounds(corner1, corner2);
-        map.fitBounds(bounds);
     }
 
 
@@ -90,6 +84,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                 onClick={() => setShowSideNav(true)}
             />
             <Drawer
+                title='Data Sets'
                 mask={false}
                 onClose={() => setShowSideNav(false)}
                 visible={showSideNav}

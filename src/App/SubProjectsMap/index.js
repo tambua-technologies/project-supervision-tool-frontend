@@ -5,30 +5,22 @@ import "./styles.css";
 import SubProjectPoints from './components/SubProjectPoints';
 import API from '../../API';
 
-function SubProjectsMap(props) {
+function SubProjectsMap() {
     const [subProjects, setSubProjects] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [project, setProject] = useState(null);
     
 
     useEffect(() => {
-        Promise.all([
-            API.get('sub_projects_locations')
+        API.get('sub_projects_locations')
                 .then(res => {
                     setSubProjects(res);
-                }),
-            API.get('projects/1')
-                .then(res => {
-                    setProject(res);
                 })
-        ])
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div className="MapDashboard">
             <Spin spinning={subProjects.length === 0} tip="Loading data...">
-                <BaseMap position={[-6.7924, 39.2083]} zoom={10}>
+                <BaseMap position={[-6.8716, 39.2655]} zoom={13}>
                     <SubProjectPoints subProjects={subProjects} />
                 </BaseMap>
             </Spin>

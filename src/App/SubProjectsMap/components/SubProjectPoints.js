@@ -33,36 +33,34 @@ function SubProjectPoints({ subProjects }) {
         }}
     />);
 
-    const renderPolygon = (id,geo_json,subProject) => (<GeoJSON
-        key={`${id}-polygon`}
-        style={{ weight: 4 }}
-        data={geo_json}
-        eventHandlers={{ click: () => handlePopup(id) }}
-    >
-        <Popup>
-            <SubProjectPopupDetail subProject={subProject}
-                subProjectLoading={subProjectLoading} />
-        </Popup>
-    </GeoJSON>);
+    const renderPolygon = (id,geo_json,subProject) => {
+        console.log('geo_json',geo_json);
+        const {geometry: { type}} = geo_json;
+        if(type === "MultiPoint") return null;
+        return (<GeoJSON
+            key={`${id}-polygon`}
+            style={{ weight: 4 }}
+            data={geo_json}
+            eventHandlers={{ click: () => handlePopup(id) }}
+        >
+            <Popup>
+                <SubProjectPopupDetail subProject={subProject}
+                    subProjectLoading={subProjectLoading} />
+            </Popup>
+        </GeoJSON>);
+    }
 
 
     return (
         <>
-            {subProjects.map((subProject) => {
-                const { name, id } = subProject;
-                let polygon, geo_json;
-                if (subProject?.geo_json) {
-                    geo_json = subProject.geo_json;
-                    polygon = geo_json.geometry;
-                } else {
-                    polygon = JSON.parse(subProject.district.geom);
-                    geo_json = JSON.parse(subProject.district.geom);
-                }
-                const { geometry } = turf.pointOnFeature(polygon);
+            {subProjects.filter(s => s?.geo_json?.geometry).map((subProject) => {
+                const { name, id, geo_json } = subProject;
+                
+               
 
                 return (
                     <div>
-                        {subProject?.geo_json ? zoomLevel < 10 ? renderMarker(geometry,name,id) : renderPolygon(id,geo_json,subProject) : renderMarker(geometry,name,id)}
+                        { renderPolygon(id,geo_json,subProject)}
                     </div>
                 );
 
