@@ -38,7 +38,7 @@ Cypress.Commands.add('Signin', (username, password) => {
     cy.intercept('GET', '/api/v1/projects', { fixture: 'Projects/projects_200.json' }).as('projects');
 
     cy.get('button[type=submit]').should('exist').should('contain', 'Log In').click();
-    cy.url().should('include', '/#!/projects');
+    cy.url().should('include', '/#!/procuring_entity/1/sub-projects-map');
 })
 
 
@@ -54,7 +54,7 @@ Cypress.Commands.add('Wrong_credentials', (username, password) => {
     cy.get('#email').type(username);
     cy.get('#password').type(password);
     cy.get('button[type=submit]').should('exist').should('contain', 'Log In').click();
-    cy.get('.Logo + div').should('contain', 'Request failed with status code 401');
+    cy.get('.Logo + div').should('contain', 'These credentials do not match our records');
 })
 
 Cypress.Commands.add('Refresh', (url, response) => {

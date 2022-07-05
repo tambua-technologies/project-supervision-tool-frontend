@@ -1,0 +1,3918 @@
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "Kijichi Tuangoma road (3.2 km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 3.2
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.523742724,
+                            -7.085148055
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 1,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 2,
+            "name": "Mwanamtoti road (1.8 km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.8
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiLineString",
+                    "coordinates": [
+                        [
+                            [
+                                39.267986005,
+                                -6.89652086
+                            ],
+                            [
+                                39.26973602,
+                                -6.89640211
+                            ],
+                            [
+                                39.271787377,
+                                -6.895935724
+                            ],
+                            [
+                                39.272084657,
+                                -6.895767247
+                            ],
+                            [
+                                39.274700817,
+                                -6.895023239
+                            ],
+                            [
+                                39.275830573,
+                                -6.894844421
+                            ],
+                            [
+                                39.27729727,
+                                -6.894675354
+                            ],
+                            [
+                                39.27770365,
+                                -6.894724679
+                            ],
+                            [
+                                39.278419074,
+                                -6.895036856
+                            ],
+                            [
+                                39.279037447,
+                                -6.895643674
+                            ],
+                            [
+                                39.279630596,
+                                -6.895969634
+                            ],
+                            [
+                                39.280475919,
+                                -6.896089072
+                            ],
+                            [
+                                39.28102332,
+                                -6.896175291
+                            ],
+                            [
+                                39.281629633,
+                                -6.896161729
+                            ],
+                            [
+                                39.282700181,
+                                -6.89656735
+                            ],
+                            [
+                                39.283458807,
+                                -6.897102356
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 1,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 3,
+            "name": "Dmdp building office",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": null
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.367403469,
+                            -6.885118712
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 1,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 4,
+            "name": "CHANG’OMBE ROAD (9 m width and 1.9 km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.9
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiLineString",
+                    "coordinates": [
+                        [
+                            [
+                                39.273243462,
+                                -6.842886453
+                            ],
+                            [
+                                39.27262402,
+                                -6.842924065
+                            ],
+                            [
+                                39.270750706,
+                                -6.843327943
+                            ],
+                            [
+                                39.269340397,
+                                -6.844089696
+                            ],
+                            [
+                                39.268094282,
+                                -6.844724558
+                            ],
+                            [
+                                39.267109539,
+                                -6.845769507
+                            ],
+                            [
+                                39.266818953,
+                                -6.846650012
+                            ],
+                            [
+                                39.266819347,
+                                -6.847358701
+                            ],
+                            [
+                                39.266894823,
+                                -6.848873077
+                            ],
+                            [
+                                39.267111009,
+                                -6.850158743
+                            ],
+                            [
+                                39.267010605,
+                                -6.85092772
+                            ],
+                            [
+                                39.26663521,
+                                -6.852041336
+                            ],
+                            [
+                                39.265762113,
+                                -6.853258015
+                            ],
+                            [
+                                39.264709744,
+                                -6.853771885
+                            ],
+                            [
+                                39.26396256,
+                                -6.853764066
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 2,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 5,
+            "name": "TEMEKE-MBAGALA ROAD (9 m width and 3.5 km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 3.5
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiLineString",
+                    "coordinates": [
+                        [
+                            [
+                                39.257942139,
+                                -6.847825161
+                            ],
+                            [
+                                39.259079788,
+                                -6.848615979
+                            ],
+                            [
+                                39.260465785,
+                                -6.849619929
+                            ],
+                            [
+                                39.26224969,
+                                -6.850938209
+                            ],
+                            [
+                                39.262799234,
+                                -6.851369314
+                            ],
+                            [
+                                39.263277564,
+                                -6.851744554
+                            ],
+                            [
+                                39.263664918,
+                                -6.852279837
+                            ],
+                            [
+                                39.263914569,
+                                -6.853085521
+                            ],
+                            [
+                                39.26396256,
+                                -6.853764066
+                            ],
+                            [
+                                39.263729857,
+                                -6.855550656
+                            ],
+                            [
+                                39.263618735,
+                                -6.856250452
+                            ],
+                            [
+                                39.263417625,
+                                -6.858761449
+                            ],
+                            [
+                                39.263383128,
+                                -6.859141316
+                            ],
+                            [
+                                39.263283865,
+                                -6.860236328
+                            ],
+                            [
+                                39.263006206,
+                                -6.863211053
+                            ],
+                            [
+                                39.263186589,
+                                -6.86345478
+                            ],
+                            [
+                                39.263313938,
+                                -6.863486545
+                            ],
+                            [
+                                39.263833757,
+                                -6.863703678
+                            ],
+                            [
+                                39.266454146,
+                                -6.86481039
+                            ],
+                            [
+                                39.267605292,
+                                -6.865229029
+                            ],
+                            [
+                                39.269191683,
+                                -6.865837165
+                            ],
+                            [
+                                39.271472196,
+                                -6.866552797
+                            ],
+                            [
+                                39.274718495,
+                                -6.867595892
+                            ],
+                            [
+                                39.274943436,
+                                -6.867746494
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 2,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 6,
+            "name": "MCHICHA ROAD (7 & 9 m width and 1.89 km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.89
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiLineString",
+                    "coordinates": [
+                        [
+                            [
+                                39.238497622,
+                                -6.847361639
+                            ],
+                            [
+                                39.238918713,
+                                -6.848264657
+                            ],
+                            [
+                                39.239286461,
+                                -6.848903435
+                            ],
+                            [
+                                39.239572505,
+                                -6.849588106
+                            ],
+                            [
+                                39.240178004,
+                                -6.85029776
+                            ],
+                            [
+                                39.24053538,
+                                -6.850637907
+                            ],
+                            [
+                                39.240695268,
+                                -6.851120959
+                            ],
+                            [
+                                39.241582696,
+                                -6.852775751
+                            ],
+                            [
+                                39.241766091,
+                                -6.85313705
+                            ],
+                            [
+                                39.241990817,
+                                -6.853834148
+                            ],
+                            [
+                                39.242075015,
+                                -6.854296164
+                            ],
+                            [
+                                39.24216991,
+                                -6.854558281
+                            ],
+                            [
+                                39.242471581,
+                                -6.854663853
+                            ],
+                            [
+                                39.242893919,
+                                -6.85456582
+                            ],
+                            [
+                                39.243384134,
+                                -6.854746801
+                            ],
+                            [
+                                39.243693347,
+                                -6.854995651
+                            ],
+                            [
+                                39.243821557,
+                                -6.855063519
+                            ],
+                            [
+                                39.244213729,
+                                -6.855138927
+                            ],
+                            [
+                                39.245639125,
+                                -6.856911039
+                            ],
+                            [
+                                39.24505841,
+                                -6.857386117
+                            ],
+                            [
+                                39.243912062,
+                                -6.857597265
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 2,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 7,
+            "name": "SUDANI- MWEMBEYANGA ROAD (7 m width and 0.525 km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.525
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.447640683,
+                            -7.095340303
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 2,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 8,
+            "name": "MCHICHA LINK ROAD (6 m width and 0.360 km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.36
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.324499714,
+                            -6.820645152
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 2,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 9,
+            "name": "TE2 SERENGETI DRAIN (3500m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 3500
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.462695427,
+                            -7.021873637
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 3,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 10,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 10,
+            "name": "TE3 TEMEKE DRAIN (953m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 953
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.40379578,
+                            -6.885289516
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 3,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 10,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 11,
+            "name": "TE9 KEKE DRAIN(1040m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 1040
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.450615938,
+                            -6.976193591
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 3,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 10,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 12,
+            "name": "POND",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": null
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.230953507,
+                            -6.930250393
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 3,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 10,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 13,
+            "name": "Kwa Shego Drain (3145m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 3145
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.506004087,
+                            -6.982905243
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 4,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 10,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 14,
+            "name": "KILAKALA ROAD(5.5m width and 1.396km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.396
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.29372188,
+                            -6.943825243
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 15,
+            "name": "SOKONI ROAD(4.5m width and 0.430km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.43
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.275865988,
+                            -6.879382328
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 16,
+            "name": "TASAF ROAD(3.5m width 0.207km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.207
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.427267088,
+                            -7.031446805
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 17,
+            "name": "MZEE DOO ROAD(3.5m width 0.539km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.539
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.390991365,
+                            -6.98361039
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:03.000000Z",
+            "updated_at": "2022-06-13T16:48:03.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 18,
+            "name": "SCHOOL ROAD(4.5m width 1.348km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.348
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.402415337,
+                            -6.897805461
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 19,
+            "name": "KIGUNGA ROAD (5.5m width 1.411km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.411
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.479725513,
+                            -7.028664371
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 20,
+            "name": "MWINYI ROAD(5.5m width 2.266km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 2.266
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.4758432,
+                            -7.085467597
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 21,
+            "name": "S/MTAA ROAD(4.5m width 0.535km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.535
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.459895708,
+                            -7.000061271
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 22,
+            "name": "BAKWATA ROAD(4.5m width 0.308km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.308
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.319454446,
+                            -6.845818724
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 23,
+            "name": "DISPENSARY ROAD (4.5m width 0.535km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.535
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.531551543,
+                            -7.080995673
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 24,
+            "name": "KIEMBESAMAKI ROAD(4.5m width 0.415km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.415
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.476868917,
+                            -7.091871786
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 25,
+            "name": "KEKO ROAD(5.5m width 0.537km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.537
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.240629807,
+                            -6.898863135
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 26,
+            "name": "D’CLERK ROAD(3.5m width 0.850km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.85
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.289591781,
+                            -6.906998334
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 27,
+            "name": "TBA ROAD(7.0m width 2.085km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 2.085
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.406228704,
+                            -6.992519823
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 28,
+            "name": "Major drainage 1.5m average width, 2.214km length",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 2.085
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.432567144,
+                            -7.11026763
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 5,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 10,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 29,
+            "name": "SANGARA ROAD (5.0m width and 3.07km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 3.07
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.332745235,
+                            -6.895965322
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 30,
+            "name": "MARIAM ROAD (5.0m width and 0.780km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.78
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.273358277,
+                            -6.902641573
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 31,
+            "name": "S/MTAA ROAD (5m width and 1.87km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.87
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.231981709,
+                            -6.924307172
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 32,
+            "name": "MWANAMTOTI ROAD (5.0m width and 1.80km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.8
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.486086065,
+                            -6.951921457
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 33,
+            "name": "KIJICHI ROAD (5.5m width and 2.165km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 2.165
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.497510867,
+                            -7.022694074
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 34,
+            "name": "POLICE ROAD (5.0m width and 2.460km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 2.46
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.379685117,
+                            -6.915715265
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 35,
+            "name": "TAUSI ROAD (5.0m width and 0.876km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.876
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.333589853,
+                            -6.84687764
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 36,
+            "name": "HOSTEL ROAD (5.0m width and 0.575km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.575
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.399436027,
+                            -6.927315708
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 37,
+            "name": "BUDODI ROAD (5.0m width and 0.425km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.425
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.243645628,
+                            -6.920081545
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 38,
+            "name": "DIWANI ROAD (5.0m width and 0.262km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.262
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.475714551,
+                            -7.005063123
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 39,
+            "name": "POSTA ROAD (5.0m width and 1.007km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.007
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.545219001,
+                            -7.02883483
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 40,
+            "name": "NELUKA ROAD (5.0m width and 0.703km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.703
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.242089797,
+                            -6.874874271
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 41,
+            "name": "MAJOR DRAINAGE (2.0m average width, 0.67km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 0.67
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.353761586,
+                            -6.869553801
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 10,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 42,
+            "name": "COMMUNITY FACILITY BUILDINGS (Market type 1, shops type\n1&2, Delivery & store, market toilet, Generator house and Guard house)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": null
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.446256944,
+                            -7.159466613
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 6,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 43,
+            "name": "ABIOLA ROAD (905m) width 5.5M",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 905
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.508284163,
+                            -7.008386563
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 44,
+            "name": "SHERATONI ROAD (1000m) width (5.5m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1000
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.478247083,
+                            -6.940205411
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 45,
+            "name": "ILAMBA ROAD (1665m) Width (5.5m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1665
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.429307787,
+                            -7.014233071
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 46,
+            "name": "GONJA ROAD (807m) width (3.5)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 807
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.365290349,
+                            -6.895278635
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 47,
+            "name": "MWENYEKITI ROAD (550m) width (3.5m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 550
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.479513936,
+                            -6.908189589
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 48,
+            "name": "POLICE POST ROAD (1096m) width (5.5m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1096
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.525494961,
+                            -7.032276093
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 49,
+            "name": "DISPENSARY ROAD (500m) width (5.5m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 500
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.303190985,
+                            -6.885114469
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 50,
+            "name": "MTEA ROAD (585m)width 3.5m",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 585
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.492674728,
+                            -6.898715239
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:04.000000Z",
+            "updated_at": "2022-06-13T16:48:04.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 51,
+            "name": "MAKABURI YA CITY ROAD (1830m) Width (5.5m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1830
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.413669357,
+                            -6.938482651
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 52,
+            "name": "PAMBA ROAD (610m)width (3.5m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 610
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.5081126,
+                            -7.059464408
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 53,
+            "name": "Major drainage 3m average width,1.27km length",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 1.27
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.475742204,
+                            -7.038381338
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 10,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 54,
+            "name": "Market type 1 (double storey of gross floor area 3355 m2)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 3355
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.418201683,
+                            -6.99450947
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 55,
+            "name": "Dispensary building (three storey of gross floor area 2800 m2)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 2800
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.470039935,
+                            -6.908440315
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 7,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 56,
+            "name": "TRH ROAD(5.5m width and 0.768km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.768
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.297831388,
+                            -6.864127668
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 57,
+            "name": "BANK CLUB ROAD(5.5m width and 1.04km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.04
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.348152597,
+                            -6.87334848
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 58,
+            "name": "MUUNGANO ROAD(5.5m width and 1.475km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.475
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.299239705,
+                            -6.87994752
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 59,
+            "name": "ALJAZEERA ROAD(5.5m width and 1.065km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.065
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.448067684,
+                            -6.932178773
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 60,
+            "name": "MTONI ROAD (5.5m width and 0.45km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.45
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.41827561,
+                            -7.084074393
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 61,
+            "name": "SOKONI ROAD (5.5m width and 0.300km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.3
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.378578754,
+                            -6.897759976
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 62,
+            "name": "NDEGEREKO ROAD(5.5m width and 0.473km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.473
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.49683851,
+                            -7.078310444
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 63,
+            "name": "HALAL ROAD (5.5m width and 0.175km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.175
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.249627885,
+                            -6.945445371
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 64,
+            "name": "ISLAMABAD ROAD (5.5m width and 0.527km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.527
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.465260952,
+                            -7.068250508
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 65,
+            "name": "SONARA ROAD (5.5m width and 0.350km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.35
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.447354528,
+                            -6.906027306
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 66,
+            "name": "BUSTANI ROAD (5.5m width and 0.225km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.225
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.451284195,
+                            -7.061956089
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 67,
+            "name": "KILIMANI ROAD (5.5m width and 0.429km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.429
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.435760513,
+                            -7.026030063
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 68,
+            "name": "KOMBORA ROAD (5.5m width and 0.325km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.325
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.480292742,
+                            -7.021529748
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 69,
+            "name": "MKURANGA ROAD",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": null
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.458767988,
+                            -6.983556201
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 70,
+            "name": "MAKABULINI ROAD",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": null
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.306061305,
+                            -6.931391921
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 71,
+            "name": "Market type 1 (single storey of gross floor area m2 which include stares, shops, toilet stances and generator",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": null
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.411752856,
+                            -7.129503688
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 72,
+            "name": "Major drainage",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 1.1
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.308683102,
+                            -6.821755526
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 8,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 10,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 73,
+            "name": "CLINIC ROAD (7.0m width and 2.6km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 2.6
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.390572806,
+                            -6.925404072
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 74,
+            "name": "MWERA ROAD (7.0m width and 1.39km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.39
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.515208003,
+                            -7.16244542
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 75,
+            "name": "BUGHUDADI ROAD (6.5m width and 1.24km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.24
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.222360775,
+                            -6.932419283
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 76,
+            "name": "KIZINGA ROAD (6.5m width and 0.975km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.975
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.45665107,
+                            -7.019606501
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 77,
+            "name": "MAGDALENA ROAD (6.5m width and 0.498km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.498
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.362043404,
+                            -6.855270981
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 78,
+            "name": "MSIKITINI ROAD (6.5m width and 0.498km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.498
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.493929233,
+                            -7.068414903
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 79,
+            "name": "Market type 1 (single storey of gross floor area 1319.59 m2 which includes 10 shops, stances and office.",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 1319.59
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.505927547,
+                            -7.039768289
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 80,
+            "name": "Market type 2 (single storey of gross floor area 120 m2 which includes 10 shops, stances. and office.",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 120
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.259950759,
+                            -6.87032962
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 81,
+            "name": "Delivery and Store (single storey of gross floor area 160.9m2)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 160.9
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.343129713,
+                            -6.878300004
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 82,
+            "name": "Butchery (single storey of gross floor area 95m2)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 95
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.444028019,
+                            -6.889265713
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 83,
+            "name": "Market Toilet (gross floor area 70.94 m2)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 70.94
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.213319062,
+                            -6.975389417
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 9,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 84,
+            "name": "MBAGALA KUU ROAD (7m width and 0.38km)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.38
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.297259558,
+                            -6.827706786
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:05.000000Z",
+            "updated_at": "2022-06-13T16:48:05.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 85,
+            "name": "SOKONI ROAD (5m width and 1.1km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.1
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.339946598,
+                            -6.851835933
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 86,
+            "name": "MIHANDE JESHINI ROAD (5m width and 2.942km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 2.942
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.406957873,
+                            -7.024328869
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 87,
+            "name": "GIRIKI ROAD (5m width and 1.417km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.417
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.249431756,
+                            -6.887985211
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 88,
+            "name": "DISPENSARY ROAD (5m width and 0.850km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.85
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.396683105,
+                            -6.986089722
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 89,
+            "name": "PONELA ROAD (5m width and 0.900km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.9
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.507187054,
+                            -6.959940603
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 90,
+            "name": "SERENGE ROAD (5m width and 0.125km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.125
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.437625875,
+                            -6.940530845
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 91,
+            "name": "NG’OMBE ROAD (5m width and 0.3km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.3
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.413249381,
+                            -6.977544583
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 92,
+            "name": "BALILI ROAD (5m width and 0.3km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.3
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.476547154,
+                            -7.117600932
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 93,
+            "name": "KLPT ROAD (5m width and 0.485km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.485
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.44390421,
+                            -7.119098422
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 94,
+            "name": "MSIKITINI ROAD (5m width and 0.600km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.6
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.403038474,
+                            -6.910211861
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 95,
+            "name": "MIHANDE KIJICHI ROAD (7m width and 2.710km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 2.71
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.314421871,
+                            -6.818633208
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 96,
+            "name": "Market type 1 (single storey of gross floor area 860m2 which includes Butcher, shops and offices, toilets, guard house and generator building)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 860
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.451584097,
+                            -6.952371385
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 97,
+            "name": "Foot path (612m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": null,
+                "quantity": 612
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.281546504,
+                            -6.84738544
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": null,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 98,
+            "name": "Solid waste management system",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": null,
+                "quantity": null
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.454412091,
+                            -7.165170195
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": null,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 99,
+            "name": "Major drainage of 900m pipe culverts 484m length",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 900
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.46416436,
+                            -7.149952037
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 10,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 100,
+            "name": "Bus Stand 6393 m2 comprising of two guard house buildings and public toilets buildings and Fence",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 6393
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.27957216,
+                            -6.830327302
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 10,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 9,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 101,
+            "name": "Lumo Vituka Road (965m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 965
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.469535868,
+                            -7.023835775
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 11,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 102,
+            "name": "Mwanga Road (1.029Km)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.029
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.473540257,
+                            -6.879858077
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 11,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 103,
+            "name": "Mianzini Road(1.885km)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.885
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.484147537,
+                            -7.054455304
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 11,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 104,
+            "name": "Limboa-Mitedi Road(1.012Km)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.012
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.416254734,
+                            -7.015356429
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 11,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 105,
+            "name": "Malawi Road (1.048Km)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.048
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.546568483,
+                            -7.016656845
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 11,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 106,
+            "name": "Sheratoni Road (1.164Km)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.164
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.311042295,
+                            -6.820057134
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 11,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 107,
+            "name": "Ndege Road (654m)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 654
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.328747971,
+                            -6.897346331
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 11,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 108,
+            "name": "NZASA KILUNGULE BUZA ROAD (5.500km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 5.5
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.522930668,
+                            -6.994399463
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 12,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 109,
+            "name": "KIPAPARAI KIBURUGWA ROAD (1.600km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 1.6
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.367764355,
+                            -6.890077558
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 12,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 110,
+            "name": "ZAHANATI CHARAMBE ROAD (5m width and\n0.6km length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "m3",
+                "quantity": 0.6
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.460703525,
+                            -6.932192904
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 12,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 1,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 111,
+            "name": "BRIDGE (20m length)",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 20
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.424240507,
+                            -6.866880183
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 12,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 11,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 112,
+            "name": "Box Culverts (4Nos) – Nzasa\nKilungule",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": 4
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.426169381,
+                            -7.100223578
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 12,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 12,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 113,
+            "name": "Bus Stand",
+            "code": null,
+            "description": null,
+            "quantity": {
+                "unit": "1",
+                "quantity": null
+            },
+            "geo_json": {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": [
+                        [
+                            39.438138301,
+                            -6.986842685
+                        ]
+                    ]
+                },
+                "properties": {}
+            },
+            "district_id": "TZ0703",
+            "procuring_entity_package_id": 12,
+            "procuring_entity_id": 1,
+            "sub_project_type_id": 13,
+            "project_id": 1,
+            "sub_project_status_id": 5,
+            "created_at": "2022-06-13T16:48:06.000000Z",
+            "updated_at": "2022-06-13T16:48:06.000000Z",
+            "deleted_at": null
+        }
+    ],
+    "message": "Sub Projects retrieved successfully"
+}

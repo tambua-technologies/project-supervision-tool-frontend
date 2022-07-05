@@ -6,7 +6,7 @@ import * as turf from '@turf/turf';
 import { mapSubProjectActions, mapSubProjectSelectors } from "../../../redux/modules/map/subProjects";
 import SubProjectPopupDetail from "./SubProjectPopup";
 
-function SubProjectPoints({subProjects}) {
+function SubProjectPoints({ subProjects }) {
     const [zoomLevel, setZoomLevel] = useState(0);
     const dispatch = useDispatch();
     const subProjectLoading = useSelector(mapSubProjectSelectors.getSubProjectLoadingSelector);
@@ -17,9 +17,33 @@ function SubProjectPoints({subProjects}) {
             setZoomLevel(map.getZoom());
         }
     });
+
     const handlePopup = (id) => {
         dispatch(mapSubProjectActions.getSubProjectStart(id));
     };
+
+    const renderMarker = (geometry,name,id) => (<Marker
+        position={[geometry.coordinates[1], geometry.coordinates[0]]}
+        title={name}
+        key={`${id}-point`}
+        eventHandlers={{
+            click: () => {
+                map.setView([geometry.coordinates[1], geometry.coordinates[0]], 16);
+            },
+        }}
+    />);
+
+    const renderPolygon = (id,geo_json,subProject) => (<GeoJSON
+        key={`${id}-polygon`}
+        style={{ weight: 4 }}
+        data={geo_json}
+        eventHandlers={{ click: () => handlePopup(id) }}
+    >
+        <Popup>
+            <SubProjectPopupDetail subProject={subProject}
+                subProjectLoading={subProjectLoading} />
+        </Popup>
+    </GeoJSON>);
 
 
     return (
@@ -35,32 +59,10 @@ function SubProjectPoints({subProjects}) {
                     geo_json = JSON.parse(subProject.district.geom);
                 }
                 const { geometry } = turf.pointOnFeature(polygon);
-                const renderMarker = () => (<Marker
-                    position={[geometry.coordinates[1], geometry.coordinates[0]]}
-                    title={name}
-                    key={`${id}-point`}
-                    eventHandlers={{
-                        click: () => {
-                            map.setView([geometry.coordinates[1], geometry.coordinates[0]], 16);
-                        },
-                    }}
-                />);
-
-                const renderPolygon = () => (<GeoJSON
-                    key={`${id}-polygon`}
-                    style={{ weight: 4 }}
-                    data={geo_json}
-                    eventHandlers={{ click: () => handlePopup(id) }}
-                >
-                    <Popup>
-                        <SubProjectPopupDetail subProject={subProject}
-                            subProjectLoading={subProjectLoading} />
-                    </Popup>
-                </GeoJSON>);
 
                 return (
                     <div>
-                        {subProject?.geo_json ? zoomLevel < 10 ? renderMarker() : renderPolygon() : renderMarker()}
+                        {subProject?.geo_json ? zoomLevel < 10 ? renderMarker(geometry,name,id) : renderPolygon(id,geo_json,subProject) : renderMarker(geometry,name,id)}
                     </div>
                 );
 
