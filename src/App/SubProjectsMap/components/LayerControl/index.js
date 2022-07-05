@@ -22,6 +22,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
     const [capabilities, setCapabilities] = useState({});
     const [layerCategories, setLayerCategories] = useState([]);
     const ref = useRef();
+    const drawerMuout = useRef();
     const map = useMap();
     useEffect(() => {
 
@@ -77,6 +78,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
 
     return (
         <div ref={ref} onMouseOver={() => map.dragging.disable()} onMouseOut={() => map.dragging.enable()}>
+            <div ref={drawerMuout}/>
             <img
                 src={LayerControlIcon}
                 alt='layers control'
@@ -89,10 +91,10 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                 onClose={() => setShowSideNav(false)}
                 visible={showSideNav}
                 className="mapSideNav"
-                getContainer={false}
+                getContainer={drawerMuout.current}
                 width={450}
                 closeIcon={<CloseOutlined/>}
-                style={{position: 'absolute'}}
+                style={{position: 'absolute', zIndex: '1200'}}
             >
                 <Spin spinning={false}>
                     <div className='DataSetsMenuItemDetails'>

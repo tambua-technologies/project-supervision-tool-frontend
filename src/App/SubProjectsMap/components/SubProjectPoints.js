@@ -22,33 +22,18 @@ function SubProjectPoints({ subProjects }) {
         dispatch(mapSubProjectActions.getSubProjectStart(id));
     };
 
-    const renderMarker = (geometry,name,id) => (<Marker
-        position={[geometry.coordinates[1], geometry.coordinates[0]]}
-        title={name}
-        key={`${id}-point`}
-        eventHandlers={{
-            click: () => {
-                map.setView([geometry.coordinates[1], geometry.coordinates[0]], 16);
-            },
-        }}
-    />);
 
-    const renderPolygon = (id,geo_json,subProject) => {
-        console.log('geo_json',geo_json);
-        const {geometry: { type}} = geo_json;
-        if(type === "MultiPoint") return null;
-        return (<GeoJSON
-            key={`${id}-polygon`}
-            style={{ weight: 4 }}
-            data={geo_json}
-            eventHandlers={{ click: () => handlePopup(id) }}
-        >
-            <Popup>
-                <SubProjectPopupDetail subProject={subProject}
-                    subProjectLoading={subProjectLoading} />
-            </Popup>
-        </GeoJSON>);
-    }
+    const renderPolygon = (id,geo_json,subProject) => (<GeoJSON
+        key={`${id}-polygon`}
+        style={{ weight: 4, color: '#199900', opacity: 0.8 }}
+        data={geo_json}
+        eventHandlers={{ click: () => handlePopup(id) }}
+    >
+        <Popup>
+            <SubProjectPopupDetail subProject={subProject}
+                subProjectLoading={subProjectLoading} />
+        </Popup>
+    </GeoJSON>);
 
 
     return (
@@ -56,8 +41,6 @@ function SubProjectPoints({ subProjects }) {
             {subProjects.filter(s => s?.geo_json?.geometry).map((subProject) => {
                 const { name, id, geo_json } = subProject;
                 
-               
-
                 return (
                     <div>
                         { renderPolygon(id,geo_json,subProject)}

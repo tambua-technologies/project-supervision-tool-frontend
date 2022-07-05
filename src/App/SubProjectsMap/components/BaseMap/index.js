@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from "prop-types";
 import {MapContainer} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -43,6 +43,12 @@ const BaseMap = ({children, position, zoom = null }) => {
             label: 'Google Satellite'
         })
     ];
+
+    useEffect(() => {
+        document.querySelector('.base-layout__content').style.padding = '0px';
+
+        return () => document.querySelector('.base-layout__content').style.padding = '24px';
+    });
 
     const whenCreated = (map) => {
         // add basemaps switcher to map
