@@ -23,7 +23,8 @@ function SubProjectPoints({ subProjects }) {
     };
 
 
-    const renderPolygon = (id,geo_json,subProject) => (<GeoJSON
+    const renderPolygon = (id,geo_json,subProject) => (
+    <GeoJSON
         key={`${id}-polygon`}
         style={{ weight: 4, color: '#199900', opacity: 0.8 }}
         data={geo_json}

@@ -62,6 +62,10 @@ const BaseMap = ({children, position, zoom = null }) => {
 
         // add zoom control to map
         new L.Control.ZoomBar({position: 'topright'}).addTo(map);
+        // attach create map to window object
+        // the goal is to make it available for testing in cypress
+        console.log('map', map);
+        window['leafletMap'] = map;
     }
 
     return (
