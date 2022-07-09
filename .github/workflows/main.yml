@@ -13,12 +13,11 @@ jobs:
       - run: node -v
       - name: Checkout
         uses: actions/checkout@v2
+      - run: CI=false
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        env: 
-          CI: false
         with:
           build: npm run build
           start: npm start
