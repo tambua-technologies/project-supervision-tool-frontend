@@ -8,6 +8,11 @@
 }
 
 
+.DataSetsMenuItemDetails {
+    padding: 5px;
+}
+
+
 
 .DataSetsMenuItemDetails .paginate-datasets {
     display: flex;

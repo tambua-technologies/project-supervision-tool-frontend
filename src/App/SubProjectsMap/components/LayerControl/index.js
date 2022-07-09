@@ -12,8 +12,31 @@ import PropTypes from "prop-types";
 import {mapDataSetsActions, mapDataSetsSelectors} from "../../../../redux/modules/map/dataSets";
 import {bindActionCreators} from "redux";
 import './styles.css';
+import { stringToGeoJson } from '../../../../Util';
 
 const {Panel} = Collapse;
+
+
+const DataSets = ({layerCategories, changeOpacity}) => {
+
+    return (
+       
+        <div className='DataSetsMenuItemDetails'>
+            {
+                layerCategories.length > 0 ?
+                    <Collapse defaultActiveKey={[layerCategories[0].id]} style={{ height: '100%', overflowY: 'auto' }}>
+                        {
+                            layerCategories.map((category) =>
+                                <Panel header={`${category.gn_description}`} key={category.id} >
+                                    <LayerCategory isNotGeonodeCategory={category.isNotGeonodeCategory} category={category} changeOpacity={changeOpacity} />
+                                </Panel>
+                            )
+                        }
+                    </Collapse> : ''
+            }
+        </div>  
+    );
+}
 
 
 const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLayer }) => {
@@ -32,7 +55,16 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
         API.getLayersCategories()
             .then(({objects}) => {
                 const data = objects.filter(({count}) => count > 0);
-                setLayerCategories(data);
+                const withFieldNotes = [
+                    {
+                    gn_description: 'Field Notes',
+                     id: 'field_notes',
+                     isNotGeonodeCategory: true,
+                     layers: [{name: 'Kinondoni Field Notes',typename: 'kinondoni_field_notes', id:'kinondoni_field_notes', isNotGeonodeLayer: true}]
+                    },
+                      ...data
+                    ];
+                setLayerCategories(withFieldNotes);
             });
 
         return () => {
@@ -43,20 +75,61 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps
 
 
-    const changeOpacity = (value, layer) => mapLayers[layer.typename]?.setOpacity(value);
+    const changeOpacity = (value, layer) => {
+        try {
+            return mapLayers[layer.typename]?.setOpacity(value);
+        }
+        catch(e) {
+            
+            return mapLayers[layer.typename]?.setStyle({opacity: value, fillOpacity: value});
 
-    const addDataSet = (dataSet) => {
+        }
+       
+    };
+
+    const getPoints = async () => {
+        return API.getAssetData('aLD6RspTPyijYdA63icUZ4')
+        .then(({results}) => {
+            return results.map(({package: pkg, subProject, notes}) => 
+        notes.map(note => ({packageName: pkg, subProject, ...note, geoJSON: stringToGeoJson(note['notes/location'], 'geopoint')})))
+        .flat().map(({geoJSON}) => geoJSON);
+        })
+
         
+    }
+            
 
-        const geonodeLayer = L.tileLayer.wms(`${process.env.REACT_APP_GEONODE_URL}/geoserver/ows`, {
-            layers: dataSet.typename,
-            format: 'image/png',
-            transparent: true,
-        });
+    const addDataSet = async (dataSet) => {
 
-        mapLayers[dataSet.typename] = geonodeLayer;
+        let dataSetLayer;
+        if (dataSet.isNotGeonodeLayer) {
+            const points =  await getPoints(dataSet.id);
+            dataSetLayer = L.geoJSON(points, {
+                pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
+                    radius: 5,
+                    fillColor: '#ff0000',
+                    color: '#000',
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }),
+                onEachFeature: (feature, layer) => {
+                    layer.bindPopup(`<div>Field note</div>`);
+                }
+            });
+
+        }
+        else {
+            dataSetLayer = L.tileLayer.wms(`${process.env.REACT_APP_GEONODE_URL}/geoserver/ows`, {
+                layers: dataSet.typename,
+                format: 'image/png',
+                transparent: true,
+            });
+        }
+
+        mapLayers[dataSet.typename] = dataSetLayer;
         setMapLayers(mapLayers);
-        map.addLayer(geonodeLayer);
+        map.addLayer(dataSetLayer);
     }
 
 
@@ -90,38 +163,13 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                 mask={false}
                 onClose={() => setShowSideNav(false)}
                 visible={showSideNav}
-                className="mapSideNav"
+                className="map-drawer"
                 getContainer={drawerMuout.current}
                 width={450}
                 closeIcon={<CloseOutlined/>}
                 style={{position: 'absolute', zIndex: '1200'}}
             >
-                <Spin spinning={false}>
-                    <div className='DataSetsMenuItemDetails'>
-                        <hr/>
-                        <div className="data-set-search">
-                        </div>
-                        {
-                            layerCategories.length > 0 ?
-                                <Collapse defaultActiveKey={[layerCategories[0].id]} style={{height: '100%', overflowY: 'auto'}}>
-                                    {
-                                        layerCategories.map((category) =>
-                                            <Panel header={`${category.gn_description} (${category.count})`} key={category.id} >
-                                                <LayerCategory category={category} changeOpacity={changeOpacity}/>
-                                            </Panel>
-                                        )
-                                    }
-                                </Collapse> : ''
-                        }
-                        <div className="dataset-load_more">
-                            <p>Load More</p>
-                            <a href={`${process.env.REACT_APP_GEONODE_URL}`} target="_blank"
-                               rel='noopener noreferrer'>
-                                <p>Open Geonode</p>
-                            </a>
-                        </div>
-                    </div>
-                </Spin>
+                <DataSets layerCategories={layerCategories} changeOpacity={changeOpacity}/>
             </Drawer>
         </div>
     );

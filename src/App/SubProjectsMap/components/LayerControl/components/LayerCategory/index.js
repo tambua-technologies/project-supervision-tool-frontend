@@ -15,13 +15,18 @@ function PanelContents ({ layer, changeOpacity}) {
     return <DecimalStep onStepChange={handleOnStepChange}/>
 }
 
-function LayerCategory({category, changeOpacity}) {
+function LayerCategory({category, changeOpacity, isNotGeonodeCategory}) {
 
     const [layers, setLayers] = useState([]);
 
     useEffect(() => {
-        API.getLayers({category: category.id, offset: 0})
+        if (isNotGeonodeCategory) {
+            setLayers(category.layers);
+        }
+        else {
+            API.getLayers({category: category.id, offset: 0})
             .then(({objects}) => setLayers(objects));
+        }
     }, [category.id]);
 
 
