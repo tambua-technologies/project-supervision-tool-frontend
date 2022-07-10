@@ -21,11 +21,4 @@ jobs:
           build: npm run build
           start: npm start
           wait-on: 'http://localhost:3000'
-      - name: 'Upload screenshots and videos to Slack'
-        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
-        if: failure()
-        with:
-          token: 'xoxe.xoxp-1-Mi0yLTM3MTE0OTIxMjQ3MjQtMzcwOTA4NjY2MTE4Ni0zNzY1NjI4Njc5ODE1LTM3ODAxNjE1ODE3OTUtMDFiNWM4N2U3N2VmMjJkN2E2NGU1ZTQ5NjBhNDg3YTc3NTkzZWE2ZDc4Yzc3NWM3MWNmOWY4ZTI3ZGVjMTcxMA'
-          channels: 'general'
-          message-text: 'Cypress tests failed! They have been placed in this thread, good luck.'
           
