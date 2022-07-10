@@ -21,10 +21,11 @@ jobs:
           build: npm run build
           start: npm start
           wait-on: 'http://localhost:3000'
-      - name: Upload screenshots
-        uses: actions/upload-artifact@latest
+      - name: 'Upload screenshots and videos to Slack'
+        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
         if: failure()
         with:
-            name: cypress-snapshots
-            path: cypress/snapshots
+          token: 'ac2dd72afc3779bc6776ce4565409e8c'
+          channels: 'general'
+          message-text: 'Cypress tests failed! They have been placed in this thread, good luck.'
           
