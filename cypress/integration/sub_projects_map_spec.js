@@ -33,7 +33,14 @@ describe('Projects', () => {
             url: '/api/v2/assets/aLD6RspTPyijYdA63icUZ4/data/?format=json'
         }).as('fieldnotes');
         
-        cy.get('.geonode-layers-control').click()
+
+        cy.intercept({
+            method: 'GET',
+            url: '/api/categories/'
+        }).as('geonodeCategories');
+        
+        cy.get('.geonode-layers-control').click();
+        cy.wait('@geonodeCategories');
         cy.contains('Kinondoni Field Notes').should('be.visible');
 
         cy.get('.add').click();
@@ -41,7 +48,8 @@ describe('Projects', () => {
 
        
         cy.wait('@fieldnotes');
-        cy.get('.ant-slider-horizontal').click('center'); // click on center of transparency control slider
+
+        cy.get('.ant-slider-horizontal').click('center');
 
         cy.window().then(win => {
             const map = win.leafletMap;
@@ -63,9 +71,24 @@ describe('Projects', () => {
         .within(() => {
             cy.contains('Field Notes').click();
             cy.contains('Boundaries').click();
-
+            cy.get('.ant-collapse-item.ant-collapse-item-active').within(() => {
+                cy.get('.add').click();
+                cy.get('.ant-slider-horizontal').click('center');
+            });
         });
-    
+
+        cy.window().then(win => {
+            const map = win.leafletMap;
+
+            // assert that layer opacity is set to 0.5
+            map.eachLayer(layer => {
+                if(layer?.wmsParams) {
+                    const expectedOpacity = 0.5;
+                    expect(layer.options.opacity).to.equal(expectedOpacity);
+                }
+            }); 
+        });
+
     });
 
 
