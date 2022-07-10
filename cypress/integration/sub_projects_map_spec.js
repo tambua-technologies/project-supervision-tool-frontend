@@ -31,7 +31,7 @@ describe('Projects', () => {
         cy.intercept({
             method: 'GET',
             url: '/api/v2/assets/aLD6RspTPyijYdA63icUZ4/data/?format=json'
-        }).as('fieldnotes');
+        }, {fixture: 'field_notes.json'}).as('fieldnotes');
         
         cy.get('.geonode-layers-control').click();
         cy.contains('Kinondoni Field Notes').should('be.visible');
