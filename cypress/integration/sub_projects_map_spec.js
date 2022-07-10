@@ -33,14 +33,7 @@ describe('Projects', () => {
             url: '/api/v2/assets/aLD6RspTPyijYdA63icUZ4/data/?format=json'
         }).as('fieldnotes');
         
-
-        cy.intercept({
-            method: 'GET',
-            url: '/api/categories/'
-        }).as('geonodeCategories');
-        
         cy.get('.geonode-layers-control').click();
-        cy.wait('@geonodeCategories');
         cy.contains('Kinondoni Field Notes').should('be.visible');
 
         cy.get('.add').click();
