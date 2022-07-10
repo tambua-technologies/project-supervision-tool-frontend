@@ -92,7 +92,11 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
         .then(({results}) => {
             return results.map(({package: pkg, subProject, notes}) => 
         notes.map(note => ({packageName: pkg, subProject, ...note, geoJSON: stringToGeoJson(note['notes/location'], 'geopoint')})))
-        .flat().map(({geoJSON}) => geoJSON);
+        .flat().map((data) => {
+            const { geoJSON, ...rest} = data;
+            geoJSON.properties = rest;
+            return geoJSON;
+        });
         })
 
         
