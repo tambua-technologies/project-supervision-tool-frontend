@@ -1,30 +1,30 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import WMSCapabilities from 'wms-capabilities';
 import LayerControlIcon from '../../../../assets/icons/geo-node-layers.svg';
-import {Collapse, Drawer, Spin} from "antd";
+import { Collapse, Drawer, Spin } from "antd";
 import L from 'leaflet';
-import {CloseOutlined} from '@ant-design/icons';
+import { CloseOutlined } from '@ant-design/icons';
 import LayerCategory from "./components/LayerCategory";
 import API from "../../../../API";
-import {useMap} from "react-leaflet";
+import { useMap } from "react-leaflet";
 import PropTypes from "prop-types";
-import {mapDataSetsActions, mapDataSetsSelectors} from "../../../../redux/modules/map/dataSets";
-import {bindActionCreators} from "redux";
+import { mapDataSetsActions, mapDataSetsSelectors } from "../../../../redux/modules/map/dataSets";
+import { bindActionCreators } from "redux";
 import './styles.css';
-import { stringToGeoJson } from '../../../../Util';
+import { stringToGeoJson, getRandomPointFromGeojson } from '../../../../Util';
 
-const {Panel} = Collapse;
+const { Panel } = Collapse;
 
 
-const DataSets = ({layerCategories, changeOpacity}) => {
+const DataSets = ({ layerCategories, changeOpacity }) => {
 
     return (
-       
+
         <div className='DataSetsMenuItemDetails'>
             {
                 layerCategories.length > 0 ?
-                    <Collapse defaultActiveKey={[layerCategories[0].id]} style={{ height: '100%', overflowY: 'auto' }}>
+                    <Collapse defaultActiveKey={[layerCategories[0].id, layerCategories[1].id]} style={{ height: '100%', overflowY: 'auto' }}>
                         {
                             layerCategories.map((category) =>
                                 <Panel header={`${category.gn_description}`} key={category.id} >
@@ -34,7 +34,7 @@ const DataSets = ({layerCategories, changeOpacity}) => {
                         }
                     </Collapse> : ''
             }
-        </div>  
+        </div>
     );
 }
 
@@ -50,20 +50,27 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
     useEffect(() => {
 
         API.getCapabilities()
-            .then( res => setCapabilities(new WMSCapabilities().parse(res)));
+            .then(res => setCapabilities(new WMSCapabilities().parse(res)));
 
         API.getLayersCategories()
-            .then(({objects}) => {
-                const data = objects.filter(({count}) => count > 0);
+            .then(({ objects }) => {
+                const data = objects.filter(({ count }) => count > 0);
                 const withFieldNotes = [
                     {
-                    gn_description: 'Field Notes',
-                     id: 'field_notes',
-                     isNotGeonodeCategory: true,
-                     layers: [{name: 'Temeke Field Notes',typename: 'temeke_field_notes', id:'temeke_field_notes', isNotGeonodeLayer: true}]
+                        gn_description: 'Field Notes',
+                        id: 'field_notes',
+                        isNotGeonodeCategory: true,
+                        layers: [{ name: 'Temeke Field Notes', typename: 'temeke_field_notes', id: 'temeke_field_notes', isNotGeonodeLayer: true }]
                     },
-                      ...data
-                    ];
+
+                    {
+                        gn_description: 'Safeguard Concerns',
+                        id: 'safeguard_concerns',
+                        isNotGeonodeCategory: true,
+                        layers: [{ name: 'Temeke Safeguard Concerns', typename: 'temeke_safeguard_concerns', id: 'temeke_safeguard_concerns', isNotGeonodeLayer: true }]
+                    },
+                    ...data
+                ];
                 setLayerCategories(withFieldNotes);
             });
 
@@ -79,35 +86,46 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
         try {
             return mapLayers[layer.typename]?.setOpacity(value);
         }
-        catch(e) {
-            
-            return mapLayers[layer.typename]?.setStyle({opacity: value, fillOpacity: value});
+        catch (e) {
+
+            return mapLayers[layer.typename]?.setStyle({ opacity: value, fillOpacity: value });
 
         }
-       
+
     };
 
-    const getPoints = async () => {
+    const getPoints = async (id) => {
+        if(id === 'temeke_field_notes'){
         return API.getAssetData('aLD6RspTPyijYdA63icUZ4')
-        .then(({results}) => {
-            return results.map(({package: pkg, subProject, notes}) => 
-        notes.map(note => ({packageName: pkg, subProject, ...note, geoJSON: stringToGeoJson(note['notes/location'], 'geopoint')})))
-        .flat().map((data) => {
-            const { geoJSON, ...rest} = data;
-            geoJSON.properties = rest;
-            return geoJSON;
-        });
-        })
+            .then(({ results }) => {
+                return results.map(({ package: pkg, subProject, notes }) =>
+                    notes.map(note => ({ packageName: pkg, subProject, ...note, geoJSON: stringToGeoJson(note['notes/location'], 'geopoint') })))
+                    .flat().map((data) => {
+                        const { geoJSON, ...rest } = data;
+                        geoJSON.properties = rest;
+                        return geoJSON;
+                    });
+            })
+        }
+        if(id === 'temeke_safeguard_concerns') {
+            return API.get('safeguard_concerns')
+            .then(({data}) => {
+                return data.map(({sub_project}) => {
+                    const {geo_json} = sub_project;
+                    return getRandomPointFromGeojson(geo_json);
+                });
+            })
+        }
 
-        
+
     }
-            
+
 
     const addDataSet = async (dataSet) => {
 
         let dataSetLayer;
         if (dataSet.isNotGeonodeLayer) {
-            const points =  await getPoints(dataSet.id);
+            const points = await getPoints(dataSet.id);
             dataSetLayer = L.geoJSON(points, {
                 pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
                     radius: 5,
@@ -145,17 +163,17 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
 
 
     useEffect(() => {
-        if(addedDataSet) addDataSet(addedDataSet);
+        if (addedDataSet) addDataSet(addedDataSet);
     }, [addedDataSet]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
-        if(removedDataSet) removeDataSet(removedDataSet);
+        if (removedDataSet) removeDataSet(removedDataSet);
     }, [removedDataSet]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
     return (
         <div ref={ref} onMouseOver={() => map.dragging.disable()} onMouseOut={() => map.dragging.enable()}>
-            <div ref={drawerMuout}/>
+            <div ref={drawerMuout} />
             <img
                 src={LayerControlIcon}
                 alt='layers control'
@@ -170,10 +188,10 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                 className="map-drawer"
                 getContainer={drawerMuout.current}
                 width={450}
-                closeIcon={<CloseOutlined/>}
-                style={{position: 'absolute', zIndex: '1200'}}
+                closeIcon={<CloseOutlined />}
+                style={{ position: 'absolute', zIndex: '1200' }}
             >
-                <DataSets layerCategories={layerCategories} changeOpacity={changeOpacity}/>
+                <DataSets layerCategories={layerCategories} changeOpacity={changeOpacity} />
             </Drawer>
         </div>
     );

@@ -1,5 +1,6 @@
 import moment from "moment";
 import { Modal } from "antd";
+import * as turf from '@turf/turf';
 
 const { confirm } = Modal;
 
@@ -268,6 +269,20 @@ export const checkForPermission = (permissions, permission) => {
     return false;
   }
 };
+
+
+/**
+ * @function
+ * @name getRandomPointFromGeojson
+ * @description gets a random point from a geojson
+ * @param {Object} geoJSON 
+ * @returns {Object} geoJSON point
+ */
+ export const getRandomPointFromGeojson = (geoJSON) => {
+ const {features} = turf.explode(geoJSON);
+ return features.sort(() => 0.5 - Math.random())[0];
+ }
+
 
 /**
  * @function
