@@ -102,7 +102,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                     notes.map(note => ({ packageName: pkg, subProject, ...note, geoJSON: stringToGeoJson(note['notes/location'], 'geopoint') })))
                     .flat().map((data) => {
                         const { geoJSON, ...rest } = data;
-                        geoJSON.properties = rest;
+                        geoJSON.properties = {...rest, dataType: 'field_note'};
                         return geoJSON;
                     });
             })
@@ -110,9 +110,13 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
         if(id === 'temeke_safeguard_concerns') {
             return API.get('safeguard_concerns')
             .then(({data}) => {
-                return data.map(({sub_project}) => {
-                    const {geo_json} = sub_project;
-                    return getRandomPointFromGeojson(geo_json);
+                return data.map((safeguard_concern) => {
+                    const {sub_project, ...restOfSafeguardConcern} = safeguard_concern;
+                    const {geo_json, ...rest} = sub_project;
+                    const geoJSON =getRandomPointFromGeojson(geo_json);
+            
+                    geoJSON.properties = {sub_project: {...rest}, ...restOfSafeguardConcern, dataType: 'safeguard_concern'};
+                    return geoJSON;
                 });
             })
         }
@@ -127,16 +131,52 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
         if (dataSet.isNotGeonodeLayer) {
             const points = await getPoints(dataSet.id);
             dataSetLayer = L.geoJSON(points, {
-                pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
-                    radius: 5,
-                    fillColor: '#ff0000',
+                pointToLayer: (feature, latlng) => {
+                    if(feature.properties.dataType === 'field_note') return L.circleMarker(latlng, {
+                    radius: 7,
+                    fillColor: '#FFD700',
                     color: '#000',
                     weight: 1,
                     opacity: 1,
                     fillOpacity: 0.8
-                }),
+                })
+
+                if(feature.properties.dataType === 'safeguard_concern')
+                {
+                    const icon = L.icon({
+                        iconUrl: '/safeguard-concern-marker-icon.svg',
+                        iconSize: [15, 45],
+                        iconAnchor: [9, 33],
+                    });
+                    return L.marker(latlng, {icon});
+                } 
+                
+            
+            },
                 onEachFeature: (feature, layer) => {
-                    layer.bindPopup(`<div>Field note</div>`);
+                    if(feature.properties.dataType === 'field_note'){
+                        layer.bindPopup(`<div class='popup-content'>
+                        <div class='popup-content-header'>
+                            <div class='popup-content-header-subtitle'><b>SubPrject</b>: ${feature.properties.subProject}</div>
+                        </div>
+                        <div class='popup-content-body'>
+                        <div class='popup-content-body-text'><b>Notes</b>: ${feature.properties['notes/description']}</div>
+                        </div>
+                    </div>`);
+                    }
+
+                    if(feature.properties.dataType === 'safeguard_concern'){
+                        
+                        layer.bindPopup(`<div class='popup-content'>
+                        <div class='popup-content-header'>
+                            <div class='popup-content-header-subtitle'><b>SubPrject</b>: ${feature.properties.sub_project.name}</div>
+                        </div>
+                        <div class='popup-content-body'>
+                        <div class='popup-content-body-text'><b>Concern Type</b>: ${feature.properties.concern_type}</div>
+                        <div class='popup-content-body-text'><b>Issue</b>: ${feature.properties.issue}</div>
+                        </div>
+                    </div>`);
+                    }
                 }
             });
 
