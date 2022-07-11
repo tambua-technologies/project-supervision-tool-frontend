@@ -1,6 +1,6 @@
-import L from 'leaflet';
 
-describe('Projects', () => {
+
+describe('SubProjects Map', () => {
     
 
     before(() => {

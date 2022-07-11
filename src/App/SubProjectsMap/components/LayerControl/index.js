@@ -60,7 +60,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                     gn_description: 'Field Notes',
                      id: 'field_notes',
                      isNotGeonodeCategory: true,
-                     layers: [{name: 'Kinondoni Field Notes',typename: 'kinondoni_field_notes', id:'kinondoni_field_notes', isNotGeonodeLayer: true}]
+                     layers: [{name: 'Temeke Field Notes',typename: 'temeke_field_notes', id:'temeke_field_notes', isNotGeonodeLayer: true}]
                     },
                       ...data
                     ];
