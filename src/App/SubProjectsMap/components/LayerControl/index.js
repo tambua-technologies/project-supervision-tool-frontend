@@ -157,10 +157,11 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                     if(feature.properties.dataType === 'field_note'){
                         layer.bindPopup(`<div class='popup-content'>
                         <div class='popup-content-header'>
-                            <div class='popup-content-header-subtitle'><b>SubPrject</b>: ${feature.properties.subProject}</div>
+                            <div class='popup-content-header-subtitle'> <b>${feature.properties.subProject} </b></div>
                         </div>
                         <div class='popup-content-body'>
                         <div class='popup-content-body-text'><b>Notes</b>: ${feature.properties['notes/description']}</div>
+                        <img src='/safeguard-concern-marker-icon.svg' alt='field image' class='popup-content-body-image'/>
                         </div>
                     </div>`);
                     }
@@ -169,7 +170,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                         
                         layer.bindPopup(`<div class='popup-content'>
                         <div class='popup-content-header'>
-                            <div class='popup-content-header-subtitle'><b>SubPrject</b>: ${feature.properties.sub_project.name}</div>
+                            <div class='popup-content-header-subtitle'> <b>${feature.properties.sub_project.name} </b> </div>
                         </div>
                         <div class='popup-content-body'>
                         <div class='popup-content-body-text'><b>Concern Type</b>: ${feature.properties.concern_type}</div>
