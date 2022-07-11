@@ -94,12 +94,20 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
 
     };
 
+    const getFieldNoteImageUrl = (attachments, name) => {
+        const nameWithRemovedSpaces = name.replace(/\s/g, "_");
+        const {download_small_url = ''} = attachments.find((attachment) => attachment.filename.includes(nameWithRemovedSpaces)) || {};
+      
+        return download_small_url.replace('?format=json', '');
+      
+      };
+
     const getPoints = async (id) => {
         if(id === 'temeke_field_notes'){
         return API.getAssetData('aLD6RspTPyijYdA63icUZ4')
             .then(({ results }) => {
-                return results.map(({ package: pkg, subProject, notes }) =>
-                    notes.map(note => ({ packageName: pkg, subProject, ...note, geoJSON: stringToGeoJson(note['notes/location'], 'geopoint') })))
+                return results.map(({ package: pkg, subProject, notes, _attachments }) =>
+                    notes.map(note => ({ packageName: pkg, subProject,imageUrl: getFieldNoteImageUrl(_attachments, note['notes/photo']), ...note, geoJSON: stringToGeoJson(note['notes/location'], 'geopoint') })))
                     .flat().map((data) => {
                         const { geoJSON, ...rest } = data;
                         geoJSON.properties = {...rest, dataType: 'field_note'};
@@ -161,7 +169,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                         </div>
                         <div class='popup-content-body'>
                         <div class='popup-content-body-text'><b>Notes</b>: ${feature.properties['notes/description']}</div>
-                        <img src='/safeguard-concern-marker-icon.svg' alt='field image' class='popup-content-body-image'/>
+                        <img src='${feature.properties.imageUrl}' alt='field image' class='popup-content-body-image'/>
                         </div>
                     </div>`);
                     }
