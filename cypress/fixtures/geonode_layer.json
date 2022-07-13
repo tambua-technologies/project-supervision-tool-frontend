@@ -1,0 +1,81 @@
+{
+    "geonode_version": "3.2.4",
+    "meta": {
+        "limit": 1000,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 1
+    },
+    "objects": [
+        {
+            "abstract": "<p>No abstract provided</p>",
+            "alternate": "geonode:msimbazi_charrette_boundary_20180706",
+            "bbox_polygon": "SRID=4326;POLYGON ((512758.8431000002 9239008.6963, 512758.8431000002 9249881.465700001, 531611.1355999997 9249881.465700001, 531611.1355999997 9239008.6963, 512758.8431000002 9239008.6963))",
+            "category__gn_description": "Boundaries",
+            "constraints_other": "",
+            "csw_type": "dataset",
+            "csw_wkt_geometry": "SRID=4326;POLYGON ((39.11546401429331 -6.884581323379906, 39.11546401429331 -6.786155548609559, 39.28612953296545 -6.786155548609559, 39.28612953296545 -6.884581323379906, 39.11546401429331 -6.884581323379906))",
+            "data_quality_statement": "",
+            "date": "2022-07-05T13:10:00",
+            "date_type": "publication",
+            "default_style": "/api/styles/8/",
+            "detail_url": "/layers/my_geonode_data:geonode:msimbazi_charrette_boundary_20180706",
+            "dirty_state": false,
+            "edition": null,
+            "gtype": null,
+            "has_time": false,
+            "id": 13,
+            "is_approved": true,
+            "is_published": true,
+            "keywords": [
+                "project-supervision-tool:data-sets"
+            ],
+            "language": "eng",
+            "license": 1,
+            "links": [
+                {
+                    "extension": "html",
+                    "link_type": "OGC:WMS",
+                    "mime": "text/html",
+                    "name": "OGC WMS: geonode Service",
+                    "url": "https://geonode.projectsupervisiontool.ga/geoserver/ows"
+                },
+                {
+                    "extension": "html",
+                    "link_type": "OGC:WFS",
+                    "mime": "text/html",
+                    "name": "OGC WFS: geonode Service",
+                    "url": "https://geonode.projectsupervisiontool.ga/geoserver/ows"
+                }
+            ],
+            "maintenance_frequency": null,
+            "metadata_only": false,
+            "name": "msimbazi_charrette_boundary_20180706",
+            "online": true,
+            "owner__username": "admin",
+            "owner_name": "admin",
+            "popular_count": 0,
+            "processed": true,
+            "purpose": "",
+            "rating": 0,
+            "regions": [
+                "Global"
+            ],
+            "resource_uri": "/api/layers/13/",
+            "restriction_code_type": null,
+            "share_count": 0,
+            "site_url": "https://geonode.projectsupervisiontool.ga/",
+            "spatial_representation_type": null,
+            "srid": "EPSG:32737",
+            "store_type": "dataStore",
+            "supplemental_information": "<p>No information provided</p>",
+            "temporal_extent_end": null,
+            "temporal_extent_start": null,
+            "thumbnail_url": "https://geonode.projectsupervisiontool.ga/uploaded/thumbs/layer-d48d9d66-fc63-11ec-b456-0242ac120009-thumb-bdcdcc30-1e7c-4dfe-b7f9-4009a73c5f9c.png",
+            "title": "msimbazi_charrette_boundary_20180706",
+            "typename": "geonode:msimbazi_charrette_boundary_20180706",
+            "uuid": "d48d9d66-fc63-11ec-b456-0242ac120009"
+        }
+    ]
+}

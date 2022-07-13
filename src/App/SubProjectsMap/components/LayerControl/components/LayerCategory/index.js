@@ -12,7 +12,11 @@ function PanelContents ({ layer, changeOpacity}) {
 
     const handleOnStepChange = (value) =>  changeOpacity(value, layer);
 
-    return <DecimalStep onStepChange={handleOnStepChange}/>
+    return (
+        <div data-testid={`transparence-${layer.id}`}>
+            <DecimalStep onStepChange={handleOnStepChange} />
+        </div>
+    );
 }
 
 function LayerCategory({category, changeOpacity, isNotGeonodeCategory}) {
