@@ -57,11 +57,7 @@ Cypress.Commands.add('Wrong_credentials', (username, password) => {
     cy.get('.Logo + div').should('contain', 'These credentials do not match our records');
 })
 
-Cypress.Commands.add('Refresh', (url, response) => {
-    console.log(url, response)
-    cy.intercept('GET', url, {fixture: response});
-    cy.get('[data-cy=reflesh]').find('span').should('contain', 'Refresh').click()
-    cy.get('.ant-spin-spinning').should('have.css', 'font-size', '14px')
-    cy.get('.List ul > div').should(($item) => { expect($item).to.have.length(3) });
-
+Cypress.Commands.add('SignOut', (url, response) => {
+    cy.get('.UserButton').click();
+    cy.contains('Sign Out').click();
 })

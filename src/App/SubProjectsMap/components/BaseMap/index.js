@@ -47,7 +47,11 @@ const BaseMap = ({children, position, zoom = null }) => {
     useEffect(() => {
         document.querySelector('.base-layout__content').style.padding = '0px';
 
-        return () => document.querySelector('.base-layout__content').style.padding = '24px';
+        return () => {
+            if(document.querySelector('.base-layout__content')) {
+                document.querySelector('.base-layout__content').style.padding = '24px';
+            }
+        };
     });
 
     const whenCreated = (map) => {
