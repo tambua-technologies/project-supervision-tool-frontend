@@ -4,12 +4,12 @@ describe('Field Notes', () => {
     
 
     before(() => {
-        cy.Signin('testing@project-supervision-tool.com', 'Pass@Tool');
         cy.intercept({
             method: 'GET',
             url: '/api/v1/sub_projects_locations'
         }, 
         { fixture: 'SubProjects/empty_sub_projects.json' });
+        cy.Signin('testing@project-supervision-tool.com', 'Pass@Tool');
         cy.get('.geonode-layers-control').click('center', { force: true });
     });
 
