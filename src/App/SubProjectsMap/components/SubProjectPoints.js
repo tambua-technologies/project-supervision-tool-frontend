@@ -40,7 +40,7 @@ function SubProjectPoints({ subProjects }) {
     return (
         <>
             {subProjects.filter(s => s?.geo_json?.geometry).map((subProject) => {
-                const { name, id, geo_json } = subProject;
+                const { id, geo_json } = subProject;
                 
                 return (
                     <div>
