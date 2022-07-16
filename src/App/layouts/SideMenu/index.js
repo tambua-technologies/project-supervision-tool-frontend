@@ -49,7 +49,7 @@ const getMenuItems = (menuKeys) => {
     {
       key: safeguardConcerns,
       icon: React.createElement(CustomIcon),
-      label: 'Safeguard Concerns',
+      label: 'EHS and Safeguards',
     },
     {
       key: contracts,
