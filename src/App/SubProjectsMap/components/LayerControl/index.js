@@ -16,6 +16,10 @@ import { stringToGeoJson, getRandomPointFromGeojson } from '../../../../Util';
 
 const { Panel } = Collapse;
 
+// utilities
+const getWMSUrl = links => links.find(({link_type}) => link_type === 'OGC:WMS').url;
+const getGeonodeLayerId = layer => layer.typename || layer.alternate;
+
 
 const DataSets = ({ layerCategories, changeOpacity }) => {
 
@@ -42,16 +46,11 @@ const DataSets = ({ layerCategories, changeOpacity }) => {
 const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLayer }) => {
     const [mapLayers, setMapLayers] = useState({});
     const [showSideNav, setShowSideNav] = useState(false);
-    const [capabilities, setCapabilities] = useState({});
     const [layerCategories, setLayerCategories] = useState([]);
     const ref = useRef();
     const drawerMuout = useRef();
     const map = useMap();
     useEffect(() => {
-
-        API.getCapabilities()
-            .then(res => setCapabilities(new WMSCapabilities().parse(res)));
-
         API.getLayersCategories()
             .then(({ objects }) => {
                 const data = objects.filter(({ count }) => count > 0);
@@ -62,7 +61,6 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                         isNotGeonodeCategory: true,
                         layers: [{ name: 'Temeke Field Notes', typename: 'temeke_field_notes', id: 'temeke_field_notes', isNotGeonodeLayer: true }]
                     },
-
                     {
                         gn_description: 'Safeguard Concerns',
                         id: 'safeguard_concerns',
@@ -83,12 +81,13 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
 
 
     const changeOpacity = (value, layer) => {
+        const layerId = getGeonodeLayerId(layer);
         try {
-            return mapLayers[layer.typename]?.setOpacity(value);
+            return mapLayers[layerId]?.setOpacity(value);
         }
         catch (e) {
 
-            return mapLayers[layer.typename]?.setStyle({ opacity: value, fillOpacity: value });
+            return mapLayers[layerId]?.setStyle({ opacity: value, fillOpacity: value });
 
         }
 
@@ -132,10 +131,12 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
 
     }
 
+    
 
     const addDataSet = async (dataSet) => {
 
         let dataSetLayer;
+        const layerId = getGeonodeLayerId(dataSet);
         if (dataSet.isNotGeonodeLayer) {
             const points = await getPoints(dataSet.id);
             dataSetLayer = L.geoJSON(points, {
@@ -191,22 +192,26 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
 
         }
         else {
-            dataSetLayer = L.tileLayer.wms(`${process.env.REACT_APP_GEONODE_URL}/geoserver/ows`, {
-                layers: dataSet.typename,
+            const url = getWMSUrl(dataSet.links);
+            const layerId = getGeonodeLayerId(dataSet);
+            dataSetLayer = L.tileLayer.wms(url, {
+                layers: layerId,
                 format: 'image/png',
                 transparent: true,
             });
         }
 
-        mapLayers[dataSet.typename] = dataSetLayer;
+        
+        mapLayers[layerId] = dataSetLayer;
         setMapLayers(mapLayers);
         map.addLayer(dataSetLayer);
     }
 
 
     const removeDataSet = (dataSet) => {
-        map.removeLayer(mapLayers[dataSet.typename]);
-        delete mapLayers[dataSet.typename] // delete property of removed layer
+        const layerId = getGeonodeLayerId(dataSet);
+        map.removeLayer(mapLayers[layerId]);
+        delete mapLayers[layerId] // delete property of removed layer
         setMapLayers(mapLayers);
     }
 
