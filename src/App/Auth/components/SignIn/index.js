@@ -37,8 +37,10 @@ const SignIn = () => {
         .then(res => {
             // save access token to local storage
             localStorage.setItem("accessToken", res.data.access_token);
+            localStorage.setItem("user", JSON.stringify(res.data.user));
+            const {procuringEntity} = res.data.user;
             setLoading(false);
-            history.push('/procuring_entity/1/sub-projects-map');
+           history.push(`/procuring_entity/${procuringEntity.id}/sub-projects-map`);
             
         })
         .catch( err => {
