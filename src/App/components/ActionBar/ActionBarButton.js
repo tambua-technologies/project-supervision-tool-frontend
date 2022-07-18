@@ -1,12 +1,18 @@
 import React from "react";
 import { Button } from "antd";
 
+const slugfyText = (text) => {
+  return text.toLowerCase().replace(/ /g, "-");
+}
+
 const ActionBarButton = (props) => {
     const { btnName, btnAction, btnType } = props;
+    const fileUploadId = slugfyText(btnName);
+    
   
     const triggerFileUpload = (e) => {
       e.preventDefault();
-      document.getElementById("file-upload-input").click();
+      document.getElementById(fileUploadId).click();
     }
   
   
@@ -15,7 +21,8 @@ const ActionBarButton = (props) => {
         <input
           type="file"
           name="file"
-          id="file-upload-input"
+          id={fileUploadId}
+
           className="visuallyhidden"
           onChange={btnAction}
         />
