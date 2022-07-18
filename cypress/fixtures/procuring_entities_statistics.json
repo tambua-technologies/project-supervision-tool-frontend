@@ -1,0 +1,103 @@
+{
+    "success": true,
+    "data": {
+        "packages": 4,
+        "contractors": 4,
+        "subProjects": 4,
+        "reports": [
+            {
+                "id": 5,
+                "report_title": "MONTHLY PROGRESS REPORT NO. 60",
+                "summary": "This is the Supervision Consultant’s Progress Report No.59 which provides an update on the Contractor's and the Consultant's activities undertaken during the reporting period; 1st May,2021to 31st May, 2021.",
+                "report_number": 60,
+                "start": "2021-05-01T00:00:00.000000Z",
+                "end": "2021-05-31T00:00:00.000000Z",
+                "procuring_entity_id": 1,
+                "created_at": "2022-07-13T08:54:49.000000Z",
+                "updated_at": "2022-07-13T08:54:49.000000Z",
+                "deleted_at": null
+            },
+            {
+                "id": 4,
+                "report_title": "MONTHLY PROGRESS REPORT NO. 60",
+                "summary": "This is the Supervision Consultant’s Progress Report No.59 which provides an update on the Contractor's and the Consultant's activities undertaken during the reporting period; 1st May,2021to 31st May, 2021.",
+                "report_number": 60,
+                "start": "2021-05-01T00:00:00.000000Z",
+                "end": "2021-05-31T00:00:00.000000Z",
+                "procuring_entity_id": 1,
+                "created_at": "2022-07-11T13:09:11.000000Z",
+                "updated_at": "2022-07-11T13:09:11.000000Z",
+                "deleted_at": null
+            },
+            {
+                "id": 3,
+                "report_title": "MONTHLY PROGRESS REPORT NO. 60",
+                "summary": "This is the Supervision Consultant’s Progress Report No.59 which provides an update on the Contractor's and the Consultant's activities undertaken during the reporting period; 1st May,2021to 31st May, 2021.",
+                "report_number": 60,
+                "start": "2021-05-01T00:00:00.000000Z",
+                "end": "2021-05-31T00:00:00.000000Z",
+                "procuring_entity_id": 1,
+                "created_at": "2022-07-11T11:29:09.000000Z",
+                "updated_at": "2022-07-11T11:29:09.000000Z",
+                "deleted_at": null
+            },
+            {
+                "id": 2,
+                "report_title": "MONTHLY PROGRESS REPORT NO. 60",
+                "summary": "This is the Supervision Consultant’s Progress Report No.59 which provides an update on the Contractor's and the Consultant's activities undertaken during the reporting period; 1st May,2021to 31st May, 2021.",
+                "report_number": 60,
+                "start": "2021-05-01T00:00:00.000000Z",
+                "end": "2021-05-31T00:00:00.000000Z",
+                "procuring_entity_id": 1,
+                "created_at": "2022-07-11T11:19:08.000000Z",
+                "updated_at": "2022-07-11T11:19:08.000000Z",
+                "deleted_at": null
+            },
+            {
+                "id": 1,
+                "report_title": "MONTHLY PROGRESS REPORT NO. 60",
+                "summary": "This is the Supervision Consultant’s Progress Report No.59 which provides an update on the Contractor's and the Consultant's activities undertaken during the reporting period; 1st May,2021to 31st May, 2021.",
+                "report_number": 60,
+                "start": "2021-05-01T00:00:00.000000Z",
+                "end": "2021-05-31T00:00:00.000000Z",
+                "procuring_entity_id": 1,
+                "created_at": "2022-07-11T11:18:08.000000Z",
+                "updated_at": "2022-07-11T11:18:08.000000Z",
+                "deleted_at": null
+            }
+        ],
+        "package_progress": [
+            {
+                "package_id": 1,
+                "id": 3,
+                "package_contract_id": 1,
+                "actual_physical_progress": "99",
+                "planned_physical_progress": "100",
+                "actual_financial_progress": "80",
+                "planned_financial_progress": null,
+                "progress_date": "2021-05-31",
+                "created_at": "2022-07-11 11:19:08",
+                "updated_at": "2022-07-11 11:19:08",
+                "deleted_at": null,
+                "package_name": "Package 1",
+                "package_description": " Kijichi-Tuangoma Bridge & Approach Road and\nMwanamtoti Road"
+            },
+            {
+                "package_id": 2,
+                "id": 10,
+                "package_contract_id": 2,
+                "actual_physical_progress": "60",
+                "planned_physical_progress": "80",
+                "actual_financial_progress": "50",
+                "planned_financial_progress": null,
+                "progress_date": "2021-05-31",
+                "created_at": "2022-07-13 08:54:49",
+                "updated_at": "2022-07-13 08:54:49",
+                "deleted_at": null,
+                "package_name": "Package 2 & 3",
+                "package_description": "Chang’ombe, Mchicha and Temeke – Mbagala road"
+            }
+        ]
+    },
+    "message": "ProcuringEntity statistics fetched successfully"
+}

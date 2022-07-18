@@ -89,7 +89,7 @@ const SafeguardConcerns = ({ match }) => {
           actionButtonProp={{
             title: "EHS and Safeguards",
             arrActions: [
-              {btnName: 'Import EHS and Safeguards', btnAction: handleOnUploadSafeguardConcerns, btnType: 'upload'}
+              {btnName: 'Import EHS or safeguard concerns', btnAction: handleOnUploadSafeguardConcerns, btnType: 'upload'}
             ],
           }}
           headerLayout={headerLayout}
