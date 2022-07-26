@@ -11,6 +11,7 @@ function SubProjectsMap() {
     
 
     useEffect(() => {
+        console.log("useEffect");
         setLoading(true);
         API.get('sub_projects_locations')
                 .then(res => {

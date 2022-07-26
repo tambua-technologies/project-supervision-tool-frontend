@@ -33,7 +33,6 @@ Cypress.Commands.add('Signin', (username, password) => {
     cy.get('#email').type(username);
     cy.get('#password').type(password);
 
-    cy.intercept('GET', '/api/v1/users/auth_user', { fixture: 'Auth/auth_user_200.json' }).as('auth_user');
     cy.intercept('POST', '/api/v1/focal_people/login', { fixture: 'Auth/login_200.json' }).as('login');
 
     cy.get('button[type=submit]').should('exist').should('contain', 'Log In').click();

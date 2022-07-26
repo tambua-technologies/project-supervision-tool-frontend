@@ -23,7 +23,7 @@ const BaseLayout = (props) => {
     const user = JSON.parse(localStorage.getItem('user'));
     setProcuringEntity(user?.procuringEntity);
 
-  });
+  }, []);
 
   const [collapsed, setCollapsed] = useState(false);
 
