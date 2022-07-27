@@ -5,15 +5,21 @@ import "./styles.css";
 import SubProjectPoints from './components/SubProjectPoints';
 import API from '../../API';
 
-function SubProjectsMap() {
+function SubProjectsMap(props) {
     const [subProjects, setSubProjects] = useState([]);
     const [loading, setLoading] = useState(false);
+    const {match: { params: {procuringEntityId}}} = props;
+
+    console.log("SubProjectsMap props: ", props);
     
 
     useEffect(() => {
         console.log("useEffect");
         setLoading(true);
-        API.get('sub_projects_locations')
+        const filter = {
+            'filter[procuring_entity_id]': procuringEntityId
+        };
+        API.get('sub_projects_locations',filter)
                 .then(res => {
                     setSubProjects(res);
                     setLoading(false);
