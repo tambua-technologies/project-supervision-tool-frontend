@@ -7,6 +7,7 @@ import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import API from "../../API";
 import { API_BASE_URL } from "../../API/config";
+import { PROCURING_ENTITY_REPORTS_ENDPOINT } from "../../API/endpoints";
 import {
   ProcuringEntityActions,
   ProcuringEntitySelectors,
@@ -32,9 +33,9 @@ function Reports({ match }) {
 
   const getReports = async (id) => {
     setIsLoading(true);
-    const payload = `filter[procuring_entity_id]=${id}`;
-    const response = await API.getProcuringEntitiesProgressReports(payload);
-    setReports(response.data);
+    const filter = {'filter[procuring_entity_id]': id};
+    const response = await API.get(PROCURING_ENTITY_REPORTS_ENDPOINT, filter);
+    setReports(response);
     setIsLoading(false);
   };
 
