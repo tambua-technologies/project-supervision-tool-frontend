@@ -96,16 +96,25 @@ const FieldNotes = (props) => {
   
   
   }
+
+  const getProcuringEntity = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const {agency, ...rest} = user.procuringEntity
+    return {...rest, ...agency};
+  }
   
   const prepareFieldNotes = (fieldNotes) => {
-    return fieldNotes.map((fieldNote) => {
+    const procuringEntity = getProcuringEntity();
+    const procuringEntityName = procuringEntity.name.toLowerCase();
+    return fieldNotes.filter(({Procuring_Entity}) => Procuring_Entity.toLowerCase() === procuringEntityName)
+    .map((fieldNote) => {
       const {notes} = fieldNote;
       return notes.map((note) => {
         const photo = getAttachMentUrl(fieldNote._attachments, note['notes/photo']);
         const location = prepareLocationValue(note['notes/location']);
   
         return ({
-          package: removeUnderScoresInText(fieldNote?.package || 'N/A'),
+          package: removeUnderScoresInText(fieldNote[`${procuringEntityName}_package`] ?? 'N/A'),
           subProject: removeUnderScoresInText(fieldNote?.subProject || 'N/A'),
           description: note['notes/description'],
            location,
