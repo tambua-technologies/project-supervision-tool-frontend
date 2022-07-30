@@ -29,6 +29,7 @@ import ActionBar from "../ActionBar";
  * @since 0.1.0
  */
 const CustomList = ({
+  datatestid,
   itemName,
   items,
   page,
@@ -105,6 +106,7 @@ const CustomList = ({
         <ListHeader headerLayout={headerLayout} />
 
         <List
+          data-testid={datatestid}
           loading={loading}
           dataSource={items}
           renderItem={(item) =>
@@ -133,12 +135,14 @@ CustomList.propTypes = {
   onMapView: PropTypes.func.isRequired,
   generateExportUrl: PropTypes.func,
   renderListItem: PropTypes.func.isRequired,
+  datatestid: PropTypes.string,
 };
 
 CustomList.defaultProps = {
   generateExportUrl: null,
   onPaginate: null,
   onMapView: null,
+  datatestid: "",
 };
 
 export default CustomList;

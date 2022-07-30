@@ -31,13 +31,8 @@ import { AppContext } from "./context/AppContext";
 
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{ fontSize: 24 }} spin />);
-function App(props) {
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      props.reloadPage();
-    }
-  });
+function App() {
+  
 
   return (
     <AppContext.Provider value={{sideMenuKeys}}>

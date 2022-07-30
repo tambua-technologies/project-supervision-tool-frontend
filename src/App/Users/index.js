@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import API from "../../API";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import UsersForm from "./usersForm";
 import { Drawer, Col } from "antd";
-import UserDrawer from "../components/UserDrawer";
 import { API_BASE_URL } from "../../API/config";
 
-import { isoDateToHumanReadableDate } from "../../Util";
 const name = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 10, xs: 20 };
 const title = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 10, xs: 0 };
 const organization = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
@@ -25,25 +22,24 @@ const headerLayout = [
 ];
 
 const UsersList = ({ match }) => {
-  const [reports, setReports] = useState([]);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
 
-  const getReports = async (id) => {
+
+  const getUsers = () => {
     setIsLoading(true);
-    const payload = `filter[procuring_entity_id]=${id}`;
-    const response = await API.getProcuringEntitiesProgressReports(payload);
-    setReports(response.data);
-    setIsLoading(false);
-    let res = await API.get("users");
-    console.log(res.data);
-    setUsers(res.data);
-  };
-
+    API.get("users")
+    .then(res => {
+      setIsLoading(false);
+      setUsers(res.data);
+    })
+    .catch(err => {
+      setIsLoading(false);
+      console.log('error fetching users', err);
+    })
+  }
   useEffect(() => {
-    const { procuringEntityId } = match.params;
-    getReports(procuringEntityId);
+    getUsers();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const [visible, setVisible] = useState(false);
 
@@ -59,6 +55,7 @@ const UsersList = ({ match }) => {
       <div>
         {/* list starts */}
         <CustomList
+          datatestid="users-list"
           itemName="Progress Reports"
           title={"Report"}
           actionButtonProp={{
@@ -74,7 +71,7 @@ const UsersList = ({ match }) => {
           page={1}
           itemCount={users.length}
           loading={isLoading}
-          onRefresh={() => getReports()}
+          onRefresh={() => getUsers()}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
             <ListItem
