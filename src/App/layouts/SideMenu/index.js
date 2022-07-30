@@ -12,7 +12,7 @@ import { AppContext } from '../../../context/AppContext';
 const CustomIcon = () => (<span className="CustomIcon" />)
 
 const getMenuItems = (menuKeys) => {
-  const { map, overview, packages, subProjects, reports, fieldNotes, safeguardConcerns } = menuKeys;
+  const { map, overview, packages, subProjects, reports, fieldNotes, safeguardConcerns, users, roles } = menuKeys;
 
   return  [
     {
@@ -50,6 +50,17 @@ const getMenuItems = (menuKeys) => {
       key: safeguardConcerns,
       icon: <CustomIcon />,
       label: 'EHS and Safeguards',
+    },
+    {
+      key: users,
+      icon: <CustomIcon />,
+      label: 'Users',
+    }
+    ,
+    {
+      key: roles,
+      icon: <CustomIcon />,
+      label: 'Roles & Permissions',
     }
   ];
 }
