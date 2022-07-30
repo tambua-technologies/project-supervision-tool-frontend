@@ -7,9 +7,9 @@ describe('Users', () => {
         cy.Signin('testing@project-supervision-tool.com', 'Pass@Tool');
     });
 
-    // after(() => {
-    //     cy.SignOut();
-    // });
+    after(() => {
+        cy.SignOut();
+    });
 
     it('should should display users list', () => {
         cy.visit('http://localhost:3000/#!/procuring_entity/1/users');
@@ -19,6 +19,7 @@ describe('Users', () => {
         }, 
         { fixture: 'Users/users.json' }).as('getUsers');
         cy.wait('@getUsers');
+        cy.contains('6 Users').should('be.visible');
 
         
 

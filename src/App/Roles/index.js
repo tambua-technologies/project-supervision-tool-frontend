@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import API from "../../API";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import { Drawer, Col } from "antd";
 import UsersForm from "../Users/usersForm";
-import UserDrawer from "../components/UserDrawer";
 import { API_BASE_URL } from "../../API/config";
-import { isoDateToHumanReadableDate } from "../../Util";
 const name = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 10, xs: 20 };
 const Description = { xxl: 7, xl: 7, lg: 7, md: 7, sm: 10, xs: 0 };
 const permission = { xxl: 7, xl: 7, lg: 7, md: 7, sm: 0, xs: 0 };
@@ -18,28 +15,29 @@ const headerLayout = [
   { ...Description, header: "Description" },
   { ...permission, header: "Permission" },
 ];
-const Roles = ({ match }) => {
-  const [reports, setReports] = useState([]);
+const Roles = () => {
   const [roles, setRoles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
+  const [visible, setVisible] = useState(false);
 
-  const getReports = async (id) => {
+  const getRoles = (id) => {
     setIsLoading(true);
-    const payload = `filter[procuring_entity_id]=${id}`;
-    const response = await API.getProcuringEntitiesProgressReports(payload);
-    setReports(response.data);
-    setIsLoading(false);
-    const res = await API.get("roles");
-    console.log(res);
-    setRoles(res);
+    API.get("roles")
+      .then(res => {
+        setIsLoading(false);
+        setRoles(res);
+      })
+      .catch(err => {
+        setIsLoading(false);
+        console.log('error fetching roles', err);
+      }
+      )
   };
 
   useEffect(() => {
-    const { procuringEntityId } = match.params;
-    getReports(procuringEntityId);
+    getRoles()
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  const [visible, setVisible] = useState(false);
+
 
   const showDrawer = () => {
     setVisible(true);
@@ -53,8 +51,9 @@ const Roles = ({ match }) => {
       <div>
         {/* list starts */}
         <CustomList
-          itemName="Progress Reports"
-          title={"Report"}
+          itemName="Role"
+          datatestid="roles-list"
+          title={"User Roles"}
           actionButtonProp={{
             title: "User Roles",
             arrActions: [
@@ -68,7 +67,7 @@ const Roles = ({ match }) => {
           page={1}
           itemCount={roles.length}
           loading={isLoading}
-          onRefresh={() => getReports()}
+          onRefresh={() => getRoles()}
           headerLayout={headerLayout}
           renderListItem={({ item }) => (
             <ListItem
@@ -80,10 +79,10 @@ const Roles = ({ match }) => {
                   downloadReport={
                     item?.media
                       ? {
-                          name: "Download Report",
-                          title: "Click to download the report",
-                          url: `${API_BASE_URL}/api/v1/procuring_entity_reports/${item?.media?.id}`,
-                        }
+                        name: "Download Report",
+                        title: "Click to download the report",
+                        url: `${API_BASE_URL}/api/v1/procuring_entity_reports/${item?.media?.id}`,
+                      }
                       : undefined
                   }
                 />
@@ -124,13 +123,6 @@ const Roles = ({ match }) => {
             permissionInp={true}
           />
         </Drawer>
-        <UserDrawer>
-          <UsersForm
-            roleNameInp={true}
-            descriptionInpt={true}
-            permissionInp={true}
-          />
-        </UserDrawer>
       </div>
     </>
   );

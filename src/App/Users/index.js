@@ -56,7 +56,7 @@ const UsersList = ({ match }) => {
         {/* list starts */}
         <CustomList
           datatestid="users-list"
-          itemName="Progress Reports"
+          itemName="User"
           title={"Report"}
           actionButtonProp={{
             title: "Users",
