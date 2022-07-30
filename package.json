@@ -52,7 +52,7 @@
     "start:debug:linux": "BROWSER='google-chrome' BROWSER_ARGS='--remote-debugging-port=9222' react-scripts start",
     "cypress:open": "cypress open",
     "commit": "cz",
-    "build": "react-scripts build",
+    "build": "CI=false react-scripts build",
     "deploy": "aws s3 sync build/ s3://projectsupervisiontool --acl public-read",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -74,7 +74,7 @@
   },
   "devDependencies": {
     "commitizen": "^4.2.2",
-    "cypress": "^9.5.1",
+    "cypress": "^10.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "redux-mock-store": "^1.5.4"
   },

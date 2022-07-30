@@ -7,7 +7,6 @@ import {
 } from "../../../../redux/modules/ProcuringEntities";
 import PropTypes from "prop-types";
 import { Col, Drawer } from "antd";
-import Topbar from "../../../components/Topbar";
 import CustomList from "../../../components/List";
 import ListItem from "../../../components/ListItem";
 import ListItemActions from "../../../components/ListItemActions";
@@ -17,8 +16,6 @@ import {
   projectSelectors,
 } from "../../../../redux/modules/projects";
 import ProcuringEntityForm from "../Form";
-import BaseLayout from "../../../layouts/BaseLayout";
-import DynamicBreadcrumbs from "../../../components/DynamicBreadcrumbs";
 import { useToggle } from "../../../../hooks/useToggle";
 import "./styles.css";
 
@@ -51,7 +48,6 @@ const ProcuringEntitiesList = ({
   match,
   getProject,
   searchProcuring,
-  searchQuery,
 }) => {
   const { isEditForm, setIsEditForm, setVisible } = useToggle(false);
   const projectId = getIdFromUrlPath(match.path, 2);
@@ -113,26 +109,6 @@ const ProcuringEntitiesList = ({
   const handleSearch = (event) => {
     searchProcuring(event.target.value);
   };
-
-  const breadcrumbs = project
-    ? [
-        {
-          title: "Projects",
-          url: "/projects",
-          name: "Projects",
-        },
-        {
-          title: project.code,
-          url: `/projects/${project.id}`,
-          name: project.name,
-        },
-        {
-          title: `Procuring Entities`,
-          url: match.url,
-          name: `Procuring Entities under ${project.name}(${project.code})`,
-        },
-      ]
-    : [];
 
   return (
     <div>

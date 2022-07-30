@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout } from 'antd';
 import NavigationBar from './NavigationBar';
 import Logo from './Logo';
@@ -12,9 +12,18 @@ const { Header, Content, Sider } = Layout;
 
 
 const BaseLayout = (props) => {
+  const [procuringEntity, setProcuringEntity] = useState(null);
   const {
     match: { url: baseUrl, params },
   } = props;
+
+  useEffect(() => {
+
+    // get user from local storage
+    const user = JSON.parse(localStorage.getItem('user'));
+    setProcuringEntity(user?.procuringEntity);
+
+  }, []);
 
   const [collapsed, setCollapsed] = useState(false);
 
@@ -25,7 +34,7 @@ const BaseLayout = (props) => {
           <Logo collapsed={collapsed}  setCollapsed={setCollapsed}/>
         </Header>
         <Header className='base-layout-sider__menu-header'>
-          { !collapsed && <div>Temeke</div> }
+          { !collapsed && <div>{procuringEntity?.agency?.name}</div> }
         </Header>
         <SideMenu baseUrl={baseUrl} collapsed={collapsed} />
       </Sider>

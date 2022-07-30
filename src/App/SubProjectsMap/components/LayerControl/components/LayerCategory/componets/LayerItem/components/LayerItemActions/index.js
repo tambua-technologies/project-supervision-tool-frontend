@@ -13,6 +13,7 @@ function LayerItemActions({remove, add, layer}) {
         <div className='LayerItemActions'>
             <div
                 className='add'
+                data-testid={`add-${layer.id}`}
                 title='Add layer on map'
                 style={{'display': close ? 'none' : 'block'}}
                 onClick={() => {
@@ -25,6 +26,7 @@ function LayerItemActions({remove, add, layer}) {
             </div>
             <div
                 className='close'
+                data-testid={`close-${layer.id}`}
                 style={{'display': close ? 'block' : 'none'}}
                 onClick={() => {
                     setClose(false);

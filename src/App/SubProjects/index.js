@@ -58,7 +58,10 @@ const SubProjects = (props) => {
 
   const getSubProjects = () => {
     setIsLoading(true);
-    API.get(GET_SUBPROJECTS_ENDPOINT)
+    const filter = {
+      'filter[procuring_entity_id]': match.params.procuringEntityId
+    };
+    API.get(GET_SUBPROJECTS_ENDPOINT, filter)
   .then(res => {
     setSubProjects(res.data);
     setIsLoading(false)

@@ -12,52 +12,45 @@ import { AppContext } from '../../../context/AppContext';
 const CustomIcon = () => (<span className="CustomIcon" />)
 
 const getMenuItems = (menuKeys) => {
-  const { map, overview, packages, subProjects, reports, fieldNotes, safeguardConcerns, contracts } = menuKeys;
+  const { map, overview, packages, subProjects, reports, fieldNotes, safeguardConcerns } = menuKeys;
 
   return  [
     {
       key: map,
-      icon: React.createElement(CustomIcon),
+      icon: <CustomIcon />,
       label: 'Map',
     },
     {
       key: overview,
-      icon: React.createElement(CustomIcon),
+      icon: <CustomIcon />,
       label: 'Overview',
     },
     {
       key: packages,
-      icon: React.createElement(CustomIcon),
+      icon: <CustomIcon />,
       label: 'Packages',
     },
     {
       key: subProjects,
-      icon: React.createElement(CustomIcon),
+      icon: <CustomIcon />,
       label: 'Subprojects',
     },
   
     {
       key: reports,
-      icon: React.createElement(CustomIcon),
+      icon: <CustomIcon />,
       label: 'Reports',
     },
     {
       key: fieldNotes,
-      icon: React.createElement(CustomIcon),
+      icon: <CustomIcon />,
       label: 'Field Notes',
     },
     {
       key: safeguardConcerns,
-      icon: React.createElement(CustomIcon),
-      label: 'Safeguard Concerns',
-    },
-    {
-      key: contracts,
-      icon: React.createElement(CustomIcon),
-      label: 'Contracts'
-    },
-  
-  
+      icon: <CustomIcon />,
+      label: 'EHS and Safeguards',
+    }
   ];
 }
 

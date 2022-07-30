@@ -18,27 +18,24 @@ import "./styles.css";
 import { useToggle } from "../../hooks/useToggle";
 import TopSummary from "../components/TopSummary";
 /* constants */
-const packageSpan = { xxl: 2, xl: 2, lg: 2, md: 4, sm: 6, xs: 6 };
-const status = { xxl: 3, xl: 3, lg: 3, md: 0, sm: 0, xs: 0 };
-const subProjects = { xxl: 3, xl: 3, lg: 3, md: 0, sm: 0, xs: 0 };
-const actualPhysicalProgress = { xxl: 3, xl: 3, lg: 3, md: 4, sm: 6, xs: 6 };
-const plannedPyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 4, sm: 0, xs: 0 };
-const timeElapsed = { xxl: 2, xl: 2, lg: 2, md: 4, sm: 0, xs: 0 };
-const financialProgress = { xxl: 2, xl: 2, lg: 2, md: 4, sm: 6, xs: 6 };
-const Contractor = { xxl: 3, xl: 3, lg: 3, md: 0, sm: 0, xs: 0 };
+const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const subProjects = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const actualPhysicalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const plannedPyscalProgress = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
+const timeElapsed = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
+const financialProgress = { xxl: 2, xl: 2, lg: 2, md: 2, sm: 0, xs: 0 };
+const Contractor = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
 const headerLayout = [
   { ...packageSpan, header: "Package" },
-  { ...status, header: "Status" },
   { ...subProjects, header: "Sub-projects" },
   { ...actualPhysicalProgress, header: "Actual Physical Progress(%)" },
   { ...plannedPyscalProgress, header: "Planned Physical Progress(%)" },
-  { ...timeElapsed, header: "Time Elapsed(%)" },
   { ...financialProgress, header: "Financial Progress(%)" },
+  { ...timeElapsed, header: "Time elapsed(%)" },
   { ...Contractor, header: "Contractor" },
 ];
 
 const PackagesList = ({
-  getPackages,
   loading,
   showForm,
   createPackage,
@@ -217,26 +214,23 @@ const PackagesList = ({
                   {item?.name ? item?.name : "N/A"}
                 </Link>
               </Col>
-              <Col {...status} className="contentEllipse">
-                Under Implemetation
-              </Col>
               <Col {...subProjects}>
-                {item.sub_projects_count ? item.sub_projects_count : "N/A"}
+                {item.sub_projects_count ? item.sub_projects_count : 0}
               </Col>
               <Col {...actualPhysicalProgress} className="contentEllipse">
-                {item?.progress?.actual_physical_progress}
+                {item?.progress?.actual_physical_progress || 'N/A'}
               </Col>
               <Col {...plannedPyscalProgress} className="contentEllipse">
-                {item?.progress?.planned_physical_progress}
+                {item?.progress?.planned_physical_progress || 'N/A'}
+              </Col>
+              <Col {...timeElapsed} className="contentEllipse">
+                {item?.progress?.actual_financial_progress || 'N/A'}
               </Col>
               <Col {...timeElapsed} className="contentEllipse">
                 {getTimeElapsedPercentage(item?.contract?.date_of_commencement_of_works, item?.contract?.date_of_contract_completion)}
               </Col>
-              <Col {...timeElapsed} className="contentEllipse">
-                {item?.progress?.actual_financial_progress}
-              </Col>
               <Col {...Contractor} className="contentEllipse">
-                {item?.contract?.contractor?.name}
+                {item?.contract?.contractor?.name || 'N/A'}
               </Col>
 
               {/* eslint-enable react/jsx-props-no-spreading */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from "prop-types";
 import {MapContainer} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -30,14 +30,11 @@ const state = {
 
 // const position = [state.lat, state.lng]
 
-const BaseMap = ({children, position}) => {
+const BaseMap = ({children, position, zoom = null }) => {
 
     const BASE_MAPS = [
 
-        // L.tileLayer('//tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-        //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        //     label: 'OpenStreetMap Black and White'  // optional label used for tooltip
-        // }),
+        
         L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
             label: 'OpenStreetMap Standard'  // optional label used for tooltip
@@ -46,6 +43,16 @@ const BaseMap = ({children, position}) => {
             label: 'Google Satellite'
         })
     ];
+
+    useEffect(() => {
+        document.querySelector('.base-layout__content').style.padding = '0px';
+
+        return () => {
+            if(document.querySelector('.base-layout__content')) {
+                document.querySelector('.base-layout__content').style.padding = '24px';
+            }
+        };
+    });
 
     const whenCreated = (map) => {
         // add basemaps switcher to map
@@ -59,10 +66,14 @@ const BaseMap = ({children, position}) => {
 
         // add zoom control to map
         new L.Control.ZoomBar({position: 'topright'}).addTo(map);
+        // attach create map to window object
+        // the goal is to make it available for testing in cypress
+        console.log('map', map);
+        window['leafletMap'] = map;
     }
 
     return (
-        <MapContainer center={position} whenCreated={whenCreated} fullscreenControl={{ position: 'topright'}} zoom={state.zoom} className="base-map" zoomControl={false} >
+        <MapContainer center={position} whenCreated={whenCreated} fullscreenControl={{ position: 'topright'}} zoom={zoom || state.zoom} className="base-map" zoomControl={false} >
             <LayerControl />
             {children}
         </MapContainer>

@@ -17,6 +17,7 @@ import './styles.css';
 class SignOut extends Component{
     handleOnClick = () => {
         localStorage.removeItem('accessToken');
+        localStorage.removeItem('user');
         localStorage.removeItem('currentMenu');
         return this.props.logout();
     }

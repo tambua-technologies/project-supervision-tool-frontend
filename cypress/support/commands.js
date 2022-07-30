@@ -33,12 +33,10 @@ Cypress.Commands.add('Signin', (username, password) => {
     cy.get('#email').type(username);
     cy.get('#password').type(password);
 
-    cy.intercept('GET', '/api/v1/users/auth_user', { fixture: 'Auth/auth_user_200.json' }).as('auth_user');
     cy.intercept('POST', '/api/v1/focal_people/login', { fixture: 'Auth/login_200.json' }).as('login');
-    cy.intercept('GET', '/api/v1/projects', { fixture: 'Projects/projects_200.json' }).as('projects');
 
     cy.get('button[type=submit]').should('exist').should('contain', 'Log In').click();
-    cy.url().should('include', '/#!/projects');
+    cy.url().should('include', '/#!/procuring_entity/1/sub-projects-map');
 })
 
 
@@ -54,14 +52,10 @@ Cypress.Commands.add('Wrong_credentials', (username, password) => {
     cy.get('#email').type(username);
     cy.get('#password').type(password);
     cy.get('button[type=submit]').should('exist').should('contain', 'Log In').click();
-    cy.get('.Logo + div').should('contain', 'Request failed with status code 401');
+    cy.get('.Logo + div').should('contain', 'These credentials do not match our records');
 })
 
-Cypress.Commands.add('Refresh', (url, response) => {
-    console.log(url, response)
-    cy.intercept('GET', url, {fixture: response});
-    cy.get('[data-cy=reflesh]').find('span').should('contain', 'Refresh').click()
-    cy.get('.ant-spin-spinning').should('have.css', 'font-size', '14px')
-    cy.get('.List ul > div').should(($item) => { expect($item).to.have.length(3) });
-
+Cypress.Commands.add('SignOut', (url, response) => {
+    cy.get('.UserButton').click();
+    cy.contains('Sign Out').click();
 })

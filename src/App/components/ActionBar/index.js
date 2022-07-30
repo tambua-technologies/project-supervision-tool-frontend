@@ -1,72 +1,45 @@
 import React from "react";
-import { Button, Layout } from "antd";
+import { Layout } from "antd";
+import ActionBarButton from "./ActionBarButton";
+
+
 const { Content } = Layout;
 
-const ButtonRender = (props) => {
-  const { btnName, btnAction, btnType } = props;
 
-  const  triggerFileUpload = (e) => {
-    e.preventDefault();
-    document.getElementById("file-upload-input").click();
-  }
-  
-
-  return (
-    <>
-      <input
-        type="file"
-        name="file"
-        id="file-upload-input"
-        class="visuallyhidden"
-        onChange={btnAction}
-      />
-
-      <Button
-        style={{
-          border: "1.5px solid  #0F6788",
-          color: "#0F6788",
-          marginRight: "10px",
-        }}
-        onClick={ btnType === "upload" ? triggerFileUpload : btnAction }
-      >
-        {btnName}
-      </Button>
-    </>
-  );
-};
 
 const ActionBar = ({ actionButtonProp }) => {
   const { title, arrActions } = actionButtonProp;
   return (
-      <div style={{ padding: "0 0 15px 0" }}>
-        <Content
+    <div style={{ padding: "0 0 15px 0" }}>
+      <Content
+        style={{
+          margin: 0,
+        }}
+        className="BaseLayoutContent"
+      >
+        <div
           style={{
-            margin: 0,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
-          className="BaseLayoutContent"
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h3>{title}</h3>
-            <div style={{ display: "flex" }}>
-              {arrActions
-                ? arrActions.map((arrAction) => (
-                  <ButtonRender
-                    btnName={arrAction.btnName}
-                    btnAction={arrAction.btnAction}
-                    btnType={arrAction?.btnType}
-                  />
-                ))
-                : " "}
-            </div>
+          <h3>{title}</h3>
+          <div style={{ display: "flex" }}>
+            {arrActions
+              ? arrActions.map((arrAction) => (
+                <ActionBarButton
+                  key={arrAction.btnName}
+                  btnName={arrAction.btnName}
+                  btnAction={arrAction.btnAction}
+                  btnType={arrAction?.btnType}
+                />
+              ))
+              : " "}
           </div>
-        </Content>
-      </div>
+        </div>
+      </Content>
+    </div>
   );
 };
 
