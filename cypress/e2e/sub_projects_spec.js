@@ -16,7 +16,7 @@ describe('SubProjects', () => {
     it('should dispaly sub-projects on map', () => {
         cy.intercept({
             method: 'GET',
-            url: '/api/v1/sub_projects_locations'
+            url: '/api/v1/sub_projects_locations?filter[procuring_entity_id]=1'
         }, 
         { fixture: 'SubProjects/sub_projects_with_location.json' }).as('subProjects');
         cy.wait('@subProjects');

@@ -6,7 +6,7 @@ describe('Safeguard Concerns', () => {
         cy.Signin('testing@project-supervision-tool.com', 'Pass@Tool');
         cy.intercept({
             method: 'GET',
-            url: '/api/v1/sub_projects_locations'
+            url: '/api/v1/sub_projects_locations?filter[procuring_entity_id]=1'
         }, 
         { fixture: 'SubProjects/empty_sub_projects.json' });
         cy.get('.geonode-layers-control').click('center', { force: true });
