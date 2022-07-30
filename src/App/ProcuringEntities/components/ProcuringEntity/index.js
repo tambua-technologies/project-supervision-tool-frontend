@@ -13,6 +13,7 @@ import { setActiveMenuItem } from "../../../../redux/modules/app/actions"
 import TableContainer from "../../../components/TableContainer";
 import { useDispatch } from "react-redux";
 import { AppContext } from "../../../../context/AppContext";
+import { UPLOAD_SAFEGUARD_CONCERNS_ENDPOINT} from '../../../../API/endpoints';
 
 const ProcuringEntity = (props) => {
   const [physicalProgress, setPysicalProgress] = useState([]);
@@ -92,6 +93,11 @@ const ProcuringEntity = (props) => {
     { title: "Last Update", key: "updated_at" },
   ];
 
+  const handleOnUploadSafeguardConcerns = (e) =>  {
+    const file = e.target.files[0];
+    API.upload(UPLOAD_SAFEGUARD_CONCERNS_ENDPOINT, file)
+  }
+
   const antIcon = (
     <LoadingOutlined
       style={{
@@ -107,6 +113,11 @@ const ProcuringEntity = (props) => {
         actionButtonProp={{
           title: "Overview",
           arrActions: [
+            {
+              btnName: "Import EHS or Safeguard concerns",
+              btnAction: handleOnUploadSafeguardConcerns,
+              btnType: 'upload',
+            },
             {
               btnName: "Add Field Note ",
               btnAction: () => history.push(fieldNoteUrl),

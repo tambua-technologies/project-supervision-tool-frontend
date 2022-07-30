@@ -12,16 +12,25 @@ function PanelContents ({ layer, changeOpacity}) {
 
     const handleOnStepChange = (value) =>  changeOpacity(value, layer);
 
-    return <DecimalStep onStepChange={handleOnStepChange}/>
+    return (
+        <div data-testid={`transparence-${layer.id}`}>
+            <DecimalStep onStepChange={handleOnStepChange} />
+        </div>
+    );
 }
 
-function LayerCategory({category, changeOpacity}) {
+function LayerCategory({category, changeOpacity, isNotGeonodeCategory}) {
 
     const [layers, setLayers] = useState([]);
 
     useEffect(() => {
-        API.getLayers({category: category.id, offset: 0})
+        if (isNotGeonodeCategory) {
+            setLayers(category.layers);
+        }
+        else {
+            API.getLayers({category: category.id, offset: 0})
             .then(({objects}) => setLayers(objects));
+        }
     }, [category.id]);
 
 

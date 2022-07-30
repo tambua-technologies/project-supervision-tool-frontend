@@ -8,14 +8,14 @@ import Img3 from "../../../assets/img/img3.jpg";
 import Img4 from "../../../assets/img/img4.jpg";
 import ActionBar from "../ActionBar";
 
-const Gallary = () => {
+const Gallery = () => {
   const { Meta } = Card;
   const history = useHistory();
   return (
-    <section className="gallary-container">
+    <section className="Gallery-container">
       <ActionBar
         actionButtonProp={{
-          title: "Photo Gallary",
+          title: "Photo Gallery",
           arrActions: [
             {
               btnName: "Back ",
@@ -86,4 +86,4 @@ const Gallary = () => {
   );
 };
 
-export default Gallary;
+export default Gallery;

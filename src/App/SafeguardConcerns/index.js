@@ -7,7 +7,7 @@ import ListItemActions from "../components/ListItemActions";
 import {isoDateToHumanReadableDate} from "../../Util"
 import { Col } from "antd";
 import API from "../../API";
-import { UPLOAD_SAFEGUARD_CONCERNS_ENDPOINT} from '../../API/endpoints';
+import { UPLOAD_SAFEGUARD_CONCERNS_ENDPOINT, SAFEGUARD_CONCERS_ENDPOINT} from '../../API/endpoints';
 const packageSpan = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const concernType = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
 const issue = { xxl: 3, xl: 3, lg: 3, md: 3, sm: 0, xs: 0 };
@@ -40,7 +40,8 @@ const SafeguardConcerns = ({ match }) => {
 
   const getData = (id) => {
     setIsLoading(true);
-    Promise.all([API.getSafeguardConcernsStatistics(id), API.getSafeguardConcerns(id)])
+    const filter = {'filter[procuring_entity_id]': id };
+    Promise.all([API.getSafeguardConcernsStatistics(id), API.get(SAFEGUARD_CONCERS_ENDPOINT,filter)])
     .then(values => {
       setIsLoading(false);
       const [safeguardStats, safeguardConcerns] = values;
@@ -75,7 +76,7 @@ const SafeguardConcerns = ({ match }) => {
     <>
       <div style={{padding: '30px 10px 20px 20px'}}>
         <CustomList
-          itemName="Safeguard Concerns"
+          itemName="EHS and Safeguards"
           items={safeguardData}
           topSummary={
             <TopSummary
@@ -87,9 +88,9 @@ const SafeguardConcerns = ({ match }) => {
           loading={isLoading}
           onRefresh={() => getData(procuringEntityId)}
           actionButtonProp={{
-            title: "Safeguard Concerns",
+            title: "EHS and Safeguards",
             arrActions: [
-              {btnName: 'Import Safeguard Concerns', btnAction: handleOnUploadSafeguardConcerns, btnType: 'upload'}
+              {btnName: 'Import EHS or safeguard concerns', btnAction: handleOnUploadSafeguardConcerns, btnType: 'upload'}
             ],
           }}
           headerLayout={headerLayout}

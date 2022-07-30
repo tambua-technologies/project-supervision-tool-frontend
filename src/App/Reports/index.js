@@ -7,14 +7,15 @@ import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import API from "../../API";
 import { API_BASE_URL } from "../../API/config";
+import { PROCURING_ENTITY_REPORTS_ENDPOINT } from "../../API/endpoints";
 import {
   ProcuringEntityActions,
   ProcuringEntitySelectors,
 } from "../../redux/modules/ProcuringEntities";
 import { isoDateToHumanReadableDate } from "../../Util";
 
-const reportTitle = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 20 };
-const reportNumber = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 10, xs: 0 };
+const reportTitle = { xxl: 8, xl: 8, lg: 8, md: 6, sm: 18, xs: 18 };
+const reportNumber = { xxl: 4, xl: 4, lg: 4 , md: 4, sm: 0, xs: 0 };
 const reportingPeriod = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
 const submitReport = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
 
@@ -32,9 +33,9 @@ function Reports({ match }) {
 
   const getReports = async (id) => {
     setIsLoading(true);
-    const payload = `filter[procuring_entity_id]=${id}`;
-    const response = await API.getProcuringEntitiesProgressReports(payload);
-    setReports(response.data);
+    const filter = {'filter[procuring_entity_id]': id};
+    const response = await API.get(PROCURING_ENTITY_REPORTS_ENDPOINT, filter);
+    setReports(response);
     setIsLoading(false);
   };
 

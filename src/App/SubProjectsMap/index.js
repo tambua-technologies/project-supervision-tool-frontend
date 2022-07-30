@@ -8,27 +8,29 @@ import API from '../../API';
 function SubProjectsMap(props) {
     const [subProjects, setSubProjects] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [project, setProject] = useState(null);
+    const {match: { params: {procuringEntityId}}} = props;
+
+    console.log("SubProjectsMap props: ", props);
     
 
     useEffect(() => {
-        Promise.all([
-            API.get('sub_projects_locations')
+        console.log("useEffect");
+        setLoading(true);
+        const filter = {
+            'filter[procuring_entity_id]': procuringEntityId
+        };
+        API.get('sub_projects_locations',filter)
                 .then(res => {
                     setSubProjects(res);
-                }),
-            API.get('projects/1')
-                .then(res => {
-                    setProject(res);
+                    setLoading(false);
                 })
-        ])
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div className="MapDashboard">
-            <Spin spinning={subProjects.length === 0} tip="Loading data...">
-                <BaseMap position={[-5.856, 34.074]}>
+            <Spin spinning={loading} tip="Loading data...">
+                <BaseMap position={[-6.8153, 39.2796]} zoom={12}>
                     <SubProjectPoints subProjects={subProjects} />
                 </BaseMap>
             </Spin>
