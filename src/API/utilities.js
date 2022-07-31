@@ -32,8 +32,15 @@ const upload = (endpoint, file) => {
 
 
 
+ const post = (endpoint , body) => {
+    return axios.post(endpoint, body).then((response) => response.data.data);
+}
+
+
+
 
 export default {
     upload,
     get,
+    post,
 };

@@ -4,7 +4,6 @@ import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import { Drawer, Col } from "antd";
-import UsersForm from "../Users/usersForm";
 import { API_BASE_URL } from "../../API/config";
 const name = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 10, xs: 20 };
 const Description = { xxl: 7, xl: 7, lg: 7, md: 7, sm: 10, xs: 0 };
@@ -117,11 +116,7 @@ const Roles = () => {
           visible={visible}
           width={500}
         >
-          <UsersForm
-            roleNameInp={true}
-            descriptionInpt={true}
-            permissionInp={true}
-          />
+         
         </Drawer>
       </div>
     </>

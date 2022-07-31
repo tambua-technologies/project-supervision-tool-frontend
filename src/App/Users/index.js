@@ -3,7 +3,7 @@ import API from "../../API";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
-import UsersForm from "./usersForm";
+import UsersForm from "./UsersForm";
 import { Drawer, Col } from "antd";
 import { API_BASE_URL } from "../../API/config";
 
@@ -25,7 +25,15 @@ const UsersList = ({ match }) => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-
+const createUser = (user) => {
+  API.post(`users`, user)
+    .then((res) => {
+      console.log(res);
+      onClose();
+      getUsers();
+    }
+    ).catch(err => console.log(err));
+}
   const getUsers = () => {
     setIsLoading(true);
     API.get("users")
@@ -57,7 +65,6 @@ const UsersList = ({ match }) => {
         <CustomList
           datatestid="users-list"
           itemName="User"
-          title={"Report"}
           actionButtonProp={{
             title: "Users",
             arrActions: [
@@ -123,20 +130,15 @@ const UsersList = ({ match }) => {
           )}
         />
         <Drawer
-          title="Add New User Role"
+          title="Add New User"
           placement="right"
           onClose={onClose}
           visible={visible}
           width={500}
         >
           <UsersForm
-            firstNameInp={true}
-            lastNameInp={true}
-            titleInp={true}
-            organizationInp={true}
-            emailInp={true}
-            roleInp={true}
-            phoneNumberInp={true}
+            onFinish={createUser}
+            onCancel={onClose}
           />
         </Drawer>
       </div>

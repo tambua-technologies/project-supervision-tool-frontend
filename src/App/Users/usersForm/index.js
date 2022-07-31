@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
-import { Button, Form, Input, InputNumber } from "antd";
+import API from "../../../API";
+import { Button, Form, Input, InputNumber, Select } from "antd";
 const layout = {
   labelCol: {
     span: 8,
@@ -23,21 +24,24 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-const UsersForm = ({
-  firstNameInp,
-  lastNameInp,
-  roleInp,
-  phoneNumberInp,
-  roleNameInp,
-  descriptionInpt,
-  permissionInp,
-  titleInp,
-  organizationInp,
-  emailInp,
-}) => {
-  const onFinish = (values) => {
-    console.log(values);
-  };
+const UsersForm = ({ onFinish, onCancel }) => {
+  const [roles, setRoles] = useState([]);
+  const [procuring_entities, setProcuringEntities] = useState([]);
+
+
+  const fetchFormData = () => {
+    Promise.all([API.get('roles'), API.get('procuring_entities')])
+      .then(([roles, procuringEntities]) => {
+        setRoles(roles);
+        setProcuringEntities(procuringEntities);
+      }
+      ).catch(err => console.log(err));
+  }
+
+  useEffect(() => {
+    fetchFormData();
+  }, []);
+
   return (
     <Form
       className="user-form"
@@ -46,128 +50,123 @@ const UsersForm = ({
       onFinish={onFinish}
       validateMessages={validateMessages}
     >
-      {firstNameInp && (
-        <Form.Item
-          name={["user", "name"]}
-          label="First Name"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="First Name" />
+      <Form.Item
+        name="first_name"
+        label="First Name"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input placeholder="First Name" />
+      </Form.Item>
+
+      <Form.Item
+        name="last_name"
+        label="Last Name"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input placeholder="Last Name" />
+      </Form.Item>
+
+      <Form.Item
+        name="email"
+        label="Email"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input placeholder="email" />
+      </Form.Item>
+
+      <Form.Item
+        name="phone"
+        label="Phone Number"
+      >
+        <Input placeholder="Phone Number" />
+      </Form.Item>
+
+      <Form.Item
+        name="title"
+        label="Title"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input placeholder="Title" />
+      </Form.Item>
+
+      <Form.Item
+        name="procuring_entity_id"
+        label="Procuring Entity"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select
+          placeholder="Procuring Entity">
+          {procuring_entities.map(procuring_entity => (
+            <Select.Option key={procuring_entity.id} value={procuring_entity.id}>
+              {procuring_entity.agency.name}
+            </Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        name="roles"
+        label="Role"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select mode="multiple"
+          placeholder="Role">
+          {roles.map(role => (
+            <Select.Option key={role.id} value={role.name}>
+              {role.name}
+            </Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        name="password"
+        rules={[
+          { required: true, message: "Please input users Password!" },
+        ]}
+      >
+        <Input.Password
+          placeholder="Password"
+        />
+      </Form.Item>
+
+      <div className="user-form-action-buttons">
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
         </Form.Item>
-      )}
-      {lastNameInp && (
-        <Form.Item
-          name={["user", "name"]}
-          label="Last Name"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="Last Name" />
+
+        <Form.Item>
+          <Button onClick={onCancel}>
+            Cancel
+          </Button>
         </Form.Item>
-      )}
-      {titleInp && (
-        <Form.Item
-          name={["user", "title"]}
-          label="title"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="title" />
-        </Form.Item>
-      )}
-      {organizationInp && (
-        <Form.Item
-          name={["user", "organization"]}
-          label="organization"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="organization" />
-        </Form.Item>
-      )}
-      {emailInp && (
-        <Form.Item
-          name={["user", "email"]}
-          label="email"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="email" />
-        </Form.Item>
-      )}
-      {roleInp && (
-        <Form.Item
-          name={["user", "name"]}
-          label="Role"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="Role" />
-        </Form.Item>
-      )}
-      {phoneNumberInp && (
-        <Form.Item
-          name={["user", "name"]}
-          label="Phone Number"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="Phone Number" />
-        </Form.Item>
-      )}
-      {roleNameInp && (
-        <Form.Item
-          name={["user", "name"]}
-          label="Role Name"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="Role Name" />
-        </Form.Item>
-      )}
-      {descriptionInpt && (
-        <Form.Item
-          name={["user", "name"]}
-          label="Description"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input placeholder="Description" />
-        </Form.Item>
-      )}
-      {permissionInp && (
-        <Form.Item name={["user", "Permission"]} label="Permission">
-          <Input.TextArea placeholder="Permission" />
-        </Form.Item>
-      )}
+      </div>
     </Form>
   );
 };
