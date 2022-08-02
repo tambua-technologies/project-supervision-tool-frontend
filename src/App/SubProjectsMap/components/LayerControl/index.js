@@ -59,13 +59,13 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
                         gn_description: 'Field Notes',
                         id: 'field_notes',
                         isNotGeonodeCategory: true,
-                        layers: [{ name: 'Temeke Field Notes', typename: 'temeke_field_notes', id: 'temeke_field_notes', isNotGeonodeLayer: true }]
+                        layers: [{ name: 'Field Notes', typename: 'temeke_field_notes', id: 'temeke_field_notes', isNotGeonodeLayer: true }]
                     },
                     {
-                        gn_description: 'EHS and Safeguards',
+                        gn_description: 'OHS and Safeguards',
                         id: 'safeguard_concerns',
                         isNotGeonodeCategory: true,
-                        layers: [{ name: 'Temeke EHS and Safeguards', typename: 'temeke_safeguard_concerns', id: 'temeke_safeguard_concerns', isNotGeonodeLayer: true }]
+                        layers: [{ name: 'OHS and Safeguards', typename: 'temeke_safeguard_concerns', id: 'temeke_safeguard_concerns', isNotGeonodeLayer: true }]
                     },
                     ...data
                 ];

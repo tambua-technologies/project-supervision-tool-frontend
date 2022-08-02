@@ -25,7 +25,7 @@ describe('Field Notes', () => {
             url: '/api/v2/assets/aLD6RspTPyijYdA63icUZ4/data/?format=json'
         }, {fixture: 'field_notes.json'}).as('fieldnotes');
 
-        cy.contains('Temeke Field Notes').should('be.visible');
+        cy.contains('Field Notes').should('be.visible');
         cy.get('[data-testid="add-temeke_field_notes"]').click();
 
         cy.wait('@fieldnotes');

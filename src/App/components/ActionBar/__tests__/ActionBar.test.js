@@ -9,7 +9,7 @@ describe('ActionBar', () => {
                 title: "Overview",
                 arrActions: [
                     {
-                        btnName: "Import EHS or Safeguard concerns",
+                        btnName: "Import OHS or Safeguard concerns",
                         btnAction: () => { },
                         btnType: 'upload',
                     },
@@ -24,7 +24,7 @@ describe('ActionBar', () => {
                 ],
             }}
         />);
-        expect(screen.getByText('Import EHS or Safeguard concerns')).toBeInTheDocument();
+        expect(screen.getByText('Import OHS or Safeguard concerns')).toBeInTheDocument();
         expect(screen.getByText('New Monthly Report')).toBeInTheDocument();
 
     });

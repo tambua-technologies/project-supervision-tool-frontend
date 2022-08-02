@@ -13,11 +13,11 @@ describe('ActionButton', () => {
         // stub triggerFileUpload
         const triggerFileUpload = jest.fn();
         render(<ActionBarButton
-            btnName="Import EHS or Safeguard concerns"
+            btnName="Import OHS or Safeguard concerns"
             btnAction={() => { }}
             btnType="upload"
         />);
-        const button = screen.getByText('Import EHS or Safeguard concerns');
+        const button = screen.getByText('Import OHS or Safeguard concerns');
         
         button.click();
         expect(spyFunc).toHaveBeenCalled()

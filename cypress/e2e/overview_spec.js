@@ -24,8 +24,8 @@ describe('Overview', () => {
         { fixture: 'safeguard_concerns_import_respose.json' }).as('importSafeguardConcerns');
         
         cy.visit('http://localhost:3000/#!/procuring_entity/1/overview');
-        cy.contains('Import EHS or Safeguard concerns').should('exist').click();
-        cy.get('#import-ehs-or-safeguard-concerns').selectFile('cypress/fixtures/safeguard_concerns_demo_data.xlsx', { force: true });
+        cy.contains('Import OHS or Safeguard concerns').should('exist').click();
+        cy.get('#import-ohs-or-safeguard-concerns').selectFile('cypress/fixtures/safeguard_concerns_demo_data.xlsx', { force: true });
         cy.wait('@importSafeguardConcerns').its('response.statusCode').should('eq', 200);
 
 

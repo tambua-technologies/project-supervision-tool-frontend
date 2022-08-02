@@ -23,7 +23,7 @@ describe('Safeguard Concerns', () => {
             url: '/api/v1/safeguard_concerns'
         }, {fixture: 'safeguard_concerns.json'}).as('safeguardConcerns');
 
-        cy.contains('Temeke EHS and Safeguards').should('be.visible');
+        cy.contains('OHS and Safeguards').should('be.visible');
         cy.get('[data-testid="add-temeke_safeguard_concerns"]').click();
 
         cy.wait('@safeguardConcerns');

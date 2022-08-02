@@ -49,19 +49,19 @@ const getMenuItems = (menuKeys) => {
     {
       key: safeguardConcerns,
       icon: <CustomIcon />,
-      label: 'EHS and Safeguards',
+      label: 'OHS and Safeguards',
     },
-    {
-      key: users,
-      icon: <CustomIcon />,
-      label: 'Users',
-    }
-    ,
-    {
-      key: roles,
-      icon: <CustomIcon />,
-      label: 'Roles & Permissions',
-    }
+    // {
+    //   key: users,
+    //   icon: <CustomIcon />,
+    //   label: 'Users',
+    // }
+    // ,
+    // {
+    //   key: roles,
+    //   icon: <CustomIcon />,
+    //   label: 'Roles & Permissions',
+    // }
   ];
 }
 

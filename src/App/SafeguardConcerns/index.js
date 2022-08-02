@@ -76,7 +76,7 @@ const SafeguardConcerns = ({ match }) => {
     <>
       <div style={{padding: '30px 10px 20px 20px'}}>
         <CustomList
-          itemName="EHS and Safeguards"
+          itemName="OHS and Safeguards"
           items={safeguardData}
           topSummary={
             <TopSummary
@@ -88,9 +88,9 @@ const SafeguardConcerns = ({ match }) => {
           loading={isLoading}
           onRefresh={() => getData(procuringEntityId)}
           actionButtonProp={{
-            title: "EHS and Safeguards",
+            title: "OHS and Safeguards",
             arrActions: [
-              {btnName: 'Import EHS or safeguard concerns', btnAction: handleOnUploadSafeguardConcerns, btnType: 'upload'}
+              {btnName: 'Import OHS or safeguard concerns', btnAction: handleOnUploadSafeguardConcerns, btnType: 'upload'}
             ],
           }}
           headerLayout={headerLayout}
