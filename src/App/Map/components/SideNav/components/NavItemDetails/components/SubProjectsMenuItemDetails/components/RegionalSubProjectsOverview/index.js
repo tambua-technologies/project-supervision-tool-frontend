@@ -52,7 +52,6 @@ function RegionalSubProjectsOverview({
     const handleOnClickFilterItem = (id) => {
         // getSubProject(id);
         getDistricts(id)
-        console.log("clicked" + id)
     };
 
     const handleGoBack = () => {

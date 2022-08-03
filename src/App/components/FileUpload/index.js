@@ -30,7 +30,6 @@ class FileUpload extends React.Component {
     };
 
     handleUpload = (values) => {
-        console.log('values', values);
         const { fileList } = this.state;
         const { subProject } = this.props;
         const formData = new FormData();
@@ -45,7 +44,6 @@ class FileUpload extends React.Component {
 
         API.uploadPhotos(subProject.id, formData)
            .then(res => {
-               console.log('photo response', res);
                this.setState({
                    uploading: false,
                });

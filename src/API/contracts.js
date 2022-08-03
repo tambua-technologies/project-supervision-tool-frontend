@@ -34,7 +34,6 @@ const createContracts = (contract) => axios.post(`/contracts`, contract ).then((
  * @since 0.1.0
  */
  const editContract = (contract, id) => {
-     console.log(id)
     return axios
         .patch(`/contracts/${id}`, contract)
         .then((response) => response.data);

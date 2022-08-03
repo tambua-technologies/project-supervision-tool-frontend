@@ -6,7 +6,6 @@ import { isoDateToHumanReadableDate } from "../../../../Util/index";
 const Contract = () => {
   const { procuringEntity } = useContext(AppContext);
   useEffect(() => {
-    console.log("its work", procuringEntity);
   }, [procuringEntity]);
 
   return (<h1> Work In progress</h1>)

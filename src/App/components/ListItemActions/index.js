@@ -135,6 +135,7 @@ const ListItemActions = ({
                 {archive && (
                     <Menu.Item
                         key="archive"
+                        data-testid={archive?.datatestid}
                         onClick={archive.onClick}
                         title={archive.title}
                     >
@@ -150,6 +151,7 @@ const ListItemActions = ({
         <Button
             shape="circle"
             size="large"
+            data-testid="list-item-actions"
             icon={<MoreOutlined />}
             className="actionButton"
             title="More actions"

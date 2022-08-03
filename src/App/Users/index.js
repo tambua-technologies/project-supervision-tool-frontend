@@ -28,7 +28,6 @@ const UsersList = ({ match }) => {
 const createUser = (user) => {
   API.post(`users`, user)
     .then((res) => {
-      console.log(res);
       onClose();
       getUsers();
     }
@@ -43,7 +42,6 @@ const createUser = (user) => {
     })
     .catch(err => {
       setIsLoading(false);
-      console.log('error fetching users', err);
     })
   }
   useEffect(() => {
@@ -54,6 +52,14 @@ const createUser = (user) => {
   const showDrawer = () => {
     setVisible(true);
   };
+
+  const deleteUser = (id) => {
+    API.deleteData(`users/${id}`)
+    .then(res => {
+      getUsers();
+    }
+    ).catch(err => console.log(err));
+  }
 
   const onClose = () => {
     setVisible(false);
@@ -87,14 +93,13 @@ const createUser = (user) => {
               item={item}
               renderActions={() => (
                 <ListItemActions
-                  downloadReport={
-                    item?.media
-                      ? {
-                          name: "Download Report",
-                          title: "Click to download the report",
-                          url: `${API_BASE_URL}/api/v1/procuring_entity_reports/${item?.media?.id}`,
-                        }
-                      : undefined
+                  archive={
+                    {
+                      name: "Archive User",
+                      datatestid: `archive-user-${item.id}`,
+                      title: "Archieve User",
+                      onClick:deleteUser(item.id),
+                    }
                   }
                 />
               )}

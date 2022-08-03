@@ -22,7 +22,6 @@ const MultlevelFilter = ({ items, handleFilter }) => {
   };
 
   const onSelect = (selectedKeysValue, info) => {
-    console.log('onSelect', info);
     setSelectedKeys(selectedKeysValue);
   };
 

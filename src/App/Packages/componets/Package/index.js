@@ -26,13 +26,10 @@ const Package = (props) => {
   const {
     match: { url, params },
   } = props;
-  console.log(url);
-  console.log(params);
 
   const HumanResourceUrl = `${url}/human-resources`;
   const EquipmentUrl = `${url}/equipment-mobilization`;
   const GallaryUrl = `${url}/Gallary`;
-  // console.log(safeguardConfig);
   const summaries = [
     { label: "Actual Progress", value: "22" },
     { label: "Planned Progress", value: "42" },
@@ -106,16 +103,12 @@ const Package = (props) => {
   useEffect(() => {
     API.get(`/sub_projects/`, { page: 1, per_page: 3 }).then((res) => {
       setSubProjects(res.data);
-      // console.log(res.data);
     });
   }, []);
   useEffect(() => {
     API.get(`/procuring_entity_packages/${params.packageId}`).then((resp) => {
       const workTypeArr = [];
       resp.work_types.map((item) => workTypeArr.push(item.name));
-      // console.log(workTypeArr);
-      // console.log("challenge");
-      console.log(resp);
       const summariess = [
         {
           label: "Actual Progress",
@@ -138,7 +131,6 @@ const Package = (props) => {
         { title: "Contractor", description: resp.contract.contractor.name },
       ];
     const dataSafeGuard =  resp.safeguard_concerns.map((item) => item)
-      console.log(dataSafeGuard);
       setSafeguardConfig(resp.safeguard_concerns);
       setHumanResData(resp.staffs);
       setContents(contents_data);
@@ -152,9 +144,7 @@ const Package = (props) => {
     { title: "Replacement", key: "replacement" },
     { title: "Remarks", key: "remarks" },
   ];
-  // console.log(equipmentMobilizationData);
-  // console.log(humanResData);
-  // console.log(subProjects);
+ 
   return (
     <div>
        <ActionBar

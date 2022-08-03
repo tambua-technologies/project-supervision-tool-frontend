@@ -49,7 +49,6 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
     const addDataSet = (dataSet) => {
         const myLayer = capabilities.Capability.Layer.Layer.find(l => l.Name === dataSet.typename );
         const {LatLonBoundingBox} = myLayer;
-        console.log(myLayer);
 
         const geonodeLayer = L.tileLayer.wms(`${process.env.REACT_APP_GEONODE_URL}/geoserver/ows`, {
             layers: dataSet.typename,

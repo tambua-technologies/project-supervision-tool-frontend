@@ -81,10 +81,6 @@ const ProcuringEntity = (props) => {
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(reports);
-
-  // setReports(result);
-  console.log(reports);
 
   const headings = [
     { title: "Title", key: "report_title", avatar: true },

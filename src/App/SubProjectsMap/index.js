@@ -10,11 +10,7 @@ function SubProjectsMap(props) {
     const [loading, setLoading] = useState(false);
     const {match: { params: {procuringEntityId}}} = props;
 
-    console.log("SubProjectsMap props: ", props);
-    
-
     useEffect(() => {
-        console.log("useEffect");
         setLoading(true);
         const filter = {
             'filter[procuring_entity_id]': procuringEntityId

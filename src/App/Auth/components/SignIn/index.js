@@ -35,7 +35,6 @@ const SignIn = () => {
         setLoading(true);
         API.login(values)
         .then(res => {
-            console.log(res);
             // save access token to local storage
             localStorage.setItem("accessToken", res.data.access_token);
             localStorage.setItem("user", JSON.stringify(res.data.user));

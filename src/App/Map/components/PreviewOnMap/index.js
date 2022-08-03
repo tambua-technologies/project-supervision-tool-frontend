@@ -69,7 +69,6 @@ class PreviewOnMap extends  Component {
 
     clickToFeature(e) {
         const layer = e.target;
-        console.log("I clicked on ");
 
     }
 

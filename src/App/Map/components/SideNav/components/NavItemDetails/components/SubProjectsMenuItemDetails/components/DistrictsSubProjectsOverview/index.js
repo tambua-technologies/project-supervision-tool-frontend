@@ -51,7 +51,6 @@ function DistrictsSubProjectsOverview({
 
     const handleOnClickFilterItem = (id) => {
         getSubProject(id)
-        console.log("clicked" + id)
     };
 
     const handleGoBack = () => {

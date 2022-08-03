@@ -29,7 +29,6 @@ class SubProjectElementWfsLayer extends Component {
                 const capabilities = new WMSCapabilities().parse(res.data);
                 const myLayer = capabilities.Capability.Layer.Layer.find(l => l.Name === subProjectLayerName );
                 const {LatLonBoundingBox} = myLayer;
-                console.log(myLayer);
 
                 const subProjectElementLayer = L.tileLayer.wms(`${process.env.REACT_APP_GEONODE_URL}/geoserver/ows`, {
                     layers: subProjectLayerName,

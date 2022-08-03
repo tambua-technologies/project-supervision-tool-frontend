@@ -22,7 +22,6 @@ class CommonProjectForm extends Component {
 
     onChange = current => {
         this.setState({ current });
-        console.log(current)
     };
 
     next = () => {

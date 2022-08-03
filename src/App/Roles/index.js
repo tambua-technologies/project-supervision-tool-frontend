@@ -28,7 +28,6 @@ const Roles = () => {
       })
       .catch(err => {
         setIsLoading(false);
-        console.log('error fetching roles', err);
       }
       )
   };

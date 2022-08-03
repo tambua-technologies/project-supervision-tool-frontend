@@ -34,7 +34,6 @@ const createUsers = (user) => axios.post(`/users`, user ).then((response) => res
  * @since 0.1.0
  */
  const editUser = (user, id) => {
-     console.log(id)
     return axios
         .patch(`/users/${id}`, user)
         .then((response) => response.data);

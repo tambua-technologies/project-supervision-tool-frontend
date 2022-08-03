@@ -26,14 +26,21 @@ const upload = (endpoint, file) => {
  * @since 0.1.0
  * @param filter
  */
- const get = (endpoint , params = {}) => {
-    return axios.get(endpoint, {params}).then((response) => response.data.data);
+ const get = async (endpoint , params = {}) => {
+    const response = await axios.get(endpoint, { params });
+     return response.data.data;
 }
 
 
 
- const post = (endpoint , body) => {
-    return axios.post(endpoint, body).then((response) => response.data.data);
+ const post = async (endpoint , body) => {
+    const response = await axios.post(endpoint, body);
+     return response.data.data;
+}
+
+const deleteData = async (endpoint , body) => {
+    const response = await axios.delete(endpoint);
+        return response.data.data;
 }
 
 
@@ -43,4 +50,5 @@ export default {
     upload,
     get,
     post,
+    deleteData
 };
