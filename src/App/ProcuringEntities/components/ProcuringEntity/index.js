@@ -114,7 +114,7 @@ const ProcuringEntity = (props) => {
           title: "Overview",
           arrActions: [
             {
-              btnName: "Import OHS or Safeguard concerns",
+              btnName: "Import OHSzzzzz or Safeguard concerns",
               btnAction: handleOnUploadSafeguardConcerns,
               btnType: 'upload',
             },

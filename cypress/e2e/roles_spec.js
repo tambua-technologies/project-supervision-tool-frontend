@@ -13,6 +13,8 @@ describe('Roles', () => {
 
     it('should should display roles list', () => {
         cy.visit('http://localhost:3000/#!/procuring_entity/1/roles');
+        cy.get('[data-testid="roles-menu-item"]').contains('Roles & Permission').should('be.visible');
+
         cy.intercept({
             method: 'GET',
             url: '/api/v1/roles'

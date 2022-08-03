@@ -51,17 +51,17 @@ const getMenuItems = (menuKeys) => {
       icon: <CustomIcon />,
       label: 'OHS and Safeguards',
     },
-    // {
-    //   key: users,
-    //   icon: <CustomIcon />,
-    //   label: 'Users',
-    // }
-    // ,
-    // {
-    //   key: roles,
-    //   icon: <CustomIcon />,
-    //   label: 'Roles & Permissions',
-    // }
+    {
+      key: users,
+      icon: <CustomIcon />,
+      label: 'Users',
+    }
+    ,
+    {
+      key: roles,
+      icon: <CustomIcon />,
+      label: 'Roles & Permissions',
+    }
   ];
 }
 
@@ -109,7 +109,7 @@ const SideMenu = (props) => {
         borderRight: 0,
       }}
       onClick={handleOnMenuItemClick}
-      items={items}
+      items={items.map( item => ({...item, 'data-testid': `${item.key}-menu-item`}))}
     />
   )
 }
