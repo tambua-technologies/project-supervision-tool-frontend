@@ -1,0 +1,27 @@
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "can create survey",
+            "guard_name": "api",
+            "created_at": "2021-04-26T19:50:34.000000Z",
+            "updated_at": "2021-04-26T19:50:34.000000Z"
+        },
+        {
+            "id": 2,
+            "name": "can manage project",
+            "guard_name": "api",
+            "created_at": "2022-05-04T19:20:43.000000Z",
+            "updated_at": "2022-05-04T19:20:43.000000Z"
+        },
+        {
+            "id": 3,
+            "name": "can manage packages",
+            "guard_name": "api",
+            "created_at": "2022-05-04T19:21:42.000000Z",
+            "updated_at": "2022-05-04T19:21:42.000000Z"
+        }
+    ],
+    "message": "Permissions retrieved successfully"
+}

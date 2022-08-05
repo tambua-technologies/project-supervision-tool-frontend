@@ -72,6 +72,7 @@ const Roles = () => {
             title: "User Roles",
             arrActions: [
               {
+                datatestid: "add-role-button",
                 btnName: "Add New User Role ",
                 btnAction: showDrawer,
               },

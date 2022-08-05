@@ -1,0 +1,11 @@
+{
+    "success": true,
+    "data": {
+        "name": "role one",
+        "guard_name": "api",
+        "updated_at": "2022-08-05T18:42:22.000000Z",
+        "created_at": "2022-08-05T18:42:22.000000Z",
+        "id": 8
+    },
+    "message": "Role saved successfully"
+}
