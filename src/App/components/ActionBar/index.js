@@ -29,6 +29,7 @@ const ActionBar = ({ actionButtonProp }) => {
             {arrActions
               ? arrActions.map((arrAction) => (
                 <ActionBarButton
+                  datatestid={arrAction?.datatestid}
                   key={arrAction.btnName}
                   btnName={arrAction.btnName}
                   btnAction={arrAction.btnAction}

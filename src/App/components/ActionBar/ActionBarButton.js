@@ -33,6 +33,7 @@ const ActionBarButton = (props) => {
             color: "#1890ff",
             marginRight: "10px",
           }}
+          data-testid={props?.datatestid}
           onClick={btnType === "upload" ? triggerFileUpload : btnAction}
         >
           {btnName}

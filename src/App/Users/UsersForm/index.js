@@ -43,8 +43,9 @@ const UsersForm = ({ onFinish, onCancel }) => {
   return (
     <Form
       className="user-form"
+      data-testid="user-form"
       {...layout}
-      name="nest-messages"
+      name="user-form"
       onFinish={onFinish}
       validateMessages={validateMessages}
     >
@@ -123,6 +124,7 @@ const UsersForm = ({ onFinish, onCancel }) => {
       </Form.Item>
 
       <Form.Item
+        label="Password"
         name="password"
         rules={[
           { required: true, message: "Please input users Password!" },
@@ -135,13 +137,20 @@ const UsersForm = ({ onFinish, onCancel }) => {
 
       <div className="user-form-action-buttons">
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button 
+          type="primary" 
+          htmlType="submit"
+          data-testid="user-form-submit-button"
+          >
             Submit
           </Button>
         </Form.Item>
 
         <Form.Item>
-          <Button onClick={onCancel}>
+          <Button 
+          onClick={onCancel}
+          data-testid="cancel-user-form"
+          >
             Cancel
           </Button>
         </Form.Item>

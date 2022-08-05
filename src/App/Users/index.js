@@ -32,6 +32,7 @@ const createUser = (user) => {
   API.post(`users`, {...user, procuring_entity_id: currentUser.procuringEntity.id})
     .then((res) => {
       onClose();
+      notifySuccess("User created successfully");
       getUsers();
     }
     ).catch(err => console.log(err));
@@ -108,6 +109,7 @@ const createUser = (user) => {
             title: "Users",
             arrActions: [
               {
+                datatestid: "add-user-button",
                 btnName: "Add New User ",
                 btnAction: showDrawer,
               },
