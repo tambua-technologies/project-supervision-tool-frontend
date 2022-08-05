@@ -26,14 +26,12 @@ const validateMessages = {
 
 const UsersForm = ({ onFinish, onCancel }) => {
   const [roles, setRoles] = useState([]);
-  const [procuring_entities, setProcuringEntities] = useState([]);
 
 
   const fetchFormData = () => {
-    Promise.all([API.get('roles'), API.get('procuring_entities')])
-      .then(([roles, procuringEntities]) => {
+    API.get('roles')
+      .then(roles => {
         setRoles(roles);
-        setProcuringEntities(procuringEntities);
       }
       ).catch(err => console.log(err));
   }
@@ -103,25 +101,6 @@ const UsersForm = ({ onFinish, onCancel }) => {
         ]}
       >
         <Input placeholder="Title" />
-      </Form.Item>
-
-      <Form.Item
-        name="procuring_entity_id"
-        label="Procuring Entity"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
-        <Select
-          placeholder="Procuring Entity">
-          {procuring_entities.map(procuring_entity => (
-            <Select.Option key={procuring_entity.id} value={procuring_entity.id}>
-              {procuring_entity.agency.name}
-            </Select.Option>
-          ))}
-        </Select>
       </Form.Item>
 
       <Form.Item

@@ -4,29 +4,32 @@ import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import UsersForm from "./UsersForm";
-import { Drawer, Col } from "antd";
-import { API_BASE_URL } from "../../API/config";
+import { Drawer, Col, Modal } from "antd";
+import { notifyError, notifySuccess } from "../../Util";
 
 const name = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 10, xs: 20 };
-const title = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 10, xs: 0 };
-const organization = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
+const title = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 10, xs: 0 };
 const email = { xxl: 5, xl: 5, lg: 5, md: 5, sm: 0, xs: 0 };
-const role = { xxl: 4, xl: 4, lg: 4, md: 4, sm: 0, xs: 0 };
+const role = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 0, xs: 0 };
+
 
 const headerLayout = [
   { ...name, header: "Name" },
   { ...title, header: "Title" },
-  { ...organization, header: "Organization" },
   { ...email, header: "Email" },
   { ...role, header: "Role" },
 ];
+const { confirm } = Modal;
 
 const UsersList = ({ match }) => {
   const [users, setUsers] = useState([]);
+  const currentUser = JSON.parse(localStorage.getItem("user"));
   const [isLoading, setIsLoading] = useState(false);
 
 const createUser = (user) => {
-  API.post(`users`, user)
+  // get current user from local storage
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  API.post(`users`, {...user, procuring_entity_id: currentUser.procuringEntity.id})
     .then((res) => {
       onClose();
       getUsers();
@@ -36,9 +39,11 @@ const createUser = (user) => {
   const getUsers = () => {
     setIsLoading(true);
     API.get("users")
-    .then(res => {
+    .then(({data}) => {
       setIsLoading(false);
-      setUsers(res.data);
+      const filteredUsers = data.filter(({id}) => id !== currentUser.id).filter(
+        ({procuringEntity: { agency}}) => agency.id === currentUser.procuringEntity.agency.id )
+      setUsers(filteredUsers);
     })
     .catch(err => {
       setIsLoading(false);
@@ -57,9 +62,34 @@ const createUser = (user) => {
     API.deleteData(`users/${id}`)
     .then(res => {
       getUsers();
+      notifySuccess("User deleted successfully");
     }
-    ).catch(err => console.log(err));
+    ).catch(err => {
+      console.log(err);
+      notifyError("Error deleting user");
+    });
   }
+
+  /**
+   * @function
+   * @name showArchiveConfirm
+   * @description show confirm modal before archiving a focal person
+   * @param {object} item Resource item to be archived
+   *
+   * @version 0.1.0
+   * @since 0.1.0
+   */
+   const showArchiveConfirm = item => {
+    confirm({
+      title: `Are you sure you want to archive user ${item.first_name} ?`,
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        deleteUser(item.id);
+      },
+    });
+  };
 
   const onClose = () => {
     setVisible(false);
@@ -98,7 +128,7 @@ const createUser = (user) => {
                       name: "Archive User",
                       datatestid: `archive-user-${item.id}`,
                       title: "Archieve User",
-                      onClick:deleteUser(item.id),
+                      onClick: () => showArchiveConfirm(item),
                     }
                   }
                 />
@@ -115,11 +145,7 @@ const createUser = (user) => {
               </Col>
 
               <Col {...title} className="contentEllipse">
-                {"Supervisor"}
-              </Col>
-
-              <Col {...organization} className="contentEllipse">
-                {`WB ORG`}
+                {item?.title || "N/A"}
               </Col>
 
               <Col {...email} className="contentEllipse">
@@ -127,7 +153,7 @@ const createUser = (user) => {
               </Col>
 
               <Col {...role} className="contentEllipse">
-                {"Role"}
+                {item?.roles.map(({name}) => name).join(',') || "N/A"}
               </Col>
 
               {/* eslint-enable react/jsx-props-no-spreading */}
