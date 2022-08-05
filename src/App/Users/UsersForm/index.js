@@ -31,7 +31,7 @@ const UsersForm = ({ onFinish, onCancel }) => {
   const fetchFormData = () => {
     API.get('roles')
       .then(roles => {
-        setRoles(roles);
+        setRoles(roles.data);
       }
       ).catch(err => console.log(err));
   }

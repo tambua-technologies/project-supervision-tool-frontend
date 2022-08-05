@@ -5,14 +5,12 @@ import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import { Drawer, Col } from "antd";
 import { API_BASE_URL } from "../../API/config";
-const name = { xxl: 6, xl: 6, lg: 6, md: 6, sm: 10, xs: 20 };
-const Description = { xxl: 7, xl: 7, lg: 7, md: 7, sm: 10, xs: 0 };
-const permission = { xxl: 7, xl: 7, lg: 7, md: 7, sm: 0, xs: 0 };
+const name = { xxl: 8, xl: 8, lg: 8, md: 8, sm: 10, xs: 20 };
+const permission = { xxl: 12, xl: 12, lg: 12, md: 12, sm: 10, xs: 0 };
 
 const headerLayout = [
   { ...name, header: "Name" },
-  { ...Description, header: "Description" },
-  { ...permission, header: "Permission" },
+  { ...permission, header: "Permissions" },
 ];
 const Roles = () => {
   const [roles, setRoles] = useState([]);
@@ -24,7 +22,7 @@ const Roles = () => {
     API.get("roles")
       .then(res => {
         setIsLoading(false);
-        setRoles(res);
+        setRoles(res.data);
       })
       .catch(err => {
         setIsLoading(false);
@@ -96,12 +94,8 @@ const Roles = () => {
                 {item?.name || "N/A"}
               </Col>
 
-              <Col {...Description} className="contentEllipse">
-                {"Descriptions"}
-              </Col>
-
               <Col {...permission} className="contentEllipse">
-                {`Permision`}
+                {item?.permissions.map(({name}) => name).join(',') || "N/A"}
               </Col>
 
               {/* eslint-enable react/jsx-props-no-spreading */}

@@ -66,7 +66,7 @@ const createUser = (user) => {
     }
     ).catch(err => {
       console.log(err);
-      notifyError("Error deleting user");
+      notifyError("Error deleting User");
     });
   }
 
@@ -82,6 +82,9 @@ const createUser = (user) => {
    const showArchiveConfirm = item => {
     confirm({
       title: `Are you sure you want to archive user ${item.first_name} ?`,
+      okButtonProps: {
+        'data-testid': 'archive-confirm-user-ok-button',
+      },
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
