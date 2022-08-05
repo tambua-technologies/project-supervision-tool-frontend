@@ -5,6 +5,8 @@ import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
 import { Drawer, Col } from "antd";
 import { API_BASE_URL } from "../../API/config";
+import NewRoleForm from "./NewRoleForm";
+import { notifySuccess } from "../../Util";
 const name = { xxl: 8, xl: 8, lg: 8, md: 8, sm: 10, xs: 20 };
 const permission = { xxl: 12, xl: 12, lg: 12, md: 12, sm: 10, xs: 0 };
 
@@ -17,6 +19,10 @@ const Roles = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(false);
 
+  const onClose = () => {
+    setVisible(false);
+  };
+
   const getRoles = (id) => {
     setIsLoading(true);
     API.get("roles")
@@ -28,7 +34,22 @@ const Roles = () => {
         setIsLoading(false);
       }
       )
-  };
+    };
+    
+    const createRole = payload => {
+      setIsLoading(true);
+      API.post("roles", payload)
+      .then(res => {
+        onClose();
+        notifySuccess("Role created successfully");
+        setIsLoading(false);
+        getRoles();
+      })
+      .catch(err => {
+        setIsLoading(false);
+      }
+      )
+  }
 
   useEffect(() => {
     getRoles()
@@ -39,9 +60,6 @@ const Roles = () => {
     setVisible(true);
   };
 
-  const onClose = () => {
-    setVisible(false);
-  };
   return (
     <>
       <div>
@@ -109,7 +127,7 @@ const Roles = () => {
           visible={visible}
           width={500}
         >
-         
+          <NewRoleForm onFinish={createRole} onCancel={onClose} />
         </Drawer>
       </div>
     </>

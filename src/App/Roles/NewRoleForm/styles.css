@@ -1,0 +1,38 @@
+.role-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .role-form .ant-row {
+    width: 140%;
+    display: block;
+    margin-bottom: 0;
+  }
+  .custom-modal {
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .custom-modal .ant-modal-content {
+    height: 100vh;
+  }
+  .custom-modal ant-modal {
+    top: 0;
+  }
+  .ant-modal {
+    width: 100%;
+    transform-origin: 85px 43px;
+    overflow: hidden;
+    height: -webkit-fill-available;
+    top: 0;
+  }
+  
+  .custom-modal .ant-modal-footer {
+    display: none;
+  }
+  
+  .role-form-action-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin-top: 20px;
+  }

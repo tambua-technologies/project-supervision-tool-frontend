@@ -1,14 +1,14 @@
 
 
 describe('Users', () => {
-    
 
-    before(() => {
+
+    beforeEach(() => {
         cy.Signin('testing@project-supervision-tool.com', 'Pass@Tool');
         cy.visit('http://localhost:3000/#!/procuring_entity/1/users');
     });
 
-    after(() => {
+    afterEach(() => {
         cy.SignOut();
     });
 
@@ -17,12 +17,12 @@ describe('Users', () => {
         cy.intercept({
             method: 'GET',
             url: '/api/v1/users'
-        }, 
-        { fixture: 'users/users.json' }).as('getUsers');
+        },
+            { fixture: 'users/users.json' }).as('getUsers');
         cy.wait('@getUsers');
         cy.contains('1 User').should('be.visible');
         cy.get('[data-testid="users-list"] ul .ListItem').should('have.length', 1);
-       
+
     });
 
     it('should delete user', () => {
@@ -46,7 +46,13 @@ describe('Users', () => {
         cy.contains('User deleted successfully').should('be.visible');
     });
 
-    it.only('create new user', () => {
+    it('create new user', () => {
+        cy.intercept({
+            method: 'GET',
+            url: '/api/v1/users'
+        },
+            { fixture: 'users/users.json' }).as('getUsers');
+
         cy.intercept({
             method: 'POST',
             url: '/api/v1/users'
@@ -58,9 +64,9 @@ describe('Users', () => {
         cy.intercept({
             method: 'GET',
             url: '/api/v1/roles'
-        }, 
-        { fixture: 'Roles/roles.json' }).as('getRoles');
-        
+        },
+            { fixture: 'Roles/roles.json' }).as('getRoles');
+
         const userFormId = 'user-form';
         cy.get('[data-testid="add-user-button"]').click();
         cy.wait('@getRoles');
