@@ -23,19 +23,51 @@ const { confirm } = Modal;
 
 const UsersList = ({ match }) => {
   const [users, setUsers] = useState([]);
+  const [visible, setVisible] = useState(false);
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const [isLoading, setIsLoading] = useState(false);
+  const [editableUser, setEditableUser] = useState(null);
+  const [isEdit, setIsEdit] = useState(false);
+
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const editUser = (userToEdit) => {
+    setEditableUser(userToEdit);
+    setIsEdit(true);
+    showDrawer();
+    
+  }
 
   const createUser = (user) => {
     // get current user from local storage
     const currentUser = JSON.parse(localStorage.getItem("user"));
+    if (isEdit) {
+      API.put(`users/${editableUser.id}`, { ...user, procuring_entity_id: currentUser.procuringEntity.id })
+      .then((res) => {
+        onClose();
+        notifySuccess("User updated successfully");
+        setIsEdit(false);
+        getUsers();
+      }
+      ).catch(err => {
+        notifyError('Error updating user');
+        console.log(err)
+      });
+
+      return;
+    }
     API.post(`users`, { ...user, procuring_entity_id: currentUser.procuringEntity.id })
       .then((res) => {
         onClose();
         notifySuccess("User created successfully");
         getUsers();
       }
-      ).catch(err => console.log(err));
+      ).catch(err => {
+        notifyError('Error creating user');
+        console.log(err)
+      });
   }
   const getUsers = () => {
     setIsLoading(true);
@@ -53,11 +85,9 @@ const UsersList = ({ match }) => {
   useEffect(() => {
     getUsers();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  const [visible, setVisible] = useState(false);
 
-  const showDrawer = () => {
-    setVisible(true);
-  };
+
+ 
 
   const deleteUser = (id) => {
     API.deleteData(`users/${id}`)
@@ -120,6 +150,14 @@ const UsersList = ({ match }) => {
               item={item}
               renderActions={() => (
                 <ListItemActions
+                edit={
+                  {
+                    name: "Edit User",
+                    datatestid: `edit-user-${item.id}`,
+                    title: "Edit User",
+                    onClick: () => editUser(item),
+                  }
+                }
                   archive={
                     {
                       name: "Archive User",
@@ -167,6 +205,7 @@ const UsersList = ({ match }) => {
           <UsersForm
             onFinish={createUser}
             onCancel={onClose}
+            editableUser={editableUser}
           />
         </Drawer>
       </div>

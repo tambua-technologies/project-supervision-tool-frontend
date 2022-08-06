@@ -24,7 +24,7 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-const UsersForm = ({ onFinish, onCancel }) => {
+const UsersForm = ({ onFinish, onCancel, editableUser }) => {
   const [roles, setRoles] = useState([]);
 
 
@@ -48,6 +48,11 @@ const UsersForm = ({ onFinish, onCancel }) => {
       name="user-form"
       onFinish={onFinish}
       validateMessages={validateMessages}
+      initialValues={{
+        ...editableUser,
+        roles: editableUser.roles.map(({ name }) => name),
+      }}
+
     >
       <Form.Item
         name="first_name"
@@ -123,33 +128,37 @@ const UsersForm = ({ onFinish, onCancel }) => {
         </Select>
       </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          { required: true, message: "Please input users Password!" },
-        ]}
-      >
-        <Input.Password
-          placeholder="Password"
-        />
-      </Form.Item>
+      {
+        editableUser ? '' : (
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              { required: true, message: "Please input users Password!" },
+            ]}
+          >
+            <Input.Password
+              placeholder="Password"
+            />
+          </Form.Item>
+        )
+      }
 
       <div className="user-form-action-buttons">
         <Form.Item>
-          <Button 
-          type="primary" 
-          htmlType="submit"
-          data-testid="user-form-submit-button"
+          <Button
+            type="primary"
+            htmlType="submit"
+            data-testid="user-form-submit-button"
           >
             Submit
           </Button>
         </Form.Item>
 
         <Form.Item>
-          <Button 
-          onClick={onCancel}
-          data-testid="cancel-user-form"
+          <Button
+            onClick={onCancel}
+            data-testid="cancel-user-form"
           >
             Cancel
           </Button>

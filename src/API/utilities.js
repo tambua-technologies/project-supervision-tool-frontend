@@ -38,6 +38,11 @@ const upload = (endpoint, file) => {
      return response.data.data;
 }
 
+const put = async (endpoint , body) => {
+    const response = await axios.put(endpoint, body);
+     return response.data.data;
+}
+
 const deleteData = async (endpoint , body) => {
     const response = await axios.delete(endpoint);
         return response.data.data;
@@ -49,6 +54,7 @@ const deleteData = async (endpoint , body) => {
 export default {
     upload,
     get,
+    put,
     post,
     deleteData
 };
