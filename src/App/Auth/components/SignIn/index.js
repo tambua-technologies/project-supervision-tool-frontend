@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import {Input, Button, Form} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
@@ -8,6 +8,7 @@ import {authActions, authSelectors} from "../../../../redux/modules/auth";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
 import API from "../../../../API";
+import {AppContext} from "../../../../context/AppContext";
 
 
 /**
@@ -20,6 +21,7 @@ import API from "../../../../API";
 const SignIn = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
+    const {setCurrentUser} = useContext(AppContext);
     const history = useHistory();
 
 
@@ -37,10 +39,10 @@ const SignIn = () => {
         .then(res => {
             // save access token to local storage
             localStorage.setItem("accessToken", res.data.access_token);
-            localStorage.setItem("user", JSON.stringify(res.data.user));
+            setCurrentUser(res.data.user);
             const {procuringEntity} = res.data.user;
             setLoading(false);
-           history.push(`/procuring_entity/${procuringEntity.id}/sub-projects-map`);
+           history.push(`/procuring_entity/${procuringEntity.id}/overview`);
             
         })
         .catch( err => {
