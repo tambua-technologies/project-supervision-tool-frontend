@@ -24,7 +24,7 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-const NewRoleForm = ({ onFinish, onCancel }) => {
+const NewRoleForm = ({ onFinish, onCancel,editableRole }) => {
   const [permissions, setPermissions] = useState([]);
 
 
@@ -48,6 +48,10 @@ const NewRoleForm = ({ onFinish, onCancel }) => {
       name="role-form"
       onFinish={onFinish}
       validateMessages={validateMessages}
+      initialValues={{
+        ...editableRole,
+        permissions: editableRole.permissions.map(({ name }) => name),
+      }}
     >
       <Form.Item
         name="name"
