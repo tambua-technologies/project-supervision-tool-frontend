@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Menu } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,7 +32,7 @@ const SideMenu = (props) => {
       dispatch(setActiveMenuItem(activeMenuItem));
     }
     else {
-      dispatch(setActiveMenuItem(sideMenuKeys.map));
+      dispatch(setActiveMenuItem(sideMenuKeys.overview));
     }
   }, []);
 

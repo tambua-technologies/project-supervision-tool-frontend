@@ -40,7 +40,7 @@ const SignIn = () => {
             localStorage.setItem("user", JSON.stringify(res.data.user));
             const {procuringEntity} = res.data.user;
             setLoading(false);
-           history.push(`/procuring_entity/${procuringEntity.id}/sub-projects-map`);
+           history.push(`/procuring_entity/${procuringEntity.id}/overview`);
             
         })
         .catch( err => {

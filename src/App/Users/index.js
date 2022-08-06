@@ -26,29 +26,29 @@ const UsersList = ({ match }) => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const [isLoading, setIsLoading] = useState(false);
 
-const createUser = (user) => {
-  // get current user from local storage
-  const currentUser = JSON.parse(localStorage.getItem("user"));
-  API.post(`users`, {...user, procuring_entity_id: currentUser.procuringEntity.id})
-    .then((res) => {
-      onClose();
-      notifySuccess("User created successfully");
-      getUsers();
-    }
-    ).catch(err => console.log(err));
-}
+  const createUser = (user) => {
+    // get current user from local storage
+    const currentUser = JSON.parse(localStorage.getItem("user"));
+    API.post(`users`, { ...user, procuring_entity_id: currentUser.procuringEntity.id })
+      .then((res) => {
+        onClose();
+        notifySuccess("User created successfully");
+        getUsers();
+      }
+      ).catch(err => console.log(err));
+  }
   const getUsers = () => {
     setIsLoading(true);
     API.get("users")
-    .then(({data}) => {
-      setIsLoading(false);
-      const filteredUsers = data.filter(({id}) => id !== currentUser.id).filter(
-        ({procuringEntity: { agency}}) => agency.id === currentUser.procuringEntity.agency.id )
-      setUsers(filteredUsers);
-    })
-    .catch(err => {
-      setIsLoading(false);
-    })
+      .then(({ data }) => {
+        setIsLoading(false);
+        const filteredUsers = data.filter(
+          ({ procuringEntity: { agency } }) => agency.id === currentUser.procuringEntity.agency.id)
+        setUsers(filteredUsers);
+      })
+      .catch(err => {
+        setIsLoading(false);
+      })
   }
   useEffect(() => {
     getUsers();
@@ -61,18 +61,18 @@ const createUser = (user) => {
 
   const deleteUser = (id) => {
     API.deleteData(`users/${id}`)
-    .then(res => {
-      getUsers();
-      notifySuccess("User deleted successfully");
-    }
-    ).catch(err => {
-      console.log(err);
-      notifyError("Error deleting User");
-    });
+      .then(res => {
+        getUsers();
+        notifySuccess("User deleted successfully");
+      }
+      ).catch(err => {
+        console.log(err);
+        notifyError("Error deleting User");
+      });
   }
 
- 
-   const showArchiveConfirm = item => {
+
+  const showArchiveConfirm = item => {
     confirm({
       title: `Are you sure you want to archive user ${item.first_name} ?`,
       okButtonProps: {
@@ -150,7 +150,7 @@ const createUser = (user) => {
               </Col>
 
               <Col {...role} className="contentEllipse">
-                {item?.roles.map(({name}) => name).join(',') || "N/A"}
+                {item?.roles.map(({ name }) => name).join(',') || "N/A"}
               </Col>
 
               {/* eslint-enable react/jsx-props-no-spreading */}
