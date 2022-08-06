@@ -9,71 +9,16 @@ import './styles.css';
 import { AppContext } from '../../../context/AppContext';
 
 
-const CustomIcon = () => (<span className="CustomIcon" />)
 
-const getMenuItems = (menuKeys) => {
-  const { map, overview, packages, subProjects, reports, fieldNotes, safeguardConcerns, users, roles } = menuKeys;
-
-  return  [
-    {
-      key: map,
-      icon: <CustomIcon />,
-      label: 'Map',
-    },
-    {
-      key: overview,
-      icon: <CustomIcon />,
-      label: 'Overview',
-    },
-    {
-      key: packages,
-      icon: <CustomIcon />,
-      label: 'Packages',
-    },
-    {
-      key: subProjects,
-      icon: <CustomIcon />,
-      label: 'Subprojects',
-    },
-  
-    {
-      key: reports,
-      icon: <CustomIcon />,
-      label: 'Reports',
-    },
-    {
-      key: fieldNotes,
-      icon: <CustomIcon />,
-      label: 'Field Notes',
-    },
-    {
-      key: safeguardConcerns,
-      icon: <CustomIcon />,
-      label: 'OHS and Safeguards',
-    },
-    {
-      key: users,
-      icon: <CustomIcon />,
-      label: 'Users',
-    }
-    ,
-    {
-      key: roles,
-      icon: <CustomIcon />,
-      label: 'Roles & Permissions',
-    }
-  ];
-}
 
 const SideMenu = (props) => {
   const { baseUrl } = props;
   const activeMenuItem = useSelector(activeMenuItemSelector);
-  const { sideMenuKeys } = useContext(AppContext);
+  const { sideMenuKeys, menuItems: items } = useContext(AppContext);
   const dispatch = useDispatch();
 
   const history = useHistory();
 
-  const items = getMenuItems(sideMenuKeys);
 
   const handleOnMenuItemClick = e => {
     dispatch(setActiveMenuItem(e.key));

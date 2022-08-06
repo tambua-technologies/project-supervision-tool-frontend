@@ -1,2 +1,2 @@
-
-export const CAN_CREATE_SURVEY = 'can create survey';
+export const CAN_READ_USERS = 'can read users';
+export const CAN_READ_ROLES = 'can read roles';

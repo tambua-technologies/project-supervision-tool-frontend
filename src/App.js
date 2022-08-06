@@ -9,25 +9,9 @@ import { bindActionCreators } from "redux";
 import { appActions } from "./redux/modules/app";
 import PrivateRoute from "./App/Auth/PrivateRoute";
 import BaseLayout from "./App/layouts/BaseLayout";
-import { AppContext } from "./context/AppContext";
+import AppContextProvider from "./context/AppContext";
 
-/**
- * @object sideMenuKeys
- * @description This object contains the side menu keys. 
- * the idea behid is to provide a single place to change side menu keys.
- */
- const sideMenuKeys = {
-  overview: "overview",
-  reports: "reports",
-  fieldNotes: "field-notes",
-  map: "sub-projects-map",
-  contracts: "contracts",
-  subProjects: "sub-projects",
-  safeguardConcerns: "safeguard-concerns",
-  packages: "packages",
-  users: "users",
-  roles: "roles",
-};
+
 
 
 Spin.setDefaultIndicator(<LoadingOutlined style={{ fontSize: 24 }} spin />);
@@ -35,7 +19,7 @@ function App() {
   
 
   return (
-    <AppContext.Provider value={{sideMenuKeys}}>
+    <AppContextProvider>
       <div className="App">
       <HashRouter hashType="hashbang">
         <Switch>
@@ -45,7 +29,7 @@ function App() {
         </Switch>
       </HashRouter>
     </div>
-    </AppContext.Provider>
+    </AppContextProvider>
   );
 }
 

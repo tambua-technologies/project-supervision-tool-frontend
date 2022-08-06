@@ -14,7 +14,7 @@ const { Header, Content, Sider } = Layout;
 const BaseLayout = (props) => {
   const [procuringEntity, setProcuringEntity] = useState(null);
   const {
-    match: { url: baseUrl, params },
+    match: { url: baseUrl },
   } = props;
 
   useEffect(() => {
