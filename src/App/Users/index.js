@@ -71,15 +71,7 @@ const createUser = (user) => {
     });
   }
 
-  /**
-   * @function
-   * @name showArchiveConfirm
-   * @description show confirm modal before archiving a focal person
-   * @param {object} item Resource item to be archived
-   *
-   * @version 0.1.0
-   * @since 0.1.0
-   */
+ 
    const showArchiveConfirm = item => {
     confirm({
       title: `Are you sure you want to archive user ${item.first_name} ?`,

@@ -6,6 +6,12 @@ describe('Roles', () => {
     beforeEach(() => {
         cy.Signin('testing@project-supervision-tool.com', 'Pass@Tool');
         cy.visit('http://localhost:3000/#!/procuring_entity/1/roles');
+        cy.intercept({
+            method: 'GET',
+            url: '/api/v1/roles'
+        },
+            { fixture: 'Roles/roles.json' }).as('getRoles');
+        cy.wait('@getRoles');
     });
 
     afterEach(() => {
@@ -14,19 +20,12 @@ describe('Roles', () => {
 
     it('should should display roles list', () => {
         cy.get('[data-testid="roles-menu-item"]').contains('Roles & Permission').should('be.visible');
-
-        cy.intercept({
-            method: 'GET',
-            url: '/api/v1/roles'
-        },
-            { fixture: 'Roles/roles.json' }).as('getRoles');
-        cy.wait('@getRoles');
         cy.contains('4 Roles').should('be.visible');
         cy.get('[data-testid="roles-list"] ul .ListItem').should('have.length', 4);
     });
 
 
-    it.only('create new role', () => {
+    it('create new role', () => {
         cy.intercept({
             method: 'GET',
             url: '/api/v1/roles'
@@ -59,7 +58,29 @@ describe('Roles', () => {
         });
         cy.wait('@createRole');
         cy.contains('Role created successfully').should('be.visible');
-    })
+    });
+
+
+    it.only('should delete role', () => {
+        cy.intercept({
+            method: 'DELETE',
+            url: '/api/v1/roles/1'
+        }, {
+            statusCode: 200,
+            fixture: 'roles/deleteRole.json'
+
+        }).as('deleteRole');
+
+        cy.get('[data-testid="roles-list"] ul .ListItem').first().within(() => {
+            cy.get('[data-testid="list-item-actions"]').click();
+        });
+        cy.get('[data-testid="archive-role-1"]').click();
+        cy.get('[data-testid="archive-role-1"]').should('not.be.visible');
+
+        cy.get('[data-testid="archive-confirm-role-ok-button"]').click();
+        cy.wait('@deleteRole');
+        cy.contains('Role admin deleted successfully').should('be.visible');
+    });
 
 
 

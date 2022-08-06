@@ -3,10 +3,10 @@ import API from "../../API";
 import CustomList from "../components/List";
 import ListItem from "../components/ListItem";
 import ListItemActions from "../components/ListItemActions";
-import { Drawer, Col } from "antd";
+import { Drawer, Col, Modal } from "antd";
 import { API_BASE_URL } from "../../API/config";
 import NewRoleForm from "./NewRoleForm";
-import { notifySuccess } from "../../Util";
+import { notifyError, notifySuccess } from "../../Util";
 const name = { xxl: 8, xl: 8, lg: 8, md: 8, sm: 10, xs: 20 };
 const permission = { xxl: 12, xl: 12, lg: 12, md: 12, sm: 10, xs: 0 };
 
@@ -14,6 +14,9 @@ const headerLayout = [
   { ...name, header: "Name" },
   { ...permission, header: "Permissions" },
 ];
+
+const { confirm } = Modal;
+
 const Roles = () => {
   const [roles, setRoles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,6 +24,30 @@ const Roles = () => {
 
   const onClose = () => {
     setVisible(false);
+  };
+
+  const deleteRole = (item) => {
+    API.deleteData(`roles/${item.id}`)
+      .then((res) => {
+        notifySuccess(`Role ${item.name} deleted successfully`);
+        getRoles();
+      }
+      ).catch(err => notifyError(`Error deleting role ${item.name}`));
+  }
+
+  const showArchiveConfirm = item => {
+    confirm({
+      title: `Are you sure you want to archive role ${item.name}?`,
+      okButtonProps: {
+        'data-testid': 'archive-confirm-role-ok-button',
+      },
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        deleteRole(item);
+      },
+    });
   };
 
   const getRoles = (id) => {
@@ -73,7 +100,7 @@ const Roles = () => {
             arrActions: [
               {
                 datatestid: "add-role-button",
-                btnName: "Add New User Role ",
+                btnName: "Add New User Role",
                 btnAction: showDrawer,
               },
             ],
@@ -91,15 +118,14 @@ const Roles = () => {
               item={item}
               renderActions={() => (
                 <ListItemActions
-                  downloadReport={
-                    item?.media
-                      ? {
-                        name: "Download Report",
-                        title: "Click to download the report",
-                        url: `${API_BASE_URL}/api/v1/procuring_entity_reports/${item?.media?.id}`,
-                      }
-                      : undefined
+                archive={
+                  {
+                    name: "Archive Role",
+                    datatestid: `archive-role-${item.id}`,
+                    title: "Archieve Role",
+                    onClick: () => showArchiveConfirm(item),
                   }
+                }
                 />
               )}
             >
