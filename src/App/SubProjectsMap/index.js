@@ -6,6 +6,7 @@ import BaseMap from "./components/BaseMap";
 import "./styles.css";
 import SubProjectPoints from './components/SubProjectPoints';
 import API from '../../API';
+import Legend from './components/Legend';
 
 function SubProjectsMap(props) {
     const [subProjects, setSubProjects] = useState([]);
@@ -14,17 +15,10 @@ function SubProjectsMap(props) {
 
     useEffect(() => {
         setLoading(true);
-        // const filter = {
-        //     'filter[procuring_entity_id]': procuringEntityId
-        // };
-        // API.get('sub_projects_locations',filter)
-        //         .then(res => {
-        //             setSubProjects(res);
-        //             setLoading(false);
-        //         })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        
         API.getWfsLayerData('geonode:DMDP_Constructed_Roads', 'geonode:DMDP_Constructed_Drains')
             .then(data => {
+                setLoading(false);
                 const reprojectedFeatures = toWgs84(data, undefined, epsg);
                 const subProjects = reprojectedFeatures.features.map(feature => {
                     return {
@@ -35,7 +29,7 @@ function SubProjectsMap(props) {
                     }
                 });
                 setSubProjects(subProjects);
-                setLoading(false);
+                
             }
             )
             .catch(err => {
@@ -50,6 +44,7 @@ function SubProjectsMap(props) {
             <Spin spinning={loading} tip="Loading data...">
                 <BaseMap position={[-6.8153, 39.2796]} zoom={12}>
                     <SubProjectPoints subProjects={subProjects} />
+                    <Legend />
                 </BaseMap>
             </Spin>
         </div>
