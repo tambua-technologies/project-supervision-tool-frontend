@@ -22,8 +22,8 @@ const geoserverUrl = `${process.env.REACT_APP_GEONODE_URL}/geoserver`;
  * @version 0.1.0
  * @since 0.1.0
  */
-const getWfsLayerData = (layer_name) =>
-    Axios.get(`${baseUrl}?service=wfs&version=2.0.0&request=GetFeature&typeNames=${layer_name}&outputFormat=application/json`)
+const getWfsLayerData = (...rest) =>
+    Axios.get(`${baseUrl}?service=wfs&version=2.0.0&request=GetFeature&typeName=${rest.join(',')}&outputFormat=application/json`)
     .then((response) => response.data);
 
 const getGeoserverLayers = (layer_name) =>
