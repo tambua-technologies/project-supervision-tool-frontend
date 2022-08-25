@@ -28,7 +28,7 @@
 }
 
 .Logo h2 {
-  color: #009fda;
+  color: #0F6788;
   text-transform: uppercase;
   font-weight: bold;
   /* font-size: 40px; */
@@ -52,5 +52,5 @@
 }
 
 .signIn-form-button{
-  background: #009fda;
+  background: #0F6788;
 }

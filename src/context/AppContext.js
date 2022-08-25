@@ -1,4 +1,5 @@
 import React, { useState, createContext, useEffect } from "react";
+import Icon from '@ant-design/icons';
 import Roles from '../App/Roles';
 import Packages from "../App/Packages";
 import SubProjects from "../App/SubProjects";
@@ -15,8 +16,20 @@ import EquipmentMobilization from "../App/Packages/componets/Package/EquipmentMo
 import Package from "../App/Packages/componets/Package";
 import FieldNotes from "../App/FieldNotes";
 import SubProjectsMap from "../App/SubProjectsMap";
-import * as AppPermissions from '../Util/permissions'
-
+import * as AppPermissions from '../Util/permissions';
+import { ReactComponent as OverviewSvg } from '../assets/icons/overview.svg';
+import { ReactComponent as MapSvg } from '../assets/icons/map.svg';
+import { ReactComponent as GeonodeSvg } from '../assets/icons/geo-node-layers.svg';
+import { ReactComponent as ContractSvg } from '../assets/icons/contract-management.svg';
+import { ReactComponent as PackagesSvg } from '../assets/icons/packages.svg';
+import { ReactComponent as ProjectsSvg } from '../assets/icons/projects.svg';
+import { ReactComponent as SubprojectsSvg } from '../assets/icons/sub-projects.svg';
+import { ReactComponent as ReportsSvg } from '../assets/icons/reports.svg';
+import { ReactComponent as FieldNotesSvg } from '../assets/icons/field-notes.svg';
+import { ReactComponent as EHSSafeguardsSvg } from '../assets/icons/m-and-e.svg';
+import { ReactComponent as UsersSvg } from '../assets/icons/users.svg';
+import { ReactComponent as PermissionsSvg } from '../assets/icons/action-items.svg';
+import "./AppContext.css";
 
 const baseUrl = "/procuring_entity/:procuringEntityId";
 const sideMenuKeys = {
@@ -130,8 +143,18 @@ const getRoutes = (menuKeys) => {
     ];
 };
 
-
-const CustomIcon = () => (<span className="CustomIcon" />)
+const iconStyle =  { fontSize: '36px', };
+const CustomIcon = () => (<Icon style={{...iconStyle}} component={OverviewSvg} />) ;
+const OverviewIcon = () => (<Icon style={{...iconStyle}} component={OverviewSvg} /> )
+const MapIcon = () => (<Icon style={{...iconStyle}} component={MapSvg} /> )
+const PackagesIcon = () => (<Icon style={{...iconStyle}} component={PackagesSvg} /> )
+const ProjectsIcon = () => (<Icon style={{...iconStyle}} component={ProjectsSvg} /> )
+const SubprojectsIcon = () => (<Icon style={{...iconStyle}} component={SubprojectsSvg} /> )
+const ReportsIcon = () => (<Icon style={{...iconStyle}} component={ReportsSvg} /> )
+const FieldNotesIcon = () => (<Icon style={{...iconStyle}} component={FieldNotesSvg} /> )
+const EHSSafeguardsIcon = () => (<Icon style={{...iconStyle}} component={EHSSafeguardsSvg} /> )
+const UsersIcon = () => (<Icon style={{...iconStyle}} component={UsersSvg} /> )
+const PermissionsIcon = () => (<Icon style={{...iconStyle}} component={PermissionsSvg} /> )
 
 const getMenuItems = (menuKeys, permissions) => {
     const { map, overview, packages, subProjects, reports, fieldNotes, safeguardConcerns, users, roles } = menuKeys;
@@ -140,57 +163,57 @@ const getMenuItems = (menuKeys, permissions) => {
        
         {
             key: overview,
-            icon: <CustomIcon />,
+            icon: <OverviewIcon />,
             label: 'Overview',
         },
         {
             key: map,
-            icon: <CustomIcon />,
+            icon: <MapIcon />,
             label: 'Map',
             disabled: !permissions.includes(AppPermissions.CAN_READ_SUB_PROJECT),
         },
         {
             key: packages,
-            icon: <CustomIcon />,
+            icon: <PackagesIcon />,
             label: 'Packages',
             disabled: !permissions.includes(AppPermissions.CAN_READ_PACKAGE),
 
         },
         {
             key: subProjects,
-            icon: <CustomIcon />,
+            icon: <SubprojectsIcon />,
             label: 'Subprojects',
             disabled: !permissions.includes(AppPermissions.CAN_READ_SUB_PROJECT),
         },
 
         {
             key: reports,
-            icon: <CustomIcon />,
+            icon: <ReportsIcon />,
             label: 'Reports',
             disabled: !permissions.includes(AppPermissions.CAN_READ_REPORT),
         },
         {
             key: fieldNotes,
-            icon: <CustomIcon />,
+            icon: <FieldNotesIcon />,
             label: 'Field Notes',
             disabled: !permissions.includes(AppPermissions.CAN_READ_FIELD_NOTE),
         },
         {
             key: safeguardConcerns,
-            icon: <CustomIcon />,
+            icon: <EHSSafeguardsIcon />,
             label: 'OHS and Safeguards',
             disabled: !permissions.includes(AppPermissions.CAN_READ_SAFEGUARD_CONCERN),
         },
         {
             key: users,
-            icon: <CustomIcon />,
+            icon: <UsersIcon />,
             label: 'Users',
             disabled: !permissions.includes(AppPermissions.CAN_READ_USER),
         }
         ,
         {
             key: roles,
-            icon: <CustomIcon />,
+            icon: <PermissionsIcon />,
             label: 'Roles & Permissions',
             disabled: !permissions.includes(AppPermissions.CAN_READ_ROLE),
         }
