@@ -40,8 +40,7 @@ const SafeguardConcerns = ({ match }) => {
 
   const getData = (id) => {
     setIsLoading(true);
-    const filter = {'filter[procuring_entity_id]': id };
-    Promise.all([API.getSafeguardConcernsStatistics(id), API.get(SAFEGUARD_CONCERS_ENDPOINT,filter)])
+    Promise.all([API.getSafeguardConcernsStatistics(id), API.get(SAFEGUARD_CONCERS_ENDPOINT)])
     .then(values => {
       setIsLoading(false);
       const [safeguardStats, safeguardConcerns] = values;

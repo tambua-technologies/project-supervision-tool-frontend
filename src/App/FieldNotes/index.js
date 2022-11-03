@@ -106,8 +106,7 @@ const FieldNotes = (props) => {
   const prepareFieldNotes = (fieldNotes) => {
     const procuringEntity = getProcuringEntity();
     const procuringEntityName = procuringEntity.name.toLowerCase();
-    return fieldNotes.filter(({Procuring_Entity}) => Procuring_Entity.toLowerCase() === procuringEntityName)
-    .map((fieldNote) => {
+    return fieldNotes.map((fieldNote) => {
       const {notes} = fieldNote;
       return notes.map((note) => {
         const photo = getAttachMentUrl(fieldNote._attachments, note['notes/photo']);
