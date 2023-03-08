@@ -1,7 +1,7 @@
 
 import Axios from 'axios';
 
-const geonodeUrl = 'https://geonode.projectsupervisiontool.ga';
+const geonodeUrl = 'https://52.26.154.223';
 const baseUrl = `${geonodeUrl}/api`;
 
 const axiosGeonode = Axios.create({
