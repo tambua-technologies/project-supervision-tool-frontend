@@ -14,6 +14,13 @@
     width: 80%;
 }
 
+.data-set-name-source .dataset-title {
+    max-width: 220px; 
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .data-set-section {
     border-bottom: 1px solid #e5e5e5;
 }

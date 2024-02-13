@@ -19,7 +19,7 @@ function LayerItem ({ layer}) {
                 <InfoCircleTwoTone twoToneColor="#0f6788"/>
             </Popover>
             <div className='data-set-name-source'>
-                <div title={ layer.title || layer.name }>{ layer.title || layer.name }</div>
+                <div title={ layer.title || layer.name } className="dataset-title" >{ layer.title || layer.name }</div>
             </div>
             <LayerItemActions layer={layer} />
         </div>
