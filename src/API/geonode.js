@@ -1,7 +1,7 @@
 
 import Axios from 'axios';
 
-const geonodeUrl = 'https://geonode.projectsupervisiontool.ga';
+const geonodeUrl = process.env.REACT_APP_GEONODE_URL;
 const baseUrl = `${geonodeUrl}/api`;
 
 const axiosGeonode = Axios.create({
@@ -16,7 +16,7 @@ const axiosGeonode = Axios.create({
  * @description get layers  fr  om Geonode
  */
 const getLayers = ( params = {}) =>
-    axiosGeonode.get(`${baseUrl}/layers`, { params: { ...params } }).then((response) => response.data);
+    axiosGeonode.get(`${baseUrl}/datasets`, { params: { ...params } }).then((response) => response.data);
 
 /**
  * @function
