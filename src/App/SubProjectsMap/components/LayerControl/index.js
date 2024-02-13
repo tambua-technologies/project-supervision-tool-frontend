@@ -19,6 +19,7 @@ const { Panel } = Collapse;
 // utilities
 const getWMSUrl = links => links.find(({link_type}) => link_type === 'OGC:WMS').url;
 const getGeonodeLayerId = layer => layer.typename || layer.alternate;
+const fieldNotesKobotoolboxFormId = process.env.REACT_APP_FIELD_NOTES_FORM_ID;
 
 
 const DataSets = ({ layerCategories, changeOpacity }) => {
@@ -103,7 +104,7 @@ const LayerControl = ({ addedDataSet, removedDataSet, removeDataLayer, addDataLa
 
     const getPoints = async (id) => {
         if(id === 'temeke_field_notes'){
-        return API.getAssetData('aLD6RspTPyijYdA63icUZ4')
+        return API.getAssetData(fieldNotesKobotoolboxFormId)
             .then(({ results }) => {
                 return results.map(({ package: pkg, subProject, notes, _attachments }) =>
                     notes.map(note => ({ packageName: pkg, subProject,imageUrl: getFieldNoteImageUrl(_attachments, note['notes/photo']), ...note, geoJSON: stringToGeoJson(note['notes/location'], 'geopoint') })))

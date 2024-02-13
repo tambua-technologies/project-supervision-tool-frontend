@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import DisplaySurveyForm from "../../../components/DisplaySurveyForm";
 
 // constants
-const kobotoolboxFormId = process.env.REACT_APP_FIELD_NOTES_FORM_ID;
+const fieldNotesKobotoolboxFormId = process.env.REACT_APP_FIELD_NOTES_FORM_ID;
 
 const CreateFieldNoteForm = (props) => {
   const history = useHistory();
@@ -18,7 +18,7 @@ const CreateFieldNoteForm = (props) => {
       >
         Go Back
       </Button>
-      <DisplaySurveyForm survey_id={kobotoolboxFormId} />
+      <DisplaySurveyForm survey_id={fieldNotesKobotoolboxFormId} />
     </div>
   );
 };

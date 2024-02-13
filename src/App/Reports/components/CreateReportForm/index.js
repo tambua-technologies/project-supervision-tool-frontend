@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import DisplaySurveyForm from "../../../components/DisplaySurveyForm";
 
 // constants
-const kobotoolboxFormId = process.env.REACT_APP_TEMEKE_REPORT_FORM_ID;
+const fieldNotesKobotoolboxFormId = process.env.REACT_APP_TEMEKE_REPORT_FORM_ID;
 
 const CreateReportForm = (props) => {
 
@@ -14,7 +14,7 @@ const CreateReportForm = (props) => {
     return (
     <div>
         <Button type="primary" onClick={() => history.goBack()} style={{ position: 'absolute', margin: 20 }}>Go Back</Button>
-        <DisplaySurveyForm survey_id={kobotoolboxFormId} />
+        <DisplaySurveyForm survey_id={fieldNotesKobotoolboxFormId} />
     </div>
     );
 }
